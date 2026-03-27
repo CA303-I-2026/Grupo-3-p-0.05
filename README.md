@@ -5,7 +5,7 @@
 | Nombre completo              | Carné | Correo institucional               |
 |------------------------------|-------|------------------------------------|
 | Alexandra González Bermúdez  |C4F535 |ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr|
-|                              |       |                                    |
+| José Miguel Rodríguez Gómez  |C4J104 |JOSE.RODRIGUEZGOMEZ@ucr.ac.cr       |
 |                              |       |                                    |
 
 ## Descripción del proyecto
