@@ -2,11 +2,11 @@
 
 ## Integrantes del grupo
 
-| Nombre completo | Carné | Correo institucional |
-|-----------------|-------|----------------------|
-|                 |       |                      |
-|                 |       |                      |
-|                 |       |                      |
+| Nombre completo              | Carné | Correo institucional               |
+|------------------------------|-------|------------------------------------|
+| Alexandra González Bermúdez  |C4F535 |ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr|
+|                              |       |                                    |
+|                              |       |                                    |
 
 ## Descripción del proyecto
 
