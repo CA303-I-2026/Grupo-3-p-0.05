@@ -6,7 +6,8 @@
 |------------------------------|-------|------------------------------------|
 | Alexandra González Bermúdez  |C4F535 |ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr|
 | José Miguel Rodríguez Gómez  |C4J104 |JOSE.RODRIGUEZGOMEZ@ucr.ac.cr       |
-| Daniela Prado Vargas         |C26070 |DANIELA.PRADOVARGAS@ucr.ac.cr       |
+| Daniela Prado Vargas         |C26070 |DANIELA.PRADOVARGAS@ucr.ac.cr       | 
+| Estefania Mora Contreras     |C4H522 |EMILY.MORACONTRERAS@ucr.ac.cr       |
 
 ## Descripción del proyecto
 
