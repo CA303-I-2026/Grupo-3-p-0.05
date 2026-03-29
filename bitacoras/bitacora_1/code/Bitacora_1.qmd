@@ -22,7 +22,9 @@ format:
             - \setlength{\parindent}{1.27cm}   
 ---
 
-# Parte 1 Planificación
+\newpage
+
+# Parte de planificación
 
 ## Pregunta de investigación
 
@@ -34,7 +36,7 @@ La idea de esta investigación es comprobar si existe una relación entre la eda
 
 ### Conceptualización de la idea
 
-### Identificación de tensiones 
+### Identificación de tensiones
 
 Algunas tensiones que se pueden encontrar durante la realización del trabajo son que, en los datos, puede haber errores o inconsistencias, ya que no se conoce con exactitud cómo fueron recolectados. Además, al tratarse de datos que provienen de una región específica, puede resultar difícil generalizar los resultados a otros contextos. Por otro lado, al abarcar únicamente el periodo de 2015 a 2018, no se consideran situaciones importantes como la pandemia o la situación económica actual, por lo que los resultados podrían no ser completamente aplicables a la actualidad.
 
@@ -153,3 +155,19 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 -   **Cost_claims_by_type** (Costo de siniestros por tipo): Costo asociado a un tipo específico de reclamo dentro del siniestro.
 
 -   **Claims_type** (Tipo de siniestro): Clasificación del tipo de reclamo como: asistencia en viaje, rotura de lunas, reclamación, negligencia, robo, incendio, lesiones, etc.
+
+## Revisión bibliográfica
+
+### Búsqueda de bibliografía
+
+### Construcción de fichas de literatura
+
+## Construcción de la UVE de Gowin
+
+### Conceptos básicos
+
+# Parte de escritura
+
+# Arco narrativo del proyecto
+
+# Diario de aprendizaje
