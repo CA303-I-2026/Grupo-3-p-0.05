@@ -27,8 +27,20 @@ format:
 ## Pregunta de investigación
 
 ### Definición de la idea
-La idea de esta investigación es comprobar si existe una relación entre la edad del asegurado, tipo de vehículo, peso y largo del vehículo, valor del vehículo, etc; con el número de siniestros y la severidad de los mismos. Además de esto, se pueden predecir los siniestros que un asegurado podría tener, categorizar a cada asegurado con un nivel de riesgo, predecir el costo del siniestro, encontrar posibles casos de fraude y ver en qué tipo de vehículo se da mayor cantidad de siniestros y cuáles son los que tienen el mayor monto reclamado además de estimar el monto del siniestro a partir de la zona.
+La idea de esta investigación es comprobar si existe una relación entre la edad del asegurado, tipo de vehículo, peso y largo del vehículo, valor del vehículo, etc;con el número de siniestros y la severidad de los mismos. Además de esto, se pueden predecir los siniestros que un asegurado podría tener, categorizar a cada asegurado con un nivel de riesgo, predecir el costo del siniestro, encontrar posibles casos de fraude y ver en qué tipo de vehículo se da mayor cantidad de siniestros y cuáles son los que tienen el mayor monto reclamado además de estimar el monto del siniestro a partir de la zona.
 
+### Reformulación de la idea en modo pregunta
+
+
+
+
+
+
+
+
+
+4. ¿Hasta qué punto las características físicas del vehículo como la potencia, el largo, el peso y otros influyen en mayor o menor medida en la frecuencia y severidad de los siniestros?
+Esta opción de pregunta se descartó pues está contenida de forma implícita en la pregunta de investigación seleccionada, además de que solamente contempla características físicas del vehículo y no otros factores importantes como la edad del asegurado o la zona de circulación.
 
 
 ### Argumentación a través de datos
