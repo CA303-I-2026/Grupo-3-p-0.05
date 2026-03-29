@@ -22,6 +22,8 @@ format:
             - \setlength{\parindent}{1.27cm}   
 ---
 
+\newpage
+
 # Parte de planificación
 
 ## Pregunta de investigación
@@ -151,6 +153,8 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 ### Construcción de fichas de literatura
 
 ## Construcción de la UVE de Gowin
+
+### Conceptos básicos
 
 # Parte de escritura
 
