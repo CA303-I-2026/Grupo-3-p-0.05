@@ -54,7 +54,26 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 
 ### Argumentación de la pregunta
 
-**Pregunta ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?**
+**Pregunta #2** ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
+
+**Contraargumentos**
+
+**Lógica:** La pregunta toma en cuenta la frecuencia y la severidad, las cuales son conceptos distintos, así como conceptos amplios como “perfiles de asegurados” y “condiciones del seguro”, lo que puede dificultar un análisis claro y específico.
+
+**Ética:** El análisis de diferencias entre perfiles de asegurados podría implicar el uso de variables sensibles (como edad u otras características personales), lo que podría derivar en segmentaciones injustas o en la reproducción de sesgos presentes en los datos.
+
+**Emocional:** El enfoque en la diferenciación entre perfiles puede percibirse como reduccionista, al no considerar las realidades individuales detrás de los datos, lo que podría generar incomodidad o una percepción de trato impersonal hacia los asegurados.
+
+**Argumentos**
+
+**Lógica:** Mediante el uso de técnicas estadísticas adecuadas, como modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), así como la correcta definición de variables como “perfiles de asegurados” y “condiciones del seguro”, se puede obtener un análisis más preciso y bien estructurado que capture las diferencias en los siniestros.
+
+(Importante para bibliografía: 2.2.3.2 Poisson Distribution, 3.2.1 Gamma Distribution https://openacttexts.github.io/Loss-Data-Analytics/ChapFrequency-Modeling.html)
+
+**Ética:** Utilizando una selección de variables y una revisión de posibles sesgos en los datos, se puede garantizar que el análisis no promueva discriminación injusta, sino que esté basada en criterios estadísticos transparentes y responsables.
+
+**Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de forma clara y comprensible puede generar mayor confianza y conexión, evitando percepciones de trato impersonal o injusto.
+
 
 ### Argumentación a través de datos
 
