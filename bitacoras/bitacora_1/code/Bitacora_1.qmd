@@ -42,7 +42,7 @@ Algunas tensiones que se pueden encontrar durante la realización del trabajo so
 
 ### Reformulación de la idea en modo pregunta
 
-1.  (Pregunta elegida) ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?
+1.  (Pregunta elegida) ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
 
 2.  ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
 
@@ -53,6 +53,26 @@ Algunas tensiones que se pueden encontrar durante la realización del trabajo so
 Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente descriptivo, centrado en analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, como cambios abruptos en el comportamiento de los reclamos. En cuanto a la opción 3, se descartó ya que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no aborda lo que se pensó inicialmente con el proyecto, que es directamente la relación entre variables específicas y la frecuencia y severidad de los siniestros. Dado esto, no se podría abordar la base de datos de la manera deseada. La opción 4 se descartó pues está contenida de forma implícita en la pregunta de investigación seleccionada, además de que solamente contempla características físicas del vehículo y no otros factores importantes como la edad del asegurado o la zona de circulación.
 
 ### Argumentación de la pregunta
+
+**Pregunta #1** ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
+
+#### Contraargumentos
+
+**Lógica:** La pregunta combina múltiples variables explicativas y dos dimensiones distintas del análisis (frecuencia y severidad), lo que puede dificultar la identificación clara de relaciones específicas. Además, el umbral de 900 unidades monetarias surge de la observación de un gráfico específico durante el análisis exploratorio, por lo que corresponde a una evidencia empírica inicial y podría no ser generalizable ni representar un punto de cambio real sin un análisis estadístico más riguroso.
+
+**Ética:** El uso de variables como la edad o el historial de siniestros puede implicar riesgos de segmentación injusta si no se justifica adecuadamente su inclusión, especialmente si se utilizan para la toma de decisiones que afecten a los asegurados.
+
+**Emocional:** El énfasis en factores de riesgo y en el incremento de reclamos puede percibirse como una visión reduccionista del asegurado, sin considerar el contexto individual detrás de cada siniestro, lo que podría generar una percepción de trato impersonal.
+
+#### Argumentos
+
+**Lógica:** Mediante el uso de modelos estadísticos adecuados y modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), se puede identificar de manera clara cómo factores como la edad, la antigüedad y las características del vehículo influyen en los siniestros. Además, el análisis del comportamiento alrededor del umbral de 900 unidades monetarias permite explorar posibles patrones en la distribución de los costos.
+
+**Ética:** A través de una selección responsable de variables y una evaluación de posibles sesgos en los datos, se puede asegurar que el análisis no promueva discriminación injusta, sino que se base en criterios transparentes. Asimismo, el uso adecuado de la información permite generar conclusiones que contribuyan a mejorar la equidad en la toma de decisiones dentro del ámbito asegurador.
+
+**Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de manera clara puede generar mayor confianza en el análisis. Además, comprender cómo y por qué ocurren los siniestros permite una mejor conexión con la realidad de los usuarios, evitando percepciones de arbitrariedad o trato impersonal.
+
+**Conclusiones** La propuesta para analizar la influencia de variables como la edad del asegurado, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros debe integrar un enfoque estadístico riguroso que permita identificar patrones relevantes (Lógica), junto con una consideración ética en el uso de variables y la posible presencia de sesgos en los datos (Ética), y una interpretación de los resultados que conecte con la realidad de los asegurados y evite percepciones de trato impersonal (Emocional). Asimismo, el análisis del umbral de 900 unidades monetarias debe entenderse como una observación empírica inicial que requiere validación adicional. Esta combinación permite generar conclusiones más completas, responsables y útiles para la toma de decisiones en el ámbito asegurador.
 
 **Pregunta #2** ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
 
@@ -74,6 +94,7 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 
 **Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de forma clara y comprensible puede generar mayor confianza y conexión, evitando percepciones de trato impersonal o injusto.
 
+**Conclusiones** La propuesta para analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles de asegurados y condiciones del seguro debe basarse en una adecuada delimitación de variables y en el uso de modelos estadísticos apropiados que permitan capturar dichas diferencias de manera clara (Lógica), considerando al mismo tiempo los posibles riesgos de sesgo y discriminación asociados al uso de ciertas variables (Ética), y procurando una comunicación de resultados que sea comprensible y cercana a la realidad de los asegurados (Emocional). Esta integración favorece un análisis más equilibrado y transparente, que no solo describe diferencias, sino que también contribuye a una mejor comprensión y aplicación de los resultados en contextos reales.
 
 ### Argumentación a través de datos
 
