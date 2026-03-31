@@ -30,11 +30,11 @@ format:
 
 ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
 
-### Definición de la idea
+### Definición de la idea del proyecto
 
-La idea de esta investigación es comprobar si existe una relación entre la edad del asegurado, tipo de vehículo, peso y largo del vehículo, valor del vehículo, etc;con el número de siniestros y la severidad de los mismos. Además de esto, se pueden predecir los siniestros que un asegurado podría tener, categorizar a cada asegurado con un nivel de riesgo, predecir el costo del siniestro, encontrar posibles casos de fraude y ver en qué tipo de vehículo se da mayor cantidad de siniestros y cuáles son los que tienen el mayor monto reclamado además de estimar el monto del siniestro a partir de la zona.
+El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor del mismo, con el número y la severidad de los siniestros.
 
-### Conceptualización de la idea
+### Conceptualización de la idea del proyecto 
 
 ### Identificación de tensiones
 
