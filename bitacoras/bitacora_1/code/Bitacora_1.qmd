@@ -54,9 +54,9 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 
 ### Argumentación de la pregunta
 
-**Pregunta #1** ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
+#### Pregunta #1 ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
 
-#### Contraargumentos
+**Contraargumentos**
 
 **Lógica:** La pregunta combina múltiples variables explicativas y dos dimensiones distintas del análisis (frecuencia y severidad), lo que puede dificultar la identificación clara de relaciones específicas. Además, el umbral de 900 unidades monetarias surge de la observación de un gráfico específico durante el análisis exploratorio, por lo que corresponde a una evidencia empírica inicial y podría no ser generalizable ni representar un punto de cambio real sin un análisis estadístico más riguroso.
 
@@ -64,7 +64,7 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 
 **Emocional:** El énfasis en factores de riesgo y en el incremento de reclamos puede percibirse como una visión reduccionista del asegurado, sin considerar el contexto individual detrás de cada siniestro, lo que podría generar una percepción de trato impersonal.
 
-#### Argumentos
+**Argumentos**
 
 **Lógica:** Mediante el uso de modelos estadísticos adecuados y modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), se puede identificar de manera clara cómo factores como la edad, la antigüedad y las características del vehículo influyen en los siniestros. Además, el análisis del comportamiento alrededor del umbral de 900 unidades monetarias permite explorar posibles patrones en la distribución de los costos.
 
@@ -74,7 +74,7 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 
 **Conclusiones** La propuesta para analizar la influencia de variables como la edad del asegurado, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros debe integrar un enfoque estadístico riguroso que permita identificar patrones relevantes (Lógica), junto con una consideración ética en el uso de variables y la posible presencia de sesgos en los datos (Ética), y una interpretación de los resultados que conecte con la realidad de los asegurados y evite percepciones de trato impersonal (Emocional). Asimismo, el análisis del umbral de 900 unidades monetarias debe entenderse como una observación empírica inicial que requiere validación adicional. Esta combinación permite generar conclusiones más completas, responsables y útiles para la toma de decisiones en el ámbito asegurador.
 
-**Pregunta #2** ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
+#### Pregunta #2 ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
 
 **Contraargumentos**
 
@@ -95,6 +95,16 @@ Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente de
 **Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de forma clara y comprensible puede generar mayor confianza y conexión, evitando percepciones de trato impersonal o injusto.
 
 **Conclusiones** La propuesta para analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles de asegurados y condiciones del seguro debe basarse en una adecuada delimitación de variables y en el uso de modelos estadísticos apropiados que permitan capturar dichas diferencias de manera clara (Lógica), considerando al mismo tiempo los posibles riesgos de sesgo y discriminación asociados al uso de ciertas variables (Ética), y procurando una comunicación de resultados que sea comprensible y cercana a la realidad de los asegurados (Emocional). Esta integración favorece un análisis más equilibrado y transparente, que no solo describe diferencias, sino que también contribuye a una mejor comprensión y aplicación de los resultados en contextos reales.
+
+#### Pregunta 3 ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permiten distinguir distintos niveles de riesgo entre los asegurados?
+
+**Contraargumentos**
+
+**Lógica:** La pregunta asume que se van a encontrar patrones en los datos, cuando aún no se ha realizado el análisis, lo que podría sesgar la interpretación de los resultados o llevar a conclusiones forzadas.
+
+**Ética:** La búsqueda de “patrones” puede derivar en segmentaciones de los asegurados que, aunque sean estadísticamente válidas, podrían resultar en prácticas discriminatorias o injustas si no se analizan con el debido cuidado.
+
+**Emocional:** El enfoque en la identificación de niveles de riesgo puede percibirse como una clasificación rígida de los asegurados, sin considerar sus circunstancias individuales, lo que podría generar incomodidad o una sensación de etiquetamiento.
 
 ### Argumentación a través de datos
 
