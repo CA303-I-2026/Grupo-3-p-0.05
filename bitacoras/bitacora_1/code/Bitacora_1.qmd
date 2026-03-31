@@ -24,11 +24,11 @@ format:
 
 \newpage
 
-# Parte de planificación
+# Sección de planificación
 
 ## Pregunta de investigación
 
-¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?
+¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
 
 ### Definición de la idea
 
@@ -46,7 +46,7 @@ Algunas tensiones que se pueden encontrar durante la realización del trabajo so
 
 2.  ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
 
-3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permiten distinguir distintos niveles de riesgo entre los asegurados?
+3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados qu e permiten distinguir distintos niveles de riesgo entre los asegurados?
 
 4.  ¿Hasta qué punto las características físicas del vehículo como la potencia, el largo, el peso y otros influyen en mayor o menor medida en la frecuencia y severidad de los siniestros?
 
