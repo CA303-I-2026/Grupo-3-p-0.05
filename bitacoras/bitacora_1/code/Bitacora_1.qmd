@@ -283,7 +283,7 @@ Algunas combinaciones de palabras claves utilizadas para la revisión fueron las
 
 ## Construcción de la UVE de Gowin
 
-Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores [@gowin2002]. La figura es de elaboración propia, y se muestra a continuación.
+Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores @gowin2002. La figura es de elaboración propia, y se muestra a continuación.
 
 ![UVE de Gowin](../figuras/uve_de_gowin.pdf)
 
@@ -297,7 +297,7 @@ Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se ce
 
 ### Teorías y principios
 
-De acuerdo con [@frees2021], el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
+De acuerdo con @frees2021, el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
 
 Asimismo, la teoría de la modelación probabilística plantea que tanto la frecuencia como la severidad pueden describirse mediante distribuciones de probabilidad adecuadas, y se pueden aproximar mediante las mismas. En particular, la distribución de Poisson es comúnmente utilizada para modelar la frecuencia de los siniestros, mientras que distribuciones continuas como la Gamma permiten representar la severidad.
 
