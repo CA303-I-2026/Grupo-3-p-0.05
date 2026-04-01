@@ -170,6 +170,25 @@ Las filas de los datos proporcionan información sobre la evolución del riesgo 
 
 ### Conceptos básicos
 
+
+Cuatro conceptos básicos en el estudio consisten en: severidad, frecuencia, siniestro y riesgo. Estas palabras fueron debidamente definidas en la sección 1.1.2., excepto riesgo.
+De acuerdo a la Real Academia Española, riesgo se define como: "Contingencia o proximidad de un daño.", o, una definción alternativa, "Cada una de las contingencias que pueden ser objeto de un contrato de seguro." [@rae2026].
+
+Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se centra en la frecuencia y la severidad de los siniestros, por lo que es necesario comprender adecuadamente el fenómeno analizado. En este contexto, los siniestros constituyen los eventos base que generan las pérdidas; la frecuencia mide el número de veces que estos ocurren, mientras que la severidad se refiere al costo asociado a cada uno. A partir de estos elementos se construye el concepto de riesgo, entendido como la incertidumbre sobre la ocurrencia y la magnitud de dichas pérdidas. 
+
+### Teorías y principios
+
+De acuerdo con @frees2021, el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
+
+Asimismo, la teoría de la modelación probabilística plantea que tanto la frecuencia como la severidad pueden describirse mediante distribuciones de probabilidad adecuadas, y se pueden aproximar mediante las mismas. En particular, la distribución de Poisson es comúnmente utilizada para modelar la frecuencia de los siniestros, mientras que distribuciones continuas como la Gamma permiten representar la severidad.
+
+A partir de estas teorías, se derivan principios fundamentales en el campo de los seguros. En primer lugar, se reconoce que el comportamiento de los siniestros es inherentemente aleatorio, por lo que debe ser modelado mediante herramientas probabilísticas que permitan capturar la incertidumbre asociada a su ocurrencia y magnitud. En segundo lugar, se establece que el riesgo puede descomponerse en dos componentes esenciales: la frecuencia y la severidad.
+
+### Procedimiento
+
+Para la parte metodológica, se utilizó como referencia el estudio de @omari2018modeling, el cual establece que dos metodologías útiles y altamente utilizadas en estudios actuariales relacionados con frencuencia y severidad son el análisis exploratorio de datos y la modelación estadística, que es lo que se plantea para este proyecto.
+
+
 # Parte de escritura
 
 # Arco narrativo del proyecto
