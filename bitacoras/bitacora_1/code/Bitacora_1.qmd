@@ -256,6 +256,21 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 
 ### Búsqueda de bibliografía
 
+Las principales herramientas de búsqueda utilizadas para la revisión de literatura fueron las siguientes:
+
+- <https://scholar.google.com/>
+- <http://google.com/>
+- <https://data.mendeley.com/>
+- <https://www.scielo.org/es/>
+- <https://www.scirp.org/>
+
+Algunas combinaciones de palabras claves utilizadas para la revisión fueron las siguientes:
+
+- insurance + claims + frequency
+- claim + severity + distribution
+- vehicle + insurance + risk factors
+- frequency + severity + model
+
 ### Construcción de fichas de literatura
 
 ## Construcción de la UVE de Gowin
