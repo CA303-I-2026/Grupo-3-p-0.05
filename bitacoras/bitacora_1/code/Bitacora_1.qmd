@@ -303,6 +303,10 @@ Asimismo, la teoría de la modelación probabilística plantea que tanto la frec
 
 A partir de estas teorías, se derivan principios fundamentales en el campo de los seguros. En primer lugar, se reconoce que el comportamiento de los siniestros es inherentemente aleatorio, por lo que debe ser modelado mediante herramientas probabilísticas que permitan capturar la incertidumbre asociada a su ocurrencia y magnitud. En segundo lugar, se establece que el riesgo puede descomponerse en dos componentes esenciales: la frecuencia y la severidad.
 
+### Procedimiento
+
+Para la parte metodológica, se utilizó como referencia el estudio de @omari2018modeling, el cual establece que dos metodologías útiles y altamente utilizadas en estudios actuariales relacionados con frencuencia y severidad son el análisis exploratorio de datos y la modelación estadística, que es lo que se plantea para este proyecto.
+
 # Parte de escritura
 
 # Arco narrativo del proyecto
