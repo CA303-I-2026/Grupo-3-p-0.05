@@ -66,7 +66,15 @@ En la categoría de adjetivos, se destaca la siguiente palabra:
 
 -   Abrupto: violento o rudo.
 
-### Identificación de tensiones
+### Identificación de las tensiones presentes en la idea del proyecto
+
+En el presente apartado se abordarán las tensiones que se derivan del planteamiento propuesto en la idea de investigación, entendiéndose por tensiones a todos aquellos elementos que potencialmente podrían representar un obstáculo en el pleno desarrollo del proyecto. Las tensiones identificadas se desprenden de dos aspectos principales: el origen y las características de la base de datos, así como la convivencia simultánea de múltiples variables. Se procede a detallar cada una de ellas en los párrafos siguientes.
+
+El componente del cual surgen la mayoría de tensiones corresponde a la base de datos. En primer lugar, si bien los autores de apellido Lledó y Pavía acompañaron la publicación del archivo con una descripción de las variables que lo conforman y un breve detalle de su origen, aún se desconoce información crucial. No se esclarece el proceso seguido para la obtención de los datos, así tampoco se extiende una noción al lector de la aseguradora de la cual provienen los mismos. De igual forma, no se especifica la divisa que mide los montos de las variables monetarias contenidas en la tabla.
+
+> Los datos están formateados en una hoja de cálculo que abarca las principales actividades de la cartera de seguros de automóviles no de vida durante un período de tres años completos (de noviembre de 2015 a diciembre de 2018). Este conjunto de datos consta de 105.555 filas y 30 columnas. Cada fila representa una transacción de póliza, mientras que cada columna representa una variable distinta. (Lledó y Pavía, 2024)
+
+al haber tantas variables conviviendo, identificar el efecto es complejo.
 
 Algunas tensiones que se pueden encontrar durante la realización del trabajo son que, en los datos, puede haber errores o inconsistencias, ya que no se conoce con exactitud cómo fueron recolectados. Además, al tratarse de datos que provienen de una región específica, puede resultar difícil generalizar los resultados a otros contextos. Por otro lado, al abarcar únicamente el periodo de 2015 a 2018, no se consideran situaciones importantes como la pandemia o la situación económica actual, por lo que los resultados podrían no ser completamente aplicables a la actualidad.
 
@@ -259,3 +267,5 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 <https://dle.rae.es/comprobar>
 
 <https://fr.scribd.com/document/818151852/1-2-Severidad-X-Morbilidad-ATLC>
+
+<https://data.mendeley.com/datasets/5cxyb5fp4f/2>
