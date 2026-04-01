@@ -1,5 +1,7 @@
 ---
 title: "Bitacora_1"
+bibliography: ../../../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
 format: 
  pdf: 
    papersize: letter
@@ -19,7 +21,7 @@ format:
    margin-bottom: "2.54cm"
    header-includes:
             - \usepackage{indentfirst}
-            - \setlength{\parindent}{1.27cm}   
+            - \setlength{\parindent}{1.27cm} 
 ---
 
 \newpage
@@ -133,8 +135,6 @@ Por último, la cuarta pregunta se descartó debido a que está contenida de for
 **Argumentos**
 
 **Lógica:** Mediante el uso de técnicas estadísticas adecuadas, como modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), así como la correcta definición de variables como “perfiles de asegurados” y “condiciones del seguro”, se puede obtener un análisis más preciso y bien estructurado que capture las diferencias en los siniestros.
-
-(Importante para bibliografía: 2.2.3.2 Poisson Distribution, 3.2.1 Gamma Distribution https://openacttexts.github.io/Loss-Data-Analytics/ChapFrequency-Modeling.html)
 
 **Ética:** Utilizando una selección de variables y una revisión de posibles sesgos en los datos, se puede garantizar que el análisis no promueva discriminación injusta, sino que esté basada en criterios estadísticos transparentes y responsables.
 
@@ -270,6 +270,14 @@ Algunas combinaciones de palabras claves utilizadas para la revisión fueron las
 - claim + severity + distribution
 - vehicle + insurance + risk factors
 - frequency + severity + model
+- insurance + claim + severity
+- claim + frequency + distribution
+- claim + severity + modeling
+- age + insurance + claims
+- driver + age + risk
+- vehicle + characteristics + claims
+- insurance + risk + factors
+- claim + predictors + insurance
 
 ### Construcción de fichas de literatura
 
@@ -283,7 +291,7 @@ Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teo
 ### Conceptos básicos
 
 Cuatro conceptos básicos en el estudio consisten en: severidad, frecuencia, siniestro y riesgo. Estas palabras fueron debidamente definidas en la sección 1.1.2., excepto riesgo.
-De acuerdo a la Real Academia Española, riesgo se define como: "Contingencia o proximidad de un daño.", o, una definción alternativa, "Cada una de las contingencias que pueden ser objeto de un contrato de seguro." (RAE, 2026).
+De acuerdo a la Real Academia Española, riesgo se define como: "Contingencia o proximidad de un daño.", o, una definción alternativa, "Cada una de las contingencias que pueden ser objeto de un contrato de seguro." [@rae2026].
 
 Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se centra en la frecuencia y la severidad de los siniestros, por lo que es necesario comprender adecuadamente el fenómeno analizado. En este contexto, los siniestros constituyen los eventos base que generan las pérdidas; la frecuencia mide el número de veces que estos ocurren, mientras que la severidad se refiere al costo asociado a cada uno. A partir de estos elementos se construye el concepto de riesgo, entendido como la incertidumbre sobre la ocurrencia y la magnitud de dichas pérdidas. 
 
@@ -303,10 +311,3 @@ A partir de estas teorías, se derivan principios fundamentales en el campo de l
 
 # Referencias
 
-<https://dle.rae.es/intervenir>
-
-<https://dle.rae.es/comprobar>
-
-<https://fr.scribd.com/document/818151852/1-2-Severidad-X-Morbilidad-ATLC>
-
-<https://data.mendeley.com/datasets/5cxyb5fp4f/2>
