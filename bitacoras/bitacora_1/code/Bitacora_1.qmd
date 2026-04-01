@@ -34,7 +34,7 @@ format:
 
 El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor del mismo, con el número y la severidad de los siniestros.
 
-### Conceptualización de la idea del proyecto 
+### Conceptualización de la idea del proyecto
 
 A partir de lo propuesto en la pregunta de investigación y el apartado de la construcción de la idea del proyecto, se profundizará en el significado de las principales palabras que sostienen el planteamiento extendido. Cabe recalcar que la totalidad de las definiciones se tomarán de la página web de la Real Academia Española (2026), a excepción del concepto de severidad, dado que su interpretación actuarial difiere de la empleada usualmente en el lenguaje.
 
@@ -78,15 +78,17 @@ En segundo lugar, se encuentra la especificidad de los datos en cuestiones espac
 
 Después, el segundo componente desencadenante de tensiones se sitúa en la interacción simultánea de múltiples variables. En la pregunta de investigación se propone estudiar el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900, con el objetivo de determinar cuáles factores explican dicho escenario. No obstante, frente al hecho de que la base de datos está integrada por 30 variables para cada una de las pólizas transaccionadas, la intención de definir cuáles de ellas intervienen de manera considerable en el evento de estudio es potencialmente complejo.
 
-### Reformulación de la idea en modo pregunta
+### Reformulación de la idea del proyecto en modo pregunta
 
-1.  (Pregunta elegida) ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
+A partir de los elementos versados en los apartados anteriores, se proponen las siguientes preguntas de investigación:
 
-2.  ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
+1.  (Pregunta elegida) ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
 
-3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados qu e permiten distinguir distintos niveles de riesgo entre los asegurados?
+2.  ¿Cómo varía la distribución de la frecuencia y la severidad de los siniestros reportados de acuerdo a los perfiles de los asegurados y las condiciones del seguro, y qué factores explican dichas diferencias?
 
-4.  ¿Hasta qué punto las características físicas del vehículo como la potencia, el largo, el peso y otros influyen en mayor o menor medida en la frecuencia y severidad de los siniestros?
+3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permitan distinguir distintos niveles de riesgo entre los asegurados?
+
+4.  ¿Cómo intervienen la potencia, el largo y el peso de los vehículos en la frecuencia y la severidad de los siniestros reportados?
 
 Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente descriptivo, centrado en analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, como cambios abruptos en el comportamiento de los reclamos. En cuanto a la opción 3, se descartó ya que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no aborda lo que se pensó inicialmente con el proyecto, que es directamente la relación entre variables específicas y la frecuencia y severidad de los siniestros. Dado esto, no se podría abordar la base de datos de la manera deseada. La opción 4 se descartó pues está contenida de forma implícita en la pregunta de investigación seleccionada, además de que solamente contempla características físicas del vehículo y no otros factores importantes como la edad del asegurado o la zona de circulación.
 
@@ -260,7 +262,7 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 
 # Diario de aprendizaje
 
-# Referencias 
+# Referencias
 
 <https://dle.rae.es/intervenir>
 
