@@ -30,11 +30,41 @@ format:
 
 ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
 
-### Definición de la idea del proyecto
+### Construcción de la idea del proyecto
 
 El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor del mismo, con el número y la severidad de los siniestros.
 
 ### Conceptualización de la idea del proyecto 
+
+A partir de lo propuesto en la pregunta de investigación y el apartado de la construcción de la idea del proyecto, se profundizará en el significado de las principales palabras que sostienen el planteamiento extendido. Cabe recalcar que la totalidad de las definiciones se tomarán de la página web de la Real Academia Española (2026), a excepción del concepto de severidad, dado que su interpretación actuarial difiere de la empleada usualmente en el lenguaje.
+
+En la categoría de verbos, se destacan las siguientes palabras:
+
+-   Intervenir: efecto de tomar parte en un asunto.
+
+-   Comprobar: confirmar la veracidad o exactitud de algo.
+
+-   Estudiar: examinar atentamente.
+
+En la categoría de sustantivos, se destacan las siguientes palabras:
+
+-   Variable: que varía o puede variar. Magnitud que puede tomar un valor cualquiera de los comprendidos en un conjunto.
+
+-   Asegurado: que está protegido de las consecuencias de un riesgo mediante un seguro.
+
+-   Siniestro: suceso que produce un daño o una pérdida material considerables.
+
+-   Incremento: aumento, acrecentamiento o extensión de algo.
+
+-   Severidad: "monto de las pérdidas que se generan a partir de un evento ocurrido" (León Cruz, 2025, p. 02).
+
+-   Frecuencia: repetición mayor o menor de un acto o de un suceso. Número de veces que se repite un proceso periódico por unidad de tiempo.
+
+-   Relación: conexión, correspondencia de algo con otra cosa.
+
+En la categoría de adjetivos, se destaca la siguiente palabra:
+
+-   Abrupto: violento o rudo.
 
 ### Identificación de tensiones
 
@@ -221,3 +251,11 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 # Arco narrativo del proyecto
 
 # Diario de aprendizaje
+
+# Referencias 
+
+<https://dle.rae.es/intervenir>
+
+<https://dle.rae.es/comprobar>
+
+<https://fr.scribd.com/document/818151852/1-2-Severidad-X-Morbilidad-ATLC>
