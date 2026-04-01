@@ -1,7 +1,5 @@
 ---
 title: "Bitacora_1"
-bibliography: ../../../referencias/referencias.bib
-csl: https://www.zotero.org/styles/apa
 format: 
  pdf: 
    papersize: letter
@@ -21,142 +19,48 @@ format:
    margin-bottom: "2.54cm"
    header-includes:
             - \usepackage{indentfirst}
-            - \setlength{\parindent}{1.27cm} 
+            - \setlength{\parindent}{1.27cm}   
 ---
 
 \newpage
 
-# Sección de planificación
+# Parte de planificación
 
 ## Pregunta de investigación
 
-¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
+¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?
 
-### Construcción de la idea del proyecto
+### Definición de la idea
 
-El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor del mismo, con el número y la severidad de los siniestros.
+La idea de esta investigación es comprobar si existe una relación entre la edad del asegurado, tipo de vehículo, peso y largo del vehículo, valor del vehículo, etc;con el número de siniestros y la severidad de los mismos. Además de esto, se pueden predecir los siniestros que un asegurado podría tener, categorizar a cada asegurado con un nivel de riesgo, predecir el costo del siniestro, encontrar posibles casos de fraude y ver en qué tipo de vehículo se da mayor cantidad de siniestros y cuáles son los que tienen el mayor monto reclamado además de estimar el monto del siniestro a partir de la zona.
 
-### Conceptualización de la idea del proyecto
+### Conceptualización de la idea
 
-A partir de lo propuesto en la pregunta de investigación y el apartado de la construcción de la idea del proyecto, se profundizará en el significado de las principales palabras que sostienen el planteamiento extendido. Cabe recalcar que la totalidad de las definiciones se tomarán de la página web de la Real Academia Española (2026) [@rae2026], a excepción del concepto de severidad, dado que su interpretación actuarial difiere de la empleada usualmente en el lenguaje.
+### Identificación de tensiones
 
-En la categoría de verbos, se destacan las siguientes palabras:
+Algunas tensiones que se pueden encontrar durante la realización del trabajo son que, en los datos, puede haber errores o inconsistencias, ya que no se conoce con exactitud cómo fueron recolectados. Además, al tratarse de datos que provienen de una región específica, puede resultar difícil generalizar los resultados a otros contextos. Por otro lado, al abarcar únicamente el periodo de 2015 a 2018, no se consideran situaciones importantes como la pandemia o la situación económica actual, por lo que los resultados podrían no ser completamente aplicables a la actualidad.
 
--   Intervenir: efecto de tomar parte en un asunto.
+### Reformulación de la idea en modo pregunta
 
--   Comprobar: confirmar la veracidad o exactitud de algo.
+1.  (Pregunta elegida) ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?
 
--   Estudiar: examinar atentamente.
+2.  ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
 
-En la categoría de sustantivos, se destacan las siguientes palabras:
+3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permiten distinguir distintos niveles de riesgo entre los asegurados?
 
--   Variable: que varía o puede variar. Magnitud que puede tomar un valor cualquiera de los comprendidos en un conjunto.
+4.  ¿Hasta qué punto las características físicas del vehículo como la potencia, el largo, el peso y otros influyen en mayor o menor medida en la frecuencia y severidad de los siniestros?
 
--   Asegurado: que está protegido de las consecuencias de un riesgo mediante un seguro.
-
--   Siniestro: suceso que produce un daño o una pérdida material considerables.
-
--   Incremento: aumento, acrecentamiento o extensión de algo.
-
--   Severidad: "monto de las pérdidas que se generan a partir de un evento ocurrido" [@leon2025].
-
--   Frecuencia: repetición mayor o menor de un acto o de un suceso. Número de veces que se repite un proceso periódico por unidad de tiempo.
-
--   Relación: conexión, correspondencia de algo con otra cosa.
-
-En la categoría de adjetivos, se destaca la siguiente palabra:
-
--   Abrupto: violento o rudo.
-
-### Identificación de las tensiones presentes en la idea del proyecto
-
-En el presente apartado se abordarán las tensiones que se derivan del planteamiento propuesto en la idea de investigación, entendiéndose por tensiones a todos aquellos elementos que potencialmente podrían representar un obstáculo en el pleno desarrollo del proyecto. Las tensiones identificadas se desprenden de dos aspectos principales: el origen y las características de la base de datos, así como la convivencia simultánea de múltiples variables. Se procede a detallar cada una de ellas en los párrafos siguientes.
-
-El componente del cual surgen la mayoría de tensiones corresponde a la base de datos. En primer lugar, si bien los autores de apellido Lledó y Pavía acompañaron la publicación del archivo con una descripción de las variables que lo conforman y un breve detalle de su origen, aún se desconoce información crucial. No se esclarece el proceso adoptado para la obtención de los datos, así tampoco se extiende una noción al lector respecto a la aseguradora de la cual provienen los mismos. De igual forma, no se especifica la divisa que mide los montos de las variables monetarias contenidas en la tabla.
-
-> Los datos están formateados en una hoja de cálculo que abarca las principales actividades de la cartera de seguros de automóviles no de vida durante un período de tres años completos (de noviembre de 2015 a diciembre de 2018). Este conjunto de datos consta de 105.555 filas y 30 columnas. Cada fila representa una transacción de póliza, mientras que cada columna representa una variable distinta. [@lledo2024]
-
-En segundo lugar, se encuentra la especificidad de los datos en cuestiones espaciales y temporales. En lo que respecta a lo espacial, se tiene la noción de que los datos provienen de una región concreta, puesto que los autores se desempeñan como profesores del Departamento de Economía Aplicada en la Universidad de Valencia; de manera que, generalizar los resultados a otros contextos puede traer consigo importantes dificultades. Por otro lado, al abarcar únicamente el periodo de 2015 a 2018, no se comprenden eventualidades importantes como la pandemia y el panorama geopolítico que impera, en consecuencia, los resultados podrían no ser del todo aplicables a la actualidad.
-
-Después, el segundo componente desencadenante de tensiones se sitúa en la interacción simultánea de múltiples variables. En la pregunta de investigación se propone estudiar el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900, con el objetivo de determinar cuáles factores explican dicho escenario. No obstante, frente al hecho de que la base de datos está integrada por 30 variables para cada una de las pólizas transaccionadas, la intención de definir cuáles de ellas intervienen de manera considerable en el evento de estudio es potencialmente complejo.
-
-### Reformulación de la idea del proyecto en modo pregunta
-
-A partir de los elementos versados en los apartados anteriores, se proponen las siguientes preguntas de investigación:
-
-1.  ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
-
-2.  ¿Cómo varía la distribución de la frecuencia y la severidad de los siniestros reportados de acuerdo a los perfiles de los asegurados y las condiciones del seguro, y qué factores explican dichas diferencias?
-
-3.  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permitan distinguir distintos niveles de riesgo entre los asegurados?
-
-4.  ¿Cómo intervienen la potencia, el largo y el peso de los vehículos en la frecuencia y la severidad de los siniestros reportados?
-
-De las preguntas de investigación estructuradas antes, se seleccionó la número uno como herramienta para el presente proyecto. Seguidamente, se procede a precisar las razones por las que las demás fueron descartadas en términos de la viabilidad que poseen en vínculo a la base de datos escogida y los intereses de investigación del equipo.
-
-En primera instancia, la segunda propuesta se descartó puesto que plantea un enfoque descriptivo en su mayoría, centrado en analizar cómo varía la distribución de la frecuencia y la severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, por ejemplo, los cambios abruptos en el comportamiento de los reclamos.
-
-Después, se prescindió de la tercera opción, dado el hecho de que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no contempla los intereses iniciales del equipo: el estudio de la relación de variables específicas con la frecuencia y la severidad de los siniestros. En vista de lo anterior, no es posible abordar la base de datos de la manera deseada.
-
-Por último, la cuarta pregunta se descartó debido a que está contenida de forma implícita en la propuesta seleccionada, además, solo contempla la potencia, el largo y el peso de los vehículos, ignorando otros factores de suma importancia como la edad del asegurado o la zona de circulación.
+Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente descriptivo, centrado en analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, como cambios abruptos en el comportamiento de los reclamos. En cuanto a la opción 3, se descartó ya que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no aborda lo que se pensó inicialmente con el proyecto, que es directamente la relación entre variables específicas y la frecuencia y severidad de los siniestros. Dado esto, no se podría abordar la base de datos de la manera deseada. La opción 4 se descartó pues está contenida de forma implícita en la pregunta de investigación seleccionada, además de que solamente contempla características físicas del vehículo y no otros factores importantes como la edad del asegurado o la zona de circulación.
 
 ### Argumentación de la pregunta
 
-#### Pregunta #1 ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo del siniestro supera aproximadamente las 900 unidades monetarias?
-
-**Contraargumentos**
-
-**Lógica:** La pregunta combina múltiples variables explicativas y dos dimensiones distintas del análisis (frecuencia y severidad), lo que puede dificultar la identificación clara de relaciones específicas. Además, el umbral de 900 unidades monetarias surge de la observación de un gráfico específico durante el análisis exploratorio, por lo que corresponde a una evidencia empírica inicial y podría no ser generalizable ni representar un punto de cambio real sin un análisis estadístico más riguroso.
-
-**Ética:** El uso de variables como la edad o el historial de siniestros puede implicar riesgos de segmentación injusta si no se justifica adecuadamente su inclusión, especialmente si se utilizan para la toma de decisiones que afecten a los asegurados.
-
-**Emocional:** El énfasis en factores de riesgo y en el incremento de reclamos puede percibirse como una visión reduccionista del asegurado, sin considerar el contexto individual detrás de cada siniestro, lo que podría generar una percepción de trato impersonal.
-
-**Argumentos**
-
-**Lógica:** Mediante el uso de modelos estadísticos adecuados y modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), se puede identificar de manera clara cómo factores como la edad, la antigüedad y las características del vehículo influyen en los siniestros. Además, el análisis del comportamiento alrededor del umbral de 900 unidades monetarias permite explorar posibles patrones en la distribución de los costos.
-
-**Ética:** A través de una selección responsable de variables y una evaluación de posibles sesgos en los datos, se puede asegurar que el análisis no promueva discriminación injusta, sino que se base en criterios transparentes. Asimismo, el uso adecuado de la información permite generar conclusiones que contribuyan a mejorar la equidad en la toma de decisiones dentro del ámbito asegurador.
-
-**Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de manera clara puede generar mayor confianza en el análisis. Además, comprender cómo y por qué ocurren los siniestros permite una mejor conexión con la realidad de los usuarios, evitando percepciones de arbitrariedad o trato impersonal.
-
-**Conclusiones** La propuesta para analizar la influencia de variables como la edad del asegurado, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros debe integrar un enfoque estadístico riguroso que permita identificar patrones relevantes (Lógica), junto con una consideración ética en el uso de variables y la posible presencia de sesgos en los datos (Ética), y una interpretación de los resultados que conecte con la realidad de los asegurados y evite percepciones de trato impersonal (Emocional). Asimismo, el análisis del umbral de 900 unidades monetarias debe entenderse como una observación empírica inicial que requiere validación adicional. Esta combinación permite generar conclusiones más completas, responsables y útiles para la toma de decisiones en el ámbito asegurador.
-
-#### Pregunta #2 ¿Cómo varía la distribución de la frecuencia y severidad de los siniestros reportados entre los distintos perfiles de asegurados y condiciones del seguro, y qué factores explican dichas diferencias?
-
-**Contraargumentos**
-
-**Lógica:** La pregunta toma en cuenta la frecuencia y la severidad, las cuales son conceptos distintos, así como conceptos amplios como “perfiles de asegurados” y “condiciones del seguro”, lo que puede dificultar un análisis claro y específico.
-
-**Ética:** El análisis de diferencias entre perfiles de asegurados podría implicar el uso de variables sensibles (como edad u otras características personales), lo que podría derivar en segmentaciones injustas o en la reproducción de sesgos presentes en los datos.
-
-**Emocional:** El enfoque en la diferenciación entre perfiles puede percibirse como reduccionista, al no considerar las realidades individuales detrás de los datos, lo que podría generar incomodidad o una percepción de trato impersonal hacia los asegurados.
-
-**Argumentos**
-
-**Lógica:** Mediante el uso de técnicas estadísticas adecuadas, como modelos separados para frecuencia (por ejemplo, Poisson) y severidad (por ejemplo, Gamma), así como la correcta definición de variables como “perfiles de asegurados” y “condiciones del seguro”, se puede obtener un análisis más preciso y bien estructurado que capture las diferencias en los siniestros.
-
-**Ética:** Utilizando una selección de variables y una revisión de posibles sesgos en los datos, se puede garantizar que el análisis no promueva discriminación injusta, sino que esté basada en criterios estadísticos transparentes y responsables.
-
-**Emocional:** La interpretación de los resultados considerando el contexto de los asegurados y comunicándolos de forma clara y comprensible puede generar mayor confianza y conexión, evitando percepciones de trato impersonal o injusto.
-
-**Conclusiones** La propuesta para analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles de asegurados y condiciones del seguro debe basarse en una adecuada delimitación de variables y en el uso de modelos estadísticos apropiados que permitan capturar dichas diferencias de manera clara (Lógica), considerando al mismo tiempo los posibles riesgos de sesgo y discriminación asociados al uso de ciertas variables (Ética), y procurando una comunicación de resultados que sea comprensible y cercana a la realidad de los asegurados (Emocional). Esta integración favorece un análisis más equilibrado y transparente, que no solo describe diferencias, sino que también contribuye a una mejor comprensión y aplicación de los resultados en contextos reales.
-
-#### Pregunta 3 ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros reportados que permiten distinguir distintos niveles de riesgo entre los asegurados?
-
-**Contraargumentos**
-
-**Lógica:** La pregunta asume que se van a encontrar patrones en los datos, cuando aún no se ha realizado el análisis, lo que podría sesgar la interpretación de los resultados o llevar a conclusiones forzadas.
-
-**Ética:** La búsqueda de “patrones” puede derivar en segmentaciones de los asegurados que, aunque sean estadísticamente válidas, podrían resultar en prácticas discriminatorias o injustas si no se analizan con el debido cuidado.
-
-**Emocional:** El enfoque en la identificación de niveles de riesgo puede percibirse como una clasificación rígida de los asegurados, sin considerar sus circunstancias individuales, lo que podría generar incomodidad o una sensación de etiquetamiento.
+**Pregunta ¿Cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y severidad de los siniestros, y qué factores explican el incremento abrupto en la cantidad de reclamos cuando estos superan el umbral de 900?**
 
 ### Argumentación a través de datos
 
 #### Fuente de información
 
-Los datos fueron obtenidos de la Universidad de Valencia a través de la página Mendeley Data [@lledo2024] en la cual se descargaron dos archivos tipo csv y uno tipo excel, el primer archivo se titula “Descriptive of the variables.xlsx” en el cual se encuentra la descripción de cada una de las variables/columnas de los datos, el segundo archivo se titula “Motor vehicle insurance data.csv”, este archivo posee la información de las pólizas de seguros y el tercer archivo se titula “sample type claim.csv” el cual posee información detallada de los siniestros, donde se indica el ID, el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
+Los datos fueron obtenidos de la Universidad de Valencia a través de la página Mendeley Data en la cual se descargaron dos archivos tipo csv y uno tipo excel, el primer archivo se titula “Descriptive of the variables.xlsx” en el cual se encuentra la descripción de cada una de las variables/columnas de los datos, el segundo archivo se titula “Motor vehicle insurance data.csv”, este archivo posee la información de las pólizas de seguros y el tercer archivo se titula “sample type claim.csv” el cual posee información detallada de los siniestros, donde se indica el ID, el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
 
 #### Contexto temporal y espacial de los datos
 
@@ -251,63 +155,23 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 -   **Cost_claims_by_type** (Costo de siniestros por tipo): Costo asociado a un tipo específico de reclamo dentro del siniestro.
 
 -   **Claims_type** (Tipo de siniestro): Clasificación del tipo de reclamo como: asistencia en viaje, rotura de lunas, reclamación, negligencia, robo, incendio, lesiones, etc.
+Cada fila del archivo Motor vehicle insurance data corresponde a una anualidad del contrato de un seguro, específicamente a un año de cobertura para un asegurado específico; cada asegurado puede aparecer en múltiples filas, una por cada año que haya tenido una póliza activa. Para la investigación, esta estructura permite analizar cómo evoluciona la severidad y la frecuencia de siniestros de un mismo asegurado a lo largo del tiempo, además, permite utilizar el historial de siniestros a través de las columnas  N_claims_history y R_claims_history para predecir comportamientos futuros.
+Las columnas pueden categorizarse según la información que proporcionen, por ejemplo, hay columnas temporales como Date_start_contract o Date_last_renewal, etc; columnas de siniestralidad como N_claims_year y Cost_claims_year que se podrían utilizar para modelar las frecuencias de los siniestros o calcular el costo promedio por siniestro, también hay columnas de historial como N_claims_history y R_claims_history que permiten ver la evolución del comportamiento del asegurado a lo largo del tiempo.
+Cada celda posee un valor específico para un determinado asegurado en un año en concreto, lo que permite ver, por ejemplo, cuál fue el monto de prima que pagó un asegurado en un año seleccionado.
+Las filas de los datos proporcionan información sobre la evolución del riesgo a lo largo del tiempo, lo que permite identificar patrones en el comportamiento  de los asegurados; las columnas de siniestralidad, específicamente la de Cost_claims_year permitirá identificar los casos que superan el umbral de los €900; otras columnas como Seniority, Date_birth, Type_risk, N_claims_history, etc permitirán ver si existe o no una relación entre ellas y la frecuencia y severidad de los siniestros y las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. Así, las filas, columnas y celdas se relacionan directamente con la pregunta de investigación.
 
 ## Revisión bibliográfica
 
 ### Búsqueda de bibliografía
 
-Las principales herramientas de búsqueda utilizadas para la revisión de literatura fueron las siguientes:
-
-- <https://scholar.google.com/>
-- <http://google.com/>
-- <https://data.mendeley.com/>
-- <https://www.scielo.org/es/>
-- <https://www.scirp.org/>
-
-Algunas combinaciones de palabras claves utilizadas para la revisión fueron las siguientes:
-
-- insurance + claims + frequency
-- claim + severity + distribution
-- vehicle + insurance + risk factors
-- frequency + severity + model
-- insurance + claim + severity
-- claim + frequency + distribution
-- claim + severity + modeling
-- age + insurance + claims
-- driver + age + risk
-- vehicle + characteristics + claims
-- insurance + risk + factors
-- claim + predictors + insurance
-
 ### Construcción de fichas de literatura
 
 ## Construcción de la UVE de Gowin
 
-Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores @gowin2002. La figura es de elaboración propia, y se muestra a continuación.
-
-![UVE de Gowin](../figuras/uve_de_gowin.pdf)
-
-
 ### Conceptos básicos
-
-Cuatro conceptos básicos en el estudio consisten en: severidad, frecuencia, siniestro y riesgo. Estas palabras fueron debidamente definidas en la sección 1.1.2., excepto riesgo.
-De acuerdo a la Real Academia Española, riesgo se define como: "Contingencia o proximidad de un daño.", o, una definción alternativa, "Cada una de las contingencias que pueden ser objeto de un contrato de seguro." [@rae2026].
-
-Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se centra en la frecuencia y la severidad de los siniestros, por lo que es necesario comprender adecuadamente el fenómeno analizado. En este contexto, los siniestros constituyen los eventos base que generan las pérdidas; la frecuencia mide el número de veces que estos ocurren, mientras que la severidad se refiere al costo asociado a cada uno. A partir de estos elementos se construye el concepto de riesgo, entendido como la incertidumbre sobre la ocurrencia y la magnitud de dichas pérdidas. 
-
-### Teorías y principios
-
-De acuerdo con @frees2021, el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
-
-Asimismo, la teoría de la modelación probabilística plantea que tanto la frecuencia como la severidad pueden describirse mediante distribuciones de probabilidad adecuadas, y se pueden aproximar mediante las mismas. En particular, la distribución de Poisson es comúnmente utilizada para modelar la frecuencia de los siniestros, mientras que distribuciones continuas como la Gamma permiten representar la severidad.
-
-A partir de estas teorías, se derivan principios fundamentales en el campo de los seguros. En primer lugar, se reconoce que el comportamiento de los siniestros es inherentemente aleatorio, por lo que debe ser modelado mediante herramientas probabilísticas que permitan capturar la incertidumbre asociada a su ocurrencia y magnitud. En segundo lugar, se establece que el riesgo puede descomponerse en dos componentes esenciales: la frecuencia y la severidad.
 
 # Parte de escritura
 
 # Arco narrativo del proyecto
 
 # Diario de aprendizaje
-
-# Referencias
-
