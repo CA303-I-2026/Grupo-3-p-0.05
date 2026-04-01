@@ -28,7 +28,7 @@ format:
 
 ## Pregunta de investigación
 
-¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
+¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
 
 ### Construcción de la idea del proyecto
 
@@ -82,7 +82,7 @@ Después, el segundo componente desencadenante de tensiones se sitúa en la inte
 
 A partir de los elementos versados en los apartados anteriores, se proponen las siguientes preguntas de investigación:
 
-1.  (Pregunta elegida) ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera la cantidad de 900?
+1.  ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
 
 2.  ¿Cómo varía la distribución de la frecuencia y la severidad de los siniestros reportados de acuerdo a los perfiles de los asegurados y las condiciones del seguro, y qué factores explican dichas diferencias?
 
@@ -90,7 +90,13 @@ A partir de los elementos versados en los apartados anteriores, se proponen las 
 
 4.  ¿Cómo intervienen la potencia, el largo y el peso de los vehículos en la frecuencia y la severidad de los siniestros reportados?
 
-Ahora, la opción 2 se descartó puesto que plantea un enfoque principalmente descriptivo, centrado en analizar cómo varía la distribución de la frecuencia y severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, como cambios abruptos en el comportamiento de los reclamos. En cuanto a la opción 3, se descartó ya que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no aborda lo que se pensó inicialmente con el proyecto, que es directamente la relación entre variables específicas y la frecuencia y severidad de los siniestros. Dado esto, no se podría abordar la base de datos de la manera deseada. La opción 4 se descartó pues está contenida de forma implícita en la pregunta de investigación seleccionada, además de que solamente contempla características físicas del vehículo y no otros factores importantes como la edad del asegurado o la zona de circulación.
+De las preguntas de investigación estructuradas antes, se seleccionó la número uno como herramienta para el presente proyecto. Seguidamente, se procede a precisar las razones por las que las demás fueron descartadas en términos de la viabilidad que poseen en vínculo a la base de datos escogida y los intereses de investigación del equipo.
+
+En primera instancia, la segunda propuesta se descartó puesto que plantea un enfoque descriptivo en su mayoría, centrado en analizar cómo varía la distribución de la frecuencia y la severidad de los siniestros entre distintos perfiles. Sin embargo, no incorpora de manera explícita un objetivo explicativo más profundo ni la identificación de fenómenos específicos de interés dentro de los datos, por ejemplo, los cambios abruptos en el comportamiento de los reclamos.
+
+Después, se prescindió de la tercera opción, dado el hecho de que se enfoca principalmente en la identificación de patrones y en la clasificación de asegurados según niveles de riesgo. No obstante, esta formulación no contempla los intereses iniciales del equipo: el estudio de la relación de variables específicas con la frecuencia y la severidad de los siniestros. En vista de lo anterior, no es posible abordar la base de datos de la manera deseada.
+
+Por último, la cuarta pregunta se descartó debido a que está contenida de forma implícita en la propuesta seleccionada, además, solo contempla la potencia, el largo y el peso de los vehículos, ignorando otros factores de suma importancia como la edad del asegurado o la zona de circulación.
 
 ### Argumentación de la pregunta
 
