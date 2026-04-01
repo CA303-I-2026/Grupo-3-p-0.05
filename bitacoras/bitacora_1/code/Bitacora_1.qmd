@@ -260,7 +260,25 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 
 ## Construcción de la UVE de Gowin
 
+Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores Novak y Gowin (2002). La figura es de elaboración propia, y se muestra a continuación.
+
+![UVE de Gowin](../figuras/uve_de_gowin.pdf)
+
+
 ### Conceptos básicos
+
+Cuatro conceptos básicos en el estudio consisten en: severidad, frecuencia, siniestro y riesgo. Estas palabras fueron debidamente definidas en la sección 1.1.2., excepto riesgo.
+De acuerdo a la Real Academia Española, riesgo se define como: "Contingencia o proximidad de un daño.", o, una definción alternativa, "Cada una de las contingencias que pueden ser objeto de un contrato de seguro." (RAE, 2026).
+
+Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se centra en la frecuencia y la severidad de los siniestros, por lo que es necesario comprender adecuadamente el fenómeno analizado. En este contexto, los siniestros constituyen los eventos base que generan las pérdidas; la frecuencia mide el número de veces que estos ocurren, mientras que la severidad se refiere al costo asociado a cada uno. A partir de estos elementos se construye el concepto de riesgo, entendido como la incertidumbre sobre la ocurrencia y la magnitud de dichas pérdidas. 
+
+### Teorías y principios
+
+De acuerdo con Frees (2021), el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
+
+Asimismo, la teoría de la modelación probabilística plantea que tanto la frecuencia como la severidad pueden describirse mediante distribuciones de probabilidad adecuadas, y se pueden aproximar mediante las mismas. En particular, la distribución de Poisson es comúnmente utilizada para modelar la frecuencia de los siniestros, mientras que distribuciones continuas como la Gamma permiten representar la severidad.
+
+A partir de estas teorías, se derivan principios fundamentales en el campo de los seguros. En primer lugar, se reconoce que el comportamiento de los siniestros es inherentemente aleatorio, por lo que debe ser modelado mediante herramientas probabilísticas que permitan capturar la incertidumbre asociada a su ocurrencia y magnitud. En segundo lugar, se establece que el riesgo puede descomponerse en dos componentes esenciales: la frecuencia y la severidad.
 
 # Parte de escritura
 
