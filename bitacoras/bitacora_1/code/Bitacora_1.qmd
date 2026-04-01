@@ -252,6 +252,11 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 
 -   **Claims_type** (Tipo de siniestro): Clasificación del tipo de reclamo como: asistencia en viaje, rotura de lunas, reclamación, negligencia, robo, incendio, lesiones, etc.
 
+Cada fila del archivo Motor vehicle insurance data corresponde a una anualidad del contrato de un seguro, específicamente a un año de cobertura para un asegurado específico; cada asegurado puede aparecer en múltiples filas, una por cada año que haya tenido una póliza activa. Para la investigación, esta estructura permite analizar cómo evoluciona la severidad y la frecuencia de siniestros de un mismo asegurado a lo largo del tiempo, además, permite utilizar el historial de siniestros a través de las columnas  N_claims_history y R_claims_history para predecir comportamientos futuros.
+Las columnas pueden categorizarse según la información que proporcionen, por ejemplo, hay columnas temporales como Date_start_contract o Date_last_renewal, etc; columnas de siniestralidad como N_claims_year y Cost_claims_year que se podrían utilizar para modelar las frecuencias de los siniestros o calcular el costo promedio por siniestro, también hay columnas de historial como N_claims_history y R_claims_history que permiten ver la evolución del comportamiento del asegurado a lo largo del tiempo.
+Cada celda posee un valor específico para un determinado asegurado en un año en concreto, lo que permite ver, por ejemplo, cuál fue el monto de prima que pagó un asegurado en un año seleccionado.
+Las filas de los datos proporcionan información sobre la evolución del riesgo a lo largo del tiempo, lo que permite identificar patrones en el comportamiento  de los asegurados; las columnas de siniestralidad, específicamente la de Cost_claims_year permitirá identificar los casos que superan el umbral de los €900; otras columnas como Seniority, Date_birth, Type_risk, N_claims_history, etc permitirán ver si existe o no una relación entre ellas y la frecuencia y severidad de los siniestros y las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. Así, las filas, columnas y celdas se relacionan directamente con la pregunta de investigación.
+
 ## Revisión bibliográfica
 
 ### Búsqueda de bibliografía
