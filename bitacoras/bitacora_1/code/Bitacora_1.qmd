@@ -38,7 +38,7 @@ El planteamiento del presente proyecto consiste en comprobar la existencia de un
 
 ### Conceptualización de la idea del proyecto
 
-A partir de lo propuesto en la pregunta de investigación y el apartado de la construcción de la idea del proyecto, se profundizará en el significado de las principales palabras que sostienen el planteamiento extendido. Cabe recalcar que la totalidad de las definiciones se tomarán de la página web de la Real Academia Española (2026), a excepción del concepto de severidad, dado que su interpretación actuarial difiere de la empleada usualmente en el lenguaje.
+A partir de lo propuesto en la pregunta de investigación y el apartado de la construcción de la idea del proyecto, se profundizará en el significado de las principales palabras que sostienen el planteamiento extendido. Cabe recalcar que la totalidad de las definiciones se tomarán de la página web de la Real Academia Española (2026) [@rae2026], a excepción del concepto de severidad, dado que su interpretación actuarial difiere de la empleada usualmente en el lenguaje.
 
 En la categoría de verbos, se destacan las siguientes palabras:
 
@@ -58,7 +58,7 @@ En la categoría de sustantivos, se destacan las siguientes palabras:
 
 -   Incremento: aumento, acrecentamiento o extensión de algo.
 
--   Severidad: "monto de las pérdidas que se generan a partir de un evento ocurrido" (León Cruz, 2025, p. 02).
+-   Severidad: "monto de las pérdidas que se generan a partir de un evento ocurrido" [@leon2025].
 
 -   Frecuencia: repetición mayor o menor de un acto o de un suceso. Número de veces que se repite un proceso periódico por unidad de tiempo.
 
@@ -74,7 +74,7 @@ En el presente apartado se abordarán las tensiones que se derivan del planteami
 
 El componente del cual surgen la mayoría de tensiones corresponde a la base de datos. En primer lugar, si bien los autores de apellido Lledó y Pavía acompañaron la publicación del archivo con una descripción de las variables que lo conforman y un breve detalle de su origen, aún se desconoce información crucial. No se esclarece el proceso adoptado para la obtención de los datos, así tampoco se extiende una noción al lector respecto a la aseguradora de la cual provienen los mismos. De igual forma, no se especifica la divisa que mide los montos de las variables monetarias contenidas en la tabla.
 
-> Los datos están formateados en una hoja de cálculo que abarca las principales actividades de la cartera de seguros de automóviles no de vida durante un período de tres años completos (de noviembre de 2015 a diciembre de 2018). Este conjunto de datos consta de 105.555 filas y 30 columnas. Cada fila representa una transacción de póliza, mientras que cada columna representa una variable distinta. (Lledó y Pavía, 2024)
+> Los datos están formateados en una hoja de cálculo que abarca las principales actividades de la cartera de seguros de automóviles no de vida durante un período de tres años completos (de noviembre de 2015 a diciembre de 2018). Este conjunto de datos consta de 105.555 filas y 30 columnas. Cada fila representa una transacción de póliza, mientras que cada columna representa una variable distinta. [@lledo2024]
 
 En segundo lugar, se encuentra la especificidad de los datos en cuestiones espaciales y temporales. En lo que respecta a lo espacial, se tiene la noción de que los datos provienen de una región concreta, puesto que los autores se desempeñan como profesores del Departamento de Economía Aplicada en la Universidad de Valencia; de manera que, generalizar los resultados a otros contextos puede traer consigo importantes dificultades. Por otro lado, al abarcar únicamente el periodo de 2015 a 2018, no se comprenden eventualidades importantes como la pandemia y el panorama geopolítico que impera, en consecuencia, los resultados podrían no ser del todo aplicables a la actualidad.
 
@@ -156,7 +156,7 @@ Por último, la cuarta pregunta se descartó debido a que está contenida de for
 
 #### Fuente de información
 
-Los datos fueron obtenidos de la Universidad de Valencia a través de la página Mendeley Data en la cual se descargaron dos archivos tipo csv y uno tipo excel, el primer archivo se titula “Descriptive of the variables.xlsx” en el cual se encuentra la descripción de cada una de las variables/columnas de los datos, el segundo archivo se titula “Motor vehicle insurance data.csv”, este archivo posee la información de las pólizas de seguros y el tercer archivo se titula “sample type claim.csv” el cual posee información detallada de los siniestros, donde se indica el ID, el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
+Los datos fueron obtenidos de la Universidad de Valencia a través de la página Mendeley Data [@lledo2024] en la cual se descargaron dos archivos tipo csv y uno tipo excel, el primer archivo se titula “Descriptive of the variables.xlsx” en el cual se encuentra la descripción de cada una de las variables/columnas de los datos, el segundo archivo se titula “Motor vehicle insurance data.csv”, este archivo posee la información de las pólizas de seguros y el tercer archivo se titula “sample type claim.csv” el cual posee información detallada de los siniestros, donde se indica el ID, el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
 
 #### Contexto temporal y espacial de los datos
 
@@ -283,7 +283,7 @@ Algunas combinaciones de palabras claves utilizadas para la revisión fueron las
 
 ## Construcción de la UVE de Gowin
 
-Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores Novak y Gowin (2002). La figura es de elaboración propia, y se muestra a continuación.
+Para la construcción de la misma, se plantea lo solicitado de acuerdo a dos teorías y principios, al menos tres conceptos relacionados y un borrador del procedimiento en la parte metodológica planteada de acuerdo a los autores [@gowin2002]. La figura es de elaboración propia, y se muestra a continuación.
 
 ![UVE de Gowin](../figuras/uve_de_gowin.pdf)
 
@@ -297,7 +297,7 @@ Estos conceptos se consideran fundamentales, ya que el enfoque del estudio se ce
 
 ### Teorías y principios
 
-De acuerdo con Frees (2021), el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
+De acuerdo con [@frees2021], el análisis de los siniestros en seguros se fundamenta en el modelo de frecuencia–severidad, el cual establece que el riesgo puede descomponerse en dos partes: la frecuencia y la severidad. Esta división de componentes permite estudiar de manera más precisa el comportamiento de los siniestros.
 
 Asimismo, la teoría de la modelación probabilística plantea que tanto la frecuencia como la severidad pueden describirse mediante distribuciones de probabilidad adecuadas, y se pueden aproximar mediante las mismas. En particular, la distribución de Poisson es comúnmente utilizada para modelar la frecuencia de los siniestros, mientras que distribuciones continuas como la Gamma permiten representar la severidad.
 
