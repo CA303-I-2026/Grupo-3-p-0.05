@@ -148,9 +148,9 @@ A continuación, para cada una de las preguntas planteadas en el apartado anteri
 
 **Contraargumentos**
 
-**Lógica:** La pregunta asume que se van a encontrar patrones en los datos, cuando aún no se ha realizado el análisis, lo que podría sesgar la interpretación de los resultados o llevar a conclusiones forzadas.
+**Lógica:** la pregunta asume que se encontrarán patrones en los datos, cuando aún no se ha realizado el análisis correspondiente. Esto podría sesgar la interpretación de los resultados o conducir a la construcción de conclusiones forzadas.
 
-**Ética:** La búsqueda de “patrones” puede derivar en segmentaciones de los asegurados que, aunque sean estadísticamente válidas, podrían resultar en prácticas discriminatorias o injustas si no se analizan con el debido cuidado.
+**Ética:** la búsqueda de patrones puede derivar en segmentaciones de los asegurados que, aunque sean estadísticamente válidas, podrían resultar en prácticas discriminatorias o injustas si no se analizan con el debido cuidado.
 
 **Emocional:** El enfoque en la identificación de niveles de riesgo puede percibirse como una clasificación rígida de los asegurados, sin considerar sus circunstancias individuales, lo que podría generar incomodidad o una sensación de etiquetamiento.
 
