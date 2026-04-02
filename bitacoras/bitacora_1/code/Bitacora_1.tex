@@ -1,0 +1,642 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  spanish,
+  11pt,
+  letterpaper,
+]{article}
+\usepackage{xcolor}
+\usepackage[lmargin=2.54cm,rmargin=2.54cm,tmargin=2.54cm,bmargin=2.54cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Times New Roman}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Times New Roman}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.27cm}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Tabla de contenidos}
+\else
+  \newcommand\contentsname{Tabla de contenidos}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Listado de Figuras}
+\else
+  \newcommand\listfigurename{Listado de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Listado de Tablas}
+\else
+  \newcommand\listtablename{Listado de Tablas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabla}
+\else
+  \newcommand\tablename{Tabla}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listado}
+\newcommand*\listoflistings{\listof{codelisting}{Listado de Listados}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Bitacora\_1},
+  pdflang={es-CR},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Bitacora\_1}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Índice}
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\newpage
+
+\section{Parte de planificación}\label{parte-de-planificaciuxf3n}
+
+\subsection{Pregunta de
+investigación}\label{pregunta-de-investigaciuxf3n}
+
+¿Cómo influyen variables como la edad del asegurado, la antigüedad con
+la aseguradora, el historial de siniestros y las características del
+vehículo en la frecuencia y severidad de los siniestros, y qué factores
+explican el incremento abrupto en la cantidad de reclamos cuando estos
+superan el umbral de 900?
+
+\subsubsection{Definición de la idea}\label{definiciuxf3n-de-la-idea}
+
+La idea de esta investigación es comprobar si existe una relación entre
+la edad del asegurado, tipo de vehículo, peso y largo del vehículo,
+valor del vehículo, etc;con el número de siniestros y la severidad de
+los mismos. Además de esto, se pueden predecir los siniestros que un
+asegurado podría tener, categorizar a cada asegurado con un nivel de
+riesgo, predecir el costo del siniestro, encontrar posibles casos de
+fraude y ver en qué tipo de vehículo se da mayor cantidad de siniestros
+y cuáles son los que tienen el mayor monto reclamado además de estimar
+el monto del siniestro a partir de la zona.
+
+\subsubsection{Conceptualización de la
+idea}\label{conceptualizaciuxf3n-de-la-idea}
+
+\subsubsection{Identificación de
+tensiones}\label{identificaciuxf3n-de-tensiones}
+
+Algunas tensiones que se pueden encontrar durante la realización del
+trabajo son que, en los datos, puede haber errores o inconsistencias, ya
+que no se conoce con exactitud cómo fueron recolectados. Además, al
+tratarse de datos que provienen de una región específica, puede resultar
+difícil generalizar los resultados a otros contextos. Por otro lado, al
+abarcar únicamente el periodo de 2015 a 2018, no se consideran
+situaciones importantes como la pandemia o la situación económica
+actual, por lo que los resultados podrían no ser completamente
+aplicables a la actualidad.
+
+\subsubsection{Reformulación de la idea en modo
+pregunta}\label{reformulaciuxf3n-de-la-idea-en-modo-pregunta}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  (Pregunta elegida) ¿Cómo influyen variables como la edad del
+  asegurado, la antigüedad con la aseguradora, el historial de
+  siniestros y las características del vehículo en la frecuencia y
+  severidad de los siniestros, y qué factores explican el incremento
+  abrupto en la cantidad de reclamos cuando el costo del siniestro
+  supera aproximadamente las 900 unidades monetarias?
+\item
+  ¿Cómo varía la distribución de la frecuencia y severidad de los
+  siniestros reportados entre los distintos perfiles de asegurados y
+  condiciones del seguro, y qué factores explican dichas diferencias?
+\item
+  ¿Qué patrones se pueden encontrar en la ocurrencia de los siniestros
+  reportados que permiten distinguir distintos niveles de riesgo entre
+  los asegurados?
+\item
+  ¿Hasta qué punto las características físicas del vehículo como la
+  potencia, el largo, el peso y otros influyen en mayor o menor medida
+  en la frecuencia y severidad de los siniestros?
+\end{enumerate}
+
+Ahora, la opción 2 se descartó puesto que plantea un enfoque
+principalmente descriptivo, centrado en analizar cómo varía la
+distribución de la frecuencia y severidad de los siniestros entre
+distintos perfiles. Sin embargo, no incorpora de manera explícita un
+objetivo explicativo más profundo ni la identificación de fenómenos
+específicos de interés dentro de los datos, como cambios abruptos en el
+comportamiento de los reclamos. En cuanto a la opción 3, se descartó ya
+que se enfoca principalmente en la identificación de patrones y en la
+clasificación de asegurados según niveles de riesgo. No obstante, esta
+formulación no aborda lo que se pensó inicialmente con el proyecto, que
+es directamente la relación entre variables específicas y la frecuencia
+y severidad de los siniestros. Dado esto, no se podría abordar la base
+de datos de la manera deseada. La opción 4 se descartó pues está
+contenida de forma implícita en la pregunta de investigación
+seleccionada, además de que solamente contempla características físicas
+del vehículo y no otros factores importantes como la edad del asegurado
+o la zona de circulación.
+
+\subsubsection{Argumentación de la
+pregunta}\label{argumentaciuxf3n-de-la-pregunta}
+
+\paragraph{Pregunta \#1 ¿Cómo influyen variables como la edad del
+asegurado, la antigüedad con la aseguradora, el historial de siniestros
+y las características del vehículo en la frecuencia y severidad de los
+siniestros, y qué factores explican el incremento abrupto en la cantidad
+de reclamos cuando el costo del siniestro supera aproximadamente las 900
+unidades
+monetarias?}\label{pregunta-1-cuxf3mo-influyen-variables-como-la-edad-del-asegurado-la-antiguxfcedad-con-la-aseguradora-el-historial-de-siniestros-y-las-caracteruxedsticas-del-vehuxedculo-en-la-frecuencia-y-severidad-de-los-siniestros-y-quuxe9-factores-explican-el-incremento-abrupto-en-la-cantidad-de-reclamos-cuando-el-costo-del-siniestro-supera-aproximadamente-las-900-unidades-monetarias}
+
+\textbf{Contraargumentos}
+
+\textbf{Lógica:} La pregunta combina múltiples variables explicativas y
+dos dimensiones distintas del análisis (frecuencia y severidad), lo que
+puede dificultar la identificación clara de relaciones específicas.
+Además, el umbral de 900 unidades monetarias surge de la observación de
+un gráfico específico durante el análisis exploratorio, por lo que
+corresponde a una evidencia empírica inicial y podría no ser
+generalizable ni representar un punto de cambio real sin un análisis
+estadístico más riguroso.
+
+\textbf{Ética:} El uso de variables como la edad o el historial de
+siniestros puede implicar riesgos de segmentación injusta si no se
+justifica adecuadamente su inclusión, especialmente si se utilizan para
+la toma de decisiones que afecten a los asegurados.
+
+\textbf{Emocional:} El énfasis en factores de riesgo y en el incremento
+de reclamos puede percibirse como una visión reduccionista del
+asegurado, sin considerar el contexto individual detrás de cada
+siniestro, lo que podría generar una percepción de trato impersonal.
+
+\textbf{Argumentos}
+
+\textbf{Lógica:} Mediante el uso de modelos estadísticos adecuados y
+modelos separados para frecuencia (por ejemplo, Poisson) y severidad
+(por ejemplo, Gamma), se puede identificar de manera clara cómo factores
+como la edad, la antigüedad y las características del vehículo influyen
+en los siniestros. Además, el análisis del comportamiento alrededor del
+umbral de 900 unidades monetarias permite explorar posibles patrones en
+la distribución de los costos.
+
+\textbf{Ética:} A través de una selección responsable de variables y una
+evaluación de posibles sesgos en los datos, se puede asegurar que el
+análisis no promueva discriminación injusta, sino que se base en
+criterios transparentes. Asimismo, el uso adecuado de la información
+permite generar conclusiones que contribuyan a mejorar la equidad en la
+toma de decisiones dentro del ámbito asegurador.
+
+\textbf{Emocional:} La interpretación de los resultados considerando el
+contexto de los asegurados y comunicándolos de manera clara puede
+generar mayor confianza en el análisis. Además, comprender cómo y por
+qué ocurren los siniestros permite una mejor conexión con la realidad de
+los usuarios, evitando percepciones de arbitrariedad o trato impersonal.
+
+\textbf{Conclusiones} La propuesta para analizar la influencia de
+variables como la edad del asegurado, el historial de siniestros y las
+características del vehículo en la frecuencia y severidad de los
+siniestros debe integrar un enfoque estadístico riguroso que permita
+identificar patrones relevantes (Lógica), junto con una consideración
+ética en el uso de variables y la posible presencia de sesgos en los
+datos (Ética), y una interpretación de los resultados que conecte con la
+realidad de los asegurados y evite percepciones de trato impersonal
+(Emocional). Asimismo, el análisis del umbral de 900 unidades monetarias
+debe entenderse como una observación empírica inicial que requiere
+validación adicional. Esta combinación permite generar conclusiones más
+completas, responsables y útiles para la toma de decisiones en el ámbito
+asegurador.
+
+\paragraph{Pregunta \#2 ¿Cómo varía la distribución de la frecuencia y
+severidad de los siniestros reportados entre los distintos perfiles de
+asegurados y condiciones del seguro, y qué factores explican dichas
+diferencias?}\label{pregunta-2-cuxf3mo-varuxeda-la-distribuciuxf3n-de-la-frecuencia-y-severidad-de-los-siniestros-reportados-entre-los-distintos-perfiles-de-asegurados-y-condiciones-del-seguro-y-quuxe9-factores-explican-dichas-diferencias}
+
+\textbf{Contraargumentos}
+
+\textbf{Lógica:} La pregunta toma en cuenta la frecuencia y la
+severidad, las cuales son conceptos distintos, así como conceptos
+amplios como ``perfiles de asegurados'' y ``condiciones del seguro'', lo
+que puede dificultar un análisis claro y específico.
+
+\textbf{Ética:} El análisis de diferencias entre perfiles de asegurados
+podría implicar el uso de variables sensibles (como edad u otras
+características personales), lo que podría derivar en segmentaciones
+injustas o en la reproducción de sesgos presentes en los datos.
+
+\textbf{Emocional:} El enfoque en la diferenciación entre perfiles puede
+percibirse como reduccionista, al no considerar las realidades
+individuales detrás de los datos, lo que podría generar incomodidad o
+una percepción de trato impersonal hacia los asegurados.
+
+\textbf{Argumentos}
+
+\textbf{Lógica:} Mediante el uso de técnicas estadísticas adecuadas,
+como modelos separados para frecuencia (por ejemplo, Poisson) y
+severidad (por ejemplo, Gamma), así como la correcta definición de
+variables como ``perfiles de asegurados'' y ``condiciones del seguro'',
+se puede obtener un análisis más preciso y bien estructurado que capture
+las diferencias en los siniestros.
+
+(Importante para bibliografía: 2.2.3.2 Poisson Distribution, 3.2.1 Gamma
+Distribution
+https://openacttexts.github.io/Loss-Data-Analytics/ChapFrequency-Modeling.html)
+
+\textbf{Ética:} Utilizando una selección de variables y una revisión de
+posibles sesgos en los datos, se puede garantizar que el análisis no
+promueva discriminación injusta, sino que esté basada en criterios
+estadísticos transparentes y responsables.
+
+\textbf{Emocional:} La interpretación de los resultados considerando el
+contexto de los asegurados y comunicándolos de forma clara y
+comprensible puede generar mayor confianza y conexión, evitando
+percepciones de trato impersonal o injusto.
+
+\textbf{Conclusiones} La propuesta para analizar cómo varía la
+distribución de la frecuencia y severidad de los siniestros entre
+distintos perfiles de asegurados y condiciones del seguro debe basarse
+en una adecuada delimitación de variables y en el uso de modelos
+estadísticos apropiados que permitan capturar dichas diferencias de
+manera clara (Lógica), considerando al mismo tiempo los posibles riesgos
+de sesgo y discriminación asociados al uso de ciertas variables (Ética),
+y procurando una comunicación de resultados que sea comprensible y
+cercana a la realidad de los asegurados (Emocional). Esta integración
+favorece un análisis más equilibrado y transparente, que no solo
+describe diferencias, sino que también contribuye a una mejor
+comprensión y aplicación de los resultados en contextos reales.
+
+\paragraph{Pregunta 3 ¿Qué patrones se pueden encontrar en la ocurrencia
+de los siniestros reportados que permiten distinguir distintos niveles
+de riesgo entre los
+asegurados?}\label{pregunta-3-quuxe9-patrones-se-pueden-encontrar-en-la-ocurrencia-de-los-siniestros-reportados-que-permiten-distinguir-distintos-niveles-de-riesgo-entre-los-asegurados}
+
+\textbf{Contraargumentos}
+
+\textbf{Lógica:} La pregunta asume que se van a encontrar patrones en
+los datos, cuando aún no se ha realizado el análisis, lo que podría
+sesgar la interpretación de los resultados o llevar a conclusiones
+forzadas.
+
+\textbf{Ética:} La búsqueda de ``patrones'' puede derivar en
+segmentaciones de los asegurados que, aunque sean estadísticamente
+válidas, podrían resultar en prácticas discriminatorias o injustas si no
+se analizan con el debido cuidado.
+
+\textbf{Emocional:} El enfoque en la identificación de niveles de riesgo
+puede percibirse como una clasificación rígida de los asegurados, sin
+considerar sus circunstancias individuales, lo que podría generar
+incomodidad o una sensación de etiquetamiento.
+
+\subsubsection{Argumentación a través de
+datos}\label{argumentaciuxf3n-a-travuxe9s-de-datos}
+
+\paragraph{Fuente de información}\label{fuente-de-informaciuxf3n}
+
+Los datos fueron obtenidos de la Universidad de Valencia a través de la
+página Mendeley Data en la cual se descargaron dos archivos tipo csv y
+uno tipo excel, el primer archivo se titula ``Descriptive of the
+variables.xlsx'' en el cual se encuentra la descripción de cada una de
+las variables/columnas de los datos, el segundo archivo se titula
+``Motor vehicle insurance data.csv'', este archivo posee la información
+de las pólizas de seguros y el tercer archivo se titula ``sample type
+claim.csv'' el cual posee información detallada de los siniestros, donde
+se indica el ID, el monto total de reclamos en un año, el costo de una
+parte de los reclamos y la categorización del tipo de reclamo.
+
+\paragraph{Contexto temporal y espacial de los
+datos}\label{contexto-temporal-y-espacial-de-los-datos}
+
+Los datos contemplan la información de pólizas de seguros de autos desde
+1980 hasta el 2017 según la fecha de inicio de pólizas y del 2015 al
+2019 según las fechas de renovaciones; además de esto, hay información
+de los siniestros para los años del 2016 al 2018. El contexto espacial
+corresponde a la ciudad de Valencia, España.
+
+\paragraph{Facilidad de obtener la
+infromación}\label{facilidad-de-obtener-la-infromaciuxf3n}
+
+Como se mencionó anteriormente, los datos se extrajeron de la página
+``Mendeley Data'', para descargar los datos no se requiere solicitarlos,
+cualquier persona puede descargarlos gratuitamente; sin embargo, algunas
+columnas como ``length'' y ``weigth'' poseen algunos NA, además, las
+columnas que poseen fechas, como ``Date\_start\_contract'' y otras,
+vienen como tipo character y no como tipo date por lo que se debe hacer
+la transformación de tipo character a tipo date.
+
+\paragraph{Población de estudio}\label{poblaciuxf3n-de-estudio}
+
+La población estudio de esta investigación corresponde a los asegurados
+que posee al menos una póliza de seguro de vehículos en la ciudad de
+Valencia; donde se contemplan motocicletas, furgonetas, turismos
+(automóviles de 4 a 5 asientos) y vehículos agrícolas; ya sean de zonas
+rurales o urbanas; con información de los siniestros que van del 2016 al
+2018.
+
+\paragraph{Muestra observada}\label{muestra-observada}
+
+La muestra observada posee un total de 105555 observaciones, de las
+cuales 53502 corresponden a identificaciones únicas en las que cada una
+es un asegurado distinto; además se tienen 30 columnas en total, además
+posee asegurados con y sin siniestros.
+
+\paragraph{Unidad estadística o
+individuos}\label{unidad-estaduxedstica-o-individuos}
+
+La unidad estadística es póliza por año, donde cada fila de los datos
+corresponde a una anualidad del contrato del asegurado; esto hace que un
+mismo asegurado pueda aparecer más de una vez en las filas, por eso se
+pasó de 105555 observaciones totales a 53502 únicas; como puede aparecer
+múltiples veces, da la posibilidad de ver la evolución de la póliza a lo
+largo del tiempo. Mientras que en el archivo ``sample type claim.csv'',
+la unidad estadística es el tipo de siniestro para cada individuo.
+
+\paragraph{Descripción de las variales de la
+tabla}\label{descripciuxf3n-de-las-variales-de-la-tabla}
+
+\subparagraph{Motor vehicle insurance
+data}\label{motor-vehicle-insurance-data}
+
+\begin{itemize}
+\item
+  \textbf{ID} (Identificador): Corresponde al número de identificación
+  interna asignada a cada contrato anual de un asegurado
+\item
+  \textbf{Date\_start\_contract} (Fecha de inicio del contrato): Fecha
+  de inicio del contrato del asegurado, tiene formato día/mes/año
+\item
+  \textbf{Date\_last\_renewal} (Fecha de la última renovación): Fecha de
+  la última renovación del contrato, tiene formato día/mes/año
+\item
+  \textbf{Date\_next\_renewal} (Fecha de la próxima renovación): Fecha
+  de la próxima renovación del contrato, tiene formato día/mes/año
+\item
+  \textbf{Distribution\_channel} (Canal de distribución): Clasifica el
+  canal a través del cual se contrató la póliza. 0 si fue un Agente y 1
+  para Corredores de seguros.
+\item
+  \textbf{Date\_birth} (Fecha de nacimiento): Fecha de nacimiento del
+  asegurado declarada en la póliza, tiene formato día/mes/año.
+\item
+  \textbf{Date\_driving\_licence} (Fecha de la licencia de conducir):
+  Fecha de expedición del permiso de conducir de la persona asegurada,
+  tiene formato día/mes/año.
+\item
+  \textbf{Seniority} (Antigüedad): Número total de años que el asegurado
+  ha estado asociado con la entidad aseguradora.
+\item
+  \textbf{Policies\_in\_force} (Pólizas en vigencia): Número total de
+  pólizas que el asegurado posee con la entidad aseguradora en el
+  periodo de referencia.
+\item
+  \textbf{Max\_policies} (Máximo de pólizas): Número máximo de pólizas
+  que el asegurado ha tenido alguna vez en vigor con la entidad
+  aseguradora.
+\item
+  \textbf{Max\_products} (Productos máximos): Número máximo de productos
+  que el asegurado ha mantenido simultáneamente en un momento dado.
+\item
+  \textbf{Lapse} (Cancelación): Número de pólizas que el cliente ha
+  cancelado o se le han cancelado por impago en el año de vencimiento
+  actual, excluyendo aquellas que han sido reemplazadas por otra póliza.
+\item
+  \textbf{Date\_lapse} (Fecha de cancelación): Fecha de cancelación;
+  fecha de terminación del contrato, tiene formato día/mes/año
+\item
+  \textbf{Payment} (Método de pago): Último método de pago de la póliza
+  de referencia. El 1 representa un proceso administrativo semestral y 0
+  indica un método de pago anual.
+\item
+  \textbf{Premium} (Prima): Monto de la prima neta asociada a la póliza
+  durante el año en curso.
+\item
+  \textbf{Cost\_claims\_year} (Costo de siniestro del año): Costo total
+  de los siniestros de la póliza de seguro durante el año en curso.
+\item
+  \textbf{N\_claims\_year} (Número de siniestro en el año): Número total
+  de siniestros ocurridos para la póliza de seguro durante el año en
+  curso.
+\item
+  \textbf{N\_claims\_history} (Número de siniestros histórico): Número
+  total de siniestros declarados durante toda la vigencia de la póliza
+  de seguro.
+\item
+  \textbf{R\_Claims\_history} (Ratio de siniestros histórico): Ratio del
+  número de siniestros declarados para la póliza específica con respecto
+  a la duración total (en años completos) de la póliza en vigor.
+\item
+  \textbf{Type\_risk} (Tipo de riesgo): Tipo de riesgo asociado a la
+  póliza. Cada valor corresponde a un tipo de riesgo específico: 1 para
+  motocicletas, 2 para furgonetas, 3 para turismos y 4 para vehículos
+  agrícolas.
+\item
+  \textbf{Area} (Zona): Representa la zona de circulación del vehículo.
+  0 para rural y 1 para urbano (más de 30.000 habitantes) en términos de
+  condiciones de tráfico.
+\item
+  \textbf{Second\_driver} (Segundo conductor): 1 si hay varios
+  conductores habituales declarados, o 0 si solo se declara un
+  conductor.
+\item
+  \textbf{Year\_matriculation} (Año de matriculación): Año de
+  matriculación del vehículo.
+\item
+  \textbf{Power} (Potencia): Potencia del vehículo medida en caballos de
+  fuerza.
+\item
+  \textbf{Cylinder\_capacity} (Capacidad de cilindrada): Cilindrada del
+  vehículo.
+\item
+  \textbf{Value\_vehicle} (Valor del vehículo): Valor de mercado del
+  vehículo al 31 de diciembre del 2019.
+\item
+  \textbf{N\_doors} (Número de puertas): Número total de puertas del
+  vehículo.
+\item
+  \textbf{Type\_fuel} (Tipo de combustible): Tipo específico de
+  combustible utilizado para el vehículo. P para Gasolina y D para
+  Diésel.
+\item
+  \textbf{Length} (Longitud): Longitud en metros del vehículo.
+\item
+  \textbf{Weight} (Peso): Peso en kilogramos del vehículo.
+\end{itemize}
+
+\subparagraph{Sample type claim}\label{sample-type-claim}
+
+\begin{itemize}
+\item
+  \textbf{ID} (Identificador): Mismo identificador que en el archivo
+  principal. Permite vincular cada siniestro con la póliza asociada.
+\item
+  \textbf{Cost\_claims\_year} (Costo de siniestros del año): Costo total
+  de los siniestros de la póliza durante el año en curso.
+\item
+  \textbf{Cost\_claims\_by\_type} (Costo de siniestros por tipo): Costo
+  asociado a un tipo específico de reclamo dentro del siniestro.
+\item
+  \textbf{Claims\_type} (Tipo de siniestro): Clasificación del tipo de
+  reclamo como: asistencia en viaje, rotura de lunas, reclamación,
+  negligencia, robo, incendio, lesiones, etc.
+\end{itemize}
+
+\subsection{Revisión bibliográfica}\label{revisiuxf3n-bibliogruxe1fica}
+
+\subsubsection{Búsqueda de
+bibliografía}\label{buxfasqueda-de-bibliografuxeda}
+
+\subsubsection{Construcción de fichas de
+literatura}\label{construcciuxf3n-de-fichas-de-literatura}
+
+\subsection{Construcción de la UVE de
+Gowin}\label{construcciuxf3n-de-la-uve-de-gowin}
+
+\subsubsection{Conceptos básicos}\label{conceptos-buxe1sicos}
+
+\section{Parte de escritura}\label{parte-de-escritura}
+
+\section{Arco narrativo del proyecto}\label{arco-narrativo-del-proyecto}
+
+\section{Diario de aprendizaje}\label{diario-de-aprendizaje}
+
+
+
+
+\end{document}
