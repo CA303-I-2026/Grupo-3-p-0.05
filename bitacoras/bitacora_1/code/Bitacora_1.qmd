@@ -160,27 +160,33 @@ A continuación, para cada una de las preguntas planteadas en el apartado anteri
 
 #### Fuente de información
 
-Los datos fueron obtenidos de la Universidad de Valencia a través de la página Mendeley Data [@lledo2024] en la cual se descargaron dos archivos tipo csv y uno tipo excel, el primer archivo se titula “Descriptive of the variables.xlsx” en el cual se encuentra la descripción de cada una de las variables/columnas de los datos, el segundo archivo se titula “Motor vehicle insurance data.csv”, este archivo posee la información de las pólizas de seguros y el tercer archivo se titula “sample type claim.csv” el cual posee información detallada de los siniestros, donde se indica el ID, el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
+Los datos se obtuvieron de la Universitat de València a través de la página Mendeley Data [@lledo2024], desde donde se descargaron tres archivos: dos en formato CSV y uno en formato Excel.
+
+El primer archivo se titula “Descriptive of the variables.xlsx” el cual contiene la descripción de cada una de las variables/columnas presentes en la base de datos. Por su parte, el segundo archivo se titula “Motor vehicle insurance data.csv”, y reúne la información relacionada a las pólizas de seguros. Finalmente, el tercer archivo se titula “sample type claim.csv”, y este presenta información detallada sobre los siniestros, donde se incluye el identificador (ID), el monto total de reclamos en un año, el costo de una parte de los reclamos y la categorización del tipo de reclamo.
 
 #### Contexto temporal y espacial de los datos
 
-Los datos contemplan la información de pólizas de seguros de autos desde 1980 hasta el 2017 según la fecha de inicio de pólizas y del 2015 al 2019 según las fechas de renovaciones; además de esto, hay información de los siniestros para los años del 2016 al 2018. El contexto espacial corresponde a la ciudad de Valencia, España.
+La base de datos abarca información relacionada con pólizas de seguros de autos, cuyo inicio se registra entre 1980 y 2017, mientras que las renovaciones de dichas pólizas se registran entre 2015 y 2019. Además de esto, se dispone de información sobre los siniestros ocurridos entre 2016 y 2018. En cuanto al contexto espacial, los datos se sitúan en la ciudad de Valencia, España.
 
 #### Facilidad de obtener la infromación
 
-Como se mencionó anteriormente, los datos se extrajeron de la página “Mendeley Data”, para descargar los datos no se requiere solicitarlos, cualquier persona puede descargarlos gratuitamente; sin embargo, algunas columnas como “length” y “weigth” poseen algunos NA, además, las columnas que poseen fechas, como “Date_start_contract” y otras, vienen como tipo character y no como tipo date por lo que se debe hacer la transformación de tipo character a tipo date.
+Como se mencionó anteriormente, la infomación fue obtenida de la página “Mendeley Data”, desde donde puede descargarse libremente sin necesidad de realizar una solicitud previa, ya que se encuentra disponible de forma gratuita para cualquier usuario.
+
+Sin embargo, algunas columnas como “length” y “weight” presentan valores faltantes (NA). Además, varias columnas asociadas a fechas, entre ellas “Date_start_contract”, se encuentran registradas como tipo *character* en lugar de tipo *date*, por lo que es necesario realizar una conversión previa.
 
 #### Población de estudio
 
-La población estudio de esta investigación corresponde a los asegurados que posee al menos una póliza de seguro de vehículos en la ciudad de Valencia; donde se contemplan motocicletas, furgonetas, turismos (automóviles de 4 a 5 asientos) y vehículos agrícolas; ya sean de zonas rurales o urbanas; con información de los siniestros que van del 2016 al 2018.
+La población estudio de esta investigación corresponde a los asegurados que poseen al menos una póliza de seguro vehicular en la ciudad de Valencia. Dentro de esta población, se incluyen distintos tipos de vehículos, entre ellos motocicletas, furgonetas, turismos (automóviles de cuatro a cinco asientos) y vehículos agrícolas, tanto de zonas rurales como urbanas. Adicionalmente, se contempla información asociada a los siniestros ocurridos entre 2016 y 2018.
 
 #### Muestra observada
 
-La muestra observada posee un total de 105555 observaciones, de las cuales 53502 corresponden a identificaciones únicas en las que cada una es un asegurado distinto; además se tienen 30 columnas en total, además posee asegurados con y sin siniestros.
+La muestra observada posee un total de 105555 observaciones, de las cuales 53502 corresponden a identificaciones únicas, donde cada identificación representa a un asegurado distinto. Asimismo, se tienen 30 columnas (variables) en total, y registra tanto asegurados que presentaron siniestros como aquellos que no reportaron eventos durante el período analizado.
 
 #### Unidad estadística o individuos
 
-La unidad estadística es póliza por año, donde cada fila de los datos corresponde a una anualidad del contrato del asegurado; esto hace que un mismo asegurado pueda aparecer más de una vez en las filas, por eso se pasó de 105555 observaciones totales a 53502 únicas; como puede aparecer múltiples veces, da la posibilidad de ver la evolución de la póliza a lo largo del tiempo. Mientras que en el archivo “sample type claim.csv”, la unidad estadística es el tipo de siniestro para cada individuo.
+La unidad estadística principal corresponde a la póliza por año, donde cada fila de los datos corresponde a una anualidad del contrato del asegurado. Esto implica que un mismo asegurado puede aparecer más de una vez en las filas, dependiendo del número de años en que mantuvo vigente su póliza, lo que explica la diferencia entre las 105555 observaciones totales y las 53502 únicas. Dado puede aparecer múltiples veces, esto da la posibilidad de ver la evolución de la póliza a lo largo del tiempo. 
+
+Por otra parte, en el archivo “sample type claim.csv”, la unidad estadística es el tipo de siniestro asociado a cada individuo.
 
 #### Descripción de las variales de la tabla
 
@@ -256,7 +262,12 @@ La unidad estadística es póliza por año, donde cada fila de los datos corresp
 
 -   **Claims_type** (Tipo de siniestro): Clasificación del tipo de reclamo como: asistencia en viaje, rotura de lunas, reclamación, negligencia, robo, incendio, lesiones, etc.
 
-Cada fila del archivo Motor vehicle insurance data corresponde a una anualidad del contrato de un seguro, específicamente a un año de cobertura para un asegurado específico; cada asegurado puede aparecer en múltiples filas, una por cada año que haya tenido una póliza activa. Para la investigación, esta estructura permite analizar cómo evoluciona la severidad y la frecuencia de siniestros de un mismo asegurado a lo largo del tiempo, además, permite utilizar el historial de siniestros a través de las columnas N_claims_history y R_claims_history para predecir comportamientos futuros. Las columnas pueden categorizarse según la información que proporcionen, por ejemplo, hay columnas temporales como Date_start_contract o Date_last_renewal, etc; columnas de siniestralidad como N_claims_year y Cost_claims_year que se podrían utilizar para modelar las frecuencias de los siniestros o calcular el costo promedio por siniestro, también hay columnas de historial como N_claims_history y R_claims_history que permiten ver la evolución del comportamiento del asegurado a lo largo del tiempo. Cada celda posee un valor específico para un determinado asegurado en un año en concreto, lo que permite ver, por ejemplo, cuál fue el monto de prima que pagó un asegurado en un año seleccionado. Las filas de los datos proporcionan información sobre la evolución del riesgo a lo largo del tiempo, lo que permite identificar patrones en el comportamiento de los asegurados; las columnas de siniestralidad, específicamente la de Cost_claims_year permitirá identificar los casos que superan el umbral de los €900; otras columnas como Seniority, Date_birth, Type_risk, N_claims_history, etc permitirán ver si existe o no una relación entre ellas y la frecuencia y severidad de los siniestros y las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. Así, las filas, columnas y celdas se relacionan directamente con la pregunta de investigación.
+Cada fila del archivo "Motor vehicle insurance data" corresponde a una anualidad del contrato de un seguro, es decir, a un año de cobertura asociado a un asegurado específico. Esto implica que un mismo asegurado puede aparecer en múltiples filas, una por cada año que haya tenido una póliza activa. 
+Esta estructura resulta especialmente útil para la investigación, ya que permite analizar la evolución temporal de la severidad y frecuencia de los siniestros de un mismo asegurado, así como incorporar el historial de reclamos a través de las columnas N_claims_history y R_claims_history para predecir comportamientos futuros. 
+
+Las columnas pueden categorizarse según la información que proporcionen, por ejemplo, hay columnas temporales como Date_start_contract o Date_last_renewal, etc; columnas de siniestralidad como N_claims_year y Cost_claims_year que se podrían utilizar para modelar las frecuencias de los siniestros o calcular el costo promedio por siniestro, también hay columnas de historial como N_claims_history y R_claims_history que permiten ver la evolución del comportamiento del asegurado a lo largo del tiempo. 
+
+Cada celda posee un valor específico para un determinado asegurado en un año en concreto, lo que permite ver, por ejemplo, cuál fue el monto de prima que pagó un asegurado en un año seleccionado. Las filas de los datos proporcionan información sobre la evolución del riesgo a lo largo del tiempo, lo que permite identificar patrones en el comportamiento de los asegurados; las columnas de siniestralidad, específicamente la de Cost_claims_year permitirá identificar los casos que superan el umbral de los €900; otras columnas como Seniority, Date_birth, Type_risk, N_claims_history, etc permitirán ver si existe o no una relación entre ellas y la frecuencia y severidad de los siniestros y las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. Así, las filas, columnas y celdas se relacionan directamente con la pregunta de investigación.
 
 ## Revisión bibliográfica
 
