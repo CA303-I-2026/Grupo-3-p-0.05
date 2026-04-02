@@ -34,7 +34,7 @@ format:
 
 ### Construcción de la idea del proyecto
 
-El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor del mismo, con el número y la severidad de los siniestros.
+El planteamiento del presente proyecto consiste en comprobar la existencia de una relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el tipo, el peso, el largo, así como el valor de este, con el número y la severidad de los siniestros; en caso de confirmar la presencia de algún vínculo entre las variables mencionadas antes, se procederá con su respectivo estudio. Asimismo, se plantea una exploración en torno al incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 unidades monetarias; es importante destacar que dicha eventualidad se identificó durante la etapa de análisis exploratorio, a través de la visualización del gráfico de la cantidad de reclamos de acuerdo al monto reportado.
 
 ### Conceptualización de la idea del proyecto
 
@@ -128,7 +128,7 @@ A continuación, para cada una de las preguntas planteadas en el apartado anteri
 
 **Contraargumentos**
 
-**Lógica:** La pregunta toma en cuenta la frecuencia y la severidad, las cuales son conceptos distintos, así como conceptos amplios como “perfiles de asegurados” y “condiciones del seguro”, lo que puede dificultar un análisis claro y específico.
+**Lógica:** la pregunta planteada considera la frecuencia y la severidad, los cuales son conceptos distintos, así como conceptos amplios como “perfiles de asegurados” y “condiciones del seguro”, lo que puede dificultar un análisis claro y específico.
 
 **Ética:** El análisis de diferencias entre perfiles de asegurados podría implicar el uso de variables sensibles (como edad u otras características personales), lo que podría derivar en segmentaciones injustas o en la reproducción de sesgos presentes en los datos.
 
