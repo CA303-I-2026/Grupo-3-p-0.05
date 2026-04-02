@@ -216,7 +216,7 @@ La muestra observada posee un total de 105555 observaciones, de las cuales 53502
 
 #### Unidad estadística o individuos
 
-La unidad estadística principal corresponde a la póliza por año, donde cada fila de los datos corresponde a una anualidad del contrato del asegurado. Esto implica que un mismo asegurado puede aparecer más de una vez en las filas, dependiendo del número de años en que mantuvo vigente su póliza, lo que explica la diferencia entre las 105555 observaciones totales y las 53502 únicas. Dado puede aparecer múltiples veces, esto da la posibilidad de ver la evolución de la póliza a lo largo del tiempo.
+La unidad estadística principal corresponde a la póliza por año, donde cada fila de los datos corresponde a una anualidad del contrato del asegurado. Esto implica que un mismo asegurado puede aparecer más de una vez en las filas, dependiendo del número de años en que mantuvo vigente su póliza, lo que explica la diferencia entre las 105555 observaciones totales y las 53502 únicas. Dado que puede aparecer múltiples veces, esto da la posibilidad de ver la evolución de la póliza a lo largo del tiempo.
 
 Por otra parte, en el archivo “sample type claim.csv”, la unidad estadística es el tipo de siniestro asociado a cada individuo.
 
@@ -353,8 +353,6 @@ A partir de estas teorías, se derivan principios fundamentales en el campo de l
 
 Para la parte metodológica, se utilizó como referencia el estudio de @omari2018modeling, el cual establece que dos metodologías útiles y altamente utilizadas en estudios actuariales relacionados con frencuencia y severidad son el análisis exploratorio de datos y la modelación estadística, que es lo que se plantea para este proyecto.
 
-\newpage
-
 # Escritura de la pregunta de investigación
 
 En consideración de lo construido hasta el momento, la pregunta seleccionada para ser el eje central del proyecto es la siguiente:
@@ -373,6 +371,24 @@ Finalmente, al revisar las creaciones de otros autores hasta ahora, mediante bú
 
 # Arco narrativo del proyecto
 
-# Diario de aprendizaje
+# Definición de la audiencia del proyecto
+
+\newpage
+
+# Relativo al trabajo en equipo
+
+## Posicionamiento del equipo
+
+## Rastro de decisiones
+
+## Registro del uso de inteligencia artificial
+
+## Diario de aprendizaje
+
+¿Qué saben ahora que no sabían al inicio del proyecto?
+
+## Registro del trabajo en equipo
+
+# 
 
 # Referencias
