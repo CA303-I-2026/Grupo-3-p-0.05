@@ -391,6 +391,60 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 ## Registro del trabajo en equipo
 
-# 
++--------------------------------+------------------------------------------------------------+
+| Nombre                         | Contribuciones                                             |
++:==============================:+:==========================================================:+
+| Alexandra González Bermúdez    | Conceptualización de la idea de investigación              |
+|                                |                                                            |
+|                                | Identificación de tensiones                                |
+|                                |                                                            |
+|                                | Escritura de la pregunta de investigación                  |
+|                                |                                                            |
+|                                | Diario de aprendizaje                                      |
+|                                |                                                            |
+|                                | Construcción de fichas bibliográficas                      |
+|                                |                                                            |
+|                                | Registro del trabajo en equipo                             |
+|                                |                                                            |
+|                                | Revisión de la redacción del documento                     |
++--------------------------------+------------------------------------------------------------+
+| Emily Estefanía Mora Contreras | Reformulación de la idea de investigación en modo pregunta |
+|                                |                                                            |
+|                                | Construcción de la Uve de Gowin                            |
+|                                |                                                            |
+|                                | Diario de aprendizaje                                      |
+|                                |                                                            |
+|                                | Construcción de fichas bibliográficas                      |
+|                                |                                                            |
+|                                | Rastro de decisiones                                       |
+|                                |                                                            |
+|                                | Revisión de la redacción del documento                     |
+|                                |                                                            |
+|                                | Construcción del citado y referencias en BibTeX            |
++--------------------------------+------------------------------------------------------------+
+| Daniela Prado Vargas           | Arco narrativo del proyecto                                |
+|                                |                                                            |
+|                                | Identificación de tensiones                                |
+|                                |                                                            |
+|                                | Argumentación de la pregunta de investigación              |
+|                                |                                                            |
+|                                | Diario de aprendizaje                                      |
+|                                |                                                            |
+|                                | Construcción de fichas bibliográficas                      |
+|                                |                                                            |
+|                                | Posicionamiento del equipo                                 |
++--------------------------------+------------------------------------------------------------+
+| José Miguel Rodríguez Gómez    | Definición de la idea de investigación                     |
+|                                |                                                            |
+|                                | Reformulación de la idea de investigación en modo pregunta |
+|                                |                                                            |
+|                                | Argumentación a través de datos                            |
+|                                |                                                            |
+|                                | Diario de aprendizaje                                      |
+|                                |                                                            |
+|                                | Construcción de fichas bibliográficas                      |
+|                                |                                                            |
+|                                | Definición de la audiencia del proyecto                    |
++--------------------------------+------------------------------------------------------------+
 
 # Referencias
