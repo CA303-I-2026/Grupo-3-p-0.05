@@ -1,0 +1,65 @@
+---
+title: "Fichas de literatura"
+format: 
+ pdf: 
+   papersize: letter
+   documentclass: article
+   lang: es-CR
+   titlepage: true
+   fontsize: "11pt"
+   mainfont: Times New Roman
+   urlcolor: "blue"
+   number-sections: true
+   margin-left: "2.54cm"
+   margin-right: "2.54cm"
+   margin-top: "2.54cm"
+   margin-bottom: "2.54cm"
+   header-includes:
+            - \usepackage{indentfirst}
+            - \setlength{\parindent}{1.27cm}
+---
+
+En el presente documento se pueden encontrar las fichas de literatura correspondientes respecto a la bibliografía consultada para la elaboración del proyecto.
+
+::: {.callout-note title="Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions"}
+
+*Nivel descriptivo*\
+
+**Título:** 
+
+**Autor(es):** 
+
+**Año:** 
+**Nombre del tema:**
+
+**Clasificación:**
+
+**Resumen en una oración:**
+
+**Argumento central:**
+
+**Problemas con el argumento o el tema:**
+
+---
+
+*Nivel analítico (pensamiento crítico)*\
+
+**Conexión con mi proyecto:**
+
+**Lo que NO dice el autor:**
+
+**Contraste con otra fuente:**
+
+**Evaluación de aplicabilidad:**
+
+**Pregunta que le haría al autor:**
+
+**Resumen argumentativo:**
+
+:::
+
+
+
+
+
+
