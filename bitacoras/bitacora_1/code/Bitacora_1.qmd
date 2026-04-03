@@ -150,31 +150,31 @@ A continuación, para cada una de las preguntas planteadas en el apartado anteri
 
 **Contraargumentos**
 
-**Lógica:** la pregunta elegida parte del supuesto de que ya existen patrones en los datos y como apenas se está iniciando, aún no se ha realizado el estudio que confirme dicha existencia. Comenzar asumiendo la existencia de estos patrones puede hacer un sesgo en la interpretación de los datos y generar conclusiones forzadas.
+**Lógica:** se parte del supuesto de que ya existen patrones en los datos, no obstante, aún no se ha realizado un estudio que confirme tal cosa. Comenzar asumiendo la existencia de estos patrones puede generar un sesgo en la interpretación de los datos, además de propiciar la construcción de conclusiones forzadas.
 
-**Ética:** para buscar estos patrones se requieren decisiones metodológicas importantes, como la selección de variables y la elección del modelo. Estas decisiones pueden influir en los resultados finales, ya que, si no se justifican de forma adecuada, el análisis puede perder transparencia.
+**Ética:** para buscar estos patrones se requiere de decisiones metodológicas importantes, como la selección de las variables y la elección del modelo. Estas decisiones pueden influir en los resultados finales, ya que, si no se justifican de forma adecuada, es posible que el análisis pierda transparencia.
 
-**Emocional:** hacer énfasis en la detección de patrones puede llegar a generar la percepción de que se está simplificando el fenómeno, en la que la complejidad de los siniestros se ve reducida únicamente a comportamientos recurrentes. Esto podría hacer que los resultados se perciban como un poco distantes o excesivamente técnicos.
+**Emocional:** hacer énfasis en la detección de patrones genera la percepción de que se está simplificando el fenómeno, de manera que la complejidad de los siniestros se ve reducida únicamente a comportamientos recurrentes. Lo anterior podría generar que los resultados se perciban como distantes o excesivamente técnicos.
 
 **Argumentos:**
 
-**Lógica:** la identificación de patrones permite encontrar estructuras en los datos sin asumir relaciones desde el inicio. A partir del uso de herramientas estadísticas como los estadísticos de resumen, la visualización de datos, las distribuciones muestrales y modelos estadísticos adecuados dentro de la familia exponencial, es posible analizar el comportamiento de los siniestros con base en la información disponible. De esta manera, se pueden construir niveles de riesgo basados en los datos y facilitar la organización y análisis de grandes cantidades de información.
+**Lógica:** la identificación de patrones permite encontrar estructuras en los datos sin asumir relaciones desde el inicio. A partir del uso de herramientas estadísticas como los estadísticos de resumen, la visualización de los datos, las distribuciones muestrales y los modelos estadísticos adecuados, es posible analizar el comportamiento de los siniestros con base en la información disponible. De esta manera, se pueden construir niveles de riesgo basados en los datos y así facilitar la organización, al igual que el análisis de grandes cantidades de información.
 
 **Ética:** cuando el análisis se desarrolla con una metodología claramente definida y documentada, se fortalece la transparencia del proceso y la solidez de los resultados. Además, una interpretación cuidadosa de los resultados permite evitar que los patrones identificados respondan únicamente a particularidades de la muestra, asegurando que tengan un sustento adecuado en los datos.
 
 **Emocional:** la presentación clara y estructurada de los resultados, enfocada en explicar tendencias generales, puede facilitar la comprensión del fenómeno estudiado. Esto contribuye a que los hallazgos se perciban como información útil y aplicable, en lugar de interpretaciones arbitrarias o desconectadas de la realidad.
 
-**Conclusiones:** el análisis de patrones en la ocurrencia de los siniestros debe abordarse sin asumir desde el inicio la existencia de resultados específicos, permitiendo que los datos guíen el proceso (lógica). Asimismo, es necesario mantener una metodología bien definida y una interpretación cuidadosa de los resultados, de manera que el análisis sea transparente y coherente con la información disponible (ética). Finalmente, una presentación clara y enfocada en tendencias generales permite que los resultados sean más comprensibles y útiles, evitando que se perciban como excesivamente técnicos o alejados del fenómeno estudiado (emocional). De esta forma, se obtiene un análisis más consistente y aplicable dentro del contexto del estudio.
+**Conclusiones:** el análisis de patrones en la ocurrencia de los siniestros debe abordarse sin asumir desde el inicio la existencia de resultados específicos, permitiendo que los datos guíen el proceso (lógica). Asimismo, es necesario mantener una metodología bien definida y una interpretación cuidadosa de los resultados, de manera que el análisis sea transparente y coherente con la información disponible (ética). Finalmente, una presentación clara y enfocada en tendencias generales permite que los resultados sean más comprensibles y útiles, evitando que se perciban como excesivamente técnicos o alejados del fenómeno estudiado (emocional). De esta forma, se obtiene un análisis consistente además de aplicable dentro del contexto del estudio.
 
 #### 4. ¿Cómo intervienen la potencia, el largo y el peso de los vehículos en la frecuencia y la severidad de los siniestros reportados?
 
 **Contraargumentos**
 
-**Lógica:** la pregunta se enfoca en variables específicas del vehículo, lo cual reduce la complejidad respecto a otras propuestas; sin embargo, continúa abordando simultáneamente la frecuencia y la severidad, lo que implica el análisis de dos dimensiones distintas. Además, estas variables podrían estar correlacionadas entre sí (por ejemplo, vehículos más pesados tienden a ser más largos), lo que puede dificultar la identificación del efecto individual de cada una y generar problemas de interpretación en los modelos.
+**Lógica:** la pregunta se enfoca en variables específicas del vehículo, lo cual reduce la complejidad respecto a otras propuestas; sin embargo, continúa abordando simultáneamente la frecuencia y la severidad, lo que implica el análisis de dos dimensiones distintas. Asimismo, estas variables podrían estar correlacionadas entre sí: los vehículos más pesados tienden a ser más largos, de forma que se puede dificultar la identificación del efecto individual de cada variable, además de generar problemas de interpretación en los modelos.
 
-**Ética:** el uso de variables técnicas requiere un manejo responsable en cuanto a la calidad y precisión de los datos, ya que errores en su medición o registro podrían afectar la validez de los resultados. Asimismo, es importante garantizar que las conclusiones derivadas del análisis se interpreten correctamente y no se extrapolen más allá de lo que los datos permiten.
+**Ética:** el uso de variables técnicas requiere de un manejo responsable en cuanto a la calidad y la precisión de los datos, ya que errores en su medición o registro podrían afectar la validez de los resultados. Asimismo, es importante garantizar que las conclusiones derivadas del análisis se interpreten correctamente y no se extrapolen más allá de lo que los datos permiten.
 
-**Emocional:** el análisis centrado en características técnicas del vehículo puede percibirse como distante o poco relacionado con la experiencia personal del asegurado, lo que podría dificultar la conexión entre los resultados del estudio y la realidad de los individuos.
+**Emocional:** el análisis centrado en las características técnicas del vehículo puede percibirse como distante o poco relacionado con la experiencia personal del asegurado, lo que podría dificultar la conexión entre los resultados del estudio y la realidad de los individuos.
 
 **Argumentos**
 
@@ -182,7 +182,7 @@ A continuación, para cada una de las preguntas planteadas en el apartado anteri
 
 **Ética:** el uso de variables técnicas permite un análisis basado en datos objetivos, lo que hace el proceso más claro y fácil de seguir. Además, permite desarrollar conclusiones fundamentadas en datos observables del vehículo, promoviendo una interpretación responsable y alineada con los alcances reales del estudio.
 
-**Emocional:** al centrarse en características del vehículo, el análisis puede percibirse como más neutral y menos invasivo para los asegurados. Asimismo, los resultados pueden interpretarse como información útil para la toma de decisiones informadas, tanto para la aseguradora como para los propios usuarios.
+**Emocional:** al centrarse en características del vehículo, el análisis puede percibirse con mayor neutralidad, siendo menos invasivo para los asegurados. Asimismo, los resultados podrían representar información útil en el proceso de toma de decisiones, tanto para la aseguradora como para los propios usuarios.
 
 **Conclusiones**
 
