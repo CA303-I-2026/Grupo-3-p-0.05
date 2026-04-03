@@ -371,6 +371,8 @@ Finalmente, al revisar las creaciones de otros autores hasta ahora, mediante bú
 
 # Arco narrativo del proyecto
 
+El problema que nadie ha resuelto completamente aún es cómo interactúan las variables del asegurado y del vehículo para explicar la frecuencia y severidad de los siniestros, así como los cambios abruptos en el comportamiento de los reclamos.
+
 # Definición de la audiencia del proyecto
 Esta investigación está dirigida a un actuario de seguros de no vida, que tenga interés por comprender cómo variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y características del vehículo, influyen tanto en la frecuencia como en la severidad de siniestros; y qué factores causan incrementos abruptos en los reclamos.
 Esta semana le diría a un actuario de seguros que se está construyendo un modelo GLM para estimar la prima de riesgo pura, además se han identificado variables como la antigüedad del asegurado con la compañía aseguradora y la potencia del vehículo que podrían ser predictores importantes; también, se está investigando qué factores están asociados con el aumento abrupto de reclamos por año que superan los €900.
