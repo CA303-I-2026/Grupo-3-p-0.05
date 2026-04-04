@@ -392,6 +392,7 @@ Esta semana le diría a un actuario de seguros que se está construyendo un mode
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al inicio del proyecto? Dichas oraciones proceden a detallarse como sigue:
 
 -   Tras una observación superficial de los datos, se descubrió que hay una concentración de siniestros cuya severidad registra un monto de cero unidades monetarias para la aseguradora: en muchas ocasiones los asegurados no efectuan la reclamación del seguro.
+-   Aprendí que los modelos lineales generalizados no sirven solamente para la tarifación de seguros, sino que también sirven para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente
 
 ## Registro del trabajo en equipo
 
