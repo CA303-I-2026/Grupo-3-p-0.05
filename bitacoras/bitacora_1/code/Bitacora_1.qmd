@@ -397,12 +397,29 @@ Finalmente, se estableció que el análisis se realizará en dos etapas: primero
 
 ## Registro del uso de inteligencia artificial
 
+Para la sección 1.2.1., se consultó a ChatGPT por palabras claves para buscar información en los repositorios y buscadores web. En este caso el *promt* que se utilizó fue el siguiente:
+
+- Promt: "Cuáles pueden ser algunas palabras claves que permitan una mejor búsqueda de artículos científicos, libros y otros recursos acerca de la frecuencia y severidad de los siniestros en el campo de seguros de auto"
+
+La respuesta exacta de ChatGPT fue la siguiente:
+
+>"Podrías responderlo así, claro y directo: 
+Algunas palabras clave útiles para buscar información sobre frecuencia y severidad de siniestros en seguros de auto son: claim frequency, claim severity, motor insurance, automobile insurance risk, loss distribution, frequency-severity model, Poisson distribution insurance, Gamma distribution claim severity y actuarial loss modeling. Estas palabras permiten encontrar artículos tanto teóricos como aplicados sobre modelación estadística de siniestros."
+>"Extra: para que encuentres artículos mejores en bases como Google Scholar o ScienceDirect, combina así:
+claim frequency AND motor insurance
+claim severity AND actuarial modeling
+automobile insurance loss distribution
+Eso normalmente da resultados mucho más útiles."
+
+A partir de esto, se contruyeron las mezclas de palabras para la búsqueda que se pueden encontrar en la sección 1.2.1., las cuales se utilizaron para encontrar los artículos, libros y recursos que se utilizaron para la revisión bibliográfica. 
+
 ## Diario de aprendizaje
 
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al inicio del proyecto? Dichas oraciones proceden a detallarse como sigue:
 
 -   Tras una observación superficial de los datos, se descubrió que hay una concentración de siniestros cuya severidad registra un monto de cero unidades monetarias para la aseguradora: en muchas ocasiones los asegurados no efectuan la reclamación del seguro.
--   Aprendí que los modelos lineales generalizados no sirven solamente para la tarifación de seguros, sino que también sirven para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente
+-   Aprendí que los modelos lineales generalizados no sirven solamente para la tarifación de seguros, sino que también sirven para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente.
+- Con la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
 
 ## Registro del trabajo en equipo
 
