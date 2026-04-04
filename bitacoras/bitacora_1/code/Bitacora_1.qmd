@@ -383,6 +383,8 @@ Esta semana le diría a un actuario de seguros que se está construyendo un mode
 
 ## Posicionamiento del equipo
 
+Para la elaboración de este proyecto, el equipo se considera adecuado para abordar el tema debido a la motivación compartida por profundizar en el análisis estadístico dentro del contexto asegurador. En particular, se busca trabajar con información que permita no solo reforzar los conocimientos adquiridos en el curso, sino también iniciar un acercamiento a otras áreas de la carrera, como seguros de no vida. Asimismo, existe un interés por comprender el funcionamiento general de una aseguradora, especialmente en lo relacionado con la ocurrencia de siniestros y los factores que influyen en su comportamiento, lo que permite integrar tanto la aplicación de herramientas estadísticas como la interpretación de los resultados en un contexto más amplio.
+
 ## Rastro de decisiones
 
 Para esta bitácora se tomaron decisiones tanto temáticas como metodológicas. En primer lugar, de las preguntas planteadas en la sección 1.1.4., se seleccionó la primera, ya que permite abordar tanto la frecuencia y la severidad de los siniestros, incorporando además un fenómeno atípico identificado; este es, el incremento abrupto en la cantidad de reclamos cuando el costo supera las 900 unidades monetarias. Las demás preguntas fueron descartadas por presentar un alcance más limitado, o al menos no el que se deseaba directamente. La segunda tenía un enfoque principalmente descriptivo, la tercera se alejaba del análisis de variables específicas al centrarse en patrones generales de riesgo, y la cuarta restringía el estudio únicamente a características del vehículo.
