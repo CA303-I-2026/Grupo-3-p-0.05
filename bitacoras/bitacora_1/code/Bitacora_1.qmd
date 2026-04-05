@@ -420,6 +420,7 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 -   Tras una observación superficial de los datos, se descubrió que hay una concentración de siniestros cuya severidad registra un monto de cero unidades monetarias para la aseguradora: en muchas ocasiones los asegurados no efectuan la reclamación del seguro.
 -   Aprendí que los modelos lineales generalizados no sirven solamente para la tarifación de seguros, sino que también sirven para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente.
 - Con la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
+- Tras la revisión bibliográfica, se descubrió que para datos con muchos ceros, como en este caso el conteo de siniestros, el modelo de Poisson, aunque es el más común, puede no funcionar adecuadamente ya que asume igualdad entre la media y la varianza; sin embargo, la presencia de muchos ceros aumenta la variabilidad y rompe este supuesto, por lo que es necesario recurrir a modelos más flexibles.
 
 ## Registro del trabajo en equipo
 
