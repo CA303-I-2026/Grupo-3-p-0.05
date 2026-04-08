@@ -10,7 +10,7 @@
 
 *Nombre del tema:* introducción al análisis de correlación entre variables.
 
-*Clasificación:* metodología.
+*Clasificación:* Metodológica
 
 El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto.
 

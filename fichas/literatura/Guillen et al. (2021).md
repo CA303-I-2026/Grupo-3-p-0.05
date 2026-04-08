@@ -10,7 +10,7 @@
 
 *Nombre del tema:* modelación del valor esperado de la frecuencia y la severidad de los siniestros, comparando el uso de datos tradicionales con la inclusión de ciertos datos telemáticos.
 
-*Clasificación:* modelación de variables.
+*Clasificación:* Temática
 
 Explica la modelación del valor esperado de las variables que el proyecto pretende estudiar: la frecuencia y la severidad; a partir del uso de datos similares y la inclusión de elementos telemáticos.
 
