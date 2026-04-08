@@ -304,8 +304,6 @@ Las columnas pueden clasificarse según el tipo de información que contienen. P
 
 Cada celda posee un valor específico para un asegurado en un año determinado, lo que permite identificar, por ejemplo, el monto de prima pagado en un periodo concreto. A su vez, las filas aportan información sobre la evolución del riesgo a través del tiempo, facilitando la identificación de patrones en el comportamiento de los asegurado. En particular, la variable Cost_claims_year permite identificar los casos que superan el umbral de los €900, mientras que otras variables como Seniority, Date_birth, Type_risk y N_claims_history permiten evaluar si existe relación entre ellas y la frecuencia y severidad de los siniestros. Asimismo, las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. De esta manera, las filas, variables/columnas y celdas se relacionan directamente con la pregunta de investigación.
 
-\newpage
-
 ## Revisión bibliográfica
 
 ### Búsqueda de bibliografía
