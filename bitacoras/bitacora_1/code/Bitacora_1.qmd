@@ -627,7 +627,7 @@ La presente investigación está dirigida principalmente a los actuarios que se 
 
 ## Posicionamiento del equipo
 
-Para la elaboración de este proyecto, el equipo se considera adecuado para abordar el tema debido a la motivación compartida por profundizar en el análisis estadístico dentro del contexto asegurador. En particular, se busca trabajar con información que permita no solo reforzar los conocimientos adquiridos en el curso, sino también iniciar un acercamiento a otras áreas de la carrera, como seguros de no vida. Asimismo, existe un interés por comprender el funcionamiento general de una aseguradora, especialmente en lo relacionado con la ocurrencia de siniestros y los factores que influyen en su comportamiento, lo que permite integrar tanto la aplicación de herramientas estadísticas como la interpretación de los resultados en un contexto más amplio.
+El equipo conformado por Alexandra González, Estefanía Mora, Daniela Prado y José Miguel Rodríguez se considera adecuado para abordar la propuesta, en vista de la motivación compartida por profundizar en el análisis estadístico dentro del contexto asegurador. En particular, se busca trabajar con información que permita no solo reforzar los conocimientos adquiridos en el curso, sino también iniciar un acercamiento a otras áreas de la disciplina actuarial, como los seguros de no vida. Asimismo, existe un interés por comprender el funcionamiento general de una aseguradora, especialmente en lo relacionado a la ocurrencia de los siniestros y los factores que influyen en su comportamiento. Lo anterior permite integrar la aplicación de herramientas estadísticas, en compañía de la interpretación de los resultados en un contexto más amplio.
 
 ## Rastro de decisiones
 
