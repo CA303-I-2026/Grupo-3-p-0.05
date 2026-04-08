@@ -615,11 +615,11 @@ Finalmente, al revisar las creaciones de otros autores hasta ahora, mediante bú
 
 # Arco narrativo del proyecto
 
-El problema que nadie ha resuelto completamente aún es cómo interactúan las variables del asegurado y del vehículo para explicar la frecuencia y severidad de los siniestros, así como los cambios abruptos en el comportamiento de los reclamos.
+El problema que nadie ha resuelto completamente aún es cómo interactúan determinadas variables asociadas a los asegurados y a los vehículos, con el objetivo de explicar el comportamiento de la frecuencia y la severidad de los siniestros, así como cambios abruptos particulares en la cantidad de reclamos de acuerdo al monto de los mismos.
 
 # Definición de la audiencia del proyecto
 
-Esta investigación está dirigida a un actuario de seguros de no vida, que tenga interés por comprender cómo variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y características del vehículo, influyen tanto en la frecuencia como en la severidad de siniestros; y qué factores causan incrementos abruptos en los reclamos. Esta semana le diría a un actuario de seguros que se está construyendo un modelo GLM para estimar la prima de riesgo pura, además se han identificado variables como la antigüedad del asegurado con la compañía aseguradora y la potencia del vehículo que podrían ser predictores importantes; también, se está investigando qué factores están asociados con el aumento abrupto de reclamos por año que superan los €900.
+La presente investigación está dirigida principalmente a los actuarios que se desempeñan en el sector de los seguros de no vida, quienes posean el interés de comprender la forma en que variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y ciertas características del vehículo, influyen tanto en la frecuencia como en la severidad de los siniestros; además de qué factores causan incrementos abruptos en los reclamos. Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos, que se están construyendo las bases del proyecto dirigido a analizar la intervención de las variables especificadas en la frecuencia y la severidad de los siniestros, con el objetivo de procurar el desarrollo transparente, sólido y coherente de la propuesta, a través de la delimitación adecuada y la comprensión óptima de aquello que se pretende efectuar.
 
 \newpage
 
