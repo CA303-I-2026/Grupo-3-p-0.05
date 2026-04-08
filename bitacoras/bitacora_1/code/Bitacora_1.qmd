@@ -620,6 +620,8 @@ Eso normalmente da resultados mucho más útiles."
 
 A partir de esto, se contruyeron las mezclas de palabras para la búsqueda que se pueden encontrar en la sección 1.2.1., las cuales se utilizaron para encontrar los artículos, libros y recursos que se utilizaron para la revisión bibliográfica. 
 
+Por otro lado, durante la elaboración de la sección 1.1.5, Argumentación de la pregunta, se utilizó ChatGPT como apoyo para mejorar la redacción de algunos párrafos. En particular, se ingresaron los párrafos de forma individual con el fin de evaluar posibles mejoras en su claridad y coherencia. A partir de las respuestas generadas, se revisaron los cambios sugeridos, distinguiendo entre aquellos que contribuían a comunicar la idea de manera más clara y aquellos que resultaban innecesarios o alteraban el sentido original. En consecuencia, se adoptaron únicamente las modificaciones pertinentes, manteniendo el estilo propio. El uso de esta herramienta facilitó la organización de ideas y contribuyó a fortalecer la escritura académica del documento.
+
 ## Diario de aprendizaje
 
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al inicio del proyecto? Dichas oraciones proceden a detallarse como sigue:
