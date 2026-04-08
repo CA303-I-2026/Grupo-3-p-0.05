@@ -304,6 +304,8 @@ Las columnas pueden clasificarse según el tipo de información que contienen. P
 
 Cada celda posee un valor específico para un asegurado en un año determinado, lo que permite identificar, por ejemplo, el monto de prima pagado en un periodo concreto. A su vez, las filas aportan información sobre la evolución del riesgo a través del tiempo, facilitando la identificación de patrones en el comportamiento de los asegurado. En particular, la variable Cost_claims_year permite identificar los casos que superan el umbral de los €900, mientras que otras variables como Seniority, Date_birth, Type_risk y N_claims_history permiten evaluar si existe relación entre ellas y la frecuencia y severidad de los siniestros. Asimismo, las celdas poseen valores concretos que permitirán estimar la relación entre los predictores y lo obtenido en los resultados. De esta manera, las filas, variables/columnas y celdas se relacionan directamente con la pregunta de investigación.
 
+\newpage
+
 ## Revisión bibliográfica
 
 ### Búsqueda de bibliografía
@@ -597,7 +599,7 @@ A partir de estas teorías, se derivan principios fundamentales en el campo de l
 
 Para la parte metodológica, se utilizó como referencia el estudio de @omari2018modeling, el cual establece que dos metodologías útiles y altamente utilizadas en estudios actuariales relacionados con frencuencia y severidad son el análisis exploratorio de datos y la modelación estadística, que es lo que se plantea para este proyecto.
 
-# Escritura de la pregunta de investigación
+## Escritura de la pregunta de investigación
 
 En consideración de lo construido hasta el momento, la pregunta seleccionada para ser el eje central del proyecto es la siguiente:
 
@@ -613,11 +615,11 @@ En segundo lugar, se estudiará el comportamiento de la cantidad de reclamos cua
 
 Finalmente, al revisar las creaciones de otros autores hasta ahora, mediante búsquedas a partir de palabras claves como frecuencia, severidad, cantidad de reclamos y seguros automovilísticos; se identificó que la mayoría de las producciones gira en torno al análisis y la predicción del riesgo en el aseguramiento. Específicamente en lo relativo a seguros automovilísticos, se encontró un artículo de autoría de estudiantes de Ciencias Actuariales de la Universidad de Costa Rica, quienes trabajaron en el ajuste de la distribución de las pérdidas para seguros de accidentes automovilísticos. Asimismo, los autores poseen una inclinación a trabajar en la modelación de distintas variables, dentro de ellas se sitúan la frecuencia de las reclamaciones, el pago por concepto de las reclamaciones, la predicción del riesgo, así como la predicción de la siniestralidad.
 
-# Arco narrativo del proyecto
+## Arco narrativo del proyecto
 
 El problema que nadie ha resuelto completamente aún es cómo interactúan determinadas variables asociadas a los asegurados y a los vehículos, con el objetivo de explicar el comportamiento de la frecuencia y la severidad de los siniestros, así como cambios abruptos particulares en la cantidad de reclamos de acuerdo al monto de los mismos.
 
-# Definición de la audiencia del proyecto
+## Definición de la audiencia del proyecto
 
 La presente investigación está dirigida principalmente a los actuarios que se desempeñan en el sector de los seguros de no vida, quienes posean el interés de comprender la forma en que variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y ciertas características del vehículo, influyen tanto en la frecuencia como en la severidad de los siniestros; además de qué factores causan incrementos abruptos en los reclamos. Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos, que se están construyendo las bases del proyecto dirigido a analizar la intervención de las variables especificadas en la frecuencia y la severidad de los siniestros, con el objetivo de procurar el desarrollo transparente, sólido y coherente de la propuesta, a través de la delimitación adecuada y la comprensión óptima de aquello que se pretende efectuar.
 
@@ -658,9 +660,9 @@ Por otro lado, durante la elaboración de la sección 1.1.5, Argumentación de l
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al inicio del proyecto? Dichas oraciones proceden a detallarse como sigue:
 
 -   Tras una observación superficial de los datos, se descubrió que hay una concentración de siniestros cuya severidad registra un monto de cero unidades monetarias para la aseguradora: en muchas ocasiones los asegurados no efectuan la reclamación del seguro.
--   Con las fuentes de información consultadas, se identificó que los modelos lineales generalizados no se utilizan solamente para la tarifación de seguros, sino también para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente.
--   Con la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
--   Tras la revisión bibliográfica, se descubrió que para datos con muchos ceros, como en este caso el conteo de siniestros, el modelo de Poisson, aunque es el más común, puede no funcionar adecuadamente ya que asume igualdad entre la media y la varianza; sin embargo, la presencia de muchos ceros aumenta la variabilidad y rompe este supuesto, por lo que es necesario recurrir a modelos más flexibles.
+-   Con las fuentes de información consultadas, se identificó que los modelos lineales generalizados no se utilizan solamente para la tarifación de seguros, sino también para modelar la frecuencia y la severidad de los siniestros, además de que existen métodos para tratar con variables que no se relacionan linealmente.
+-   A partir de la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
+-   Tras la revisión bibliográfica, se descubrió que para datos con muchos ceros, como en este caso el conteo de los siniestros, el modelo de Poisson, aunque es el más común, puede no funcionar adecuadamente ya que asume igualdad entre la media y la varianza; sin embargo, la presencia de muchos ceros aumenta la variabilidad y rompe este supuesto, por lo que es necesario recurrir a modelos más flexibles.
 
 ## Registro del trabajo en equipo
 
