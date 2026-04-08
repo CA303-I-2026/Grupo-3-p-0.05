@@ -506,7 +506,7 @@ El libro de Goldburd et al. (2025) explica cómo modelar tanto la frecuencia com
 
 *Nombre del tema:* introducción al análisis de correlación entre variables.
 
-*Clasificación:* metodología.
+*Clasificación:* Metodológica
 
 El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto.
 
@@ -546,7 +546,7 @@ El análisis de correlación representa una herramienta importante para el estud
 
 *Nombre del tema:* modelación del valor esperado de la frecuencia y la severidad de los siniestros, comparando el uso de datos tradicionales con la inclusión de ciertos datos telemáticos.
 
-*Clasificación:* modelación de variables.
+*Clasificación:* Temática
 
 Explica la modelación del valor esperado de las variables que el proyecto pretende estudiar: la frecuencia y la severidad; a partir del uso de datos similares y la inclusión de elementos telemáticos.
 
