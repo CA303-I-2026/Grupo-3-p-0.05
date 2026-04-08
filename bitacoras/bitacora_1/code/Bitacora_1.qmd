@@ -1,5 +1,4 @@
 ---
-title: "Bitacora_1"
 bibliography: ../../../referencias/referencias.bib
 csl: https://www.zotero.org/styles/apa
 format: 
@@ -22,7 +21,12 @@ format:
    header-includes:
             - \usepackage{indentfirst}
             - \setlength{\parindent}{1.27cm} 
+   include-before-body: Portada.tex
 ---
+
+```{=latex}
+\setcounter{page}{1} 
+```
 
 \newpage
 
@@ -329,21 +333,20 @@ Algunas combinaciones de palabras claves utilizadas para la revisión fueron las
 
 ### Construcción de fichas de literatura
 
-::: {.callout-note}
+::: callout-note
 # Omari et al. (2018)
 
 ***Nivel descriptivo***
 
 *Título:* *Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions*
 
-*Autores:* Cyprian Ondieki Omari, Shalyne Gathoni Nyambura, Joan Martha Wairimu Mwangi
-Department of Statistics and Actuarial Science, Dedan Kimathi University of Technology, Nyeri, Kenya.
+*Autores:* Cyprian Ondieki Omari, Shalyne Gathoni Nyambura, Joan Martha Wairimu Mwangi Department of Statistics and Actuarial Science, Dedan Kimathi University of Technology, Nyeri, Kenya.
 
 *Año:* 2018
 
 *Nombre del tema:* Frecuencia y la severidad de siniestros en seguros de autos.
 
-*Clasificación:* Metodológica. 
+*Clasificación:* Metodológica.
 
 Este estudio propone una metodología que podría adaptarse de manera efectiva en el proyecto que se está planteando. Esto, ya que el tema es parecido, frecuencia y severidad de seguros de automóviles. El artículo propone un procedimiento concreto para seleccionar distribuciones, estimar parámetros y evaluar ajuste, más que desarrollar una teoría nueva o revisar la evolución histórica del problema.
 
@@ -352,8 +355,6 @@ Este estudio propone una metodología que podría adaptarse de manera efectiva e
 *Argumento central:* El artículo establece que que la frecuencia y severidad de los reclamos en el campo de los seguros de autos deben modelarse por separados, utilizando las distribuciones adecuadas a las características observadas. Además, establece que la selección del modelo debe basarse en estimación por máxima verosimilitud, pruebas de bondad de ajuste y criterios de información; en sus datos, la severidad se ajusta mejor con una lognormal y la frecuencia con distribuciones binomial negativa y geométrica.
 
 *Problemas con el argumento o el tema:* Los autores señalan que uno de los principales problemas al modelar reclamaciones de seguros es que los datos no siguen distribuciones simples debido a su comportamiento observado. Los datos presentan asimetría positiva, el fenómeno de "colas pesadas" y una alta concentración de valores cero en la frecuencia de siniestros. Esto dificulta el uso de distribuciones clásicas como Poisson o binomial, ya que en varios casos no logran un ajuste adecuado según las pruebas de bondad de ajuste realizadas. Por eso, finalmente los autores utilizan una distribución lognormal.
-
-
 
 ***Nivel analítico***
 
@@ -365,15 +366,14 @@ Este estudio propone una metodología que podría adaptarse de manera efectiva e
 
 *Evaluación de aplicabilidad (escala 1–5):* 4
 
-La metodología es aplicable porque parte del mismo problema básico de la investigación: modelar frecuencia y severidad en seguros de autos con datos observados. Técnicamente, su separación entre variable discreta de conteo y variable continua positiva encaja bien con los datos con los que se va a trabajar. Aún así, el artículo trabaja sobre ajuste de distribuciones marginales y no desarrolla modelos con covariables, por eso únicamente se usará esta investigación como base para la metodología. 
+La metodología es aplicable porque parte del mismo problema básico de la investigación: modelar frecuencia y severidad en seguros de autos con datos observados. Técnicamente, su separación entre variable discreta de conteo y variable continua positiva encaja bien con los datos con los que se va a trabajar. Aún así, el artículo trabaja sobre ajuste de distribuciones marginales y no desarrolla modelos con covariables, por eso únicamente se usará esta investigación como base para la metodología.
 
 *Pregunta que le haría al autor:* ¿Por qué la distribución lognormal ofreció un mejor ajuste para la severidad de los siniestros en comparación con otras distribuciones evaluadas, y qué características específicas de los datos influyeron más en ese resultado?
 
 *Resumen argumentativo:* El problema que los autores intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de reclamaciones en seguros de automóviles, ya que una mala elección afecta reservas, primas y proyecciones financieras. Su solución funciona bien como punto de partida porque sigue un procedimiento ordenado: seleccionar familias de distribuciones posibles, estimar parámetros por máxima verosimilitud y comparar ajustes con pruebas estadísticas e indicadores de información. Para el contexto del proyecto, este enfoque sí resulta útil, sobre todo para la etapa exploratoria y para justificar por qué la frecuencia y la severidad deben analizarse por separado. Sin embargo, se queda corto cuando el objetivo pasa de describir la distribución de los datos a explicar diferencias entre asegurados o a comprender comportamiento futuro usando variables del historial. En este proyecto, esa limitación es importante porque se quieren aprovechar columnas como N_claims_history y R_claims_history para estudiar evolución del riesgo a través del tiempo.
-
 :::
 
-::: {.callout-note}
+::: callout-note
 # Frees (2021)
 
 ***Nivel descriptivo***
@@ -396,8 +396,6 @@ El documento desarrolla principios básicos y generales de modelación de variab
 
 *Problemas con el argumento o el tema:* El autor señala que uno de los principales retos es seleccionar distribuciones adecuadas porque los datos de seguros suelen presentar asimetría, valores extremos y heterogeneidad entre asegurados, lo que dificulta que un único modelo funcione en todos los contextos.
 
-
-
 ***Nivel analítico***
 
 *Conexión con mi proyecto:* Este documento se relaciona directamente con la investigación porque proporciona el fundamento teórico para analizar la variable N_claims_year como frecuencia y Cost_claims_year como severidad dentro de la base de datos de seguros vehiculares. Además, justifica el uso de distribuciones discretas para frecuencia y distribuciones continuas para severidad, que son precisamente los enfoques que se quieren considerar en el estudio.
@@ -413,10 +411,9 @@ La metodología es altamente aplicable porque el modelo frecuencia–severidad c
 *Pregunta que le haría al autor:* Cuando varias distribuciones parecen razonables teóricamente para severidad, ¿qué criterio considera más importante para seleccionar una en una base de datos real?
 
 *Resumen argumentativo:* El problema principal que aborda el autor es cómo representar matemáticamente el riesgo en seguros cuando las pérdidas no son determinísticas. Su propuesta funciona porque separa dos procesos aleatorios distintos: cuántos siniestros ocurren y cuánto cuesta cada uno. Esta división permite asignar distribuciones diferentes según el comportamiento de cada variable. En en contexto del proyecto, esta estructura resulta útil porque las variables de frecuencia y severidad están claramente diferenciadas en la base de datos. Sin embargo, el texto no resuelve completamente cómo proceder cuando los datos presentan exceso de ceros o comportamientos extremos muy marcados, como sucede en un estudio real como el de Omari et al. (2018).
-
 :::
 
-::: {.callout-note}
+::: callout-note
 # Melgar & Guerrero (2005)
 
 ***Nivel descriptivo***
@@ -456,7 +453,7 @@ El artículo es altamente aplicable para el análisis de la frecuencia de los si
 *Resumen argumentativo:* El problema que Melgar y Guerrero (2005) intentan resolver es la dificultad de modelar el número de siniestros en seguros de automóviles cuando los datos presentan gran cantidad de ceros y mucha heterogeneidad entre asegurados. Los modelos tradicionales, como el Poisson o la binomial negativa, resultan limitados porque no diferencian adecuadamente los tipos de ceros ni capturan bien la variabilidad de los datos. La solución propuesta, basada en el modelo binomial negativo inflado de ceros (ZINB), permite separar a los individuos que no presentan siniestros por razones estructurales de aquellos expuestos al riesgo, lo cual mejora el ajuste del modelo en contextos con muchos ceros. Esta metodología es pertinente para el proyecto, ya que también se trabaja con datos de frecuencia con alta presencia de ceros, donde modelos inflados pueden ofrecer estimaciones más precisas. No obstante, su implementación puede ser más compleja y depender de la calidad de los datos y de las herramientas metodológicas disponibles en el curso. En este trabajo se adoptará el uso de modelos más flexibles para datos de conteo y el criterio de selección basado en las características empíricas de los datos.
 :::
 
-::: {.callout-note}
+::: callout-note
 # Goldburd et al. (2025)
 
 ***Nivel descriptivo***
@@ -481,7 +478,7 @@ Se eligió esta etiqueta porque no solamente habla de la teoría de la frecuenci
 
 ***Nivel analítico***
 
-*Conexión con mi proyecto:* Este libro se relaciona en gran medida con el proyecto, una parte de la pregunta de investigación es ver cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, en la frecuencia y severidad de los siniestros; en el libro, en el capítulo 2, sección 2.7, se habla de las distribuciones para la frecuencia y para la severidad, además, en las sección 2.4 se habla de cómo tratar con variables tanto categóricas como continuas. Luego, en el capítulo 5 se habla de elegir la variable objetivo, ya sea la frecuencia o la severidad, cómo elegir su distribución, cómo seleccionar y transformar variables. Finalmente, en el Capítulo 7 se explica cómo validar el modelo. 
+*Conexión con mi proyecto:* Este libro se relaciona en gran medida con el proyecto, una parte de la pregunta de investigación es ver cómo influyen variables como la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, en la frecuencia y severidad de los siniestros; en el libro, en el capítulo 2, sección 2.7, se habla de las distribuciones para la frecuencia y para la severidad, además, en las sección 2.4 se habla de cómo tratar con variables tanto categóricas como continuas. Luego, en el capítulo 5 se habla de elegir la variable objetivo, ya sea la frecuencia o la severidad, cómo elegir su distribución, cómo seleccionar y transformar variables. Finalmente, en el Capítulo 7 se explica cómo validar el modelo.
 
 *Lo que NO dice el autor:* La pregunta que no se responde para el proyecto es la explicación sobre el incremento abrupto de los reclamos por año en el umbral de los €900, además el libro asume que los datos están limpios y perfectos para modelar, tampoco profundiza en la limpieza de los datos ni manejo de los NA.
 
@@ -496,7 +493,7 @@ El libro de Goldburd et al. (2025) explica cómo modelar tanto la frecuencia com
 *Resumen argumentativo:* Lo que los autores intentan resolver es explicar cómo hacer un plan de tarifación utilizando GLM, donde explican desde el manejo de los datos, hasta la creación y validación de modelos. La solución propuesta por los autores sirve para la investigación parcialmente, pues posee capítulos sumamente útiles como lo pueden ser el capítulo 2 y el 5, los cuales están relacionados directamente con la investigación, específicamente la parte de la relación entre distintas variables y la frecuencia y severidad de los siniestros. Pero el libro está destinado a la tarifación de seguros, tema que no trata nuestra investigación. Además de esto, el libro no aborda la otra parte de la pregunta de investigación, el aumento abrupto en la cantidad de reclamos por año en los €900. De este trabajo se utilizará la metodología propuesta para modelar la frecuencia y severidad, también se utilizará las técnicas para la transformación de variables; además de los métodos para detectar y tratar relaciones no lineales entre las variables; finalmente, no se utilizará la parte de tarifación de seguros.
 :::
 
-::: {.callout-note}
+::: callout-note
 # Patel (2025)
 
 ***Nivel descriptivo***
@@ -581,8 +578,8 @@ Finalmente, al revisar las creaciones de otros autores hasta ahora, mediante bú
 El problema que nadie ha resuelto completamente aún es cómo interactúan las variables del asegurado y del vehículo para explicar la frecuencia y severidad de los siniestros, así como los cambios abruptos en el comportamiento de los reclamos.
 
 # Definición de la audiencia del proyecto
-Esta investigación está dirigida a un actuario de seguros de no vida, que tenga interés por comprender cómo variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y características del vehículo, influyen tanto en la frecuencia como en la severidad de siniestros; y qué factores causan incrementos abruptos en los reclamos.
-Esta semana le diría a un actuario de seguros que se está construyendo un modelo GLM para estimar la prima de riesgo pura, además se han identificado variables como la antigüedad del asegurado con la compañía aseguradora y la potencia del vehículo que podrían ser predictores importantes; también, se está investigando qué factores están asociados con el aumento abrupto de reclamos por año que superan los €900.
+
+Esta investigación está dirigida a un actuario de seguros de no vida, que tenga interés por comprender cómo variables como la edad del asegurado, su antigüedad con la aseguradora, el historial de siniestros y características del vehículo, influyen tanto en la frecuencia como en la severidad de siniestros; y qué factores causan incrementos abruptos en los reclamos. Esta semana le diría a un actuario de seguros que se está construyendo un modelo GLM para estimar la prima de riesgo pura, además se han identificado variables como la antigüedad del asegurado con la compañía aseguradora y la potencia del vehículo que podrían ser predictores importantes; también, se está investigando qué factores están asociados con el aumento abrupto de reclamos por año que superan los €900.
 
 \newpage
 
@@ -606,19 +603,13 @@ Finalmente, se estableció que el análisis se realizará en dos etapas: primero
 
 Para la sección 1.2.1., se consultó a ChatGPT por palabras claves para buscar información en los repositorios y buscadores web. En este caso el *promt* que se utilizó fue el siguiente:
 
-- Promt: "Cuáles pueden ser algunas palabras claves que permitan una mejor búsqueda de artículos científicos, libros y otros recursos acerca de la frecuencia y severidad de los siniestros en el campo de seguros de auto"
+-   Promt: "Cuáles pueden ser algunas palabras claves que permitan una mejor búsqueda de artículos científicos, libros y otros recursos acerca de la frecuencia y severidad de los siniestros en el campo de seguros de auto"
 
 La respuesta exacta de ChatGPT fue la siguiente:
 
->"Podrías responderlo así, claro y directo: 
-Algunas palabras clave útiles para buscar información sobre frecuencia y severidad de siniestros en seguros de auto son: claim frequency, claim severity, motor insurance, automobile insurance risk, loss distribution, frequency-severity model, Poisson distribution insurance, Gamma distribution claim severity y actuarial loss modeling. Estas palabras permiten encontrar artículos tanto teóricos como aplicados sobre modelación estadística de siniestros."
->"Extra: para que encuentres artículos mejores en bases como Google Scholar o ScienceDirect, combina así:
-claim frequency AND motor insurance
-claim severity AND actuarial modeling
-automobile insurance loss distribution
-Eso normalmente da resultados mucho más útiles."
+> "Podrías responderlo así, claro y directo: Algunas palabras clave útiles para buscar información sobre frecuencia y severidad de siniestros en seguros de auto son: claim frequency, claim severity, motor insurance, automobile insurance risk, loss distribution, frequency-severity model, Poisson distribution insurance, Gamma distribution claim severity y actuarial loss modeling. Estas palabras permiten encontrar artículos tanto teóricos como aplicados sobre modelación estadística de siniestros." "Extra: para que encuentres artículos mejores en bases como Google Scholar o ScienceDirect, combina así: claim frequency AND motor insurance claim severity AND actuarial modeling automobile insurance loss distribution Eso normalmente da resultados mucho más útiles."
 
-A partir de esto, se contruyeron las mezclas de palabras para la búsqueda que se pueden encontrar en la sección 1.2.1., las cuales se utilizaron para encontrar los artículos, libros y recursos que se utilizaron para la revisión bibliográfica. 
+A partir de esto, se contruyeron las mezclas de palabras para la búsqueda que se pueden encontrar en la sección 1.2.1., las cuales se utilizaron para encontrar los artículos, libros y recursos que se utilizaron para la revisión bibliográfica.
 
 ## Diario de aprendizaje
 
@@ -626,8 +617,8 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   Tras una observación superficial de los datos, se descubrió que hay una concentración de siniestros cuya severidad registra un monto de cero unidades monetarias para la aseguradora: en muchas ocasiones los asegurados no efectuan la reclamación del seguro.
 -   Aprendí que los modelos lineales generalizados no sirven solamente para la tarifación de seguros, sino que también sirven para modelar la frecuencia y severidad de siniestros y que existen métodos para tratar con variables que no se relacionan linealmente.
-- Con la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
-- Tras la revisión bibliográfica, se descubrió que para datos con muchos ceros, como en este caso el conteo de siniestros, el modelo de Poisson, aunque es el más común, puede no funcionar adecuadamente ya que asume igualdad entre la media y la varianza; sin embargo, la presencia de muchos ceros aumenta la variabilidad y rompe este supuesto, por lo que es necesario recurrir a modelos más flexibles.
+-   Con la revisión bibliográfica, se identificó que los datos de seguros suelen presentar comportamientos irregulares, como muchos ceros o valores extremos, por lo que no siempre pueden modelarse con distribuciones simples.
+-   Tras la revisión bibliográfica, se descubrió que para datos con muchos ceros, como en este caso el conteo de siniestros, el modelo de Poisson, aunque es el más común, puede no funcionar adecuadamente ya que asume igualdad entre la media y la varianza; sin embargo, la presencia de muchos ceros aumenta la variabilidad y rompe este supuesto, por lo que es necesario recurrir a modelos más flexibles.
 
 ## Registro del trabajo en equipo
 
