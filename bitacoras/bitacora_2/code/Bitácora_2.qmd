@@ -1,0 +1,84 @@
+---
+bibliography: ../../../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
+format: 
+ pdf: 
+   papersize: letter
+   documentclass: article
+   lang: es-CR
+   titlepage: true
+   toc: true
+   toc-title: "Índice"
+   toccolor: "black"
+   fontsize: "11pt"
+   mainfont: Times New Roman
+   urlcolor: "blue"
+   number-sections: true
+   margin-left: "2.54cm"
+   margin-right: "2.54cm"
+   margin-top: "2.54cm"
+   margin-bottom: "2.54cm"
+   header-includes:
+            - \usepackage{indentfirst}
+            - \setlength{\parindent}{1.27cm} 
+   include-before-body: Portada.tex
+---
+
+```{=latex}
+\setcounter{page}{1} 
+```
+
+\newpage
+
+# Parte de planificación
+
+## Ordenamiento de la literatura
+
+# Enlaces de la literatura
+
+# Análisis estadísticos
+
+## Análisis descriptivo
+
+### Análisis descriptivo de la base de datos
+
+### Tablas resumen de variables relevantes
+
+### Visualización de datos
+
+## Fichas de resultados
+
+## La imagen que cuenta la historia
+
+# Arco narrativo del proyecto
+
+# Diario de aprendizaje
+
+# Preparación
+
+## Rastro de decisiones
+
+## Registro del uso de IA
+
+## Log de contribuciones
+
+## Registro del trabajo en equipo
+
+|                                |                    |
+|:------------------------------:|:------------------:|
+|           **Nombre**           | **Contribuciones** |
+|  Alexandra González Bermúdez   |                    |
+|           **Nombre**           | **Contribuciones** |
+| Emily Estefanía Mora Contreras |                    |
+|           **Nombre**           | **Contribuciones** |
+|      Daniela Prado Vargas      |                    |
+|           **Nombre**           | **Contribuciones** |
+|  José Miguel Rodríguez Gómez   |                    |
+
+## Respuesta a la retroalimentación
+
+## Audiencia del proyecto
+
+\newpage
+
+# Referencias
