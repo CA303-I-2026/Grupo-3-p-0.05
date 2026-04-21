@@ -83,7 +83,7 @@ Como ejemplo, a continuación se presenta un histograma correspondiente a la var
 
 Por otra parte, se utiliza el paquete cowplot para definir el estilo general de los gráficos, como se recomienda en las instrucciones. 
 
-```{r warning=FALSE, message=FALSE, fig.cap="Ejemplo de gráfico con paleta de colores seleccionada y formato general",fig.width=5, fig.height=3.09, fig.align='center'}
+```{r, warning=FALSE, message=FALSE, fig.cap="Ejemplo de gráfico con paleta de colores seleccionada y formato general",fig.width=5, fig.height=3.09, fig.align='center'}
 datos %>% 
   ggplot(aes(x = Premium)) +
   geom_histogram(
@@ -127,6 +127,129 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 ### Tablas resumen de variables relevantes
 
 ### Visualización de datos
+Para esta sección se mostrarán gráficos con información relevante para abordar la pregunta de investigación.
+
+```{r, warning=FALSE, message=FALSE, echo= FALSE}
+library(lubridate)
+
+datos_modificados <- datos %>% 
+  mutate(
+    Date_start_contract = as.Date(Date_start_contract, format = "%d/%m/%Y"),
+    Date_last_renewal = as.Date(Date_last_renewal, format = "%d/%m/%Y"),
+    Date_next_renewal = as.Date(Date_next_renewal, format = "%d/%m/%Y"),
+    Date_birth = as.Date(Date_birth, format = "%d/%m/%Y"),
+    Date_driving_licence = as.Date(Date_driving_licence, format = "%d/%m/%Y"),
+    Date_lapse = as.Date(Date_lapse, format = "%d/%m/%Y"),
+    categoria = case_when(
+      Type_risk == 1 ~ "Motocicleta",
+      Type_risk == 2 ~ "Furgoneta",
+      Type_risk == 3 ~ "Turismo",
+      Type_risk == 4 ~ "Agricola"
+    ),
+    edad = 2019 - year(Date_birth)
+  )
+
+# Data frame con las observaciones más recientes (eliminar duplicados)
+datos_unicos <- datos_modificados %>% 
+  group_by(ID) %>% 
+  slice_max(Date_last_renewal, n = 1, with_ties = FALSE) %>% 
+  ungroup()
+```
+
+El primer gráfico muestra la relación entre la edad y la cantidad histórica de reclamos que ha tenido; en donde los colores más oscuros como el azul representan la mayor cantidad, mientras que los colores más claros como el rosado representan la menor cantidad
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
+
+datos_unicos %>% 
+  ggplot(aes(x = edad, y = N_claims_history)) +
+  geom_hex(bins = 55) + # Divide en hexágonos y cuenta
+  scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + # Color según densidad
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + # Crear una regresión lineal
+  scale_x_continuous(breaks = seq(20,100,10)) +
+  labs(title = "Relación entre Edad e histórico de reclamos",
+       x = "Edad", 
+       y = "Número de reclamos",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.4))
+```
+
+El siguiente gráfico muestra la compraración entre la edad y el número de siniestros por año con la edad y el número de siniestros histórico
+
+```{r, warning= FALSE, message=FALSE,echo=FALSE, fig.cap = "Gráfico comparativo entre edad y numero de siniestros por año y siniestros totales", fig.height= 5.5, fig.align='center'}
+
+siniestros_anyo <- datos_modificados %>%
+  ggplot(aes(x = edad, y = N_claims_year)) +
+  geom_jitter(alpha = 0.1, width = 0.2, height = 0.2, # Puntos
+              color = paleta_pamplemousse[1]) +
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + # Regresión lineal
+  scale_x_continuous(breaks = seq(20,110,10)) +
+  labs(title = "Relación entre edad y número de siniestros por año",
+       x = "Edad del asegurado", 
+       y = "Número de siniestros",
+       caption =  "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+siniestros_historico <- datos_unicos %>%
+  ggplot(aes(x = edad, y = N_claims_history)) +
+  geom_jitter(alpha = 0.1, width = 0.2, height = 0.2, 
+              color = paleta_pamplemousse[1]) +
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) +
+  scale_x_continuous(breaks = seq(20,110,10)) +
+  labs(title = "Relación entre edad y número de siniestros histórico",
+       x = "Edad del asegurado", 
+       y = "Número de siniestros",
+       caption =  "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+plot_grid(siniestros_anyo,siniestros_historico,ncol=1)
+
+```
+
+El siguiente gráfico muestra la comparación entre la frecuencia y costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+
+violin_frecuencia <- datos_modificados %>%
+  filter(is.finite(N_claims_year)) %>%
+  mutate(categoria = factor(categoria,
+                            levels = c("Turismo", "Motocicleta", "Furgoneta", "Agricola"))) %>% 
+  ggplot(aes(x = categoria, y = N_claims_year, fill = categoria)) +
+  geom_violin(alpha = 0.6, trim = FALSE) + # trim = False para que no corte las colas
+  scale_fill_manual(values = paleta_pamplemousse[2:5]) +
+  scale_y_log10(labels = scales::comma,
+                breaks = c(1,2,3,4,5,10,15,20,25,30)) +
+  labs(title = "Cantidad de siniestros por año según tipo de vehículo",
+       x = "Tipo de vehículo", 
+       y = "Cantidad el siniestros por año") +
+  estilo_grupo3 +
+  theme(legend.position = "none")
+
+violin_costo <- datos_modificados %>%
+  filter(is.finite(Cost_claims_year)) %>%
+  mutate(categoria = factor(categoria,
+                            levels = c("Turismo", "Motocicleta", "Furgoneta", "Agricola"))) %>% 
+  ggplot(aes(x = categoria, y = Cost_claims_year, fill = categoria)) +
+  geom_violin(alpha = 0.6, trim = FALSE) + 
+  scale_fill_manual(values = paleta_pamplemousse[2:5]) +
+  scale_y_log10(labels = scales::comma,
+                breaks = c(100,500,1000,5000,10000,50000,100000)) + # Poner comas a los miles
+  labs(title = "Costo de siniestros por año según tipo de vehículo",
+       x = "Tipo de vehículo", 
+       y = "Costo del siniestro por año") +
+  estilo_grupo3 +
+  theme(legend.position = "none")
+
+violin_combinado <- plot_grid( violin_costo, violin_frecuencia) %>% 
+  ggdraw() +
+  draw_label("Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+             x = 0.98, y = 0.02, hjust = 1, vjust = 2.5,  size = 9) +
+  theme(plot.margin = margin(0, 0, 15, 0)) # Ajustar el margen inferior
+
+ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_combinado, width = 11, height = 5, dpi = 300)
+
+```
+![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width=100%}
 
 ## Fichas de resultados
 
