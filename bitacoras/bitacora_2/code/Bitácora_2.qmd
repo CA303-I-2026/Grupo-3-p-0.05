@@ -79,6 +79,7 @@ Con el objetivo de que todos los gráficos del proyecto mantengan una presentaci
 library(ggplot2)
 library(cowplot)
 library(dplyr)
+library(lubridate)
 
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
@@ -147,7 +148,6 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 Para esta sección se mostrarán gráficos con información relevante para abordar la pregunta de investigación.
 
 ```{r, warning=FALSE, message=FALSE, echo= FALSE}
-library(lubridate)
 
 datos_modificados <- datos %>% 
   mutate(
@@ -257,7 +257,7 @@ violin_costo <- datos_modificados %>%
   estilo_grupo3 +
   theme(legend.position = "none")
 
-violin_combinado <- plot_grid( violin_costo, violin_frecuencia) %>% 
+violin_combinado <- plot_grid(violin_costo, violin_frecuencia) %>% 
   ggdraw() +
   draw_label("Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
              x = 0.98, y = 0.02, hjust = 1, vjust = 2.5,  size = 9) +
@@ -268,6 +268,78 @@ ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_comb
 ```
 
 ![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width="100%"}
+
+El siguiente gráfico muestra la comparación entre la distribución de distintas características físicas del vehículo, peso, largo, potencia, cilindraje y número de puertas, en los casos en donde se supera el umbral de los €900.
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+peso_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Weight)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[2]) +
+  scale_x_continuous(breaks = seq(0,2500, 250)) +
+  scale_y_continuous(breaks = seq(0,250,50))+
+  labs(title = "Distribución del peso de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Peso del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+largo_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Length)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0,7,0.5)) +
+  scale_y_continuous(breaks = seq(0,350,50))+
+  labs(title = "Distribución del largo de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Largo del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+potencia_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Power)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[4]) +
+  scale_x_continuous(breaks = seq(0,250,50)) +
+  labs(title = "Distribución de la potencia de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Caballos de fuerza",
+     y = "Cantidad")+
+  estilo_grupo3
+
+cilindraje_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Cylinder_capacity)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[5]) +
+  scale_x_continuous(breaks = seq(0,3500,500)) +
+  scale_y_continuous(breaks = seq(0,600,100)) +
+  labs(title = "Distribución de la capacidad de cilindraje de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Capacidad de cilindraje",
+     y = "Cantidad")+
+  estilo_grupo3
+
+puertas_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= N_doors)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[3]) +
+  scale_x_continuous(breaks = seq(0,6,1)) +
+  scale_y_continuous(breaks = seq(0,2500,250)) +
+  labs(title = "Distribución del número de puertas de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Número de puertas del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+caracteristicas_costo <- plot_grid(peso_costo, largo_costo, potencia_costo, cilindraje_costo, puertas_costo, ncol=2)%>% 
+  ggdraw() +
+  draw_label("Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+             x = 0.98, y = 0.02, hjust = 1, vjust = 2,  size = 9)
+
+ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caracteristicas_costo, width = 10, height = 11, dpi = 300)
+```
+
+![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){width="100%"}
 
 ## Fichas de resultados
 
