@@ -44,9 +44,9 @@ Para la elaboración de gráficos y figuras, se plantea la siguiente plantilla q
 
 ### Paleta de colores
 
-En este caso, se seleccionó la paleta de colores *Pamplemousse*, disponible en el paquete LaCroixColoR, la cual puede consultarse mediante el enlace  <https://r-graph-gallery.com/color-palette-finder.html?palette=pamplemousse>, dentro de la página web <https://r-graph-gallery.com/color-palette-finder> recomendada en el documento instructivo de la Bitácora 2. Esta paleta corresponde a una escala de seis colores diferentes, caracterizada por una transición desde tonos cálidos, esencialmente rosados y anaranjados, hasta tonos fríos turquesa y azul oscuro. En la siguiente figura se presenta la selección realizada, a manera de un primer vistazo a la paleta de colores. Esta imagen se obtuvo directamente de la página web de R graph gallery, y se copió tal como se mostraba.
+En este caso, se seleccionó la paleta de colores *Pamplemousse*, disponible en el paquete LaCroixColoR, la cual puede consultarse mediante el enlace <https://r-graph-gallery.com/color-palette-finder.html?palette=pamplemousse>, dentro de la página web <https://r-graph-gallery.com/color-palette-finder> recomendada en el documento instructivo de la Bitácora 2. Esta paleta corresponde a una escala de seis colores diferentes, caracterizada por una transición desde tonos cálidos, esencialmente rosados y anaranjados, hasta tonos fríos turquesa y azul oscuro. En la siguiente figura se presenta la selección realizada, a manera de un primer vistazo a la paleta de colores. Esta imagen se obtuvo directamente de la página web de R graph gallery, y se copió tal como se mostraba.
 
-![Paleta Pamplemousse. Tomado de R-graph gallery](../figuras/paleta_pamplemousse.png){ width=40% }
+![Paleta Pamplemousse. Tomado de R-graph gallery](../figuras/paleta_pamplemousse.png){width="40%"}
 
 Como justificación de la elección, esta paleta presenta colores visualmente atractivos y con suficiente contraste, pero manteniendo una apariencia equilibrada y agradable, sin llegar a ser excesivamente intensa, esto con el obejtivo de mantener cierto nivel de formalidad en torno al desarrollo del proyecto. Los tonos cálidos permiten destacar ciertos elementos visuales de manera inmediata, mientras que los tonos fríos aportan formalidad, lo cual resulta adecuado para gráficos de carácter académico. Además, al realizar pruebas preliminares, se observó que la paleta ofrece buena legibilidad en pantalla y permite distinguir claramente diferentes niveles o categorías dentro de un gráfico.
 
@@ -81,7 +81,7 @@ En cuanto al tamaño, se establece como referencia un ancho de 6 centímetros, a
 
 Como ejemplo, a continuación se presenta un histograma correspondiente a la variable *Premium* (prima del seguro). En este caso, se emplea la paleta seleccionada asignando distintos tonos en función de la frecuencia de cada barra: a mayor frecuencia, se utilizan colores más oscuros, mientras que las frecuencias menores se representan con tonos más claros. Esto permite resaltar visualmente las diferencias dentro de la distribución sin perder coherencia cromática.
 
-Por otra parte, se utiliza el paquete cowplot para definir el estilo general de los gráficos, como se recomienda en las instrucciones. 
+Por otra parte, se utiliza el paquete cowplot para definir el estilo general de los gráficos, como se recomienda en las instrucciones.
 
 ```{r, warning=FALSE, message=FALSE, fig.cap="Ejemplo de gráfico con paleta de colores seleccionada y formato general",fig.width=5, fig.height=3.09, fig.align='center'}
 datos %>% 
@@ -101,7 +101,6 @@ datos %>%
   theme_cowplot(font_size = 12)
 ```
 
-
 ### Tipografía en figuras
 
 En este caso, se decidió seguir la recomendación respecto al tamaño de la fuente, estableciendo un valor de 12 pt. Al observar el archivo PDF generado, se determinó que este tamaño resulta adecuado en relación con las dimensiones de la figura, ya que mantiene una buena proporción visual y permite una lectura clara sin inconvenientes.
@@ -119,7 +118,6 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
   )
 ```
 
-
 ## Análisis descriptivo
 
 ### Análisis descriptivo de la base de datos
@@ -127,6 +125,7 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 ### Tablas resumen de variables relevantes
 
 ### Visualización de datos
+
 Para esta sección se mostrarán gráficos con información relevante para abordar la pregunta de investigación.
 
 ```{r, warning=FALSE, message=FALSE, echo= FALSE}
@@ -249,7 +248,8 @@ violin_combinado <- plot_grid( violin_costo, violin_frecuencia) %>%
 ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_combinado, width = 11, height = 5, dpi = 300)
 
 ```
-![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width=100%}
+
+![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width="100%"}
 
 ## Fichas de resultados
 
@@ -269,16 +269,63 @@ ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_comb
 
 ## Registro del trabajo en equipo
 
-|                                |                    |
-|:------------------------------:|:------------------:|
-|           **Nombre**           | **Contribuciones** |
-|  Alexandra González Bermúdez   |                    |
-|           **Nombre**           | **Contribuciones** |
-| Emily Estefanía Mora Contreras |                    |
-|           **Nombre**           | **Contribuciones** |
-|      Daniela Prado Vargas      |                    |
-|           **Nombre**           | **Contribuciones** |
-|  José Miguel Rodríguez Gómez   |                    |
++:------------------------------:+:-----------------------------------------------------:+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Alexandra González Bermúdez    | Correción en base a la retroalimentación              |
+|                                |                                                       |
+|                                | Arco narativo del proyecto                            |
+|                                |                                                       |
+|                                | La imagen que cuenta la historia                      |
+|                                |                                                       |
+|                                | Enlaces de la literatura                              |
+|                                |                                                       |
+|                                | Rastro de decisiones                                  |
+|                                |                                                       |
+|                                | Registro del trabajo en equipo                        |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Emily Estefanía Mora Contreras | Identidad visual del proyecto                         |
+|                                |                                                       |
+|                                | Resumen de las variables de la base de datos          |
+|                                |                                                       |
+|                                | Enlaces de la literatura                              |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Daniela Prado Vargas           | Organización de las tareas de acuerdo a su dificultad |
+|                                |                                                       |
+|                                | Ordenamiento de las fichas de literatura              |
+|                                |                                                       |
+|                                | Análisis descriptivo de la base de datos              |
+|                                |                                                       |
+|                                | Enlaces de la literatura                              |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| José Miguel Rodríguez Gómez    | Audiencia del proyecto                                |
+|                                |                                                       |
+|                                | Elaboración de gráficos                               |
+|                                |                                                       |
+|                                | Enlaces de la literatura                              |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
 
 ## Respuesta a la retroalimentación
 
