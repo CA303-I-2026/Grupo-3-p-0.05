@@ -341,6 +341,55 @@ ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caract
 
 ![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){width="100%"}
 
+El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, contempla del año 1980 al 2018.
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+costos_anyo <- datos_modificados %>% 
+  mutate(anyo = year(Date_start_contract)) %>% 
+  group_by(anyo) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = anyo, y = conteo)) +
+  geom_col(fill = paleta_pamplemousse[1], alpha = 0.7) +
+  geom_text(aes(label = conteo), size = 3, vjust = -0.3, hjus = -1) +
+  scale_x_continuous(breaks = seq(1980,2020, 5)) +
+  scale_y_continuous(breaks = seq(0,20000,2500)) +
+  labs(title = "Distribución del número de siniestros con costo por año mayor a €900",
+       x = "Año",
+       y = "Cantidad de siniestros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png",costos_anyo, width = 11, height = 7, dpi = 300)
+
+```
+
+![Distribución del número de siniestros por año mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){width="100%"}
+
+El siguiente gráfico muestra la distribución de la cantidad de siniestros por zona, dividiendo los casos en donde se supera el rango de los  €900.
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
+
+datos_modificados %>% 
+  filter(is.finite(Cost_claims_year) & is.finite(Area)) %>% 
+  mutate(zona = ifelse(Area == 0, "Rural", "Urbano"),
+         rango = ifelse(Cost_claims_year >= 900, ">= €900", "< €900")) %>% 
+  group_by(zona, rango) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = zona, y = conteo, fill= rango)) +
+  geom_col(position = "dodge") + # Separar las columnas
+  geom_text(aes(label = scales::comma(conteo)), # Poner coma en los miles de los conteos
+             position = position_dodge(width = 0.9), # Mover a la derecha las columnas pequeñas
+            vjust = -0.4) +
+  scale_y_continuous(breaks = seq(0,75000,15000), labels = scales::comma) + # Poner coma en los miles del eje y
+  scale_fill_manual(values = c(paleta_pamplemousse[1], paleta_pamplemousse[6])) +
+  labs(title = "Distribución del costo de los siniestros por zona",
+       x = "Zona",
+       y = "Cantidad de siniestros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+       fill = "Costo del siniestro") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.5)) # Mover la fuente a la derecha
+``` 
+
+
 ## Fichas de resultados
 
 ## La imagen que cuenta la historia
