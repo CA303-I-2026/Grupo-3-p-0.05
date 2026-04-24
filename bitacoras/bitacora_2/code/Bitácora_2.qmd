@@ -145,7 +145,7 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 
 ### Visualización de datos
 
-Para esta sección se mostrarán gráficos con información relevante para abordar la pregunta de investigación.
+Para esta sección de la investigación se presentarán distintos gráficos gráficos con información relevante para abordar la pregunta de investigación.
 
 ```{r, warning=FALSE, message=FALSE, echo= FALSE}
 
@@ -173,7 +173,7 @@ datos_unicos <- datos_modificados %>%
   ungroup()
 ```
 
-El primer gráfico muestra la relación entre la edad y la cantidad histórica de reclamos que ha tenido; en donde los colores más oscuros como el azul representan la mayor cantidad, mientras que los colores más claros como el rosado representan la menor cantidad
+El primer gráfico muestra la relación entre la edad y la cantidad histórica de reclamos que ha tenido; en donde los colores más oscuros como el azul representan la mayor cantidad, mientras que los colores más claros como el rosado representan la menor cantidad.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
 
@@ -191,7 +191,7 @@ datos_unicos %>%
   theme(plot.caption = element_text(hjust = 1.4))
 ```
 
-El siguiente gráfico muestra la compraración entre la edad y el número de siniestros por año con la edad y el número de siniestros histórico
+El siguiente gráfico muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
 
 ```{r, warning= FALSE, message=FALSE,echo=FALSE, fig.cap = "Gráfico comparativo entre edad y numero de siniestros por año y siniestros totales", fig.height= 5.5, fig.align='center'}
 
@@ -341,7 +341,7 @@ ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caract
 
 ![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){width="100%"}
 
-El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, contempla del año 1980 al 2018.
+El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 costos_anyo <- datos_modificados %>% 
   mutate(anyo = year(Date_start_contract)) %>% 
@@ -364,7 +364,8 @@ ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png",costos
 
 ![Distribución del número de siniestros por año mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){width="100%"}
 
-El siguiente gráfico muestra la distribución de la cantidad de siniestros por zona, dividiendo los casos en donde se supera el rango de los  €900.
+El siguiente gráfico muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos en donde se supera el rango de los  €900.
+
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
 
 datos_modificados %>% 
