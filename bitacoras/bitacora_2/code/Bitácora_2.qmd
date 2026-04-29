@@ -38,7 +38,7 @@ El pleno entendimiento de los elementos conceptuales y metodólogicos del proyec
 
 Los elementos metodológicos y conceptuales se construyen a partir de dos fuentes: la primera fuente consiste en la información consultada, dentro de la cual se comtempla la literatura además del acceso a los datos; por otro lado, la segunda fuente proviene de la interpretación y el manejo de la información consultada por parte de lo miembros del equipo.
 
-Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o cronológica, la cual está acompañada de un breve texto que respalda su escogencia.
+Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o teórica, la cual está acompañada de un breve texto que respalda su escogencia. Es importante destacar que además de las fichas literarias construidas en la bitácora pasada, se incluyeron algunas adicionales, que fueron consideradas pertinentes para un análisis de mayor completitud.
 
 +-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
 | **Clasificación** | **Justificación breve**                                                                                                                                                                                                                                                                                                                                                                                                    | **Título**                                                                                   | **Año** | **Autor(es)**                                                                |
@@ -61,6 +61,32 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 +-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
 
 # Enlaces de la literatura
+
+## Sección teórica
+
+## Sección metodológica
+
+### Patel (2025)
+
+#### *Correlation Analysis: exploring Relationships between Variables*
+
+> **Resumen:** a través de diversos ejes temáticos, la autora aborda introductoriamente el análisis de correlación. Se argumenta que este último evalúa el grado de asociación entre variables determinadas, con el objetivo de estudiar la forma en la que los cambios en una variable están relacionados con los cambios en otra variable. Existen diferentes tipos, no obstante, el documento se enfoca en aquellos que están basados en la dirección: la correlación positiva y la correlación negativa. Así, a partir del coeficiente de correlación, un índice que varía en el intervalo de menos uno a uno, se identifica una correlación positiva cuando su valor es cercano a uno y por el contrario, se expresa una correlación negativa cuando su valor es cercano a menos uno; por otro lado, se distingue una correlación débil cuando el coeficiente adopta un valor cercano a cero. Seguidamente, Patel (2025) explica las múltiples funcionalidades que posee el análisis de correlación, de las cuales se rescatan dos principales: en primer lugar, constituye un apoyo en la identificación de patrones en los datos, lo que representa una guía tanto en los análisis posteriores como en los procesos de toma de decisiones; en segundo lugar, está inmerso en la selección de variables para la modelación y el análisis, dado que permite la escogencia de las variables más relevantes de acuerdo a los elementos bajo estudio, mejorando la precisión de los modelos. Pese a su gran utilidad, la autora señala dos importantes limitaciones: el análisis de correlación asume una relación lineal entre las variables, de manera que no contempla las relaciones no lineales entre ellas u otras interacciones de mayor complejidad, asimismo, dicho análisis puede verse influenciado por los valores atípicos o las anomalías presentes en los datos.
+
+> **Contraste:**
+>
+> **Contribución propia:**
+
+## Sección temática
+
+### Guillen et al. (2021)
+
+#### *Modelos predictivos del riesgo y aplicaciones a los seguros*
+
+> **Resumen:**
+
+> **Contraste:**
+>
+> **Contribución propia:**
 
 # Análisis estadísticos
 
