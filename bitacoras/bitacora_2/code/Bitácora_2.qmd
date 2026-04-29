@@ -64,6 +64,22 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 ## Sección teórica
 
+### Frees (2021)
+
+#### *Loss Data Analytics*
+
+> **Resumen:** Este libro presenta información acerca del análisis de pérdida en el ámbito asegurador y explica cómo el riesgo puede estudiarse a partir de herramientas estadísticas y probabilísticas. Para el contexto de este proyecto, el documento sostiene que el riesgo asegurador puede analizarse separando dos componentes principales: el número de siniestros que ocurren (frecuencia) y el costo asociado a cada uno de ellos (severidad), utilizando distribuciones probabilísticas distintas para cada componente según la naturaleza de los datos y el comportamiento observado en los registros. El problema principal que aborda el autor es cómo representar matemáticamente el riesgo en seguros cuando las pérdidas no son determinísticas, es decir, cuando no es posible predecir con exactitud ni cuántos eventos ocurrirán ni cuál será el costo económico asociado a cada uno. Su propuesta funciona porque separa dos procesos aleatorios distintos: por un lado, cuántos siniestros ocurren en un periodo determinado, y por otro, cuánto cuesta cada uno de esos eventos. Esta división permite trabajar cada variable de forma independiente y asignar distribuciones diferentes según su comportamiento estadístico, lo cual mejora la capacidad de ajuste de los modelos. El autor también señala que uno de los principales retos en este tipo de análisis es seleccionar distribuciones adecuadas, ya que los datos de seguros suelen presentar asimetría, presencia de valores extremos y heterogeneidad entre asegurados. Estas características dificultan que un único modelo funcione correctamente en todos los contextos, por lo que la elección de la distribución debe hacerse considerando el tipo de cartera, el comportamiento histórico de los datos y el objetivo del análisis.
+
+> **Contraste:** El enfoque presentado por @frees2021 coincide con @goldburd2025 en que ambos reconocen que el riesgo asegurador debe modelarse a partir de herramientas estadísticas capaces de representar la incertidumbre presente en los siniestros. En ambos textos, se parte de que las pérdidas no son determinísticas y que variables como la frecuencia y la severidad requieren un tratamiento diferenciado debido a su comportamiento estadístico particular.
+
+> La principal diferencia entre el criterio de los autores radica en el nivel de complejidad del modelado propuesto. El libro de análisis de pérdida de @frees2021 presenta una estructura más clásica, donde primero se separan frecuencia y severidad para luego seleccionar distribuciones probabilísticas apropiadas para cada componente según el comportamiento observado en los datos. En cambio, @goldburd2025 propone el uso de modelos lineales generalizados como una herramienta más flexible, que permite relacionar directamente la variable respuesta con múltiples variables explicativas mediante funciones de enlace y distribuciones pertenecientes a la familia exponencial.
+
+> Mientras el enfoque clásico prioriza comprender la estructura probabilística de cada componente del riesgo, el texto de @goldburd2025 enfatiza la capacidad de incorporar factores de clasificación del asegurado, como edad, tipo de cobertura o historial de siniestros, dentro de un solo modelo estadístico. Esto permite no solo describir el comportamiento de las pérdidas, sino también mejorar el proceso de tarificación al identificar el efecto individual de cada predictor sobre el riesgo.
+
+> **Contribución propia:** A partir de este contraste, puede observarse que ambos enfoques son complementarios más que opuestos. La separación entre frecuencia y severidad sigue siendo una base conceptual importante porque permite entender primero la naturaleza de los datos antes de construir modelos más complejos. 
+
+> Viendo esto, el enfoque clásico de @frees2021 resulta útil como fundamento teórico inicial, pero el uso de GLM (como en el libro de @goldburd2025) representa mayor precisión cuando se dispone de bases de datos más completas y se busca una tarificación. Esto es especialmente relevante en proyectos como el presente donde ya se cuenta con variables diferenciadas y se desea evaluar qué factores tienen mayor influencia en el comportamiento de los siniestros.
+
 ## Sección metodológica
 
 ### Patel (2025)
@@ -75,6 +91,28 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 > **Contraste:**
 >
 > **Contribución propia:**
+
+### Omari et al. (2018)
+
+#### *Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions*
+
+> **Resumen:** El artículo establece que la frecuencia y la severidad de los reclamos en seguros de automóviles deben modelarse por separado, utilizando distribuciones ajustadas a las características observadas en los datos. Los autores plantean que la selección del modelo debe basarse en un procedimiento estadístico ordenado que incluya estimación por máxima verosimilitud y pruebas de bondad de ajuste con el fin de identificar qué distribución representa mejor cada componente del riesgo. 
+
+> El problema principal que intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de las reclamaciones, ya que una elección inadecuada puede afectar directamente el cálculo de reservas, primas y proyecciones financieras dentro del sistema asegurador. Su propuesta funciona bien como punto de partida porque sigue una secuencia clara: primero se seleccionan familias de distribuciones posibles, luego se estiman sus parámetros mediante máxima verosimilitud y finalmente se comparan los ajustes con indicadores estadísticos. 
+
+> Además, los autores señalan que uno de los principales problemas al modelar reclamaciones de seguros es que los datos no siguen distribuciones simples debido a su comportamiento estadístico. En particular, se observa asimetría positiva, presencia de colas pesadas y una alta concentración de valores cero en la frecuencia de siniestros.
+
+> A partir del análisis realizado, los autores encuentran que la severidad presenta un mejor ajuste con una distribución lognormal, mientras que para la frecuencia se obtienen buenos resultados con distribuciones binomial negativa y geométrica. Esta diferencia responde al comportamiento particular de los datos observados, ya que la frecuencia y la severidad presentan patrones distintos y no pueden representarse adecuadamente con un solo modelo.
+
+> **Contraste:** El artículo de @hiraldo2005siniestros coincide con el enfoque clásico de análisis de pérdidas en que ambos reconocen que la frecuencia de siniestros presenta un comportamiento estadístico complejo y que no puede modelarse adecuadamente con distribuciones simples en todos los casos. En ambos enfoques se parte de la necesidad de seleccionar modelos de acuerdo con las características empíricas de los datos, especialmente cuando existe heterogeneidad entre asegurados y una alta dispersión en las observaciones.
+
+> Sin embargo, la diferencia principal entre ambos enfoques se trata de la forma en que se aborda el problema de los valores cero. Mientras el enfoque de @omari2018modeling propone evaluar distintas distribuciones de frecuencia y severidad por separado mediante criterios de ajuste y pruebas estadísticas, @hiraldo2005siniestros introducen un modelo binomial negativo inflado de ceros, argumentando que una parte importante de los ceros observados no corresponde únicamente a ausencia de siniestros, sino también a asegurados que estructuralmente no presentan reclamaciones o que no reportan eventos menores.
+
+> Además, el enfoque de @omari2018modeling considera simultáneamente frecuencia y severidad como dos componentes fundamentales del riesgo, mientras que @hiraldo2005siniestros concentran su análisis únicamente en la frecuencia de siniestros, dejando fuera la magnitud económica de los reclamos. Esto hace que su propuesta sea especialmente útil para estudiar ocurrencia de eventos, pero menos completa cuando el interés también incluye el costo asociado a cada reclamación.
+
+> **Contribución propia:** A partir de este contraste, puede observarse que la elección del modelo depende en gran medida de la estructura real de los datos disponibles. En un primer nivel, el enfoque de @omari2018modeling sigue siendo útil porque permite justificar la separación conceptual como tal entre frecuencia y severidad y evaluar distribuciones base. Sin embargo, cuando la frecuencia presenta una gran cantidad de ceros, como ocurre también en este proyecto con variables como N_claims_year y N_claims_history, resulta razonable considerar modelos más flexibles como los inflados de ceros.
+
+> Esto sugiere que antes de seleccionar un modelo definitivo no basta con identificar qué distribución ajusta mejor en términos globales, sino que también es necesario interpretar qué significado tienen los patrones observados en la base de datos. En ese sentido, una alta proporción de ceros puede reflejar distintos comportamientos de los asegurados y no únicamente ausencia de riesgo.
 
 ## Sección temática
 
