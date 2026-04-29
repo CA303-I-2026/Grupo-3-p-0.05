@@ -213,13 +213,10 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 
 ### Análisis descriptivo de la base de datos
 
-### Tablas resumen de variables relevantes
-
-### Visualización de datos
-
-Para esta sección de la investigación se presentarán distintos gráficos gráficos con información relevante para abordar la pregunta de investigación.
+Primeramente, se realizó el tratamiento inicial de la base de datos. En algunos casos fue necesario convertir ciertas variables al formato fecha, como se muestra a continuación. En las secciones siguientes, cuando se haga referencia a la base de datos, se entenderá que corresponde a esta versión ya modificada.
 
 ```{r, warning=FALSE, message=FALSE, echo= FALSE}
+datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
 datos_modificados <- datos %>% 
   mutate(
@@ -238,6 +235,42 @@ datos_modificados <- datos %>%
     edad = 2019 - year(Date_birth)
   )
 
+```
+
+Una vez completado el tratamiento inicial de la base de datos, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete **pastecs** en R.
+
+Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
+
+```{r, warning=FALSE, message=FALSE, echo= FALSE}
+library(pastecs)
+
+options(scipen = 999)
+
+analisis_desc <- as.data.frame(
+  round(
+    stat.desc(datos_modificados[, sapply(datos_modificados, is.numeric) & names(datos_modificados)!="ID"]),
+    4
+  )
+)
+
+analisis_desc <- data.frame(
+  Estadistico = rownames(analisis_desc),
+  analisis_desc
+)
+
+rownames(analisis_desc) <- NULL
+
+analisis_desc
+```
+
+
+### Tablas resumen de variables relevantes
+
+### Visualización de datos
+
+Para esta sección de la investigación se presentarán distintos gráficos con información relevante para abordar la pregunta de investigación.
+
+```{r, warning=FALSE, message=FALSE, echo= FALSE}
 # Data frame con las observaciones más recientes (eliminar duplicados)
 datos_unicos <- datos_modificados %>% 
   group_by(ID) %>% 
