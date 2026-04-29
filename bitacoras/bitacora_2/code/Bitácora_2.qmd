@@ -32,7 +32,13 @@ format:
 
 # Parte de planificación
 
+El pleno entendimiento de los elementos conceptuales y metodólogicos del proyecto constituye un pilar fundamental en el óptimo desarrollo del trabajo, en vías de que este último se mantega alineado tanto al problema planteado inicialmente como a los intereses investigativos del equipo. En vista de lo anterior, el objetivo de la sección de planificación de la presente bitácora está orientado a profundizar en los elementos mencionados antes, de manera que se esclarezca con mayor intensidad al lector la idea propuesta.
+
 ## Ordenamiento de la literatura
+
+Los elementos metodológicos y conceptuales se construyen a partir de dos fuentes: la primera fuente consiste en la información consultada, dentro de la cual se comtempla la literatura además del acceso a los datos; por otro lado, la segunda fuente proviene de la interpretación y el manejo de la información consultada por parte de lo miembros del equipo.
+
+Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o cronológica, la cual está acompañada de un breve texto que respalda su escogencia.
 
 +-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
 | **Clasificación** | **Justificación breve**                                                                                                                                                                                                                                                                                                                                                                                                    | **Título**                                                                                   | **Año** | **Autor(es)**                                                                |
