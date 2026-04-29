@@ -215,7 +215,8 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 
 Primeramente, se realizó el tratamiento inicial de la base de datos. En algunos casos fue necesario convertir ciertas variables al formato fecha, como se muestra a continuación. En las secciones siguientes, cuando se haga referencia a la base de datos, se entenderá que corresponde a esta versión ya modificada.
 
-```{r, warning=FALSE, message=FALSE, echo= FALSE}
+```{r, warning=FALSE, message=FALSE}
+
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
 datos_modificados <- datos %>% 
@@ -237,11 +238,11 @@ datos_modificados <- datos %>%
 
 ```
 
-Una vez completado el tratamiento inicial de la base de datos, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete **pastecs** en R.
+Una vez completado el tratamiento inicial de la base de datos, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete *pastecs* en R.
 
 Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
-```{r, warning=FALSE, message=FALSE, echo= FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(pastecs)
 
 options(scipen = 999)
@@ -259,8 +260,6 @@ analisis_desc <- data.frame(
 )
 
 rownames(analisis_desc) <- NULL
-
-analisis_desc
 ```
 
 
