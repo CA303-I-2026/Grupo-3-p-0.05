@@ -80,17 +80,19 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 > Viendo esto, el enfoque clásico de @frees2021 resulta útil como fundamento teórico inicial, pero el uso de GLM (como en el libro de @goldburd2025) representa mayor precisión cuando se dispone de bases de datos más completas y se busca una tarificación. Esto es especialmente relevante en proyectos como el presente donde ya se cuenta con variables diferenciadas y se desea evaluar qué factores tienen mayor influencia en el comportamiento de los siniestros.
 
-## Sección metodológica
+## Sección temática
 
-### Patel (2025)
+### Guillen et al. (2021)
 
-#### *Correlation Analysis: exploring Relationships between Variables*
+#### *Modelos predictivos del riesgo y aplicaciones a los seguros*
 
-> **Resumen:** a través de diversos ejes temáticos, la autora aborda introductoriamente el análisis de correlación. Se argumenta que este último evalúa el grado de asociación entre variables determinadas, con el objetivo de estudiar la forma en la que los cambios en una variable están relacionados con los cambios en otra variable. Existen diferentes tipos, no obstante, el documento se enfoca en aquellos que están basados en la dirección: la correlación positiva y la correlación negativa. Así, a partir del coeficiente de correlación, un índice que varía en el intervalo de menos uno a uno, se identifica una correlación positiva cuando su valor es cercano a uno y por el contrario, se expresa una correlación negativa cuando su valor es cercano a menos uno; por otro lado, se distingue una correlación débil cuando el coeficiente adopta un valor cercano a cero. Seguidamente, Patel (2025) explica las múltiples funcionalidades que posee el análisis de correlación, de las cuales se rescatan dos principales: en primer lugar, constituye un apoyo en la identificación de patrones en los datos, lo que representa una guía tanto en los análisis posteriores como en los procesos de toma de decisiones; en segundo lugar, está inmerso en la selección de variables para la modelación y el análisis, dado que permite la escogencia de las variables más relevantes de acuerdo a los elementos bajo estudio, mejorando la precisión de los modelos. Pese a su gran utilidad, la autora señala dos importantes limitaciones: el análisis de correlación asume una relación lineal entre las variables, de manera que no contempla las relaciones no lineales entre ellas u otras interacciones de mayor complejidad, asimismo, dicho análisis puede verse influenciado por los valores atípicos o las anomalías presentes en los datos.
+> **Resumen:**
 
 > **Contraste:**
 >
 > **Contribución propia:**
+
+## Sección metodológica
 
 ### Omari et al. (2018)
 
@@ -114,13 +116,11 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 > Esto sugiere que antes de seleccionar un modelo definitivo no basta con identificar qué distribución ajusta mejor en términos globales, sino que también es necesario interpretar qué significado tienen los patrones observados en la base de datos. En ese sentido, una alta proporción de ceros puede reflejar distintos comportamientos de los asegurados y no únicamente ausencia de riesgo.
 
-## Sección temática
+### Patel (2025)
 
-### Guillen et al. (2021)
+#### *Correlation Analysis: exploring Relationships between Variables*
 
-#### *Modelos predictivos del riesgo y aplicaciones a los seguros*
-
-> **Resumen:**
+> **Resumen:** a través de diversos ejes temáticos, la autora aborda introductoriamente el análisis de correlación. Se argumenta que este último evalúa el grado de asociación entre variables determinadas, con el objetivo de estudiar la forma en la que los cambios en una variable están relacionados con los cambios en otra variable. Existen diferentes tipos, no obstante, el documento se enfoca en aquellos que están basados en la dirección: la correlación positiva y la correlación negativa. Así, a partir del coeficiente de correlación, un índice que varía en el intervalo de menos uno a uno, se identifica una correlación positiva cuando su valor es cercano a uno y por el contrario, se expresa una correlación negativa cuando su valor es cercano a menos uno; por otro lado, se distingue una correlación débil cuando el coeficiente adopta un valor cercano a cero. Seguidamente, Patel (2025) explica las múltiples funcionalidades que posee el análisis de correlación, de las cuales se rescatan dos principales: en primer lugar, constituye un apoyo en la identificación de patrones en los datos, lo que representa una guía tanto en los análisis posteriores como en los procesos de toma de decisiones; en segundo lugar, está inmerso en la selección de variables para la modelación y el análisis, dado que permite la escogencia de las variables más relevantes de acuerdo a los elementos bajo estudio, mejorando la precisión de los modelos. Pese a su gran utilidad, la autora señala dos importantes limitaciones: el análisis de correlación asume una relación lineal entre las variables, de manera que no contempla las relaciones no lineales entre ellas u otras interacciones de mayor complejidad, asimismo, dicho análisis puede verse influenciado por los valores atípicos o las anomalías presentes en los datos.
 
 > **Contraste:**
 >
