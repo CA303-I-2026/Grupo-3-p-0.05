@@ -2,26 +2,30 @@
 bibliography: ../../../referencias/referencias.bib
 csl: https://www.zotero.org/styles/apa
 format: 
- pdf: 
-   papersize: letter
-   documentclass: article
-   lang: es-CR
-   titlepage: true
-   toc: true
-   toc-title: "Índice"
-   toccolor: "black"
-   fontsize: "11pt"
-   mainfont: Times New Roman
-   urlcolor: "blue"
-   number-sections: true
-   margin-left: "2.54cm"
-   margin-right: "2.54cm"
-   margin-top: "2.54cm"
-   margin-bottom: "2.54cm"
-   header-includes:
-            - \usepackage{indentfirst}
-            - \setlength{\parindent}{1.27cm} 
-   #include-before-body: Portada.tex
+  pdf: 
+    papersize: letter
+    documentclass: article
+    lang: es
+    titlepage: true
+    toc: true
+    toc-title: "Índice"
+    toccolor: "black"
+    fontsize: "11pt"
+    mainfont: Times New Roman
+    urlcolor: "blue"
+    number-sections: true
+    margin-left: "2.54cm"
+    margin-right: "2.54cm"
+    margin-top: "2.54cm"
+    margin-bottom: "2.54cm"
+    header-includes:
+      - \usepackage{indentfirst}
+      - \setlength{\parindent}{1.27cm}
+      - \usepackage{longtable}
+      - \usepackage{array}
+      - \renewcommand{\arraystretch}{1.5}
+      - \setlength{\tabcolsep}{8pt}
+    #include-before-body: Portada.tex
 ---
 
 ```{=latex}
@@ -40,25 +44,80 @@ Los elementos metodológicos y conceptuales se construyen a partir de dos fuente
 
 Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o teórica, la cual está acompañada de un breve texto que respalda su escogencia. Es importante destacar que además de las fichas literarias construidas en la bitácora pasada, se incluyeron algunas adicionales, que fueron consideradas pertinentes para un análisis de mayor completitud.
 
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| **Clasificación** | **Justificación breve**                                                                                                                                                                                                                                                                                                                                                                                                    | **Título**                                                                                   | **Año** | **Autor(es)**                                                                |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Teórica           | El documento desarrolla principios básicos y generales de modelación de variables y fundamientos probabilísticos que ciertamente sirven como base conceptual para distintos tipos de análisis.                                                                                                                                                                                                                             | Loss Data Analytics                                                                          | 2021    | Edward Frees                                                                 |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Temática          | La etiqueta se eligió porque el artículo estudia los accidentes de tránsito desde una perspectiva demográfica, geográfica y económica, alineada con el proyecto. Identifica factores clave como la edad del conductor y el tipo de vehículo, relacionados con la frecuencia y severidad de los siniestros. Su contribución es principalmente contextual, ya que ayuda a entender el fenómeno presente en la base de datos. | Accidentes de tránsito, un problema de salud pública: revisión sistemática.                  | 2024    | Adriana Elizabeth Alvia Párraga y Sandra Linares Giler                       |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Temática          | Explica la modelación del valor esperado de las variables que el proyecto pretende estudiar: la frecuencia y la severidad; a partir del uso de datos similares y la inclusión de elementos telemáticos.                                                                                                                                                                                                                    | Modelos predictivos del riesgo y aplicaciones a los seguros                                  | 2021    | Montserrat Guillen, María Láinez, Ana M. Pérez-Marín y Eduardo Sánchez       |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Metodológica      | Se eligió esta etiqueta porque no solamente habla de la teoría de la frecuencia y severidad, sino que da una guía de cómo modelarlos estadísticamente con modelos lineales generalizados (GLM), además, el capítulo 3 es sobre el proceso de construir el modelo.                                                                                                                                                          | Generalized Linear Models for Insurance Rating                                               | 2025    | Mark Goldburd, Anand Khare, Dan Tevet y Dmitriy Guller                       |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Metodológica      | Se eligió esta clasificación porque el artículo no solo desarrolla la base teórica de la asimetría de la información (selección adversa y riesgo moral), sino que también aplica un modelo econométrico de datos de conteo (específicamente, un modelo binomial negativo inflado de ceros) a una muestra real de 60,000 pólizas, con el fin de identificar variables significativas en la siniestralidad.                  | Los siniestros en el seguro del automóvil: un análisis econométrico aplicado                 | 2005    | M.C. Melgar Hiraldo y F.M. Guerrero Casas                                    |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Metodológica      | Este estudio propone una metodología que podría adaptarse de manera efectiva en el proyecto que se está planteando. Esto, ya que el tema es parecido, frecuencia y severidad de seguros de automóviles. El artículo propone un procedimiento concreto para seleccionar distribuciones, estimar parámetros y evaluar ajuste, más que desarrollar una teoría nueva o revisar la evolución histórica del problema.            | Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions | 2018    | Cyprian Ondieki Omari, Shalyne Gathoni Nyambura y Joan Martha Wairimu Mwangi |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Metodológica      | El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto.                                                                                                                                                                                                                                             | Correlation Analysis: exploring Relationships between Variables                              | 2025    | Shivani Patel                                                                |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
-| Metodológica      | Se eligió esta etiqueta pues el artículo compara distribuciones como la Poisson, binomial negativa y Poisson-inversa gaussiana y sus modificaciones cero infladas para ver cuál brinda el mejor ajuste a los datos de severidad.                                                                                                                                                                                           | Modelización del tiempo de hospitalización en lesiones por tránsito                          | 2015    | Mercedes Ayuso-Gutiérrez, Lluís Bermúdez-Morata y Miguel Santolino-Prieto.   |
-+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+---------+------------------------------------------------------------------------------+
+\begin{longtable}{|p{2.3cm}|p{6cm}|p{2.5cm}|c|p{2.5cm}|}
+\hline
+\textbf{Clasificación} & \textbf{Justificación breve} & \textbf{Título} & \textbf{Año} & \textbf{Autor(es)} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Clasificación} & \textbf{Justificación breve} & \textbf{Título} & \textbf{Año} & \textbf{Autor(es)} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+Teórica &
+El documento desarrolla principios básicos y generales de modelación de variables y fundamentos probabilísticos que ciertamente sirven como base conceptual para distintos tipos de análisis. &
+Loss Data Analytics &
+2021 &
+Edward Frees \\
+\hline
+
+Temática &
+Explica la modelación del valor esperado de las variables que el proyecto pretende estudiar: la frecuencia y la severidad; a partir del uso de datos similares y la inclusión de elementos telemáticos. &
+Modelos predictivos del riesgo y aplicaciones a los seguros &
+2021 &
+Montserrat Guillen, María Láinez, Ana M. Pérez-Marín y Eduardo Sánchez \\
+\hline
+
+Temática &
+La etiqueta se eligió porque el artículo estudia los accidentes de tránsito desde una perspectiva demográfica, geográfica y económica, alineada con el proyecto. Identifica factores clave como la edad del conductor y el tipo de vehículo, relacionados con la frecuencia y severidad de los siniestros. Su contribución es principalmente contextual, ya que ayuda a entender el fenómeno presente en la base de datos. &
+Accidentes de tránsito, un problema de salud pública: revisión sistemática. &
+2024 &
+Adriana Elizabeth Alvia Párraga y Sandra Linares Giler \\
+\hline
+
+Metodológica &
+Se eligió esta clasificación porque el artículo no solo desarrolla la base teórica de la asimetría de la información (selección adversa y riesgo moral), sino que también aplica un modelo econométrico de datos de conteo (específicamente, un modelo binomial negativo inflado de ceros) a una muestra real de 60,000 pólizas, con el fin de identificar variables significativas en la siniestralidad. &
+Los siniestros en el seguro del automóvil: un análisis econométrico aplicado &
+2005 &
+M.C. Melgar Hiraldo y F.M. Guerrero Casas \\
+\hline
+
+Metodológica &
+Se eligió esta etiqueta pues el artículo compara distribuciones como la Poisson, binomial negativa y Poisson-inversa gaussiana y sus modificaciones cero infladas para ver cuál brinda el mejor ajuste a los datos de severidad. &
+Modelización del tiempo de hospitalización en lesiones por tránsito &
+2015 &
+Mercedes Ayuso-Gutiérrez, Lluís Bermúdez-Morata y Miguel Santolino-Prieto. \\
+\hline
+
+Metodológica &
+Este estudio propone una metodología que podría adaptarse de manera efectiva en el proyecto que se está planteando. Esto, ya que el tema es parecido, frecuencia y severidad de seguros de automóviles. El artículo propone un procedimiento concreto para seleccionar distribuciones, estimar parámetros y evaluar ajuste, más que desarrollar una teoría nueva o revisar la evolución histórica del problema. &
+Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions &
+2018 &
+Cyprian Ondieki Omari, Shalyne Gathoni Nyambura y Joan Martha Wairimu Mwangi \\
+\hline
+
+Metodológica &
+Se eligió esta etiqueta porque no solamente habla de la teoría de la frecuencia y severidad, sino que da una guía de cómo modelarlos estadísticamente con modelos lineales generalizados (GLM), además, el capítulo 3 es sobre el proceso de construir el modelo. &
+Generalized Linear Models for Insurance Rating &
+2025 &
+Mark Goldburd, Anand Khare, Dan Tevet y Dmitriy Guller \\
+\hline
+
+Metodológica &
+El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto. &
+Correlation Analysis: exploring Relationships between Variables &
+2025 &
+Shivani Patel \\
+\hline
+
+
+\caption{Clasificación de la literatura revisada}
+\label{tab:literatura}
+\end{longtable}
 
 # Enlaces de la literatura
 
@@ -76,7 +135,7 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 > Mientras el enfoque clásico prioriza comprender la estructura probabilística de cada componente del riesgo, el texto de @goldburd2025 enfatiza la capacidad de incorporar factores de clasificación del asegurado, como edad, tipo de cobertura o historial de siniestros, dentro de un solo modelo estadístico. Esto permite no solo describir el comportamiento de las pérdidas, sino también mejorar el proceso de tarificación al identificar el efecto individual de cada predictor sobre el riesgo.
 
-> **Contribución propia:** A partir de este contraste, puede observarse que ambos enfoques son complementarios más que opuestos. La separación entre frecuencia y severidad sigue siendo una base conceptual importante porque permite entender primero la naturaleza de los datos antes de construir modelos más complejos. 
+> **Contribución propia:** A partir de este contraste, puede observarse que ambos enfoques son complementarios más que opuestos. La separación entre frecuencia y severidad sigue siendo una base conceptual importante porque permite entender primero la naturaleza de los datos antes de construir modelos más complejos.
 
 > Viendo esto, el enfoque clásico de @frees2021 resulta útil como fundamento teórico inicial, pero el uso de GLM (como en el libro de @goldburd2025) representa mayor precisión cuando se dispone de bases de datos más completas y se busca una tarificación. Esto es especialmente relevante en proyectos como el presente donde ya se cuenta con variables diferenciadas y se desea evaluar qué factores tienen mayor influencia en el comportamiento de los siniestros.
 
@@ -98,9 +157,9 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 #### *Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions*
 
-> **Resumen:** El artículo establece que la frecuencia y la severidad de los reclamos en seguros de automóviles deben modelarse por separado, utilizando distribuciones ajustadas a las características observadas en los datos. Los autores plantean que la selección del modelo debe basarse en un procedimiento estadístico ordenado que incluya estimación por máxima verosimilitud y pruebas de bondad de ajuste con el fin de identificar qué distribución representa mejor cada componente del riesgo. 
+> **Resumen:** El artículo establece que la frecuencia y la severidad de los reclamos en seguros de automóviles deben modelarse por separado, utilizando distribuciones ajustadas a las características observadas en los datos. Los autores plantean que la selección del modelo debe basarse en un procedimiento estadístico ordenado que incluya estimación por máxima verosimilitud y pruebas de bondad de ajuste con el fin de identificar qué distribución representa mejor cada componente del riesgo.
 
-> El problema principal que intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de las reclamaciones, ya que una elección inadecuada puede afectar directamente el cálculo de reservas, primas y proyecciones financieras dentro del sistema asegurador. Su propuesta funciona bien como punto de partida porque sigue una secuencia clara: primero se seleccionan familias de distribuciones posibles, luego se estiman sus parámetros mediante máxima verosimilitud y finalmente se comparan los ajustes con indicadores estadísticos. 
+> El problema principal que intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de las reclamaciones, ya que una elección inadecuada puede afectar directamente el cálculo de reservas, primas y proyecciones financieras dentro del sistema asegurador. Su propuesta funciona bien como punto de partida porque sigue una secuencia clara: primero se seleccionan familias de distribuciones posibles, luego se estiman sus parámetros mediante máxima verosimilitud y finalmente se comparan los ajustes con indicadores estadísticos.
 
 > Además, los autores señalan que uno de los principales problemas al modelar reclamaciones de seguros es que los datos no siguen distribuciones simples debido a su comportamiento estadístico. En particular, se observa asimetría positiva, presencia de colas pesadas y una alta concentración de valores cero en la frecuencia de siniestros.
 
@@ -128,6 +187,16 @@ Si bien en la primera bitácora se acudió a los planteamiento de diversos autor
 
 # Análisis estadísticos
 
+## Introducción
+
+En este apartado se presenta el análisis exploratorio de los datos del proyecto. Esta etapa permite comprender mejor la información disponible y sirve como base para el modelado estadístico que se desarrollará posteriormente.
+
+La pregunta de investigación que guía el análisis es la siguiente:
+
+>  ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
+
+El análisis se centra en dos aspectos principales. Por un lado, se estudia la relación entre las características del asegurado, como la edad, la antigüedad con la aseguradora y el historial de siniestros, junto con las características del vehículo, como el tipo, el peso, el largo y el valor, con la frecuencia y la severidad de los siniestros. Por otro lado, se examina el comportamiento observado en la cantidad de reclamos cuando su costo supera las 900 unidades monetarias, el cual representa un punto de interés dentro del análisis.
+
 ## Identidad visual
 
 Para la elaboración de gráficos y figuras, se plantea la siguiente plantilla que garantiza uniformidad a lo largo del proyecto.
@@ -152,6 +221,7 @@ library(ggplot2)
 library(cowplot)
 library(dplyr)
 library(lubridate)
+library(tidyverse)
 
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
@@ -215,7 +285,7 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 
 Primeramente, se realizó el tratamiento inicial de la base de datos. En algunos casos fue necesario convertir ciertas variables al formato fecha, como se muestra a continuación. En las secciones siguientes, cuando se haga referencia a la base de datos, se entenderá que corresponde a esta versión ya modificada.
 
-```{r, warning=FALSE, message=FALSE}
+```{r carga-datos, warning=FALSE, message=FALSE, echo=TRUE}
 
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
@@ -238,7 +308,116 @@ datos_modificados <- datos %>%
 
 ```
 
-Una vez completado el tratamiento inicial de la base de datos, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete *pastecs* en R.
+Las transformaciones responden a necesidades concretas. Las variables de fecha estaban almacenadas como texto y debieron convertirse al formato `Date` para permitir cálculos temporales. La variable `categoria` se creó a partir de `Type_risk` para sustituir los códigos numéricos por etiquetas descriptivas, facilitando la interpretación visual. La variable `edad` se derivó restando el año de nacimiento al año de referencia 2019, último año completo de la base.
+
+#### Información general del dataset
+
+```{r tbl-info-general}
+# Una fila por asegurado
+datos_unicos <- datos_modificados %>%
+  group_by(ID) %>%
+  slice_max(Date_last_renewal, n = 1, with_ties = FALSE) %>%
+  ungroup()
+
+tabla_info <- data.frame(
+  Característica = c(
+    "Total de filas (transacciones de póliza por año)",
+    "Total de columnas (variables)",
+    "Asegurados únicos (por ID)",
+    "Promedio de registros por asegurado",
+    "Año más antiguo de inicio de contrato",
+    "Año más reciente de renovación",
+    "Tipos de vehículo cubiertos"
+  ),
+  Valor = c(
+    format(nrow(datos_modificados), big.mark = ","),
+    ncol(datos_modificados),
+    format(n_distinct(datos_modificados$ID), big.mark = ","),
+    round(nrow(datos_modificados) / n_distinct(datos_modificados$ID), 2),
+    format(min(datos_modificados$Date_start_contract, na.rm = TRUE), "%Y"),
+    format(max(datos_modificados$Date_last_renewal, na.rm = TRUE), "%Y"),
+    "Turismo, Motocicleta, Furgoneta, Agrícola"
+  )
+)
+
+tabla_info
+```
+
+La base de datos confirma que cada persona puede tener múltiples registros anuales. Esta estructura longitudinal, mencionada en la Bitácora 1, es valiosa porque permite analizar la evolución del riesgo a través del tiempo usando variables como `N_claims_history` y `R_Claims_history`. Para análisis de perfil del asegurado se usará `datos_unicos` (una fila por asegurado, la renovación más reciente); para análisis de comportamiento anual, `datos_modificados`.
+
+#### Verificación del formato *tidy*
+
+```{r verificacion-tidy, echo=TRUE}
+
+head(datos_modificados, 10)
+
+```
+
+Los datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por `ID`. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
+
+### Limpieza de datos
+
+#### Valores faltantes
+
+```{r tbl-missings}
+
+datos_modificados %>%
+  summarise(across(everything(), ~ sum(is.na(.)))) %>%
+  pivot_longer(cols = everything(),
+               names_to = "Variable",
+               values_to = "Total_NA") %>%
+  mutate(Porcentaje = round(Total_NA / nrow(datos_modificados) * 100, 2)) %>%
+  filter(Total_NA > 0) %>%
+  arrange(desc(Porcentaje))
+```
+
+En términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.
+
+Dado este comportamiento, en los análisis posteriores se excluirá la variable Date_lapse debido a la alta proporción de datos faltantes. En el caso de Length, se trabajará mediante imputación, por ejemplo utilizando la mediana según el tipo de vehículo, con el fin de conservar la información disponible. Finalmente, Type_fuel se manejará eliminando las filas con valores faltantes, ya que su baja proporción no afecta de manera significativa el tamaño de la muestra.
+
+### Tablas resumen de variables relevantes
+
+```{r tbl-categorias}
+
+tabla_categoria <- datos_unicos %>%
+  group_by(categoria) %>%
+  summarise(
+    `N asegurados` = n(),
+    `% del total` = round(n() / nrow(datos_unicos) * 100, 1),
+    `Costo prom. siniestro` = round(mean(Cost_claims_year, na.rm = TRUE), 2),
+    `Siniestros prom./año` = round(mean(N_claims_year, na.rm = TRUE), 3),
+    `Sin siniestros (%)` = round(mean(N_claims_year == 0, na.rm = TRUE) * 100, 1)
+  ) %>%
+  arrange(desc(`N asegurados`))
+
+tabla_categoria
+```
+
+La distribución de la cartera muestra un claro predominio del tipo de vehículo Turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las Furgonetas con un 12.3%, seguidas por las Motocicletas con un 8.0%, mientras que la categoría Agrícola representa una proporción marginal.
+
+En términos de siniestralidad, se observa que la mayoría de los asegurados no presenta reclamos durante el año, con porcentajes superiores al 85% en todas las categorías y alcanzando incluso el 100% en el caso de los vehículos agrícolas. Este comportamiento evidencia una alta concentración de ceros en la variable de número de siniestros, lo cual resulta consistente con la necesidad de emplear modelos que capturen este fenómeno.
+
+Por otro lado, las Furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo Turismo muestran el mayor costo promedio por siniestro. En contraste, las Motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
+
+```{r tbl-zona}
+
+datos_unicos %>%
+  mutate(zona = ifelse(Area == 0, "Rural", "Urbano")) %>%
+  group_by(zona) %>%
+  summarise(
+    `N asegurados` = n(),
+    `% del total` = round(n() / nrow(datos_unicos) * 100, 1),
+    `Costo prom. siniestro` = round(mean(Cost_claims_year, na.rm = TRUE), 2),
+    `Siniestros prom./año` = round(mean(N_claims_year, na.rm = TRUE), 3)
+  )
+
+```
+
+La mayoría de los asegurados se concentra en zonas rurales, con un 72.7% del total, mientras que el 27.3% restante corresponde a zonas urbanas. En cuanto al comportamiento de los siniestros, se observan diferencias leves entre ambas zonas. La zona urbana presenta una mayor frecuencia promedio de siniestros por año, así como un costo promedio ligeramente superior en comparación con la zona rural.
+
+Aunque las diferencias no son particularmente pronunciadas, este patrón sugiere que la zona de circulación podría influir en la siniestralidad, posiblemente asociada a condiciones de tráfico, densidad vehicular u otros factores propios del entorno urbano. En este sentido, la variable de zona se perfila como un posible factor explicativo dentro del análisis, especialmente en relación con variaciones en la frecuencia y el costo de los siniestros.
+
+Con el fin de complementar este análisis exploratorio, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete *pastecs* en R.
 
 Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
@@ -262,8 +441,39 @@ analisis_desc <- data.frame(
 rownames(analisis_desc) <- NULL
 ```
 
+```{r tabla-estadisticas}
+#| label: tbl-estadisticas
+#| tbl-cap: "Tabla 5. Estadísticas descriptivas de variables numéricas"
 
-### Tablas resumen de variables relevantes
+filas_clave <- c("nbr.val", "nbr.null", "nbr.na", "min", "max",
+                 "mean", "median", "std.dev", "coef.var")
+
+analisis_desc_filtrado <- analisis_desc[
+  analisis_desc$Estadistico %in% filas_clave, 
+]
+
+# Transponer la tabla
+tabla_final <- as.data.frame(t(analisis_desc_filtrado[,-1]))
+
+# Agregar nombres de columnas (estadísticos)
+colnames(tabla_final) <- analisis_desc_filtrado$Estadistico
+
+# Convertir rownames en columna
+tabla_final$Variable <- rownames(tabla_final)
+rownames(tabla_final) <- NULL
+
+# Reordenar columnas
+tabla_final <- tabla_final[, c("Variable", setdiff(names(tabla_final), "Variable"))]
+
+# Mostrar tabla normal
+tabla_final
+```
+
+Las estadísticas descriptivas permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable edad muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
+
+En cuanto a la frecuencia de siniestros, la variable N_claims_year presenta una mediana igual a cero y una media de 0.39, evidenciando una alta concentración de valores nulos. Este patrón confirma la presencia de un exceso de ceros en la variable, lo cual resulta consistente con la necesidad de emplear modelos que capten este comportamiento. De manera similar, en la variable Cost_claims_year se observa una mediana de cero frente a una media considerablemente mayor, acompañada de un valor máximo extremadamente alto, lo que indica una distribución altamente asimétrica con cola derecha pesada. Esto sugiere que, aunque la mayoría de los asegurados no presenta costos por siniestros, existen pocos casos con costos muy elevados que influyen significativamente en el promedio.
+
+Finalmente, las características del vehículo reflejan una flota relativamente homogénea. Variables como Power, Weight y Length presentan coeficientes de variación moderados o bajos, lo que indica una concentración en rangos típicos de vehículos estándar. En conjunto, estos resultados respaldan la relevancia de las variables demográficas y del vehículo en la explicación tanto de la frecuencia como de la severidad de los siniestros, en línea con la pregunta de investigación planteada.
 
 ### Visualización de datos
 
@@ -294,6 +504,7 @@ datos_unicos %>%
   estilo_grupo3 +
   theme(plot.caption = element_text(hjust = 1.4))
 ```
+**INTERPRETACIÓN PENDIENTE**
 
 El siguiente gráfico muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
 
@@ -326,6 +537,7 @@ siniestros_historico <- datos_unicos %>%
 plot_grid(siniestros_anyo,siniestros_historico,ncol=1)
 
 ```
+**INTERPRETACIÓN PENDIENTE**
 
 El siguiente gráfico muestra la comparación entre la frecuencia y costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola
 
@@ -370,6 +582,7 @@ violin_combinado <- plot_grid(violin_costo, violin_frecuencia) %>%
 ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_combinado, width = 11, height = 5, dpi = 300)
 
 ```
+**INTERPRETACIÓN PENDIENTE**
 
 ![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width="100%"}
 
@@ -494,6 +707,46 @@ datos_modificados %>%
   estilo_grupo3 +
   theme(plot.caption = element_text(hjust = 1.5)) # Mover la fuente a la derecha
 ```
+
+**INTERPRETACIÓN PENDIENTE:**
+
+### Detección de valores atípicos
+
+```{r grafico-outliers, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+datos_modificados %>%
+  select(edad, Seniority, N_claims_year, Cost_claims_year, N_claims_history) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Valor"
+  ) %>%
+  filter(is.finite(Valor)) %>%
+  ggplot(aes(x = Variable, y = Valor, fill = Variable)) +
+  geom_boxplot(
+    alpha = 0.7,
+    outlier.shape = 21,
+    outlier.color = paleta_pamplemousse[2],
+    outlier.size = 1.5
+  ) +
+  scale_fill_manual(values = paleta_pamplemousse[1:5]) +
+  facet_wrap(~ Variable, scales = "free", ncol = 3) +
+  labs(
+    title = "Identificación de valores atípicos en variables del proyecto",
+    x = NULL,
+    y = "Valor",
+    caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
+  ) +
+  estilo_grupo3 +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_blank()
+  )
+```
+
 
 ## Fichas de resultados
 
