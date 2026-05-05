@@ -442,7 +442,9 @@ Dado este comportamiento, en los análisis posteriores se excluirá la variable 
 
 ### Tablas resumen de variables relevantes
 
-```{r tbl-categorias}
+En esta sección se presentan tablas resumen elaboradas a partir de las variables más relevantes del conjunto de datos. En particular, se consideran variables asociadas con el perfil de los asegurados, la frecuencia de siniestros y los costos registrados, con el fin de identificar patrones generales que orienten el análisis posterior.
+
+```{r tbl-categorias, echo=FALSE, warning=FALSE, message=FALSE}
 
 tabla_categoria <- datos_unicos %>%
   group_by(categoria) %>%
@@ -455,7 +457,38 @@ tabla_categoria <- datos_unicos %>%
   ) %>%
   arrange(desc(`N asegurados`))
 
-tabla_categoria
+tabla_categoria_formato <- tabla_categoria %>% 
+  mutate(
+    `N asegurados` = format(`N asegurados`, big.mark = ","),
+    `% del total` = paste0(`% del total`, " %"),
+    `Costo prom. siniestro` = format(`Costo prom. siniestro`, big.mark = ",", nsmall = 2),
+    `Siniestros prom./año` = format(`Siniestros prom./año`, nsmall = 3),
+    `Sin siniestros (%)` = paste0(`Sin siniestros (%)`, " %")
+  ) %>% 
+  rename(
+    `Categoría` = categoria
+  )
+
+knitr::kable(
+  tabla_categoria_formato,
+  caption = "Resumen de variables relevantes según categoría.",
+  booktabs = TRUE,
+  align = c("l", "r", "r", "r", "r", "r"),
+  linesep = ""
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position", "scale_down"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 9
+  ) %>%
+  kableExtra::row_spec(0, bold = TRUE) %>%
+  kableExtra::column_spec(1, width = "1.5cm") %>%
+  kableExtra::column_spec(2, width = "2.0cm") %>%
+  kableExtra::column_spec(3, width = "2.0cm") %>%
+  kableExtra::column_spec(4, width = "2.7cm") %>%
+  kableExtra::column_spec(5, width = "2.7cm") %>%
+  kableExtra::column_spec(6, width = "2.5cm")
 ```
 
 La distribución de la cartera muestra un claro predominio del tipo de vehículo Turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las Furgonetas con un 12.3%, seguidas por las Motocicletas con un 8.0%, mientras que la categoría Agrícola representa una proporción marginal.
@@ -464,17 +497,34 @@ En términos de siniestralidad, se observa que la mayoría de los asegurados no 
 
 Por otro lado, las Furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo Turismo muestran el mayor costo promedio por siniestro. En contraste, las Motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
 
-```{r tbl-zona}
+```{r tbl-zona, echo=FALSE, warning=FALSE, message=FALSE}
 
-datos_unicos %>%
+tabla_zona <- datos_unicos %>%
   mutate(zona = ifelse(Area == 0, "Rural", "Urbano")) %>%
   group_by(zona) %>%
   summarise(
     `N asegurados` = n(),
     `% del total` = round(n() / nrow(datos_unicos) * 100, 1),
     `Costo prom. siniestro` = round(mean(Cost_claims_year, na.rm = TRUE), 2),
-    `Siniestros prom./año` = round(mean(N_claims_year, na.rm = TRUE), 3)
+    `Siniestros prom./año` = round(mean(N_claims_year, na.rm = TRUE), 3),
+    .groups = "drop"
   )
+
+
+knitr::kable(
+  tabla_zona,
+  caption = "Resumen de variables relevantes según zona.",
+  booktabs = TRUE,
+  align = c("l", "r", "r", "r", "r"),
+  linesep = ""
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 9
+  ) %>%
+  kableExtra::row_spec(0, bold = TRUE)
 
 ```
 
