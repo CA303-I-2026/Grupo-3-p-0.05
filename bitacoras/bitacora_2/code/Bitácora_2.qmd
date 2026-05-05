@@ -536,7 +536,7 @@ Con el fin de complementar este análisis exploratorio, se procedió a calcular 
 
 Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(pastecs)
 
 options(scipen = 999)
@@ -556,7 +556,8 @@ analisis_desc <- data.frame(
 rownames(analisis_desc) <- NULL
 ```
 
-```{r tabla-estadisticas}
+
+```{r tabla-estadisticas, echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-estadisticas
 #| tbl-cap: "Tabla 5. Estadísticas descriptivas de variables numéricas"
 
@@ -581,7 +582,7 @@ rownames(tabla_final) <- NULL
 tabla_final <- tabla_final[, c("Variable", setdiff(names(tabla_final), "Variable"))]
 
 # Mostrar tabla normal
-tabla_final
+#tabla_final
 ```
 
 Las estadísticas descriptivas permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable edad muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
@@ -602,9 +603,11 @@ datos_unicos <- datos_modificados %>%
   ungroup()
 ```
 
-El primer gráfico muestra la relación entre la edad y la cantidad histórica de reclamos que ha tenido; en donde los colores más oscuros como el azul representan la mayor cantidad, mientras que los colores más claros como el rosado representan la menor cantidad.
+#### Análisis de gráficos
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
+Como se observa en la @fig-edad-reclamos, se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
+
+```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
 
 datos_unicos %>% 
   ggplot(aes(x = edad, y = N_claims_history)) +
@@ -620,7 +623,11 @@ datos_unicos %>%
   theme(plot.caption = element_text(hjust = 1.4))
 ```
 
-**INTERPRETACIÓN PENDIENTE**
+Como se observa en la @fig-edad-reclamos, la mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
+
+También, se aprecia que los reclamos históricos tienden a acumularse ligeramente conforme aumenta la edad. Esto puede deberse a que las personas de mayor edad han tenido más tiempo de permanencia como aseguradas y, por lo tanto, más oportunidades de registrar reclamos a lo largo del tiempo. Sin embargo, la relación no parece ser fuerte, ya que los puntos se encuentran bastante dispersos y existen asegurados de distintas edades con valores similares de reclamos.
+
+Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones. Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
 
 El siguiente gráfico muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
 
