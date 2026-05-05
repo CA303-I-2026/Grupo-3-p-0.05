@@ -97,7 +97,7 @@ Metodológica &
 El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto. &
 Correlación: teoría y práctica &
 2016 &
-Pablo Vinuesa
+Pablo Vinuesa \\
 \hline
 
 Metodológica &
