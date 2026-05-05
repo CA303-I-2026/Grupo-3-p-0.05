@@ -394,16 +394,46 @@ Los datos se encuentran en formato *tidy*, ya que cada fila representa una obser
 
 #### Valores faltantes
 
-```{r tbl-missings}
+Antes de continuar con el análisis, se revisó la presencia de valores faltantes en la base de datos. Esta verificación permite identificar cuáles variables presentan información incompleta y qué porcentaje representan estos valores respecto al total de registros. En el siguiente cuadro se muestran únicamente las variables que contienen al menos un valor faltante.
 
-datos_modificados %>%
+```{r tbl-missings, echo=FALSE, warning=FALSE, message=FALSE}
+
+tabla_faltantes <- datos_modificados %>%
   summarise(across(everything(), ~ sum(is.na(.)))) %>%
   pivot_longer(cols = everything(),
                names_to = "Variable",
                values_to = "Total_NA") %>%
   mutate(Porcentaje = round(Total_NA / nrow(datos_modificados) * 100, 2)) %>%
   filter(Total_NA > 0) %>%
-  arrange(desc(Porcentaje))
+  arrange(desc(Porcentaje)) %>% 
+  mutate(
+    Total_NA = format(Total_NA, big.mark = ","),
+    Porcentaje = paste0(Porcentaje, " %")
+  ) %>% 
+  rename(
+    `Total de valores faltantes` = Total_NA,
+    `Porcentaje de valores faltantes` = Porcentaje
+  )
+
+#Contiene únicamente las variables con valores faltantes
+
+knitr::kable(
+  tabla_faltantes,
+  caption = "Resumen de valores faltantes por variable.",
+  booktabs = TRUE,
+  align = c("l", "r", "r"),
+  linesep = ""
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 10
+  ) %>%
+  kableExtra::row_spec(0, bold = TRUE) %>%
+  kableExtra::column_spec(1, width = "4.5cm") %>%
+  kableExtra::column_spec(2, width = "4.5cm") %>%
+  kableExtra::column_spec(3, width = "5cm")
 ```
 
 En términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.
