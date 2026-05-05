@@ -94,6 +94,13 @@ Mercedes Ayuso-Gutiérrez, Lluís Bermúdez-Morata y Miguel Santolino-Prieto. \\
 \hline
 
 Metodológica &
+El análisis de correlación permite comprobar la existencia de una relación lineal entre variables específicas, lo cual constituye una metodología de interés para el proyecto. &
+Correlación: teoría y práctica &
+2016 &
+Pablo Vinuesa
+\hline
+
+Metodológica &
 Este estudio propone una metodología que podría adaptarse de manera efectiva en el proyecto que se está planteando. Esto, ya que el tema es parecido, frecuencia y severidad de seguros de automóviles. El artículo propone un procedimiento concreto para seleccionar distribuciones, estimar parámetros y evaluar ajuste, más que desarrollar una teoría nueva o revisar la evolución histórica del problema. &
 Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions &
 2018 &
