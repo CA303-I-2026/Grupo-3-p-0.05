@@ -1235,7 +1235,7 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   Durante el desarrollo de la bitácora, se reflexionó acerca de la importancia de implementar un lenguaje accesible con el objetivo de comunicar los planteamientos e ideas a la mayor cantidad de personas posibles. Dado que el aseguramiento vehicular constituye un elemento presente en la realidad de sujetos que no se desempeñan en el ámbito actuarial o matemático, se adquirió el compromiso activo de mantener una comunicación comprensible para la mayoría de lectores, en busca de que estos logren formar una noción sobre los elementos que potencialmente intervienen en la frecuencia y la severidad de los siniestros reportados por las aseguradoras vehiculares, las cuales muchas veces utilizan esta información para fijar el monto de las primas pagadas por los clientes.
 
-- 
+- Además, se fortaleció la comprensión del análisis descriptivo como una etapa clave para conocer la estructura de los datos. A partir de la revisión de tablas, valores faltantes, valores atípicos y gráficos, se aprendió a identificar patrones iniciales sin llegar a conclusiones apresuradas. En adición a esto, se comprendió que la literatura consultada no solo funciona como respaldo teórico, sino también como una guía para interpretar los resultados y orientar los siguientes pasos del proyecto. Este proceso permitió conectar mejor los hallazgos descriptivos con la pregunta de investigación
 
 ## Audiencia del proyecto
 
