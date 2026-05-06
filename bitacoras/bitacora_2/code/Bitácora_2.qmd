@@ -967,7 +967,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 ## Fichas de resultados
 
 ::: callout-note
-# Ficha 1
+# Ficha 1: Análisis por Tipo de Vehículo
 
 ***Nivel descriptivo***
 
@@ -993,7 +993,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 :::
 
 ::: callout-note
-# Ficha 2
+# Ficha 2: Exceso de ceros
 
 ***Nivel descriptivo***
 
