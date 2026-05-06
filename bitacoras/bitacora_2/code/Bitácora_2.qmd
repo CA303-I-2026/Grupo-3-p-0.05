@@ -967,7 +967,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 ## Fichas de resultados
 
 ::: callout-note
-# Gráfico comparativo entre el número de siniestros y costo de por año
+# Ficha 1: Análisis por Tipo de Vehículo
 
 ***Nivel descriptivo***
 
@@ -992,11 +992,38 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 *Implicación para el siguiente paso:* Este hallazgo permite incluir justificadamente al tipo de vehículo como una de las variables para modelos en la bitácora 3; además de utilizar distribuciones cero infladas para la frecuencia dada la concentración de ceros en la variable "N_claims_year" y para el costo de los siniestros por año se seguirá el enfoque de Omari et al. (2018) de evaluar empíricamente la distribución que ofrezca mejor ajuste.
 :::
 
+::: callout-note
+# Ficha 2: Exceso de ceros
+
+***Nivel descriptivo***
+
+*Titular:* *Más del 85 % de asegurados no reportó siniestros en el año*
+
+*Nombre del hallazgo/resultado:* Exceso de ceros en las variables de frecuencia y severidad anual
+
+*Resumen en una oración:* La gran mayoría de los registros anuales presenta cero siniestros y costo nulo.
+
+*Método o análisis que lo produjo:* Este hallazgo se obtuvo mediante estadísticos descriptivos calculados con la función stat.desc() del paquete pastecs, complementados con tablas resumen por tipo de vehículo y zona. Se observó que la mediana de N_claims_year y Cost_claims_year es igual a cero, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
+
+*Evidencia:* La Tabla 6 de la segunda bitácora muestra que la mediana de N_claims_year es 0 frente a una media de 0.39, y que la mediana de Cost_claims_year es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la Tabla 4 de la segunda bitácora refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* La pregunta de investigación busca identificar los factores que influyen en la frecuencia y severidad de los siniestros. Este hallazgo es fundamental porque establece que ambas variables presentan un exceso de ceros, lo que condiciona la forma en que deben modelarse y evita el uso de enfoques que asuman distribuciones estándar sin este comportamiento.
+
+*Contraste con la literatura:* Este resultado es consistente con lo planteado por @hiraldo2005siniestros, quienes documentan una alta concentración de ceros en datos de frecuencia de seguros y argumentan que parte de estos no responde a ausencia de riesgo, sino a la no declaración de siniestros pequeños. Asimismo, coincide con @ayuso2015modelizacion, quienes evidencian que distribuciones clásicas como la Poisson no logran capturar adecuadamente este tipo de datos, especialmente en presencia de exceso de ceros.
+
+*Lo que NO explica este resultado:* Este hallazgo no permite diferenciar si los ceros observados corresponden a asegurados que no experimentaron siniestros o a aquellos que decidieron no reportarlos. Tampoco permite identificar los factores que explican esta acumulación de ceros, por lo que no es suficiente para definir por sí solo el modelo adecuado.
+
+*Implicación para el siguiente paso:* En próximos avances deberá compararse la proporción de ceros observada en N_claims_year y Cost_claims_year contra la proporción que distribuciones estándar como la Poisson o la binomial negativa esperarían generar con los mismos parámetros. Si los datos tienen más ceros de los que esas distribuciones predicen, entonces un modelo estándar los va a ajustar mal y será necesario usar modelos inflados de ceros, como el ZINB para frecuencia o la Poisson-inversa gaussiana cero inflada para severidad, tal como proponen @hiraldo2005siniestros y @ayuso2015modelizacion respectivamente. Si el exceso no se confirma, un GLM convencional podría ser suficiente.
+:::
+
 ## La imagen que cuenta la historia
 
 A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor visualización del trabajo:
 
 ![](images/distibucion_costo_anyo.png){fig-align="center"}
+
 
 Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se decidió optar por una imagen que representara el segundo elemento abordado en la propuesta. Además de lo mencionado anteriormente, otro criterio de selección del gráfico consistió en la trazabilidad del fenómeno: comprender el comportamiento que ha tenido, a través de los años, el número de siniestros cuyo costo supera el monto indicado, representa un buen primer acercamiento al problema, así como una herramienta fundamental en el proceso de descomposición del fenómeno, puesto que permite la identificación de eventualidades particulares en años determinados y su potencial asociación con el comportamiento presentado por las demás variables. Seguidamente, a partir de la observación del gráfico y en el contexto del aseguramiento, alguien podría distinguir dos cosas: en ciertos años la cantidad de siniestros cuyo costo supera los 900 euros ha incrementado, mientras que en otros años la cantidad ha dismuido; a partir de esto, se podría tomar la decisión de estudiar a profundidad los elementos que incidieron en la presencia de tales eventos, con el objetivo de poseer un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y resguardar la capacidad de pago de la aseguradora. Finalmente, se destaca que el gráfico se enfoca en mostrar el comportamiento que ha presentado a través de los años, la cantidad de siniestros cuyo costo supera el monto de 900 euros, por lo que se omite de manera intencional aquellos siniestros con un costo de menor valor, puesto que estos no se contemplan en la pregunta de investigación; además, la imagen se apoya solo en las variables del año y del costo anual del siniestro, con el fin de simplificar la visualización al lector.
 
