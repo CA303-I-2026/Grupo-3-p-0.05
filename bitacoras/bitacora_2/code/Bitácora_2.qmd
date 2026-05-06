@@ -401,7 +401,7 @@ Antes de continuar con el análisis, se verificó que la base de datos tuviera u
 
 ```{r verificacion-tidy, echo=FALSE}
 
-head(datos_modificados, 10)
+#head(datos_modificados, 10)
 
 ```
 
@@ -462,7 +462,7 @@ Dado este comportamiento, en los análisis posteriores se excluirá la variable 
 
 Como parte de la exploración inicial de los datos, se revisó la presencia de valores atípicos en las variables más relevantes del estudio. Esta se ve representada mediante la @grafico-outliers.
 
-```{r grafico-outliers, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
+```{r grafico-outliers, echo=FALSE, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
 
 library(tidyr)
 
@@ -710,7 +710,9 @@ datos_unicos <- datos_modificados %>%
 
 #### Análisis de gráficos
 
-Como se observa en la @fig-edad-reclamos, se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
+En esta sección se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, estos son los que se muestran a continuación.
+
+Primeramente, y como se observa en la @fig-edad-reclamos, se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
 
 ```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
 
@@ -728,7 +730,7 @@ datos_unicos %>%
   theme(plot.caption = element_text(hjust = 1.4))
 ```
 
-Como se observa en la @fig-edad-reclamos, la mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
+La mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
 
 También, se aprecia que los reclamos históricos tienden a acumularse ligeramente conforme aumenta la edad. Esto puede deberse a que las personas de mayor edad han tenido más tiempo de permanencia como aseguradas y, por lo tanto, más oportunidades de registrar reclamos a lo largo del tiempo. Sin embargo, la relación no parece ser fuerte, ya que los puntos se encuentran bastante dispersos y existen asegurados de distintas edades con valores similares de reclamos.
 
@@ -896,7 +898,7 @@ caracteristicas_costo <- plot_grid(peso_costo, largo_costo, potencia_costo, cili
 ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caracteristicas_costo, width = 10, height = 11, dpi = 300)
 ```
 
-![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="100%"}
+![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="90%"}
 
 En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y cilindradas alrededor de 1400 a 2000. Esto sugiere que los siniestros con costos superiores a €900 no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados a turismos de uso común.
 
@@ -905,6 +907,8 @@ En cuanto al número de puertas, la mayor concentración corresponde a vehículo
 También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberían revisarse antes de sacar conclusiones definitivas.
 
 El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
+
+Por otro lado, la @fig-num-sin, muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 costos_anyo <- datos_modificados %>% 
@@ -926,11 +930,13 @@ ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png",costos
 
 ```
 
-![Distribución del número de siniestros por año mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){width="100%"}
+![Distribución del número de siniestros por año mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){#fig-num-sin width="90%"}
 
-El siguiente gráfico muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos en donde se supera el rango de los €900.
+Se observa que estos casos se concentran principalmente en los años más recientes, especialmente entre 2014 y 2017. Esto podría deberse a que la base contiene más registros en esos años, por lo que el aumento no necesariamente implica un mayor riesgo, sino una mayor cantidad de pólizas observadas. Por esta razón, conviene complementar este gráfico con una proporción por año, es decir, comparar los casos mayores a €900 contra el total de registros de cada año.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
+Finalmente, la @fig-cost-zona muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos en donde se supera el rango de los €900.
+
+```{r fig-cost-zona, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
 
 datos_modificados %>% 
   filter(is.finite(Cost_claims_year) & is.finite(Area)) %>% 
@@ -954,7 +960,10 @@ datos_modificados %>%
   theme(plot.caption = element_text(hjust = 1.5)) # Mover la fuente a la derecha
 ```
 
-**INTERPRETACIÓN PENDIENTE:**
+En ambos casos predominan ampliamente los siniestros con costos menores a €900, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
+
+Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a €900 como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
+
 
 ## Fichas de resultados
 
@@ -1083,40 +1092,6 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 
 Las observaciones extendidas a partir de la revisión de la primera bitácora se efectuaron en torno a cuatro ejes: el contenido de la pregunta de investigación, la divisa y el origen geográfico de la base de datos, el registro del uso de inteligencia artificial y la extensión del diario de aprendizaje. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintos ejes.
 
-## La pregunta de investigación
-
-En la primera bitácora, se formuló la siguiente pregunta de investigación:
-
-> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
-
-Como es posible notar, se abordan dos elementos: la relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Se señaló que, el afrontar los dos elementos mencionados en un mismo proyecto, podría traer consigo una considerable complejidad metodológica, de manera que se recomendó analizar a nivel de equipo la pregunta planteada.
-
-Así, tras discutir la situación, el equipo decidió mantener la pregunta de investigación. Sin embaro, con el objetivo de controlar posibles problemas originados por el factor del tiempo, se determinó que el elemento principal del proyecto será la primera parte de la propuesta: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros. En consecuencia, el desarrollo del trabajo se enfocará, en su mayoría, en resolver dicho problema.
-
-## La divisa y el origen geográfico de la base de datos
-
-Tras efectuar una exhaustiva investigación, se encontró en openICPSR, una plataforma destinada a la divulgación de datos de investigación en ciencias sociales y del comportamiento, que el origen geográfico de la base de datos efectivamente corresponde a España. De esta forma, se establece que la divisa utilizada para las variables monetarias es el euro.
-
-## El registro del uso de inteligencia artificial
-
-Una de las observaciones de la retroalimentación se dedicó a señalar que el apartado del uso de inteligencia artificial no seguía el formato exacto indicado. Así, en la presente bitácora se procuró que el contenido de dicho apartado siguiera la siguiente estructura:
-
-> • *Herramienta:* el nombre de la herramienta utilizada.
->
-> • *Prompt:* el texto exacto de la consulta.
->
-> • *Respuesta de la IA:* un resumen de la respuesta o una captura de pantalla.
->
-> • *Evaluación:* ¿qué fue útil?, ¿qué estaba incorrecto o incompleto?
->
-> • *Modificaciones:* ¿qué se cambió, se extendió o se reemplazó?
->
-> • *Aprendizaje:* ¿qué nuevo aprendizaje se adquirió?
-
-## El diario de aprendizaje
-
-En lo que respecta al diario de aprendizaje, se mencionó que la extensión del mismo era muy breve; se sugirió expandirlo con tal de reflejar aprendizajes relacionados al campo actuarial, al manejo de la base de datos, así como al proceso de escritura científica. En respuesta a esta observación, se decidió incrementar no solo el número de aprendizajes adquiridos detallados, sino también la variedad de las temáticas que estos abordan.
-
 # Relativo al trabajo en equipo
 
 ## Rastro de decisiones
@@ -1171,6 +1146,10 @@ La decisión de elaborar los gráficos mostrados estuvo basada en determinados o
 | Emily Estefanía Mora Contreras | Identidad visual del proyecto                         |
 |                                |                                                       |
 |                                | Resumen de las variables de la base de datos          |
+|                                |                                                       |
+|                                | Confección de tablas resumen                          |
+|                                |                                                       |
+|                                | Interpretación de gráficos                            |
 |                                |                                                       |
 |                                | Enlaces de la literatura                              |
 |                                |                                                       |
