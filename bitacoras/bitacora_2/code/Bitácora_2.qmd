@@ -1078,12 +1078,7 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 
 # Implementación de la retroalimentación
 
-  → El registro de uso de IA no aparece con el formato exacto solicitado (Herramienta, Prompt, Respuesta, Evaluación, Modificaciones, Aprendizaje por consulta). Debe estructurarse con ese formato en la Bitácora #2. \
-    → La pregunta de investigación, aunque bien formulada y técnica, mezcla dos problemas en uno: la relación entre variables y el incremento abrupto en los 900. Esto genera complejidad metodológica que puede ser difícil de responder en un solo proyecto. Se recomienda reflexionar si estos son dos sub-preguntas que se abordarán en fases distintas o si una de ellas se prioriza.\
-    → El párrafo de argumentación de las preguntas descartadas es breve. Se necesita más desarrollo técnico de por qué las otras tres preguntas fueron menos viables (no solo decir 'menos pertinente', sino argumentar con datos disponibles, alcance del curso, etc.).\
-    → La parte de escritura (1-2 páginas resumiendo el estado del problema con citas) necesita incorporar más referencias bibliográficas activamente citadas en el texto. Actualmente cita a Frees y Melgar & Guerrero, pero el texto debería tener más densidad bibliográfica.\
-    → El diario de aprendizaje es muy breve (3 oraciones). Puede expandirse para reflejar aprendizajes específicos sobre el dominio actuarial, el manejo del dataset o el proceso de escritura científica.\
-    → Se identificó que la base de datos proviene de Mendeley Data / Universidad de Valencia, lo cual es legítimo. Sin embargo, la divisa y el origen geográfico exacto de los datos siguen siendo desconocidos según el propio grupo — esto debe resolverse antes de la Bitácora #2 porque afecta directamente la interpretabilidad de los resultados
+Las observaciones extendidas a partir de la revisión de la primera bitácora se efectuaron en torno a cuatro ejes: el contenido de la pregunta de investigación, la divisa y el origen geográfico de la base de datos, el registro del uso de inteligencia artificial y la extensión del diario de aprendizaje. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintos ejes.
 
 # Relativo al trabajo en equipo
 
