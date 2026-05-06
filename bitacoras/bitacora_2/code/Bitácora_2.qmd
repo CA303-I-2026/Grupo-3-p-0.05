@@ -312,9 +312,9 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 
 ### Análisis descriptivo de la base de datos
 
-Primeramente, se realizó el tratamiento inicial de la base de datos. En algunos casos fue necesario convertir ciertas variables al formato fecha, como se muestra a continuación. En las secciones siguientes, cuando se haga referencia a la base de datos, se entenderá que corresponde a esta versión ya modificada.
+En primer lugar, se realizó el tratamiento inicial de la base de datos. En algunos casos fue necesario convertir ciertas variables al formato fecha, como se muestra a continuación. En las secciones siguientes, cuando se haga referencia a la base de datos, se entenderá que corresponde a esta versión ya modificada.
 
-```{r carga-datos, warning=FALSE, message=FALSE, echo=TRUE}
+```{r carga-datos, warning=FALSE, message=FALSE, echo=FALSE}
 
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
@@ -341,14 +341,13 @@ Las transformaciones responden a necesidades concretas. Las variables de fecha e
 
 #### Información general del dataset
 
-Antes de iniciar con el análisis de las variables, se presenta una descripción general de la base de datos utilizada. Este resumen permite identificar su tamaño, el número de asegurados incluidos, el periodo temporal cubierto y los tipos de vehículos considerados. Además, permite confirmar que la base contiene registros longitudinales, ya que un mismo asegurado puede aparecer en más de un año según sus renovaciones de póliza.
+Antes de iniciar con el análisis de las variables, se presenta en la @tbl-info-general una descripción general de la base de datos utilizada. Este resumen permite identificar su tamaño, el número de asegurados incluidos, el periodo temporal cubierto y los tipos de vehículos considerados. Además, permite confirmar que la base contiene registros longitudinales, ya que un mismo asegurado puede aparecer en más de un año según sus renovaciones de póliza.
 
 ```{r tbl-info-general, echo=FALSE, warning=FALSE, message=FALSE}
 
 #install.packages("kableExtra")
 library(kableExtra)
 
-# Una fila por asegurado
 datos_unicos <- datos_modificados %>%
   group_by(ID) %>%
   slice_max(Date_last_renewal, n = 1, with_ties = FALSE) %>%
@@ -381,10 +380,11 @@ knitr::kable(
   tabla_info,
   caption = "Resumen general de la base de datos utilizada.",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "c")
 ) %>%
   kableExtra::kable_styling(
-    latex_options = c("hold_position"),
+    latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
     font_size = 10
@@ -397,7 +397,9 @@ La base de datos confirma que cada persona puede tener múltiples registros anua
 
 #### Verificación del formato *tidy*
 
-```{r verificacion-tidy, echo=TRUE}
+Antes de continuar con el análisis, se verificó que la base de datos tuviera una estructura adecuada para su manipulación en R. Para ello, se revisaron las primeras observaciones de la base modificada, con el fin de comprobar la organización de las filas y columnas, así como la forma en que se registran las variables principales.
+
+```{r verificacion-tidy, echo=FALSE}
 
 head(datos_modificados, 10)
 
@@ -436,11 +438,12 @@ knitr::kable(
   tabla_faltantes,
   caption = "Resumen de valores faltantes por variable.",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "r", "r"),
   linesep = ""
 ) %>%
   kableExtra::kable_styling(
-    latex_options = c("hold_position"),
+    latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
     font_size = 10
@@ -451,9 +454,52 @@ knitr::kable(
   kableExtra::column_spec(3, width = "5cm")
 ```
 
-En términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.
+Como se observa en la @tbl-missings, en términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.  
 
 Dado este comportamiento, en los análisis posteriores se excluirá la variable Date_lapse debido a la alta proporción de datos faltantes. En el caso de Length, se trabajará mediante imputación, por ejemplo utilizando la mediana según el tipo de vehículo, con el fin de conservar la información disponible. Finalmente, Type_fuel se manejará eliminando las filas con valores faltantes, ya que su baja proporción no afecta de manera significativa el tamaño de la muestra.
+
+#### Detección de valores atípicos (*outliers*)
+
+Como parte de la exploración inicial de los datos, se revisó la presencia de valores atípicos en las variables más relevantes del estudio. Esta se ve representada mediante la @grafico-outliers.
+
+```{r grafico-outliers, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
+
+library(tidyr)
+
+datos_modificados %>%
+  select(edad, Seniority, N_claims_year, Cost_claims_year, N_claims_history) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Valor"
+  ) %>%
+  filter(is.finite(Valor)) %>%
+  ggplot(aes(x = Variable, y = Valor, fill = Variable)) +
+  geom_boxplot(
+    alpha = 0.7,
+    outlier.shape = 21,
+    outlier.color = paleta_pamplemousse[2],
+    outlier.size = 1.5
+  ) +
+  scale_fill_manual(values = paleta_pamplemousse[1:5]) +
+  facet_wrap(~ Variable, scales = "free", ncol = 3) +
+  labs(
+    title = "Identificación de valores atípicos en variables del proyecto",
+    x = NULL,
+    y = "Valor",
+    caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
+  ) +
+  estilo_grupo3 +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_blank()
+  )
+```
+La variable Cost_claims_year presenta los valores extremos más marcados, lo cual indica que la mayoría de los siniestros tiene costos bajos o moderados, pero existen algunos reclamos con costos muy elevados que podrían influir de forma importante en el análisis de severidad.
+
+En el caso de N_claims_year y N_claims_history, también se identifican valores atípicos, lo que sugiere que la mayoría de los asegurados registra pocos siniestros, mientras que algunos casos presentan una frecuencia mucho mayor. Esto es esperable en datos de seguros, donde los reclamos suelen concentrarse en una pequeña parte de los asegurados.
+
+Para la variable edad, los valores atípicos se ubican en edades muy altas, cercanas o superiores a los 100 años, por lo que conviene revisar si corresponden a registros válidos o posibles errores. Finalmente, Seniority muestra asegurados con una antigüedad considerablemente mayor que la mayoría, lo cual puede representar clientes de larga permanencia en la aseguradora.
 
 ### Tablas resumen de variables relevantes
 
@@ -488,11 +534,12 @@ knitr::kable(
   tabla_categoria_formato,
   caption = "Resumen de variables relevantes según categoría.",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "r", "r", "r", "r", "r"),
   linesep = ""
 ) %>%
   kableExtra::kable_styling(
-    latex_options = c("hold_position", "scale_down"),
+    latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
     font_size = 9
@@ -506,11 +553,11 @@ knitr::kable(
   kableExtra::column_spec(6, width = "2.5cm")
 ```
 
-La distribución de la cartera muestra un claro predominio del tipo de vehículo Turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las Furgonetas con un 12.3%, seguidas por las Motocicletas con un 8.0%, mientras que la categoría Agrícola representa una proporción marginal.
+Primeramente, y como se observa en la @tbl-categorias, la distribución de la cartera muestra un claro predominio del tipo de vehículo Turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las Furgonetas con un 12.3%, seguidas por las Motocicletas con un 8.0%, mientras que la categoría Agrícola representa una proporción marginal.
 
 En términos de siniestralidad, se observa que la mayoría de los asegurados no presenta reclamos durante el año, con porcentajes superiores al 85% en todas las categorías y alcanzando incluso el 100% en el caso de los vehículos agrícolas. Este comportamiento evidencia una alta concentración de ceros en la variable de número de siniestros, lo cual resulta consistente con la necesidad de emplear modelos que capturen este fenómeno.
 
-Por otro lado, las Furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo Turismo muestran el mayor costo promedio por siniestro. En contraste, las Motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
+Por otro lado, en referencia con la @tbl-zona, las Furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo Turismo muestran el mayor costo promedio por siniestro. En contraste, las Motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
 
 ```{r tbl-zona, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -530,11 +577,12 @@ knitr::kable(
   tabla_zona,
   caption = "Resumen de variables relevantes según zona.",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "r", "r", "r", "r"),
   linesep = ""
 ) %>%
   kableExtra::kable_styling(
-    latex_options = c("hold_position"),
+    latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
     font_size = 9
@@ -551,55 +599,97 @@ Con el fin de complementar este análisis exploratorio, se procedió a calcular 
 
 Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r tbl-estad-desc, echo=FALSE, warning=FALSE, message=FALSE}
+library(lubridate)
 library(pastecs)
 
 options(scipen = 999)
 
+filas_clave <- c(
+  "nbr.val", "nbr.null", "min", "max",
+  "mean", "median", "std.dev", "coef.var"
+)
+
+datos_desc <- datos_modificados %>%
+  mutate(
+    Edad_asegurado = floor(time_length(interval(Date_birth, Date_start_contract), "years")),
+    Antiguedad_licencia = floor(time_length(interval(Date_driving_licence, Date_start_contract), "years")),
+    Edad_vehiculo = year(Date_start_contract) - Year_matriculation
+  )
+
+vars_relevantes <- c(
+  "Edad_asegurado",
+  "Seniority",
+  "N_claims_year",
+  "Cost_claims_year",
+  "N_claims_history",
+  "R_Claims_history",
+  "Edad_vehiculo",
+  "Power",
+  "Value_vehicle",
+  "Weight"
+)
+
 analisis_desc <- as.data.frame(
   round(
-    stat.desc(datos_modificados[, sapply(datos_modificados, is.numeric) & names(datos_modificados)!="ID"]),
+    stat.desc(datos_desc[, vars_relevantes]),
     4
   )
 )
 
-analisis_desc <- data.frame(
-  Estadistico = rownames(analisis_desc),
-  analisis_desc
+tabla_desc <- analisis_desc[filas_clave, ]
+
+tabla_desc <- as.data.frame(t(tabla_desc))
+
+tabla_desc <- data.frame(
+  Variable = rownames(tabla_desc),
+  tabla_desc,
+  row.names = NULL
 )
 
-rownames(analisis_desc) <- NULL
+tabla_desc$Variable <- recode(
+  tabla_desc$Variable,
+  "Edad_asegurado" = "Edad del asegurado",
+  "Seniority" = "Antigüedad con la aseguradora",
+  "N_claims_year" = "Siniestros en el año",
+  "Cost_claims_year" = "Costo de siniestros del año",
+  "N_claims_history" = "Siniestros históricos",
+  "R_Claims_history" = "Ratio histórico de siniestros",
+  "Edad_vehiculo" = "Edad del vehículo",
+  "Power" = "Potencia",
+  "Value_vehicle" = "Valor del vehículo",
+  "Weight" = "Peso"
+)
+
+colnames(tabla_desc) <- c(
+  "Variable",
+  "N válidos",
+  "N nulos",
+  "Mínimo",
+  "Máximo",
+  "Media",
+  "Mediana",
+  "Desv. estándar",
+  "Coef. variación"
+)
+
+knitr::kable(
+  tabla_desc,
+  caption = "Estadísticos descriptivos de las variables cuantitativas relevantes para el análisis de frecuencia y severidad de los siniestros.",
+  booktabs = TRUE,
+  longtable = TRUE,
+  align = c("l", rep("c", ncol(tabla_desc) - 1))
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 8
+  ) %>%
+  kableExtra::column_spec(1, width = "2.3cm")
 ```
 
-```{r tabla-estadisticas, echo=FALSE, warning=FALSE, message=FALSE}
-#| label: tbl-estadisticas
-#| tbl-cap: "Tabla 5. Estadísticas descriptivas de variables numéricas"
-
-filas_clave <- c("nbr.val", "nbr.null", "nbr.na", "min", "max",
-                 "mean", "median", "std.dev", "coef.var")
-
-analisis_desc_filtrado <- analisis_desc[
-  analisis_desc$Estadistico %in% filas_clave, 
-]
-
-# Transponer la tabla
-tabla_final <- as.data.frame(t(analisis_desc_filtrado[,-1]))
-
-# Agregar nombres de columnas (estadísticos)
-colnames(tabla_final) <- analisis_desc_filtrado$Estadistico
-
-# Convertir rownames en columna
-tabla_final$Variable <- rownames(tabla_final)
-rownames(tabla_final) <- NULL
-
-# Reordenar columnas
-tabla_final <- tabla_final[, c("Variable", setdiff(names(tabla_final), "Variable"))]
-
-# Mostrar tabla normal
-#tabla_final
-```
-
-Las estadísticas descriptivas permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable edad muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
+Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable edad muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
 
 En cuanto a la frecuencia de siniestros, la variable N_claims_year presenta una mediana igual a cero y una media de 0.39, evidenciando una alta concentración de valores nulos. Este patrón confirma la presencia de un exceso de ceros en la variable, lo cual resulta consistente con la necesidad de emplear modelos que capten este comportamiento. De manera similar, en la variable Cost_claims_year se observa una mediana de cero frente a una media considerablemente mayor, acompañada de un valor máximo extremadamente alto, lo que indica una distribución altamente asimétrica con cola derecha pesada. Esto sugiere que, aunque la mayoría de los asegurados no presenta costos por siniestros, existen pocos casos con costos muy elevados que influyen significativamente en el promedio.
 
@@ -643,9 +733,9 @@ También, se aprecia que los reclamos históricos tienden a acumularse ligeramen
 
 Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones. Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
 
-El siguiente gráfico muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
+Por otra parte, la @fig-edad-num muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
 
-```{r, warning= FALSE, message=FALSE,echo=FALSE, fig.cap = "Gráfico comparativo entre edad y numero de siniestros por año y siniestros totales", fig.height= 5.5, fig.align='center'}
+```{r fig-edad-num, warning= FALSE, message=FALSE,echo=FALSE, fig.cap = "Gráfico comparativo entre edad y numero de siniestros por año y siniestros totales", fig.height= 5.5, fig.align='center'}
 
 siniestros_anyo <- datos_modificados %>%
   ggplot(aes(x = edad, y = N_claims_year)) +
@@ -675,11 +765,17 @@ plot_grid(siniestros_anyo,siniestros_historico,ncol=1)
 
 ```
 
-**INTERPRETACIÓN PENDIENTE**
+En el primer gráfico se observa que la mayoría de los asegurados presenta pocos o ningún siniestro durante el año, independientemente de la edad. La línea de tendencia se mantiene prácticamente horizontal, por lo que no se aprecia una relación clara entre la edad del asegurado y la cantidad de siniestros anuales. Aunque existen algunos valores altos, estos aparecen como casos aislados y se concentran principalmente entre edades intermedias, donde también parece haber mayor cantidad de registros.
 
-El siguiente gráfico muestra la comparación entre la frecuencia y costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola
+En el segundo gráfico, correspondiente al número histórico de siniestros, se observa una ligera tendencia creciente conforme aumenta la edad. Sin embargo, esta relación debe interpretarse con cuidado, ya que el número histórico de siniestros puede aumentar no solo por la edad del asegurado, sino también por el tiempo que la persona ha permanecido asegurada o por la cantidad de años acumulados dentro de la póliza. Por tanto, el incremento observado podría estar más relacionado con la exposición acumulada que con un mayor riesgo asociado directamente a la edad.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+En general, los gráficos sugieren que la edad por sí sola no explica de forma fuerte la frecuencia de siniestros anuales. Para el historial de siniestros sí se observa un aumento leve, pero este podría estar influenciado por la antigüedad del asegurado y no únicamente por su edad
+
+La @fig-violin-combinado muestra la comparación entre la frecuencia y costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola.
+
+![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
+
+```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 
 violin_frecuencia <- datos_modificados %>%
   filter(is.finite(N_claims_year)) %>%
@@ -721,13 +817,17 @@ ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_comb
 
 ```
 
-**INTERPRETACIÓN PENDIENTE**
+En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados. Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores. Esta situación es visible principalmente en los turismos y furgonetas, donde la distribución se extiende hacia valores más altos.
 
-![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){width="100%"}
+En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículo, aunque también se observan algunos valores elevados. Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
 
-El siguiente gráfico muestra la comparación entre la distribución de distintas características físicas del vehículo, peso, largo, potencia, cilindraje y número de puertas, en los casos en donde se supera el umbral de los €900.
+En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los turismos presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que estos tipos de vehículo podrían estar asociados con una mayor exposición al riesgo o con un uso más frecuente.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los turismos muestran mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos. 
+
+La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo, peso, largo, potencia, cilindraje y número de puertas, en los casos en donde se supera el umbral de los €900.
+
+```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 peso_costo <- datos_modificados %>% 
   filter(Cost_claims_year >= 900) %>% 
   ggplot(aes(x= Weight)) +
@@ -795,7 +895,15 @@ caracteristicas_costo <- plot_grid(peso_costo, largo_costo, potencia_costo, cili
 ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caracteristicas_costo, width = 10, height = 11, dpi = 300)
 ```
 
-![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){width="100%"}
+![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="100%"}
+
+En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y cilindradas alrededor de 1400 a 2000. Esto sugiere que los siniestros con costos superiores a €900 no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados a turismos de uso común.
+
+En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas. Esto puede indicar que los reclamos superiores a €900 se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
+
+También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberían revisarse antes de sacar conclusiones definitivas.
+
+
 
 El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
 
@@ -849,42 +957,6 @@ datos_modificados %>%
 
 **INTERPRETACIÓN PENDIENTE:**
 
-### Detección de valores atípicos
-
-```{r grafico-outliers, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-
-datos_modificados %>%
-  select(edad, Seniority, N_claims_year, Cost_claims_year, N_claims_history) %>%
-  pivot_longer(
-    cols = everything(),
-    names_to = "Variable",
-    values_to = "Valor"
-  ) %>%
-  filter(is.finite(Valor)) %>%
-  ggplot(aes(x = Variable, y = Valor, fill = Variable)) +
-  geom_boxplot(
-    alpha = 0.7,
-    outlier.shape = 21,
-    outlier.color = paleta_pamplemousse[2],
-    outlier.size = 1.5
-  ) +
-  scale_fill_manual(values = paleta_pamplemousse[1:5]) +
-  facet_wrap(~ Variable, scales = "free", ncol = 3) +
-  labs(
-    title = "Identificación de valores atípicos en variables del proyecto",
-    x = NULL,
-    y = "Valor",
-    caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
-  ) +
-  estilo_grupo3 +
-  theme(
-    legend.position = "none",
-    axis.text.x = element_blank()
-  )
-```
 
 ## Fichas de resultados
 
