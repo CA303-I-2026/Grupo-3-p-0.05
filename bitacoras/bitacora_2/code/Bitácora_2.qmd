@@ -629,7 +629,6 @@ Con el fin de complementar este análisis exploratorio, se procedió a calcular 
 
 Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (`ID`), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
-
 ```{r tbl-estad-desc, echo=FALSE, warning=FALSE, message=FALSE}
 library(lubridate)
 library(pastecs)
@@ -720,8 +719,7 @@ knitr::kable(
   kableExtra::column_spec(1, width = "2.3cm")
 ```
 
-<<<<<<< HEAD
-Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable `edad` muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable `Seniority` presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
+\<\<\<\<\<\<\< HEAD Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable `edad` muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable `Seniority` presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
 
 En cuanto a la frecuencia de siniestros, la variable `N_claims_year` presenta una mediana igual a cero y una media de 0.39, evidenciando una alta concentración de valores nulos. Este patrón confirma la presencia de un exceso de ceros en la variable, lo cual resulta consistente con la necesidad de emplear modelos que capten este comportamiento. De manera similar, en la variable `Cost_claims_year` se observa una mediana de cero frente a una media considerablemente mayor, acompañada de un valor máximo extremadamente alto, lo que indica una distribución altamente asimétrica con cola derecha pesada. Esto sugiere que, aunque la mayoría de los asegurados no presenta costos por siniestros, existen pocos casos con costos muy elevados que influyen significativamente en el promedio.
 
@@ -1134,7 +1132,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Resumen en una oración:* Los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
 
-*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con `Cost_claims_year` > 900.
+*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con `Cost_claims_year` \> 900.
 
 *Evidencia:* La @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
 
@@ -1159,9 +1157,7 @@ Es preciso recordar que la pregunta de investigación aborda dos aspectos: la re
 
 # Arco narrativo del proyecto
 
-Al explorar los datos, se descubrió
-
-lo que obliga al equipo a repensar cómo se abordará el problema planteado.
+Al explorar los datos, se descubrió la marcada presencia de valores atípicos en las variables del costo de los siniestros por año y el número de siniestros; en el caso de la variable de la edad, también se encontraron algunos valores atípicos, con edades próximas a los 100 años. Además, se reafirmó la existencia de una gran densidad de ceros en la variable del número de siniestros reportados por año, así como en el costo anual de estos. Finalmente, a partir de la visualización de los datos, se distinguieron eventualidades particulares que indican la necesidad de analizar a mayor profundidad el comportamiento de ciertas variables, por ejemplo, se identificó que la distribución del número de siniestros cuyo costo supera los 900 euros, se concentra principalmente en los años más recientes, entre 2014 y 2017. Sin embargo, lo anterior no es un indicador directo de un mayor riesgo, sino que podría generarse a causa de que la base de datos contiene una mayor cantidad de registros en dichos años. Así, el conglomerado de todo lo expuesto antes, impulsa al equipo a repensar la forma en que se abordará el problema planteado, según las características de los datos.
 
 # Fichas literarias construidas en la segunda bitácora
 
@@ -1322,6 +1318,8 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los 900 euros y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
 
 ## Registro del uso de IA
+
+En la presente bitácora, se acudió en una única ocasión a la guía de la inteligencia artificial. Así, se detalla a continuación el respectivo registro:
 
 *Herramienta:* ChatGPT
 
