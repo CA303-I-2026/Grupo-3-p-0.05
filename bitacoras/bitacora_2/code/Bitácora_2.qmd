@@ -399,7 +399,7 @@ La base de datos confirma que cada persona puede tener múltiples registros anua
 
 Antes de continuar con el análisis, se verificó que la base de datos tuviera una estructura adecuada para su manipulación en R. Para ello, se revisaron las primeras observaciones de la base modificada, con el fin de comprobar la organización de las filas y columnas, así como la forma en que se registran las variables principales.
 
-```{r verificacion-tidy, echo=FALSE}
+```{r verificacion-tidy, echo=FALSE, warning=FALSE, message=FALSE}
 
 datos_modificados %>%
   select(
@@ -1053,11 +1053,37 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 *Implicación para el siguiente paso:* En próximos avances deberá compararse la proporción de ceros observada en N_claims_year y Cost_claims_year contra la proporción que distribuciones estándar como la Poisson o la binomial negativa esperarían generar con los mismos parámetros. Si los datos tienen más ceros de los que esas distribuciones predicen, entonces un modelo estándar los va a ajustar mal y será necesario usar modelos inflados de ceros, como el ZINB para frecuencia o la Poisson-inversa gaussiana cero inflada para severidad, tal como proponen @hiraldo2005siniestros y @ayuso2015modelizacion respectivamente. Si el exceso no se confirma, un GLM convencional podría ser suficiente.
 :::
 
+::: callout-note
+# Ficha 3: Vehículos más comunes que presentan reclamos
+
+***Nivel descriptivo***
+
+*Titular:* *Vehículos comunes concentran reclamos superiores a €900*
+
+*Nombre del hallazgo/resultado:* Concentración de reclamos más costosos corresponden a vehículos de características intermedias.
+
+*Resumen en una oración:* Los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
+
+*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con Cost_claims_year > 900.
+
+*Evidencia:* La @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este resultado se relaciona directamente con la parte de la pregunta que busca explicar cómo intervienen las características del vehículo en la severidad de los siniestros. La concentración de reclamos superiores a €900 en vehículos de características medias sugiere que el aumento en el costo no parece estar asociado únicamente con vehículos extremos o especiales, sino principalmente con vehículos de uso común, posiblemente turismos familiares o incluso cotidianos.
+
+*Contraste con la literatura:* El resultado coincide parcialmente con Guillén et al. (2021) y Omari et al. (2018), quienes consideran la frecuencia y la severidad como dimensiones centrales en el análisis de seguros de automóviles. Además, Alvia Párraga y Linares Giler (2024) señalan que factores como el tipo de vehículo, la edad del conductor y el contexto geográfico pueden influir en los accidentes de tránsito. Sin embargo, este hallazgo solo muestra una concentración descriptiva de reclamos superiores a €900, por lo que no permite confirmar una relación causal entre las características del vehículo y la severidad del siniestro.
+
+*Lo que NO explica este resultado:* Este resultado no permite concluir que los vehículos con estas características tengan mayor riesgo de generar reclamos costosos, porque no se compara contra la distribución total de vehículos en la base. Es posible que estos rangos aparezcan más porque son los tipos de vehículos más frecuentes. Además, no controla otras variables como zona, edad del asegurado, historial de siniestros, antigüedad con la aseguradora o tipo de riesgo.
+
+*Implicación para el siguiente paso:* El siguiente paso debería ser profundizar en la revisión de literatura relacionada con los factores que influyen en el monto de los reclamos vehiculares. Esto permitiría contrastar los resultados obtenidos con estudios previos e identificar si variables como la antigüedad del vehículo, el tipo de combustible o las características del siniestro han sido asociadas anteriormente con reclamos de mayor severidad.
+:::
+
 ## La imagen que cuenta la historia
 
 A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor visualización del trabajo:
 
-![](images/distibucion_costo_anyo.png){fig-align="center"}
+![](../figuras/distibucion_costo_anyo.png){fig-align="center"}
 
 Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se decidió optar por una imagen que representara el segundo elemento abordado en la propuesta. Además de lo mencionado anteriormente, otro criterio de selección del gráfico consistió en la trazabilidad del fenómeno: comprender el comportamiento que ha tenido, a través de los años, el número de siniestros cuyo costo supera el monto indicado, representa un buen primer acercamiento al problema, así como una herramienta fundamental en el proceso de descomposición del fenómeno, puesto que permite la identificación de eventualidades particulares en años determinados y su potencial asociación con el comportamiento presentado por las demás variables. Seguidamente, a partir de la observación del gráfico y en el contexto del aseguramiento, alguien podría distinguir dos cosas: en ciertos años la cantidad de siniestros cuyo costo supera los 900 euros ha incrementado, mientras que en otros años la cantidad ha dismuido; a partir de esto, se podría tomar la decisión de estudiar a profundidad los elementos que incidieron en la presencia de tales eventos, con el objetivo de poseer un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y resguardar la capacidad de pago de la aseguradora. Finalmente, se destaca que el gráfico se enfoca en mostrar el comportamiento que ha presentado a través de los años, la cantidad de siniestros cuyo costo supera el monto de 900 euros, por lo que se omite de manera intencional aquellos siniestros con un costo de menor valor, puesto que estos no se contemplan en la pregunta de investigación; además, la imagen se apoya solo en las variables del año y del costo anual del siniestro, con el fin de simplificar la visualización al lector.
 
@@ -1208,6 +1234,8 @@ La decisión de elaborar los gráficos mostrados estuvo basada en determinados o
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, en torno al proceso de investigar, programar y escribir. Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos hace tres semanas? Dichas oraciones proceden a detallarse como sigue:
 
 -   Durante el desarrollo de la bitácora, se reflexionó acerca de la importancia de implementar un lenguaje accesible con el objetivo de comunicar los planteamientos e ideas a la mayor cantidad de personas posibles. Dado que el aseguramiento vehicular constituye un elemento presente en la realidad de sujetos que no se desempeñan en el ámbito actuarial o matemático, se adquirió el compromiso activo de mantener una comunicación comprensible para la mayoría de lectores, en busca de que estos logren formar una noción sobre los elementos que potencialmente intervienen en la frecuencia y la severidad de los siniestros reportados por las aseguradoras vehiculares, las cuales muchas veces utilizan esta información para fijar el monto de las primas pagadas por los clientes.
+
+- 
 
 ## Audiencia del proyecto
 
