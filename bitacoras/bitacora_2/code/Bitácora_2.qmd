@@ -1000,22 +1000,51 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 *Resumen argumentativo:* Lo que los autores intentan resolver es cómo modelar una variable de severidad la cual es los días de hospitalización la cual posee una gran cantidad de observaciones en 0; descubren que los modelos usados comúnmente como Poisson, no logran obtener un buen ajuste ya que estos modelos no se ajustan bien para datos con sobredispersión; es por esto que deciden hacer una comparación entre distribuciones como la binomial negativa y la Poisson-inversa gaussiana incorporando versiones cero infladas, para determinar cuál brinda el mejor ajuste. Para el proyecto, esta metodología es altamente aplicable, ya que la variable "Cost_claims_year" posee una concentración de datos en 0 y en 900. Por esto, para el proyecto se usará la comparación de distribuciones, además, para medir el impacto de cada variable en la severidad, se utilizará la interpretación de coeficientes mediante exp(β), donde valores mayores a 1 implican un aumento en la severidad y valores menores a 1 implican una disminución.
 :::
 
-# Implementación de la retroalimentación 
+# Implementación de la retroalimentación
 
-  → El registro de uso de IA no aparece con el formato exacto solicitado (Herramienta, Prompt, Respuesta, Evaluación, Modificaciones, Aprendizaje por consulta). Debe estructurarse con ese formato en la Bitácora #2. \
-    → La pregunta de investigación, aunque bien formulada y técnica, mezcla dos problemas en uno: la relación entre variables y el incremento abrupto en los 900. Esto genera complejidad metodológica que puede ser difícil de responder en un solo proyecto. Se recomienda reflexionar si estos son dos sub-preguntas que se abordarán en fases distintas o si una de ellas se prioriza.\
-    → El párrafo de argumentación de las preguntas descartadas es breve. Se necesita más desarrollo técnico de por qué las otras tres preguntas fueron menos viables (no solo decir 'menos pertinente', sino argumentar con datos disponibles, alcance del curso, etc.).\
-    → La parte de escritura (1-2 páginas resumiendo el estado del problema con citas) necesita incorporar más referencias bibliográficas activamente citadas en el texto. Actualmente cita a Frees y Melgar & Guerrero, pero el texto debería tener más densidad bibliográfica.\
-    → El diario de aprendizaje es muy breve (3 oraciones). Puede expandirse para reflejar aprendizajes específicos sobre el dominio actuarial, el manejo del dataset o el proceso de escritura científica.\
-    → Se identificó que la base de datos proviene de Mendeley Data / Universidad de Valencia, lo cual es legítimo. Sin embargo, la divisa y el origen geográfico exacto de los datos siguen siendo desconocidos según el propio grupo — esto debe resolverse antes de la Bitácora #2 porque afecta directamente la interpretabilidad de los resultados
+Las observaciones extendidas a partir de la revisión de la primera bitácora se efectuaron en torno a cuatro ejes: el contenido de la pregunta de investigación, la divisa y el origen geográfico de la base de datos, el registro del uso de inteligencia artificial y la extensión del diario de aprendizaje. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintos ejes.
 
-# Relativo al trabajo en equipo 
+## La pregunta de investigación
+
+En la primera bitácora, se formuló la siguiente pregunta de investigación:
+
+> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
+
+Como es posible notar, se abordan dos elementos: la relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Se señaló que, el afrontar los dos elementos mencionados en un mismo proyecto, podría traer consigo una considerable complejidad metodológica, de manera que se recomendó analizar a nivel de equipo la pregunta planteada.
+
+Así, tras discutir la situación, el equipo decidió mantener la pregunta de investigación. Sin embaro, con el objetivo de controlar posibles problemas originados por el factor del tiempo, se determinó que el elemento principal del proyecto será la primera parte de la propuesta: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros. En consecuencia, el desarrollo del trabajo se enfocará, en su mayoría, en resolver dicho problema.
+
+## La divisa y el origen geográfico de la base de datos
+
+Tras efectuar una exhaustiva investigación, se encontró en openICPSR, una plataforma destinada a la divulgación de datos de investigación en ciencias sociales y del comportamiento, que el origen geográfico de la base de datos efectivamente corresponde a España. De esta forma, se establece que la divisa utilizada para las variables monetarias es el euro.
+
+## El registro del uso de inteligencia artificial
+
+Una de las observaciones de la retroalimentación se dedicó a señalar que el apartado del uso de inteligencia artificial no seguía el formato exacto indicado. Así, en la presente bitácora se procuró que el contenido de dicho apartado siguiera la siguiente estructura:
+
+> • *Herramienta:* el nombre de la herramienta utilizada.
+>
+> • *Prompt:* el texto exacto de la consulta.
+>
+> • *Respuesta de la IA:* un resumen de la respuesta o una captura de pantalla.
+>
+> • *Evaluación:* ¿qué fue útil?, ¿qué estaba incorrecto o incompleto?
+>
+> • *Modificaciones:* ¿qué se cambió, se extendió o se reemplazó?
+>
+> • *Aprendizaje:* ¿qué nuevo aprendizaje se adquirió?
+
+## El diario de aprendizaje
+
+En lo que respecta al diario de aprendizaje, se mencionó que la extensión del mismo era muy breve; se sugirió expandirlo con tal de reflejar aprendizajes relacionados al campo actuarial, al manejo de la base de datos, así como al proceso de escritura científica. En respuesta a esta observación, se decidió incrementar no solo el número de aprendizajes adquiridos detallados, sino también la variedad de las temáticas que estos abordan.
+
+# Relativo al trabajo en equipo
 
 ## Rastro de decisiones
 
 Durante la elaboración de la segunda bitácora, el equipo se vio en la necesidad de tomar una serie de decisiones con el objetivo de desarrollar óptimamente las tareas requeridas. Dichas decisiones atrevesaron varios ejes, los cuales se detallan a continuación en compañía de los párrafos explicativos correspondientes.
 
-### Manejo de la pregunta de investigación planteada 
+### Manejo de la pregunta de investigación planteada
 
 La pregunta de investigación planteada aborda dos aspectos específicos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. A partir de esto, en la retroalimentación de la bitácora anterior, se señaló que el afrontar dos componentes podría traer consigo una alta complejidad metodológica, de manera que se recomendó discutir a nivel de equipo el manejo de la pregunta de investigación.
 
