@@ -218,8 +218,6 @@ A partir del contraste efectuado, se determina que la lectura de una sola fuente
 
 # Análisis estadísticos
 
-## Introducción
-
 En este apartado se presenta el análisis exploratorio de los datos del proyecto. Esta etapa permite comprender mejor la información disponible y sirve como base para el modelado estadístico que se desarrollará posteriormente.
 
 La pregunta de investigación que guía el análisis es la siguiente:
@@ -1074,6 +1072,8 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 |                                | Diario de aprendizaje                                 |
 |                                |                                                       |
 |                                | Construcción de fichas de resultados                  |
+|                                |                                                       |
+|                                | Construcción de fichas literarias                     |
 +--------------------------------+-------------------------------------------------------+
 
 \newpage
