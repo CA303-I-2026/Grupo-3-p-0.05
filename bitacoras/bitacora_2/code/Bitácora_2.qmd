@@ -920,8 +920,6 @@ datos_modificados %>%
 
 # Arco narrativo del proyecto
 
-# Diario de aprendizaje
-
 # Fichas literarias construidas en la segunda bitácora
 
 ::: callout-note
@@ -1004,13 +1002,17 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 *Resumen argumentativo:* Lo que los autores intentan resolver es cómo modelar una variable de severidad la cual es los días de hospitalización la cual posee una gran cantidad de observaciones en 0; descubren que los modelos usados comúnmente como Poisson, no logran obtener un buen ajuste ya que estos modelos no se ajustan bien para datos con sobredispersión; es por esto que deciden hacer una comparación entre distribuciones como la binomial negativa y la Poisson-inversa gaussiana incorporando versiones cero infladas, para determinar cuál brinda el mejor ajuste. Para el proyecto, esta metodología es altamente aplicable, ya que la variable "Cost_claims_year" posee una concentración de datos en 0 y en 900. Por esto, para el proyecto se usará la comparación de distribuciones, además, para medir el impacto de cada variable en la severidad, se utilizará la interpretación de coeficientes mediante exp(β), donde valores mayores a 1 implican un aumento en la severidad y valores menores a 1 implican una disminución.
 :::
 
-# Relativo al trabajo en equipo
+# Implementación de la retroalimentación 
+
+# Relativo al trabajo en equipo 
 
 ## Rastro de decisiones
 
-## Registro del uso de IA
+## Diario de aprendizaje
 
-## Log de contribuciones
+## Audiencia del proyecto
+
+## Registro del uso de IA
 
 ## Registro del trabajo en equipo
 
@@ -1073,10 +1075,6 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 |                                |                                                       |
 |                                | Construcción de fichas de resultados                  |
 +--------------------------------+-------------------------------------------------------+
-
-## Respuesta a la retroalimentación
-
-## Audiencia del proyecto
 
 \newpage
 
