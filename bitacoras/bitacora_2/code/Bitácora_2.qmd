@@ -393,7 +393,7 @@ knitr::kable(
   kableExtra::column_spec(2, width = "5cm")
 ```
 
-La base de datos confirma que cada persona puede tener múltiples registros anuales. Esta estructura longitudinal, mencionada en la Bitácora 1, es valiosa porque permite analizar la evolución del riesgo a través del tiempo usando variables como `N_claims_history` y `R_Claims_history`. Para análisis de perfil del asegurado se usará `datos_unicos` (una fila por asegurado, la renovación más reciente); para análisis de comportamiento anual, `datos_modificados`.
+La base de datos confirma que cada persona puede tener múltiples registros anuales. Esta estructura longitudinal, mencionada en la bitácora 1, es valiosa porque permite analizar la evolución del riesgo a través del tiempo usando variables como `N_claims_history` y `R_Claims_history`. Para el análisis del perfil del asegurado se usará `datos_unicos` (una fila por asegurado, la renovación más reciente); para el análisis del comportamiento anual, `datos_modificados`.
 
 #### Verificación del formato *tidy*
 
@@ -422,7 +422,7 @@ datos_modificados %>%
   )
 ```
 
-Se han seleccionado ciertas variables y las primeras 10 observaciones para mostrar que datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por ID. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
+Se han seleccionado ciertas variables y las primeras 10 observaciones para mostrar que los datos se encuentran en el formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por un ID. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
 
 ### Limpieza de datos
 
@@ -518,11 +518,11 @@ La variable Cost_claims_year presenta los valores extremos más marcados, lo cua
 
 En el caso de N_claims_year y N_claims_history, también se identifican valores atípicos, lo que sugiere que la mayoría de los asegurados registra pocos siniestros, mientras que algunos casos presentan una frecuencia mucho mayor. Esto es esperable en datos de seguros, donde los reclamos suelen concentrarse en una pequeña parte de los asegurados.
 
-Para la variable edad, los valores atípicos se ubican en edades muy altas, cercanas o superiores a los 100 años, por lo que conviene revisar si corresponden a registros válidos o posibles errores. Finalmente, Seniority muestra asegurados con una antigüedad considerablemente mayor que la mayoría, lo cual puede representar clientes de larga permanencia en la aseguradora.
+Para la variable de la edad, los valores atípicos se ubican en edades muy altas, cercanas o superiores a los 100 años, por lo que conviene revisar si corresponden a registros válidos o posibles errores. Finalmente, Seniority muestra asegurados con una antigüedad considerablemente mayor que la mayoría, lo cual puede representar clientes de larga permanencia en la aseguradora.
 
-### Tablas resumen de variables relevantes
+### Tablas resumen de las variables relevantes
 
-En esta sección se presentan tablas resumen elaboradas a partir de las variables más relevantes del conjunto de datos. En particular, se consideran variables asociadas con el perfil de los asegurados, la frecuencia de siniestros y los costos registrados, con el fin de identificar patrones generales que orienten el análisis posterior.
+En esta sección se presentan tablas resumen elaboradas a partir de las variables más relevantes del conjunto de datos. En particular, se consideran variables asociadas con el perfil de los asegurados, la frecuencia de los siniestros y los costos registrados, con el fin de identificar patrones generales que orienten el análisis posterior.
 
 ```{r tbl-categorias, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -572,11 +572,11 @@ knitr::kable(
   kableExtra::column_spec(6, width = "2.5cm")
 ```
 
-Primeramente, y como se observa en la @tbl-categorias, la distribución de la cartera muestra un claro predominio del tipo de vehículo Turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las Furgonetas con un 12.3%, seguidas por las Motocicletas con un 8.0%, mientras que la categoría Agrícola representa una proporción marginal.
+Primeramente, y como se observa en la @tbl-categorias, la distribución de la cartera muestra un claro predominio del tipo de vehículo turismo, que concentra el 79.0% de los asegurados, muy por encima del resto de categorías. En segundo lugar se encuentran las furgonetas con un 12.3%, seguidas por las motocicletas con un 8.0%, mientras que la categoría agrícola representa una proporción marginal.
 
-En términos de siniestralidad, se observa que la mayoría de los asegurados no presenta reclamos durante el año, con porcentajes superiores al 85% en todas las categorías y alcanzando incluso el 100% en el caso de los vehículos agrícolas. Este comportamiento evidencia una alta concentración de ceros en la variable de número de siniestros, lo cual resulta consistente con la necesidad de emplear modelos que capturen este fenómeno.
+En términos de siniestralidad, se observa que la mayoría de los asegurados no presenta reclamos durante el año, con porcentajes superiores al 85% en todas las categorías y alcanzando incluso el 100% en el caso de los vehículos agrícolas. Este comportamiento evidencia una alta concentración de ceros en la variable del número de siniestros, lo que resalta la necesidad de emplear modelos que capturen este fenómeno.
 
-Por otro lado, en referencia con la @tbl-zona, las Furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo Turismo muestran el mayor costo promedio por siniestro. En contraste, las Motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
+Por otro lado, en referencia con la @tbl-zona, las furgonetas presentan la mayor frecuencia promedio de siniestros, mientras que los vehículos tipo turismo muestran el mayor costo promedio por siniestro. En contraste, las motocicletas exhiben tanto una baja frecuencia como un bajo costo promedio, lo que sugiere un perfil de riesgo distinto. En conjunto, estas diferencias reflejan que el tipo de vehículo es una variable relevante para explicar tanto la frecuencia como la severidad de los siniestros dentro de la cartera analizada.
 
 ```{r tbl-zona, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -612,11 +612,11 @@ knitr::kable(
 
 La mayoría de los asegurados se concentra en zonas rurales, con un 72.7% del total, mientras que el 27.3% restante corresponde a zonas urbanas. En cuanto al comportamiento de los siniestros, se observan diferencias leves entre ambas zonas. La zona urbana presenta una mayor frecuencia promedio de siniestros por año, así como un costo promedio ligeramente superior en comparación con la zona rural.
 
-Aunque las diferencias no son particularmente pronunciadas, este patrón sugiere que la zona de circulación podría influir en la siniestralidad, posiblemente asociada a condiciones de tráfico, densidad vehicular u otros factores propios del entorno urbano. En este sentido, la variable de zona se perfila como un posible factor explicativo dentro del análisis, especialmente en relación con variaciones en la frecuencia y el costo de los siniestros.
+Aunque las diferencias no son particularmente pronunciadas, este patrón sugiere que la zona de circulación podría influir en la siniestralidad, posiblemente asociada a condiciones del tráfico, la densidad vehicular u otros factores propios del entorno urbano. En este sentido, la variable de zona se perfila como un posible factor explicativo dentro del análisis, especialmente en relación con las variaciones en la frecuencia y el costo de los siniestros.
 
 Con el fin de complementar este análisis exploratorio, se procedió a calcular estadísticas descriptivas para las variables numéricas, utilizando la función stat.desc() del paquete *pastecs* en R.
 
-Para ello, se calcularon medidas como número de observaciones, cantidad de valores nulos, mínimos, máximos, media, mediana, varianza, desviación estándar y coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
+Para ello, se calcularon medidas como el número de observaciones, la cantidad de valores nulos, los mínimos, los máximos, la media, la mediana, la varianza, la desviación estándar y el coeficiente de variación. En este proceso se excluyó la columna identificadora (ID), ya que corresponde únicamente a un identificador de registros y no aporta información estadística relevante para el análisis.
 
 ```{r tbl-estad-desc, echo=FALSE, warning=FALSE, message=FALSE}
 library(lubridate)
@@ -708,7 +708,7 @@ knitr::kable(
   kableExtra::column_spec(1, width = "2.3cm")
 ```
 
-Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable edad muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
+Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable de la edad muestra un rango amplio, entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable Seniority presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con un vínculo más prolongado con la compañía.
 
 En cuanto a la frecuencia de siniestros, la variable N_claims_year presenta una mediana igual a cero y una media de 0.39, evidenciando una alta concentración de valores nulos. Este patrón confirma la presencia de un exceso de ceros en la variable, lo cual resulta consistente con la necesidad de emplear modelos que capten este comportamiento. De manera similar, en la variable Cost_claims_year se observa una mediana de cero frente a una media considerablemente mayor, acompañada de un valor máximo extremadamente alto, lo que indica una distribución altamente asimétrica con cola derecha pesada. Esto sugiere que, aunque la mayoría de los asegurados no presenta costos por siniestros, existen pocos casos con costos muy elevados que influyen significativamente en el promedio.
 
@@ -716,7 +716,7 @@ Finalmente, las características del vehículo reflejan una flota relativamente 
 
 ### Visualización de datos
 
-Para esta sección de la investigación se presentarán distintos gráficos con información relevante para abordar la pregunta de investigación.
+A través de la presentación de distintos gráficos, se abordará información relevante para abordar la pregunta de investigación.
 
 ```{r, warning=FALSE, message=FALSE, echo= FALSE}
 # Data frame con las observaciones más recientes (eliminar duplicados)
@@ -728,7 +728,7 @@ datos_unicos <- datos_modificados %>%
 
 #### Análisis de gráficos
 
-En esta sección se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, estos son los que se muestran a continuación.
+En el presente subapartado se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, los cuales se muestran a continuación.
 
 Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre €1 y €5000.
 
@@ -800,7 +800,7 @@ También, se aprecia que los reclamos históricos tienden a acumularse ligeramen
 
 Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones. Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
 
-Por otra parte, la @fig-edad-num muestra una compraración de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
+Por otra parte, la @fig-edad-num muestra una comparación de dos gráficos, el primero muestra la relación entre la edad del asegurado y el número de siniestros por año, mientras que el segundo gráfico muestra la relación entre la edad del asegurado y el número de siniestros histórico.
 
 ```{r fig-edad-num, warning= FALSE, message=FALSE,echo=FALSE, fig.cap = "Gráfico comparativo entre edad y numero de siniestros por año y siniestros totales", fig.height= 5.5, fig.align='center'}
 
@@ -839,11 +839,11 @@ En el primer gráfico se observa que la mayoría de los asegurados presenta poco
 
 En el segundo gráfico, correspondiente al número histórico de siniestros, se observa una ligera tendencia creciente conforme aumenta la edad. Sin embargo, esta relación debe interpretarse con cuidado, ya que el número histórico de siniestros puede aumentar no solo por la edad del asegurado, sino también por el tiempo que la persona ha permanecido asegurada o por la cantidad de años acumulados dentro de la póliza. Por tanto, el incremento observado podría estar más relacionado con la exposición acumulada que con un mayor riesgo asociado directamente a la edad.
 
-En general, los gráficos sugieren que la edad por sí sola no explica de forma fuerte la frecuencia de siniestros anuales. Para el historial de siniestros sí se observa un aumento leve, pero este podría estar influenciado por la antigüedad del asegurado y no únicamente por su edad
+En general, los gráficos sugieren que la edad por sí sola no explica de forma fuerte la frecuencia de siniestros anuales. Para el historial de siniestros sí se observa un aumento leve, pero este podría estar influenciado por la antigüedad del asegurado y no únicamente por su edad.
 
-La @fig-violin-combinado muestra la comparación entre la frecuencia y costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola.
+La @fig-violin-combinado muestra la comparación entre la frecuencia y el costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola.
 
-![Gráfico comparativo entre el número y costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
+![Gráfico comparativo entre el número y el costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_2/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
 
 ```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 
@@ -887,15 +887,15 @@ ggsave("../../../bitacoras/bitacora_2/figuras/violin_combinado.png", violin_comb
 
 ```
 
-En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados. Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores. Esta situación es visible principalmente en los turismos y furgonetas, donde la distribución se extiende hacia valores más altos.
+En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados. Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores. Esta situación es visible principalmente en los vehículos de turismo y las furgonetas, donde la distribución se extiende hacia valores más altos.
 
-En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículo, aunque también se observan algunos valores elevados. Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
+En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículos, aunque también se observan algunos valores elevados. Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a la ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
 
-En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los turismos presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que estos tipos de vehículo podrían estar asociados con una mayor exposición al riesgo o con un uso más frecuente.
+En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los vehículos de turismo presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que tales categorías de vehículo podrían estar asociadas con una mayor exposición al riesgo o con un uso más frecuente.
 
-A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los turismos muestran mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
+A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los vehículos de turismo muestran una mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
 
-La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo, peso, largo, potencia, cilindraje y número de puertas, en los casos en donde se supera el umbral de los €900.
+La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo: el peso, el largo, la potencia, el cilindraje y el número de puertas, en los casos en donde se supera el umbral de los 900 euros.
 
 ```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 peso_costo <- datos_modificados %>% 
@@ -966,17 +966,17 @@ caracteristicas_costo <- plot_grid(peso_costo, largo_costo, potencia_costo, cili
 ggsave("../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png", caracteristicas_costo, width = 10, height = 11, dpi = 300)
 ```
 
-![Gráfico comparativo de características físicas del vehículo que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="90%"}
+![Gráfico comparativo de las características físicas del vehículo, en casos que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="90%"}
 
-En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y cilindradas alrededor de 1400 a 2000. Esto sugiere que los siniestros con costos superiores a €900 no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados a turismos de uso común.
+En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y un cilindraje alrededor de 1400 a 2000. Lo anterior sugiere que los siniestros con costos superiores a 900 euros no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados al turismo, de uso común.
 
-En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas. Esto puede indicar que los reclamos superiores a €900 se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
+En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas. Esto puede indicar que los reclamos superiores a 900 euros se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
 
-También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberían revisarse antes de sacar conclusiones definitivas.
+También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberán revisarse antes de sacar conclusiones definitivas.
 
-El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
+El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a 900 euros, el cual contempla información del año 1980 hasta el 2018.
 
-Por otro lado, la @fig-num-sin, muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
+Por otro lado, la @fig-num-sin, muestra la distribución del número de siniestros con costo por año mayor a 900 euros, el cual contempla información del año 1980 hasta el 2018.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 costos_anyo <- datos_modificados %>% 
@@ -998,11 +998,11 @@ ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png",costos
 
 ```
 
-![Distribución del número de siniestros por año mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){#fig-num-sin width="90%"}
+![Distribución del número de siniestros por año, con costos mayores a €900](../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo.png){#fig-num-sin width="90%"}
 
-Se observa que estos casos se concentran principalmente en los años más recientes, especialmente entre 2014 y 2017. Esto podría deberse a que la base contiene más registros en esos años, por lo que el aumento no necesariamente implica un mayor riesgo, sino una mayor cantidad de pólizas observadas. Por esta razón, conviene complementar este gráfico con una proporción por año, es decir, comparar los casos mayores a €900 contra el total de registros de cada año.
+Se observa que estos casos se concentran principalmente en los años más recientes, especialmente entre 2014 y 2017. Esto podría deberse a que la base contiene más registros en esos años, por lo que el aumento no necesariamente implica un mayor riesgo, sino una mayor cantidad de pólizas observadas. Por esta razón, conviene complementar este gráfico con una proporción por año, es decir, comparar los casos mayores a 900 euros contra el total de registros de cada año.
 
-Finalmente, la @fig-cost-zona muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos en donde se supera el rango de los €900.
+Finalmente, la @fig-cost-zona muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos de acuerdo al costo de los 900 euros.
 
 ```{r fig-cost-zona, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
 
@@ -1052,9 +1052,9 @@ ggsave("../../../bitacoras/bitacora_2/figuras/costo_siniestro_zona.png",costo_si
 
 ```
 
-En ambos casos predominan ampliamente los siniestros con costos menores a €900, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
+En ambos casos predominan ampliamente los siniestros con costos menores a 900 euros, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
 
-Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a €900 como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
+Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a 900 euros como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
 
 ## Fichas de resultados
 
@@ -1121,7 +1121,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Resumen en una oración:* Los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
 
-*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con Cost_claims_year > 900.
+*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con Cost_claims_year \> 900.
 
 *Evidencia:* La @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
 
@@ -1145,6 +1145,10 @@ A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor vi
 Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se decidió optar por una imagen que representara el segundo elemento abordado en la propuesta. Además de lo mencionado anteriormente, otro criterio de selección del gráfico consistió en la trazabilidad del fenómeno: comprender el comportamiento que ha tenido, a través de los años, el número de siniestros cuyo costo supera el monto indicado, representa un buen primer acercamiento al problema, así como una herramienta fundamental en el proceso de descomposición del fenómeno, puesto que permite la identificación de eventualidades particulares en años determinados y su potencial asociación con el comportamiento presentado por las demás variables. Seguidamente, a partir de la observación del gráfico y en el contexto del aseguramiento, alguien podría distinguir dos cosas: en ciertos años la cantidad de siniestros cuyo costo supera los 900 euros ha incrementado, mientras que en otros años la cantidad ha dismuido; a partir de esto, se podría tomar la decisión de estudiar a profundidad los elementos que incidieron en la presencia de tales eventos, con el objetivo de poseer un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y resguardar la capacidad de pago de la aseguradora. Finalmente, se destaca que el gráfico se enfoca en mostrar el comportamiento que ha presentado a través de los años, la cantidad de siniestros cuyo costo supera el monto de 900 euros, por lo que se omite de manera intencional aquellos siniestros con un costo de menor valor, puesto que estos no se contemplan en la pregunta de investigación; además, la imagen se apoya solo en las variables del año y del costo anual del siniestro, con el fin de simplificar la visualización al lector.
 
 # Arco narrativo del proyecto
+
+Al explorar los datos, se descubrió
+
+lo que obliga al equipo a repensar cómo se abordará el problema planteado.
 
 # Fichas literarias construidas en la segunda bitácora
 
@@ -1292,18 +1296,17 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   Durante el desarrollo de la bitácora, se reflexionó acerca de la importancia de implementar un lenguaje accesible con el objetivo de comunicar los planteamientos e ideas a la mayor cantidad de personas posibles. Dado que el aseguramiento vehicular constituye un elemento presente en la realidad de sujetos que no se desempeñan en el ámbito actuarial o matemático, se adquirió el compromiso activo de mantener una comunicación comprensible para la mayoría de lectores, en busca de que estos logren formar una noción sobre los elementos que potencialmente intervienen en la frecuencia y la severidad de los siniestros reportados por las aseguradoras vehiculares, las cuales muchas veces utilizan esta información para fijar el monto de las primas pagadas por los clientes.
 
-- Además, se fortaleció la comprensión del análisis descriptivo como una etapa clave para conocer la estructura de los datos. A partir de la revisión de tablas, valores faltantes, valores atípicos y gráficos, se aprendió a identificar patrones iniciales sin llegar a conclusiones apresuradas. En adición a esto, se comprendió que la literatura consultada no solo funciona como respaldo teórico, sino también como una guía para interpretar los resultados y orientar los siguientes pasos del proyecto. Este proceso permitió conectar mejor los hallazgos descriptivos con la pregunta de investigación
+-   Además, se fortaleció la comprensión del análisis descriptivo como una etapa clave para conocer la estructura de los datos. A partir de la revisión de tablas, valores faltantes, valores atípicos y gráficos, se aprendió a identificar patrones iniciales sin llegar a conclusiones apresuradas. En adición a esto, se comprendió que la literatura consultada no solo funciona como respaldo teórico, sino también como una guía para interpretar los resultados y orientar los siguientes pasos del proyecto. Este proceso permitió conectar mejor los hallazgos descriptivos con la pregunta de investigación
 
 -   A partir de la construcción de los gráficos, se aprendió que no solamente consiste en hacer gráficos sin decisiones detrás, durante el proceso de la creación de gráficos se pensaron y descartaron diversos gráficos por distintas razones, ya sea que no estaban alineados con la pregunta de investigación u otros motivos, además de esto, se aprendió que en algunas ocasiones es necesario cambiar la escala de alguno de los ejes para que la visualización del gráfico sea lo mejor posible; y se reconoció el papel importante que toma la selección de un determinado estilo para todos los gráficos, para que así todos se vean más homogéneos entre sí.
 
--   Se aprendió que la escritura científica exige un proceso de revisión constante, pues, al releer secciones redactadas anteriormente, se identificaron ideas que, aunque correctas, podían expresarse con mayor precisión o cohesión. Esto evidenció que escribir bien no es un resultado inmediato, sino el producto de múltiples iteraciones sobre un mismo texto.
+-   Se aprendió que la escritura científica exige un proceso de revisión constante, pues, al releer secciones redactadas anteriormente, se identificaron ideas que, aunque correctas, podían expresarse con mayor precisión o cohesión. Esto evidenció que la óptima escritura no es un resultado inmediato, sino el producto de múltiples iteraciones sobre un mismo texto.
 
--   A través de la construcción de los enlaces de la literatura, se comprendió que las fuentes consultadas se conectan entre sí, es decir, que no son elementos aislados. Identificar dónde dos autores coinciden o se contradicen permite desarrollar una lectura más crítica y activa, más allá de simplemente acumular referencias.
-
+-   A través de la construcción de los enlaces de la literatura, se comprendió que las fuentes consultadas se conectan entre sí, es decir, que no son elementos aislados. Identificar dónde dos autores coinciden o se contradicen permite desarrollar una lectura mayormente crítica y activa, más allá de solo acumular referencias.
 
 ## Audiencia del proyecto
 
-Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los €900 y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
+Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los 900 euros y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
 
 ## Registro del uso de IA
 
