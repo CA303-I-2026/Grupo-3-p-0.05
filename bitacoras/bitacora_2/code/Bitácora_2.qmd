@@ -943,7 +943,8 @@ cilindraje_costo <- datos_modificados %>%
      subtitle = "Filtrado por costo de siniestro por año mayor a €900",
      x = "Capacidad de cilindraje",
      y = "Cantidad")+
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.title = element_text(face = "bold", size = 11.65)) # Solución para que el título no se corte
 
 puertas_costo <- datos_modificados %>% 
   filter(Cost_claims_year >= 900) %>% 
