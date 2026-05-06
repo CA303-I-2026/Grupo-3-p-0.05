@@ -1299,6 +1299,10 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   A partir de la construcción de los gráficos, se aprendió que no solamente consiste en hacer gráficos sin decisiones detrás, durante el proceso de la creación de gráficos se pensaron y descartaron diversos gráficos por distintas razones, ya sea que no estaban alineados con la pregunta de investigación u otros motivos, además de esto, se aprendió que en algunas ocasiones es necesario cambiar la escala de alguno de los ejes para que la visualización del gráfico sea lo mejor posible; y se reconoció el papel importante que toma la selección de un determinado estilo para todos los gráficos, para que así todos se vean más homogéneos entre sí.
 
+-   Se aprendió que la escritura científica exige un proceso de revisión constante, pues, al releer secciones redactadas anteriormente, se identificaron ideas que, aunque correctas, podían expresarse con mayor precisión o cohesión. Esto evidenció que la óptima escritura no es un resultado inmediato, sino el producto de múltiples iteraciones sobre un mismo texto.
+
+-   A través de la construcción de los enlaces de la literatura, se comprendió que las fuentes consultadas se conectan entre sí, es decir, que no son elementos aislados. Identificar dónde dos autores coinciden o se contradicen permite desarrollar una lectura mayormente crítica y activa, más allá de solo acumular referencias.
+
 ## Audiencia del proyecto
 
 Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los €900 y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
