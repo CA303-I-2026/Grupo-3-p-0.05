@@ -205,6 +205,16 @@ En referencia a lo planteado por @vinuesa2016, se percibe que el contenido de am
 
 A partir del contraste desarrollado, es posible identificar que, si bien el documento de @patel2025 constituye una breve introducción al análisis de correlación, su contenido se limita a expresar este último como un conjunto de conceptualizaciones, lejos de entenderlo como un fenómeno matemático complejo bajo el cual subyace la interacción de una diversidad de elementos. Asimismo, en vista de que su objetivo radica únicamente en brindar una idea en torno al concepto de correlación, se priva al lector de información que podría guiarlo en la potencial implementación de dicha herramienta de acuerdo a las características de los datos, en consecuencia, se limita la trascendentalidad de la fuente.
 
+### Vinuesa (2016)
+
+#### *Correlación: teoría y práctica*
+
+En el presente documento, @vinuesa2016 aborda el concepto de la correlación, definiéndola como la relación lineal entre variables cuantitativas continuas. Señala que la misma se expresa a través de un coeficiente cuyos valores se sitúan entre menos uno y uno, donde ambos extremos indican la presencia de una perfecta correlación, negativa y positiva respectivamente. De igual modo, el autor hace hincapié en que el coeficiente, por sí mismo, es un indicador de la intensidad de la correlación, a la vez que brinda una lista de cuatro intervalos de valores para el coeficiente, en los que se clasifica el grado de correlación en despreciable, bajo, medio y alto. Por otro lado, Vinuesa ahonda en la idea intuitiva que subyace al concepto: la correlación se define en términos de la varianza y la covarianza de las variables, de forma que constituye una medida de su variación conjunta. Sin embargo, resalta que el obstáculo en utilizar la covarianza como medida de relación, se ubica en que la misma no es una medida estandarizada: no es posible emplearla para evaluar variables cuyas unidades de medida sean distintas. En vista de esto, se presenta el coeficiente de Pearson, el cual busca solucionar el problema de la dependencia a las unidades de medición, al normalizar la covarianza tras dividirla con la desviación estándar, convirtiéndose en un coeficiente estandarizado. Es importante considerar que, en vías de desarrollar pruebas de significancia bajo el estadístico de Pearson, se requiere que las variables sean cuantitativas continuas, además de estar normalmente distribuidas. Esto último corresponde a una característica que no todas las variables poseen, en cuyo caso se introduce el coeficiente de Kendall, que al ser no paramétrico, resulta útil cuando las variables no siguen una distribución normal; en particular, el autor recomienda su uso en bases de datos pequeñas, que presentan muchos valores concentrados en el mismo rango. Finalmente, se aborda el coeficiente de determinación, que corresponde al coeficiente de correlación elevado al cuadrado; dicha herramienta mide la cantidad de la varianza total de la variable dependiente, que se explica a partir de la variable independiente.
+
+En referencia a lo planteado por @patel2025, se determina que el contenido de los documentos se complementa, de manera que su lectura conjunta proporciona al lector una idea mayormente estructurada sobre el análisis de correlación. Por su parte, Patel se enfoca en introducir el análisis de correlación, a la vez que destaca su aplicabilidad en diversos contextos, dentro de los cuales se encuentran la toma de decisiones, la selección de variables para la modelación, así como la investigación y la prueba de hipótesis. Si bien la autora menciona ciertas limitaciones del concepto, se olvida de esclarecer un punto importante que @vinuesa2016 menciona: la correlación no implica necesariamente causalidad, debido a que es posible que la misma sea fortuita, ocasionada por la intervención de una tercera variable. En lo que respecta a Vinuesa, el autor profundiza en mayor medida en la teoría del análisis de correlación, sin embargo, no expone su potencial uso en escenarios relevantes, de manera que su acercamiento al concepto puede resultar rígido, al igual que distante de la realidad del lector. Asimismo, a diferencia de Patel, presenta ciertas medidas estadísticas mediante las cuales es posible evaluar la correlación entre las variables: el coeficiente de determinación, de Pearson y de Kendall.
+
+A partir del contraste efectuado, se determina que la lectura de una sola fuente de las dos utilizadas, no es suficiente para construir una idea sólida en torno al análisis de correlación, puesto que ambos recursos abordan el concepto con objetivos diferentes. El texto de Vinuesa proporciona al lector una guía de las posibles herramientas a utilizar con la meta de estudiar la correlación entre las variables, no obstante, se olvida de argumentar la importancia del concepto que plantea, pues si bien profundiza en la intuición teórica detrás de él, no comunica el rol que este podría ocupar en situaciones que le conciernen al receptor.
+
 ### Goldburd et al. (2025)
 
 #### *Generalized Linear Models for Insurance Rating*
@@ -919,8 +929,6 @@ datos_modificados %>%
 
 # Arco narrativo del proyecto
 
-# Diario de aprendizaje
-
 # Fichas literarias construidas en la segunda bitácora
 
 ::: callout-note
@@ -1003,13 +1011,17 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 *Resumen argumentativo:* Lo que los autores intentan resolver es cómo modelar una variable de severidad la cual es los días de hospitalización la cual posee una gran cantidad de observaciones en 0; descubren que los modelos usados comúnmente como Poisson, no logran obtener un buen ajuste ya que estos modelos no se ajustan bien para datos con sobredispersión; es por esto que deciden hacer una comparación entre distribuciones como la binomial negativa y la Poisson-inversa gaussiana incorporando versiones cero infladas, para determinar cuál brinda el mejor ajuste. Para el proyecto, esta metodología es altamente aplicable, ya que la variable "Cost_claims_year" posee una concentración de datos en 0 y en 900. Por esto, para el proyecto se usará la comparación de distribuciones, además, para medir el impacto de cada variable en la severidad, se utilizará la interpretación de coeficientes mediante exp(β), donde valores mayores a 1 implican un aumento en la severidad y valores menores a 1 implican una disminución.
 :::
 
-# Relativo al trabajo en equipo
+# Implementación de la retroalimentación 
+
+# Relativo al trabajo en equipo 
 
 ## Rastro de decisiones
 
-## Registro del uso de IA
+## Diario de aprendizaje
 
-## Log de contribuciones
+## Audiencia del proyecto
+
+## Registro del uso de IA
 
 ## Registro del trabajo en equipo
 
@@ -1072,10 +1084,6 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 |                                |                                                       |
 |                                | Construcción de fichas de resultados                  |
 +--------------------------------+-------------------------------------------------------+
-
-## Respuesta a la retroalimentación
-
-## Audiencia del proyecto
 
 \newpage
 
