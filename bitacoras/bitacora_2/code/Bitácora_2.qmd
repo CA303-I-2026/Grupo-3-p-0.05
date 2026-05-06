@@ -743,6 +743,19 @@ datos_modificados %>%
        y = "Cantidad",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   estilo_grupo3
+
+costos_anyo_total <- datos_modificados %>%
+  filter(Cost_claims_year > 0 & Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Cost_claims_year)) +
+  geom_histogram(bins=70, fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0, 5000, 500)) +
+  labs(title = "Distribución del costo de siniestros por año",
+       x = "Costo de Reclamos",
+       y = "Cantidad",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo_total.png",costos_anyo_total, width = 11, height = 7, dpi = 300)
 ```
 
 El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los €500. Sin embargo, destaca un pico pronunciado alrededor de los €900, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
@@ -763,6 +776,22 @@ datos_unicos %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   estilo_grupo3 +
   theme(plot.caption = element_text(hjust = 1.4))
+
+dispersion_edad_h_reclamos <- datos_unicos %>% 
+  ggplot(aes(x = edad, y = N_claims_history)) +
+  geom_hex(bins = 55) + # Divide en hexágonos y cuenta
+  scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + # Color según densidad
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + # Crear una regresión lineal
+  scale_x_continuous(breaks = seq(20,100,10)) +
+  labs(title = "Relación entre Edad e histórico de reclamos",
+       x = "Edad", 
+       y = "Número de reclamos",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.4))
+
+ggsave("../../../bitacoras/bitacora_2/figuras/dispersion_edad_h_reclamos.png",dispersion_edad_h_reclamos, width = 11, height = 7, dpi = 300)
+
 ```
 
 La mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
@@ -800,6 +829,9 @@ siniestros_historico <- datos_unicos %>%
   estilo_grupo3
 
 plot_grid(siniestros_anyo,siniestros_historico,ncol=1)
+dispersion_comparativo_siniestros_anyo_historico <- plot_grid(siniestros_anyo,siniestros_historico,ncol=1)
+
+ggsave("../../../bitacoras/bitacora_2/figuras/dispersion_comparativo_siniestros_anyo_historico.png",dispersion_comparativo_siniestros_anyo_historico, width = 8, height = 7, dpi = 300)
 
 ```
 
@@ -993,6 +1025,30 @@ datos_modificados %>%
        fill = "Costo del siniestro") +
   estilo_grupo3 +
   theme(plot.caption = element_text(hjust = 1.5)) # Mover la fuente a la derecha
+
+costo_siniestro_zona <- datos_modificados %>% 
+  filter(is.finite(Cost_claims_year) & is.finite(Area)) %>% 
+  mutate(zona = ifelse(Area == 0, "Rural", "Urbano"),
+         rango = ifelse(Cost_claims_year >= 900, ">= €900", "< €900")) %>% 
+  group_by(zona, rango) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = zona, y = conteo, fill= rango)) +
+  geom_col(position = "dodge") + # Separar las columnas
+  geom_text(aes(label = scales::comma(conteo)), # Poner coma en los miles de los conteos
+             position = position_dodge(width = 0.9), # Mover a la derecha las columnas pequeñas
+            vjust = -0.4) +
+  scale_y_continuous(breaks = seq(0,75000,15000), labels = scales::comma) + # Poner coma en los miles del eje y
+  scale_fill_manual(values = c(paleta_pamplemousse[1], paleta_pamplemousse[6])) +
+  labs(title = "Distribución del costo de los siniestros por zona",
+       x = "Zona",
+       y = "Cantidad de siniestros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+       fill = "Costo del siniestro") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.5)) # Mover la fuente a la derecha
+
+ggsave("../../../bitacoras/bitacora_2/figuras/costo_siniestro_zona.png",costo_siniestro_zona, width = 11, height = 7, dpi = 300)
+
 ```
 
 En ambos casos predominan ampliamente los siniestros con costos menores a €900, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
