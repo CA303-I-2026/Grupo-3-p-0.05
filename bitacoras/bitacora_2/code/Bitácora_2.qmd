@@ -964,7 +964,6 @@ En ambos casos predominan ampliamente los siniestros con costos menores a €900
 
 Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a €900 como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
 
-
 ## Fichas de resultados
 
 ::: callout-note
@@ -999,10 +998,7 @@ A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor vi
 
 ![](images/distibucion_costo_anyo.png){fig-align="center"}
 
-Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se seleccionó
-¿Por qué eligieron este gráfico y no otro?
-¿Qué decisión podría tomar alguien viendo solo este gráfico?
-¿Qué omite intencionalmente? ¿Qué simplifica?
+Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se seleccionó ¿Por qué eligieron este gráfico y no otro? ¿Qué decisión podría tomar alguien viendo solo este gráfico? ¿Qué omite intencionalmente? ¿Qué simplifica?
 
 # Arco narrativo del proyecto
 
@@ -1091,6 +1087,40 @@ La metodología propuesta en el artículo es altamente aplicable al proyecto de 
 # Implementación de la retroalimentación
 
 Las observaciones extendidas a partir de la revisión de la primera bitácora se efectuaron en torno a cuatro ejes: el contenido de la pregunta de investigación, la divisa y el origen geográfico de la base de datos, el registro del uso de inteligencia artificial y la extensión del diario de aprendizaje. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintos ejes.
+
+## La pregunta de investigación
+
+En la primera bitácora, se formuló la siguiente pregunta de investigación:
+
+> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
+
+Como es posible notar, se abordan dos elementos: la relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Se señaló que, el afrontar los dos elementos mencionados en un mismo proyecto, podría traer consigo una considerable complejidad metodológica, de manera que se recomendó analizar a nivel de equipo la pregunta planteada.
+
+Así, tras discutir la situación, el equipo decidió mantener la pregunta de investigación. Sin embaro, con el objetivo de controlar posibles problemas originados por el factor del tiempo, se determinó que el elemento principal del proyecto será la primera parte de la propuesta: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros. En consecuencia, el desarrollo del trabajo se enfocará, en su mayoría, en resolver dicho problema.
+
+## La divisa y el origen geográfico de la base de datos
+
+Tras efectuar una exhaustiva investigación, se encontró en openICPSR, una plataforma destinada a la divulgación de datos de investigación en ciencias sociales y del comportamiento, que el origen geográfico de la base de datos efectivamente corresponde a España. De esta forma, se establece que la divisa utilizada para las variables monetarias es el euro.
+
+## El registro del uso de inteligencia artificial
+
+Una de las observaciones de la retroalimentación se dedicó a señalar que el apartado del uso de inteligencia artificial no seguía el formato exacto indicado. Así, en la presente bitácora se procuró que el contenido de dicho apartado siguiera la siguiente estructura:
+
+> • *Herramienta:* el nombre de la herramienta utilizada.
+>
+> • *Prompt:* el texto exacto de la consulta.
+>
+> • *Respuesta de la IA:* un resumen de la respuesta o una captura de pantalla.
+>
+> • *Evaluación:* ¿qué fue útil?, ¿qué estaba incorrecto o incompleto?
+>
+> • *Modificaciones:* ¿qué se cambió, se extendió o se reemplazó?
+>
+> • *Aprendizaje:* ¿qué nuevo aprendizaje se adquirió?
+
+## El diario de aprendizaje
+
+En lo que respecta al diario de aprendizaje, se mencionó que la extensión del mismo era muy breve; se sugirió expandirlo con tal de reflejar aprendizajes relacionados al campo actuarial, al manejo de la base de datos, así como al proceso de escritura científica. En respuesta a esta observación, se decidió incrementar no solo el número de aprendizajes adquiridos detallados, sino también la variedad de las temáticas que estos abordan.
 
 # Relativo al trabajo en equipo
 
