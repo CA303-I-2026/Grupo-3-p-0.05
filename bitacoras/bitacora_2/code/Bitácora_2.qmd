@@ -148,11 +148,11 @@ Con el objetivo de crear un espacio de interacción entre las fuentes empledas, 
 
 #### *Modelos predictivos del riesgo y aplicaciones a los seguros*
 
-> **Resumen:**
+A lo largo del capítulo, @guillen2021 profundiza en la modelación de la frecuencia y la cuantía de los siniestros para predecir el valor esperado de ambas variables. En el caso de la frecuencia, explica que el modelo básico para predecir el número esperado de siniestros corresponde al modelo de Poisson, cuyos parámetros se estiman a través de la máxima verosimilitud, además, señala que en muchos casos suele presentarse una sobredispersión en los datos o un exceso de ceros, por lo que se aconseja emplear ciertas extensiones del modelo básico de Poisson, por ejemplo, el modelo binomial negativo. En lo que respecta a la cuantía, las autoras esclarecen que es posible utilizar el modelo Gamma para predecir su valor esperado, en el cual la variable sea estrictamente positiva; de igual manera, los parámetros son estimados a partir de la máxima verosimilitud. Por otro lado, se resalta que el uso de elementos telemáticos, como lo son el total de kilómetros recorridos, el número de trayectos realizados, la velocidad media de cada trayecto, la detención abrupta y las aceleraciones, permite acceder a un mayor conocimiento del riesgo y por lo tanto, mejora la modelación del valor esperado de la frecuencia y la cuantía.
 
-> **Contraste:**
->
-> **Contribución propia:**
+En el recurso titulado *Modeling the frequency and severity of auto insurance claims using statistical distributions,* @omari201modeling proporcionan una guía en torno a la modelación de la frecuencia y la severidad de los reclamos en seguros de automóviles; así, se identifican algunos puntos de encuentro entre esta fuente y lo planteado por @guillen2021 . En primera instancia, dentro de las distribuciones recomendadas por @omari2018modeling para modelar la frecuencia de los reclamos, se sitúa la distribución binomial negativa, que concuerda con lo aconsejado por los autores del presente subapartado. Asimismo, el escenario análogo se presenta en la modelación de la severidad o cuantía de los siniestros, de manera que los dos recursos definen a la distribución Gamma como una opción viable. En segunda instancia, se visualiza que ambos documentos emplean el método de la máxima verosimilitud para estimar los parámetros de las distribuciones utilizadas en los modelos, puesto que el mismo aprovecha al máximo toda la información de los parámetros contenida en la base de datos.
+
+Finalmente, a partir del contraste realizado, se concluye que los planteamientos de las fuentes están alineados. Si bien ambos recursos proponen el uso de la distribución binomial negativa para modelar la frecuencia de los siniestros y la distribución Gamma para modelar la cuantía de los mismos, es preciso destacar la necesidad de analizar las características de los datos con los que se trabaja, ya que de acuerdo al rubro anterior, es posible que varíe la selección del modelo que mejor se ajusta al contexto.
 
 ## Sección metodológica
 
@@ -730,9 +730,7 @@ datos_unicos <- datos_modificados %>%
 
 En esta sección se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, estos son los que se muestran a continuación.
 
-Como se observa en la @fig-costo-reclamos, se presenta la distribución 
-del costo de los siniestros por año, considerando únicamente los registros 
-con costo entre €1 y €5000.
+Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre €1 y €5000.
 
 ```{r fig-costo-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo de siniestros por año", fig.align='center'}
 datos_modificados %>%
@@ -746,6 +744,7 @@ datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   estilo_grupo3
 ```
+
 El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los €500. Sin embargo, destaca un pico pronunciado alrededor de los €900, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
 
 Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
@@ -1058,7 +1057,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor visualización del trabajo:
 
-
+![](images/distibucion_costo_anyo.png){fig-align="center"}
 
 Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se decidió optar por una imagen que representara el segundo elemento abordado en la propuesta. Además de lo mencionado anteriormente, otro criterio de selección del gráfico consistió en la trazabilidad del fenómeno: comprender el comportamiento que ha tenido, a través de los años, el número de siniestros cuyo costo supera el monto indicado, representa un buen primer acercamiento al problema, así como una herramienta fundamental en el proceso de descomposición del fenómeno, puesto que permite la identificación de eventualidades particulares en años determinados y su potencial asociación con el comportamiento presentado por las demás variables. Seguidamente, a partir de la observación del gráfico y en el contexto del aseguramiento, alguien podría distinguir dos cosas: en ciertos años la cantidad de siniestros cuyo costo supera los 900 euros ha incrementado, mientras que en otros años la cantidad ha dismuido; a partir de esto, se podría tomar la decisión de estudiar a profundidad los elementos que incidieron en la presencia de tales eventos, con el objetivo de poseer un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y resguardar la capacidad de pago de la aseguradora. Finalmente, se destaca que el gráfico se enfoca en mostrar el comportamiento que ha presentado a través de los años, la cantidad de siniestros cuyo costo supera el monto de 900 euros, por lo que se omite de manera intencional aquellos siniestros con un costo de menor valor, puesto que estos no se contemplan en la pregunta de investigación; además, la imagen se apoya solo en las variables del año y del costo anual del siniestro, con el fin de simplificar la visualización al lector.
 
