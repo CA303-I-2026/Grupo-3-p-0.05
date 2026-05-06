@@ -401,11 +401,28 @@ Antes de continuar con el análisis, se verificó que la base de datos tuviera u
 
 ```{r verificacion-tidy, echo=FALSE}
 
-#head(datos_modificados, 10)
-
+datos_modificados %>%
+  select(
+    ID, Date_birth, Seniority, N_claims_history, Value_vehicle, N_claims_year, Cost_claims_year      
+  ) %>%
+  head(10) %>%
+  kable(
+    caption = "Verificación de formato Tidy",
+    booktabs = TRUE, 
+    longtable = TRUE,
+    linesep = "",
+    col.names = c("ID", "F. Nacimiento", "Antigüedad", "Hist. Siniestros", 
+                  "Valor Vehículo", "N Siniestros", "Costo Anual")
+  ) %>%
+  kable_styling(
+    latex_options = c("striped", "hold_position", "repeat_header", "scale_down"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 10
+  )
 ```
 
-Los datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por `ID`. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
+Se han seleccionado ciertas variables y las primeras 10 observaciones para mostrar que datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por ID. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
 
 ### Limpieza de datos
 
@@ -460,7 +477,7 @@ Dado este comportamiento, en los análisis posteriores se excluirá la variable 
 
 #### Detección de valores atípicos (*outliers*)
 
-Como parte de la exploración inicial de los datos, se revisó la presencia de valores atípicos en las variables más relevantes del estudio. Esta se ve representada mediante la @grafico-outliers.
+Como parte de la exploración inicial de los datos, se revisó la presencia de valores atípicos en las variables más relevantes del estudio. Esta se ve representada en el siguiente gráfico:
 
 ```{r grafico-outliers, echo=FALSE, fig.cap="Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
 
@@ -1024,7 +1041,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Método o análisis que lo produjo:* Este hallazgo se obtuvo mediante estadísticos descriptivos calculados con la función stat.desc() del paquete pastecs, complementados con tablas resumen por tipo de vehículo y zona. Se observó que la mediana de N_claims_year y Cost_claims_year es igual a cero, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
 
-*Evidencia:* La Tabla 6 de la segunda bitácora muestra que la mediana de N_claims_year es 0 frente a una media de 0.39, y que la mediana de Cost_claims_year es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la Tabla 4 de la segunda bitácora refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
+*Evidencia:* La @tbl-estad-desc muestra que la mediana de N_claims_year es 0 frente a una media de 0.39, y que la mediana de Cost_claims_year es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la @tbl-categorias refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
 
 ***Nivel analítico***
 
