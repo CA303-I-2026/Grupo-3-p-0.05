@@ -462,7 +462,7 @@ Dado este comportamiento, en los análisis posteriores se excluirá la variable 
 
 Como parte de la exploración inicial de los datos, se revisó la presencia de valores atípicos en las variables más relevantes del estudio. Esta se ve representada mediante la @grafico-outliers.
 
-```{r grafico-outliers, echo=FALSE, fig.cap="Figura 10. Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
+```{r grafico-outliers, echo=FALSE, fig.cap="Boxplots de variables clave para identificación de valores atípicos", fig.height=6}
 
 library(tidyr)
 
@@ -492,7 +492,8 @@ datos_modificados %>%
   estilo_grupo3 +
   theme(
     legend.position = "none",
-    axis.text.x = element_blank()
+    axis.text.x = element_blank(),
+    plot.title = element_text(size = 12, face = "bold") 
   )
 ```
 
@@ -712,7 +713,25 @@ datos_unicos <- datos_modificados %>%
 
 En esta sección se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, estos son los que se muestran a continuación.
 
-Primeramente, y como se observa en la @fig-edad-reclamos, se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
+Como se observa en la @fig-costo-reclamos, se presenta la distribución 
+del costo de los siniestros por año, considerando únicamente los registros 
+con costo entre €1 y €5000.
+
+```{r fig-costo-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo de siniestros por año", fig.align='center'}
+datos_modificados %>%
+  filter(Cost_claims_year > 0 & Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Cost_claims_year)) +
+  geom_histogram(bins=70, fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0, 5000, 500)) +
+  labs(title = "Distribución del costo de siniestros por año",
+       x = "Costo de Reclamos",
+       y = "Cantidad",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+```
+El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los €500. Sin embargo, destaca un pico pronunciado alrededor de los €900, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
+
+Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
 
 ```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
 
@@ -1022,7 +1041,6 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor visualización del trabajo:
 
-![](images/distibucion_costo_anyo.png){fig-align="center"}
 
 
 Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se seleccionó ¿Por qué eligieron este gráfico y no otro? ¿Qué decisión podría tomar alguien viendo solo este gráfico? ¿Qué omite intencionalmente? ¿Qué simplifica?
