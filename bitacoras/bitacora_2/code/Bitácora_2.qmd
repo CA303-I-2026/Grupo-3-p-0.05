@@ -25,7 +25,7 @@ format:
       - \usepackage{array}
       - \renewcommand{\arraystretch}{1.5}
       - \setlength{\tabcolsep}{8pt}
-    #include-before-body: Portada.tex
+    include-before-body: Portada.tex
 ---
 
 ```{=latex}
@@ -45,6 +45,10 @@ Los elementos metodológicos y conceptuales se construyen a partir de dos fuente
 Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o teórica, la cual está acompañada de un breve texto que respalda su escogencia. Es importante destacar que además de las fichas literarias construidas en la bitácora pasada, se incluyeron algunas adicionales, que fueron consideradas pertinentes para un análisis de mayor completitud.
 
 \begin{longtable}{|p{2.3cm}|p{6cm}|p{2.5cm}|c|p{2.5cm}|}
+
+\caption{Clasificación de la literatura revisada}
+\label{tab:literatura} \\
+
 \hline
 \textbf{Clasificación} & \textbf{Justificación breve} & \textbf{Título} & \textbf{Año} & \textbf{Autor(es)} \\
 \hline
@@ -121,9 +125,6 @@ Correlation Analysis: exploring Relationships between Variables &
 Shivani Patel \\
 \hline
 
-
-\caption{Clasificación de la literatura revisada}
-\label{tab:literatura}
 \end{longtable}
 
 # Enlaces de la literatura
@@ -234,7 +235,7 @@ La pregunta de investigación que guía el análisis es la siguiente:
 
 > ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
 
-El análisis se centra en dos aspectos principales. Por un lado, se estudia la relación entre las características del asegurado, como la edad, la antigüedad con la aseguradora y el historial de siniestros, junto con las características del vehículo, como el tipo, el peso, el largo y el valor, con la frecuencia y la severidad de los siniestros. Por otro lado, se examina el comportamiento observado en la cantidad de reclamos cuando su costo supera las 900 unidades monetarias, el cual representa un punto de interés dentro del análisis.
+El análisis se centra en dos aspectos principales. Por un lado, se estudia la relación entre las características del asegurado, como la edad, la antigüedad con la aseguradora y el historial de siniestros, junto con las características del vehículo, como el tipo, el peso, el largo y el valor, con la frecuencia y la severidad de los siniestros. Por otro lado, se examina el comportamiento observado en la cantidad de reclamos cuando su costo supera los 900 euros, el cual representa un punto de interés dentro del análisis.
 
 ## Identidad visual
 
@@ -1133,11 +1134,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Resumen en una oración:* Los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
 
-<<<<<<< HEAD
 *Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con `Cost_claims_year` > 900.
-=======
-*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con Cost_claims_year \> 900.
->>>>>>> 32cb4e06610ef6e78ae5d0a006021a9bf4ed1318
 
 *Evidencia:* La @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
 
@@ -1325,6 +1322,18 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los 900 euros y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
 
 ## Registro del uso de IA
+
+*Herramienta:* ChatGPT
+
+*Prompt:* “Necesito ayuda para estructurar una tabla en R Markdown usando knitr::kable() y kableExtra, de forma que tenga un formato estándar para un documento en PDF. Quiero que la tabla tenga título, encabezado repetido si ocupa más de una página.”
+
+*Respuesta de la IA:* La IA, mediante múltiples respuestas, explicó cómo construir una tabla con knitr::kable() y darle formato con kableExtra, esto último con motivo estético. Se mostró una estructura base que incluía el uso de caption para el título, booktabs = TRUE para mejorar el estilo de las líneas, longtable = TRUE para permitir tablas largas, y align para definir la alineación de las columnas. También se explicó cómo aplicar opciones de estilo con kable_styling(), como repetir el encabezado, centrar la tabla, ajustar el tamaño de letra y controlar el ancho de cada columna con column_spec().
+
+*Evaluación:* La respuesta fue útil porque permitió entender la función de cada parte del código y no solo copiarlo, se modificó la estructura base explicada en repetidas ocasiones dependiendo del formato que se quería para cada tabla. Sirvió especialmente para aprender cómo hacer una tabla más ordenada y presentable en un documento PDF, ya que con otras alaternativas la tabla salía desordenada al generar el documento. También ayudó a corregir problemas comunes, como tablas muy anchas, encabezados que no se repiten o columnas mal distribuidas o no centradas. Lo que quedó pendiente fue ajustar los anchos de las columnas según el contenido específico de cada tabla, porque esos valores dependen del tipo de datos que se estén presentando.
+
+*Modificaciones:* Se adaptó la estructura propuesta a todas las tablas presentes en este documento. Se cambiaron el nombre del objeto de datos, el título de la tabla y los anchos de las columnas para que el contenido no quedara amontonado o que se saliera de la hoja. También se mantuvo el encabezado en negrita, se centró la tabla y se redujo el tamaño de letra para que se ajustara mejor al formato del documento.
+
+*Aprendizaje:* Se aprendió a crear una tabla con formato más claro y prolijo usando knitr::kable() y kableExtra. También se comprendió cómo controlar elementos importantes del diseño, como el título, la alineación, el tamaño de letra, el ancho de columnas y la repetición del encabezado en tablas largas, y a reordenar los datos en caso de que no quedara estético el resultado.
 
 ## Registro del trabajo en equipo
 
