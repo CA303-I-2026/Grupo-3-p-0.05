@@ -454,7 +454,7 @@ knitr::kable(
   kableExtra::column_spec(3, width = "5cm")
 ```
 
-Como se observa en la @tbl-missings, en términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.  
+Como se observa en la @tbl-missings, en términos porcentuales, la variable Date_lapse presenta el mayor nivel de valores faltantes, con un 66.70%, lo que evidencia una ausencia importante de información y limita considerablemente su utilidad en el análisis. Por su parte, la variable Length muestra un 9.79% de datos faltantes, lo cual corresponde a un nivel intermedio, mientras que Type_fuel presenta únicamente un 1.67%, considerado bajo.
 
 Dado este comportamiento, en los análisis posteriores se excluirá la variable Date_lapse debido a la alta proporción de datos faltantes. En el caso de Length, se trabajará mediante imputación, por ejemplo utilizando la mediana según el tipo de vehículo, con el fin de conservar la información disponible. Finalmente, Type_fuel se manejará eliminando las filas con valores faltantes, ya que su baja proporción no afecta de manera significativa el tamaño de la muestra.
 
@@ -495,6 +495,7 @@ datos_modificados %>%
     axis.text.x = element_blank()
   )
 ```
+
 La variable Cost_claims_year presenta los valores extremos más marcados, lo cual indica que la mayoría de los siniestros tiene costos bajos o moderados, pero existen algunos reclamos con costos muy elevados que podrían influir de forma importante en el análisis de severidad.
 
 En el caso de N_claims_year y N_claims_history, también se identifican valores atípicos, lo que sugiere que la mayoría de los asegurados registra pocos siniestros, mientras que algunos casos presentan una frecuencia mucho mayor. Esto es esperable en datos de seguros, donde los reclamos suelen concentrarse en una pequeña parte de los asegurados.
@@ -823,7 +824,7 @@ En el caso de las motocicletas, los costos parecen concentrarse en rangos más b
 
 En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los turismos presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que estos tipos de vehículo podrían estar asociados con una mayor exposición al riesgo o con un uso más frecuente.
 
-A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los turismos muestran mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos. 
+A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los turismos muestran mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
 
 La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo, peso, largo, potencia, cilindraje y número de puertas, en los casos en donde se supera el umbral de los €900.
 
@@ -903,8 +904,6 @@ En cuanto al número de puertas, la mayor concentración corresponde a vehículo
 
 También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberían revisarse antes de sacar conclusiones definitivas.
 
-
-
 El siguiente gráfico muestra la distribución del número de siniestros con costo por año mayor a €900, el cual contempla información del año 1980 al 2018.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
@@ -957,7 +956,6 @@ datos_modificados %>%
 
 **INTERPRETACIÓN PENDIENTE:**
 
-
 ## Fichas de resultados
 
 ::: callout-note
@@ -987,6 +985,15 @@ datos_modificados %>%
 :::
 
 ## La imagen que cuenta la historia
+
+A continuación, se adjunta el gráfico que, hasta ahora, representa la mejor visualización del trabajo:
+
+![](images/distibucion_costo_anyo.png){fig-align="center"}
+
+Es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Si bien, el elemento principal del proyecto corresponde a la primera parte de la pregunta, no es posible ofrecer una óptima visualización de dicho aspecto a través de un único gráfico, por lo que se seleccionó
+¿Por qué eligieron este gráfico y no otro?
+¿Qué decisión podría tomar alguien viendo solo este gráfico?
+¿Qué omite intencionalmente? ¿Qué simplifica?
 
 # Arco narrativo del proyecto
 
