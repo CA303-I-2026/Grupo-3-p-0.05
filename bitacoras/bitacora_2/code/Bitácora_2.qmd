@@ -1209,7 +1209,11 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   Durante el desarrollo de la bitácora, se reflexionó acerca de la importancia de implementar un lenguaje accesible con el objetivo de comunicar los planteamientos e ideas a la mayor cantidad de personas posibles. Dado que el aseguramiento vehicular constituye un elemento presente en la realidad de sujetos que no se desempeñan en el ámbito actuarial o matemático, se adquirió el compromiso activo de mantener una comunicación comprensible para la mayoría de lectores, en busca de que estos logren formar una noción sobre los elementos que potencialmente intervienen en la frecuencia y la severidad de los siniestros reportados por las aseguradoras vehiculares, las cuales muchas veces utilizan esta información para fijar el monto de las primas pagadas por los clientes.
 
+-   A partir de la construcción de los gráficos, se aprendió que no solamente consiste en hacer gráficos sin decisiones detrás, durante el proceso de la creación de gráficos se pensaron y descartaron diversos gráficos por distintas razones, ya sea que no estaban alineados con la pregunta de investigación u otros motivos, además de esto, se aprendió que en algunas ocasiones es necesario cambiar la escala de alguno de los ejes para que la visualización del gráfico sea lo mejor posible; y se reconoció el papel importante que toma la selección de un determinado estilo para todos los gráficos, para que así todos se vean más homogéneos entre sí. 
+
 ## Audiencia del proyecto
+
+Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los €900 y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
 
 ## Registro del uso de IA
 
