@@ -8,7 +8,7 @@
 
 *Método o análisis que lo produjo:* Este hallazgo se obtuvo mediante estadísticos descriptivos calculados con la función stat.desc() del paquete pastecs, complementados con tablas resumen por tipo de vehículo y zona. Se observó que la mediana de N_claims_year y Cost_claims_year es igual a cero, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
 
-*Evidencia:* La Tabla 6 de la segunda bitácora muestra que la mediana de N_claims_year es 0 frente a una media de 0.39, y que la mediana de Cost_claims_year es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la Tabla 4 de la segunda bitácora refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
+*Evidencia:* La Tabla 7 de la segunda bitácora muestra que la mediana de N_claims_year es 0 frente a una media de 0.39, y que la mediana de Cost_claims_year es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la Tabla 5 de la segunda bitácora refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
 
 ***Nivel analítico***
 
