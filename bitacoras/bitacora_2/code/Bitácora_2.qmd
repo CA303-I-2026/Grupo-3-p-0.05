@@ -327,6 +327,8 @@ En primer lugar, se realizó el tratamiento inicial de la base de datos. En algu
 
 ```{r carga-datos, warning=FALSE, message=FALSE, echo=FALSE}
 
+library(readr)
+
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 
 datos_modificados <- datos %>% 
@@ -346,6 +348,10 @@ datos_modificados <- datos %>%
     edad = 2019 - year(Date_birth)
   )
 
+write_csv(
+  datos_modificados,
+  "../../../datos/procesados/datos_modificados.csv"
+)
 ```
 
 Las transformaciones responden a necesidades concretas. Las variables de fecha estaban almacenadas como texto y debieron convertirse al formato `Date` para permitir cálculos temporales. La variable `categoria` se creó a partir de `Type_risk` para sustituir los códigos numéricos por etiquetas descriptivas, facilitando la interpretación visual. La variable `edad` se determinó restando el año de nacimiento al año de referencia 2019, último año completo de la base.
