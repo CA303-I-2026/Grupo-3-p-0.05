@@ -1082,7 +1082,7 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Método o análisis que lo produjo:* este análisis se produjo gracias a un gráfico realizado a través de los datos, en el que se compara el número de siniestros según el tipo de vehículo y el costo de los siniestros por año según el vehículo. El gráfico se compone de dos gráficos de violín; para esto se utilizó la función geom_violin() y una escala logarítmica en base 10 en el eje Y para una mejor visualización.
 
-*Evidencia:* el gráfico utilizado para este análisis corresponde a la figura 5 de la segunda bitácora.
+*Evidencia:* el gráfico utilizado para este análisis corresponde a la @fig-violin-combinado de la segunda bitácora.
 
 ***Nivel analítico***
 
