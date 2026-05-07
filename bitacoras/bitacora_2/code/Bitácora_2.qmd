@@ -40,9 +40,9 @@ El pleno entendimiento de los elementos conceptuales y metodólogicos del proyec
 
 ## Ordenamiento de la literatura
 
-Los elementos metodológicos y conceptuales se construyen a partir de dos fuentes: la primera fuente consiste en la información consultada, dentro de la cual se comtempla la literatura además del acceso a los datos; por otro lado, la segunda fuente proviene de la interpretación y el manejo de la información consultada por parte de lo miembros del equipo.
+Los elementos metodológicos y conceptuales se construyen a partir de dos fuentes: la primera fuente consiste en la información consultada, dentro de la cual se contempla la literatura, además del acceso a los datos; por otro lado, la segunda fuente proviene de la interpretación y el manejo de la información consultada por parte de lo miembros del equipo.
 
-Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura cosultada a partir de su respectiva clasificación: metodológica, temática o teórica, la cual está acompañada de un breve texto que respalda su escogencia. Es importante destacar que además de las fichas literarias construidas en la bitácora pasada, se incluyeron algunas adicionales, que fueron consideradas pertinentes para un análisis de mayor completitud.
+Si bien en la primera bitácora se acudió a los planteamiento de diversos autores, es preciso que la información mantenga una estructura. En motivo de esto, la tabla siguiente detalla el ordenamiento de la literatura consultada a partir de su respectiva clasificación: metodológica, temática o teórica, la cual está acompañada de un breve texto que respalda su escogencia. Es importante destacar que además de las fichas literarias construidas en la bitácora pasada, se incluyeron algunas adicionales, que fueron consideradas pertinentes para un análisis de mayor completitud.
 
 \begin{longtable}{|p{2.3cm}|p{6cm}|p{2.5cm}|c|p{2.5cm}|}
 
@@ -141,7 +141,7 @@ Este libro presenta información acerca del análisis de pérdida en el ámbito 
 
 El enfoque presentado por @frees2021 coincide con @goldburd2025 en que ambos reconocen que el riesgo asegurador debe modelarse a partir de herramientas estadísticas capaces de representar la incertidumbre presente en los siniestros. En ambos textos, se parte de que las pérdidas no son determinísticas y que variables como la frecuencia y la severidad requieren un tratamiento diferenciado debido a su comportamiento estadístico particular. La principal diferencia entre el criterio de los autores radica en el nivel de complejidad del modelado propuesto. El libro de análisis de pérdida de @frees2021 presenta una estructura más clásica, donde primero se separan frecuencia y severidad para luego seleccionar distribuciones probabilísticas apropiadas para cada componente según el comportamiento observado en los datos. En cambio, @goldburd2025 propone el uso de modelos lineales generalizados como una herramienta más flexible, que permite relacionar directamente la variable respuesta con múltiples variables explicativas mediante funciones de enlace y distribuciones pertenecientes a la familia exponencial. Mientras el enfoque clásico prioriza comprender la estructura probabilística de cada componente del riesgo, el texto de @goldburd2025 enfatiza la capacidad de incorporar factores de clasificación del asegurado, como edad, tipo de cobertura o historial de siniestros, dentro de un solo modelo estadístico. Esto permite no solo describir el comportamiento de las pérdidas, sino también mejorar el proceso de tarificación al identificar el efecto individual de cada predictor sobre el riesgo.
 
-A partir de este contraste, puede observarse que ambos enfoques son complementarios más que opuestos. La separación entre frecuencia y severidad sigue siendo una base conceptual importante porque permite entender primero la naturaleza de los datos antes de construir modelos más complejos. Viendo esto, el enfoque clásico de @frees2021 resulta útil como fundamento teórico inicial, pero el uso de GLM (como en el libro de @goldburd2025) representa mayor precisión cuando se dispone de bases de datos más completas y se busca una tarificación. Esto es especialmente relevante en proyectos como el presente donde ya se cuenta con variables diferenciadas y se desea evaluar qué factores tienen mayor influencia en el comportamiento de los siniestros.
+A partir de este contraste, puede observarse que ambos enfoques son complementarios más que opuestos. La separación entre frecuencia y severidad sigue siendo una base conceptual importante porque permite entender primero la naturaleza de los datos antes de construir modelos más complejos. Viendo esto, el enfoque clásico de @frees2021 resulta útil como fundamento teórico inicial, pero el uso del Modelo Lineal Generalizado (como en el libro de @goldburd2025) representa mayor precisión cuando se dispone de bases de datos más completas y se busca una tarificación. Esto es especialmente relevante en proyectos como el presente, donde ya se cuenta con variables diferenciadas y se desea evaluar qué factores tienen mayor influencia en el comportamiento de los siniestros.
 
 ## Sección temática
 
@@ -163,7 +163,7 @@ Este artículo analiza los accidentes de tránsito como un fenómeno de salud p�
 
 Al comparar el enfoque de @parraga2024accidentes con el de @guillen2021, se observa que ambas fuentes abordan la siniestralidad vehicular desde ángulos distintos pero complementarios. @guillen2021 se sitúan en un plano técnico-actuarial, orientado a modelar el valor esperado de la frecuencia y la severidad de los siniestros a partir de datos de pólizas reales, con un interés fundamentalmente metodológico orientado a mejorar la capacidad predictiva de los modelos. Por su parte, el primero adopta un enfoque de salud pública y se concentra en describir e interpretar los factores que explican la ocurrencia de los accidentes, sin llegar a construir modelos predictivos. Esta diferencia de propósito determina también una diferencia en el tipo de variables que cada fuente considera relevante: mientras @guillen2021 trabajan con variables propias de la cartera aseguradora, como el historial de reclamos o las características del contrato, el otro prioriza factores del entorno y del comportamiento humano, como la edad, la zona de circulación y el tipo de vehículo. En consecuencia, no se ofrecen herramientas estadísticas aplicables directamente, pero sí se identifican qué variables merecen atención explicativa, lo cual complementa la orientación más formal y cuantitativa de @guillen2021.
 
-Partiendo de este contraste, puede señalarse que la revisión de @parraga2024accidentes aporta al proyecto un marco contextual que permite interpretar con mayor profundidad los patrones observados en la base de datos. Factores como la edad del conductor y el tipo de vehículo, identificados en la literatura de salud pública como determinantes de la siniestralidad, coinciden con las variables que este proyecto plantea analizar en relación con la frecuencia y la severidad de los siniestros. Esto brinda respaldo adicional para justificar la inclusión de dichas variables en los modelos estadísticos. Asimismo, el énfasis de @parraga2024accidentes en la zona de circulación como factor relevante es consistente con los hallazgos descriptivos obtenidos en el análisis exploratorio, donde se observaron diferencias en la siniestralidad entre zonas rurales y urbanas. En ese sentido, aunque @parraga2024accidentes no proveen una metodología directamente aplicable, su contribución es valiosa para fundamentar las decisiones de selección de variables y para enriquecer la interpretación de los resultados desde una perspectiva más amplia que la meramente actuarial.
+Partiendo de este contraste, puede señalarse que la revisión de @parraga2024accidentes aporta al proyecto un marco contextual que permite interpretar con mayor profundidad los patrones observados en la base de datos. Factores como la edad del conductor y el tipo de vehículo, identificados en la literatura de salud pública como determinantes de la siniestralidad, coinciden con las variables que este proyecto plantea analizar en relación con la frecuencia y la severidad de los siniestros. Esto brinda respaldo adicional para justificar la inclusión de dichas variables en los modelos estadísticos. Asimismo, el énfasis de @parraga2024accidentes en la zona de circulación como factor relevante es consistente con los hallazgos descriptivos obtenidos en el análisis exploratorio, donde se observaron diferencias en la siniestralidad entre zonas rurales y urbanas. En ese sentido, aunque @parraga2024accidentes no proveen una metodología directamente aplicable, su contribución es valiosa para fundamentar las decisiones de la selección de variables y para enriquecer la interpretación de los resultados desde una perspectiva más amplia que la meramente actuarial.
 
 ## Sección metodológica
 
@@ -173,17 +173,17 @@ Partiendo de este contraste, puede señalarse que la revisión de @parraga2024ac
 
 Este artículo analiza la frecuencia de los siniestros declarados en seguros de automóviles a partir de un modelo econométrico de datos de conteo aplicado a una muestra real de 60.000 pólizas. Para el contexto de este proyecto, los autores sostienen que la variable dependiente, que corresponde al número de siniestros reportados, presenta una alta concentración de ceros que no puede explicarse únicamente por la ausencia de eventos, sino también por la decisión de algunos asegurados de no declarar ciertos siniestros de baja cuantía. Ante este comportamiento, los autores proponen un modelo binomial negativo inflado de ceros (ZINB), que separa dos procesos distintos: uno que modela la probabilidad de pertenecer al grupo que nunca declara siniestros y otro que modela el conteo entre quienes sí lo hacen. El problema principal que los autores intentan resolver es cómo identificar los factores asociados al perfil del conductor, las características del vehículo y el nivel de cobertura que inciden de manera significativa en la frecuencia de los siniestros declarados, tomando en cuenta además los fenómenos de selección adversa y riesgo moral propios del mercado asegurador. Sus conclusiones señalan que variables como la edad del conductor, el tipo de cobertura contratada y la antigüedad con la aseguradora resultan estadísticamente significativas para explicar la siniestralidad, lo que refuerza la relevancia de incorporarlas en modelos de este tipo.
 
-Al poner en perspectiva el enfoque de @hiraldo2005siniestros con el propuesto por @goldburd2025, se observa que ambos comparten el objetivo de modelar la siniestralidad a partir de variables explicativas del asegurado y del vehículo; sin embargo, difieren sustancialmente en el tratamiento que cada uno propone para los datos. @goldburd2025 desarrollan una metodología basada en Modelos Lineales Generalizados que asume cierta regularidad en los datos y una relación directa entre los predictores y la variable respuesta mediante una función de enlace. Esta aproximación resulta efectiva cuando la distribución de los datos se ajusta a la familia exponencial y no presenta anomalías severas. @hiraldo2005siniestros, en cambio, parten de un escenario donde los supuestos de los GLM convencionales no se cumplen, específicamente ante la presencia de un exceso de ceros que no responde únicamente a la ausencia de riesgo, sino también a comportamientos no observados como la no declaración de siniestros. En ese sentido, mientras @goldburd2025 ofrecen una guía metodológica general y flexible para la modelación de la frecuencia y la severidad, @hiraldo2005siniestros brindan una solución específica para contextos donde la estructura de los datos exige mayor complejidad en el modelo. Otra diferencia relevante es que @hiraldo2005siniestros centran su análisis exclusivamente en la frecuencia, dejando fuera la dimensión de la severidad, aspecto que sí aborda @goldburd2025 dentro de su propuesta integral.
+Al poner en perspectiva el enfoque de @hiraldo2005siniestros con el propuesto por @goldburd2025, se observa que ambos comparten el objetivo de modelar la siniestralidad a partir de variables explicativas del asegurado y del vehículo; sin embargo, difieren sustancialmente en el tratamiento que cada uno propone para los datos. @goldburd2025 desarrollan una metodología basada en Modelos Lineales Generalizados (GLM) que asume cierta regularidad en los datos y una relación directa entre los predictores y la variable respuesta mediante una función de enlace. Esta aproximación resulta efectiva cuando la distribución de los datos se ajusta a la familia exponencial y no presenta anomalías severas. @hiraldo2005siniestros, en cambio, parten de un escenario donde los supuestos de los GLM convencionales no se cumplen, específicamente ante la presencia de un exceso de ceros que no responde únicamente a la ausencia de riesgo, sino también a comportamientos no observados como la no declaración de siniestros. En ese sentido, mientras @goldburd2025 ofrecen una guía metodológica general y flexible para la modelación de la frecuencia y la severidad, @hiraldo2005siniestros brindan una solución específica para contextos donde la estructura de los datos exige mayor complejidad en el modelo. Otra diferencia relevante es que @hiraldo2005siniestros centran su análisis exclusivamente en la frecuencia, dejando fuera la dimensión de la severidad, aspecto que sí aborda @goldburd2025 dentro de su propuesta integral.
 
-Bajo esta comparativa, el enfoque de @hiraldo2005siniestros resulta especialmente pertinente para este proyecto, dado que la variable N_claims_year presenta una concentración muy elevada de ceros, situación análoga a la descrita en el artículo. Por lo tanto, antes de aplicar directamente la metodología GLM propuesta por @goldburd2025, conviene evaluar si la estructura de los datos justifica el uso de modelos inflados de ceros. Si dicha evaluación confirma un exceso de ceros que va más allá de lo esperado por las distribuciones clásicas, el modelo ZINB representaría una alternativa más adecuada para la variable de frecuencia. En paralelo, la selección de variables significativas identificada por @hiraldo2005siniestros, como la edad del asegurado y la antigüedad con la aseguradora, es consistente con las hipótesis planteadas en la pregunta de investigación, lo que refuerza la inclusión de dichas variables en los modelos a construir en etapas posteriores del proyecto.
+Bajo esta comparativa, el enfoque de @hiraldo2005siniestros resulta especialmente pertinente para este proyecto, dado que la variable N_claims_year presenta una concentración muy elevada de ceros, situación análoga a la descrita en el artículo. Por lo tanto, antes de aplicar directamente la metodología GLM propuesta por @goldburd2025, conviene evaluar si la estructura de los datos justifica el uso de modelos inflados de ceros. Si dicha evaluación confirma un exceso de ceros que va más allá de lo esperado por las distribuciones clásicas, el modelo ZINB representaría una alternativa más adecuada para la variable de la frecuencia. En paralelo, la selección de variables significativas identificada por @hiraldo2005siniestros, como la edad del asegurado y la antigüedad con la aseguradora, es consistente con las hipótesis planteadas en la pregunta de investigación, lo que refuerza la inclusión de dichas variables en los modelos a construir en etapas posteriores del proyecto.
 
 ### Ayuso-Gutiérrez et al. (2015)
 
 #### *Modelización del tiempo de hospitalización en lesiones por tránsito*
 
-Este artículo compara distintas distribuciones de probabilidad discretas para modelar los días de hospitalización por accidentes de tránsito. Para el contexto de este proyecto, los autores sostienen que las distribuciones que se utilizan comúnmente como las Poisson no obtienen un buen ajuste debido a una gran cantidad de ceros en los datos o sobredispersión de los mismos. Es por ello que los autores optan por realizar una comparación entre distribuciones como la binomial negativa o la Poisson-inversa gaussiana incluyendo versiones cero infladas de cada una de ellas. El problema principal que los autores intentan responder es cómo identificar los factores sociodemográficos y las lesiones que influyen en el tiempo de hospitalización de las víctimas de accidentes de tránsito, donde hay un alto número de observaciones concentrado en un solo valor, en este caso 0 días de hospitalización. Con el desarrollo del trabajo los autores concluyeron que la distribución Poisson-inversa gaussiana cero inflada dio mejores resultados para determinar los factores que influyen en la duración de hospitalización. Además de esto, señalaron que una de las grandes limitaciones fue que no se dispone de información sobre la severidad de las lesiones, tampoco se posee información acerca del uso de dispositivos de seguridad, ubicación de los pasajeros o conducción bajo los efectos de sustancias, factores que podrían influir en la precisión del modelo.
+Este artículo compara distintas distribuciones de probabilidad discretas para modelar los días de hospitalización por accidentes de tránsito. Para el contexto de este proyecto, los autores sostienen que las distribuciones que se utilizan comúnmente, como la Poisson, no obtienen un buen ajuste debido a una gran cantidad de ceros en los datos o la sobredispersión de los mismos. Es por ello que los autores optan por realizar una comparación entre distribuciones como la binomial negativa o la Poisson-inversa gaussiana incluyendo versiones cero infladas de cada una de ellas. El problema principal que los autores intentan resolver es cómo identificar los factores sociodemográficos y las lesiones que influyen en el tiempo de hospitalización de las víctimas de accidentes de tránsito, donde hay un alto número de observaciones concentrado en un solo valor, en este caso cero días de hospitalización. Con el desarrollo del trabajo los autores concluyeron que la distribución Poisson-inversa gaussiana cero inflada dio mejores resultados para determinar los factores que influyen en la duración de hospitalización. Además de esto, señalaron que una de las grandes limitaciones fue que no se dispone de información sobre la severidad de las lesiones, tampoco se posee información acerca del uso de dispositivos de seguridad, ubicación de los pasajeros o conducción bajo los efectos de sustancias, factores que podrían influir en la precisión del modelo.
 
-En contraste con @hiraldo2005siniestros, quienes aplican un modelo binomial negativo inflado de ceros para lograr modelar la frecuencia de siniestros en seguros de automóviles, mientras que @ayuso2015modelizacion usan la misma lógica pero para el caso de la severidad, modelando los días de hospitalización por accidentes de tránsito. Ambos coinciden en que distribuciones tradicionales como la Poisson o la binomial negativa no generan un buen ajuste cuando los datos tienen un exceso de ceros, y que las versiones cero infladas de esas distribuciones brindan un mejor resultado. Sin embargo, @hiraldo2005siniestros trabajan con un conteo pues están modelando la frecuencia, mientras que @ayuso2015modelizacion utilizan una modelación de tiempo, pues miden los días de hospitalización. Por lo que, a pesar de que ambos trabajos utilizan versiones de distribuciones cero infladas, las distribuciones específicas que usan son distintas, la binomial negativa cero inflada para conteos en el caso de @hiraldo2005siniestros y la Poisson-inversa gaussiana cero inflada para el caso de @ayuso2015modelizacion.
+En contraste con @hiraldo2005siniestros, quienes aplican un modelo binomial negativo inflado de ceros para lograr modelar la frecuencia de siniestros en seguros de automóviles, mientras que @ayuso2015modelizacion usan la misma lógica pero para el caso de la severidad, modelando los días de hospitalización por accidentes de tránsito. Ambos coinciden en que distribuciones tradicionales como la Poisson o la binomial negativa no generan un buen ajuste cuando los datos tienen un exceso de ceros, y que las versiones cero infladas de esas distribuciones brindan un mejor resultado. Sin embargo, @hiraldo2005siniestros trabajan con un conteo, pues están modelando la frecuencia, mientras que @ayuso2015modelizacion utilizan una modelación de tiempo, pues miden los días de hospitalización. Por lo que, a pesar de que ambos trabajos utilizan versiones de distribuciones cero infladas, las distribuciones específicas que usan son distintas, la binomial negativa cero inflada para conteos en el caso de @hiraldo2005siniestros y la Poisson-inversa gaussiana cero inflada para el caso de @ayuso2015modelizacion.
 
 A partir de este contraste, la lógica de la utilización de distribuciones cero infladas es aplicable tanto para la frecuencia como para la severidad, pero utilizando distribuciones distintas. Para el contexto de esta investigación esta metodología resulta altamente aplicable, pues la variable "Cost_claims_year" presenta una concentración alta en el valor de €0 y en €900. Aunque @ayuso2015modelizacion modelan el número de días de hospitalización y no costos monetarios, la técnica de comparar distintas distribuciones cero infladas podría adaptarse para el caso de seguros de automóviles. Por esto, para el proyecto se considerará utilizar una distribución Poisson-inversa gaussiana cero inflada para modelar la variable "Cost_claims_year", además de otras distribuciones para ver cuál se adapta mejor, además, se utilizará la interpretación de coeficientes mediante exp(β) para medir el impacto de cada variable en la severidad.
 
@@ -233,7 +233,7 @@ En este apartado se presenta el análisis exploratorio de los datos del proyecto
 
 La pregunta de investigación que guía el análisis es la siguiente:
 
-> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900?
+> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
 
 El análisis se centra en dos aspectos principales. Por un lado, se estudia la relación entre las características del asegurado, como la edad, la antigüedad con la aseguradora y el historial de siniestros, junto con las características del vehículo, como el tipo, el peso, el largo y el valor, con la frecuencia y la severidad de los siniestros. Por otro lado, se examina el comportamiento observado en la cantidad de reclamos cuando su costo supera los 900 euros, el cual representa un punto de interés dentro del análisis.
 
@@ -243,7 +243,7 @@ Para la elaboración de gráficos y figuras, en las secciones siguientes se deta
 
 ### Paleta de colores
 
-En este caso, se seleccionó la paleta de colores *Pamplemousse*, disponible en el paquete LaCroixColoR, la cual puede consultarse mediante el enlace <https://r-graph-gallery.com/color-palette-finder.html?palette=pamplemousse>, dentro de la página web <https://r-graph-gallery.com/color-palette-finder> recomendada en el documento instructivo de la Bitácora 2. Esta paleta corresponde a una escala de seis colores diferentes, caracterizada por una transición desde tonos cálidos, esencialmente rosados y anaranjados, hasta tonos fríos turquesa y azul oscuro. En la siguiente figura se presenta la selección realizada, a manera de un primer vistazo a la paleta de colores. Esta imagen se obtuvo directamente de la página web de R Graph Gallery, y se copió tal como se mostraba.
+En este caso, se seleccionó la paleta de colores *Pamplemousse*, disponible en el paquete LaCroixColoR, la cual puede consultarse mediante el enlace <https://r-graph-gallery.com/color-palette-finder.html?palette=pamplemousse>, dentro de la página web <https://r-graph-gallery.com/color-palette-finder> recomendada en el documento instructivo de la segunda bitácora. Esta paleta corresponde a una escala de seis colores diferentes, caracterizada por una transición desde tonos cálidos, esencialmente rosados y anaranjados, hasta tonos fríos turquesa y azul oscuro. En la siguiente figura se presenta la selección realizada, a manera de un primer vistazo a la paleta de colores. Esta imagen se obtuvo directamente de la página web de R Graph Gallery, y se copió tal como se mostraba.
 
 ![Paleta Pamplemousse. Tomado de R-graph gallery](../figuras/paleta_pamplemousse.png){width="40%"}
 
@@ -348,7 +348,7 @@ datos_modificados <- datos %>%
 
 ```
 
-Las transformaciones responden a necesidades concretas. Las variables de fecha estaban almacenadas como texto y debieron convertirse al formato `Date` para permitir cálculos temporales. La variable `categoria` se creó a partir de `Type_risk` para sustituir los códigos numéricos por etiquetas descriptivas, facilitando la interpretación visual. La variable `edad` se derivó restando el año de nacimiento al año de referencia 2019, último año completo de la base.
+Las transformaciones responden a necesidades concretas. Las variables de fecha estaban almacenadas como texto y debieron convertirse al formato `Date` para permitir cálculos temporales. La variable `categoria` se creó a partir de `Type_risk` para sustituir los códigos numéricos por etiquetas descriptivas, facilitando la interpretación visual. La variable `edad` se determinó restando el año de nacimiento al año de referencia 2019, último año completo de la base.
 
 #### Información general del dataset
 
@@ -389,7 +389,7 @@ tabla_info <- data.frame(
 
 knitr::kable(
   tabla_info,
-  caption = "Resumen general de la base de datos utilizada.",
+  caption = "Resumen general de la base de datos utilizada",
   booktabs = TRUE,
   longtable = TRUE,
   align = c("l", "c")
@@ -404,13 +404,13 @@ knitr::kable(
   kableExtra::column_spec(2, width = "5cm")
 ```
 
-La base de datos confirma que cada persona puede tener múltiples registros anuales. Esta estructura longitudinal, mencionada en la bitácora 1, es valiosa porque permite analizar la evolución del riesgo a través del tiempo usando variables como `N_claims_history` y `R_Claims_history`. Para el análisis del perfil del asegurado se usará `datos_unicos` (una fila por asegurado, la renovación más reciente); para el análisis del comportamiento anual, `datos_modificados`.
+La base de datos confirma que cada persona puede tener múltiples registros anuales. Esta estructura longitudinal, mencionada en la bitácora 1, es valiosa porque permite analizar la evolución del riesgo a través del tiempo usando variables como `N_claims_history` y `R_Claims_history`. Para el análisis del perfil del asegurado se usará `datos_unicos` (una fila por asegurado, la renovación más reciente); para el análisis del comportamiento anual, `datos_modificados`, que corresponde a la base de datos resultante de los tratamientos efectuados al inicio del apartado.
 
 #### Verificación del formato *tidy*
 
 Antes de continuar con el análisis, se verificó que la base de datos tuviera una estructura adecuada para su manipulación en R. Para ello, se revisaron las primeras observaciones de la base modificada, con el fin de comprobar la organización de las filas y columnas, así como la forma en que se registran las variables principales.
 
-Para esta verificación, se seleccionarion ciertas variables y las primeras 10 observaciones para ilustrar que los datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por `ID`. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tiene su propia columna, cada observación su propia fila y cada tipo de unidad de análisis se mantiene consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
+Para esta verificación, se seleccionarion ciertas variables y las primeras 10 observaciones para ilustrar que los datos se encuentran en formato *tidy*, ya que cada fila representa una observación individual correspondiente a una anualidad de la póliza de un asegurado identificado por un `ID`. Asimismo, cada columna corresponde a una variable específica, como características del asegurado, del vehículo o del historial de siniestros. Esta estructura garantiza que cada variable tenga su propia columna, cada observación su propia fila y que cada tipo de unidad de análisis se mantenga consistente, lo que facilita su manipulación, visualización y análisis estadístico posterior.
 
 ```{r verificacion-tidy, echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -464,7 +464,7 @@ tabla_faltantes <- datos_modificados %>%
 
 knitr::kable(
   tabla_faltantes,
-  caption = "Resumen de valores faltantes por variable.",
+  caption = "Resumen de valores faltantes por variable",
   booktabs = TRUE,
   longtable = TRUE,
   align = c("l", "r", "r"),
@@ -562,7 +562,7 @@ tabla_categoria_formato <- tabla_categoria %>%
 
 knitr::kable(
   tabla_categoria_formato,
-  caption = "Resumen de variables relevantes según categoría.",
+  caption = "Resumen de variables relevantes según categoría",
   booktabs = TRUE,
   longtable = TRUE,
   align = c("l", "r", "r", "r", "r", "r"),
@@ -605,7 +605,7 @@ tabla_zona <- datos_unicos %>%
 
 knitr::kable(
   tabla_zona,
-  caption = "Resumen de variables relevantes según zona.",
+  caption = "Resumen de variables relevantes según zona",
   booktabs = TRUE,
   longtable = TRUE,
   align = c("l", "r", "r", "r", "r"),
@@ -719,7 +719,7 @@ knitr::kable(
   kableExtra::column_spec(1, width = "2.3cm")
 ```
 
-\<\<\<\<\<\<\< HEAD Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable `edad` muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable `Seniority` presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
+Las estadísticas descriptivas presentadas en @tbl-estad-desc permiten caracterizar el perfil de la cartera asegurada y su relación con la siniestralidad. En primer lugar, la variable `edad` muestra un rango amplio entre 19 y 101 años, con una media cercana a los 49 años y una mediana similar, lo que indica que la cartera está compuesta principalmente por asegurados de mediana edad, sin una fuerte asimetría en su distribución. Por su parte, la variable `Seniority` presenta una mediana de 4 años y una media de 6.7, lo que sugiere que predominan clientes relativamente recientes, aunque existen algunos asegurados con una relación más prolongada con la compañía.
 
 En cuanto a la frecuencia de siniestros, la variable `N_claims_year` presenta una mediana igual a cero y una media de 0.39, evidenciando una alta concentración de valores nulos. Este patrón confirma la presencia de un exceso de ceros en la variable, lo cual resulta consistente con la necesidad de emplear modelos que capten este comportamiento. De manera similar, en la variable `Cost_claims_year` se observa una mediana de cero frente a una media considerablemente mayor, acompañada de un valor máximo extremadamente alto, lo que indica una distribución altamente asimétrica con cola derecha pesada. Esto sugiere que, aunque la mayoría de los asegurados no presenta costos por siniestros, existen pocos casos con costos muy elevados que influyen significativamente en el promedio.
 
@@ -741,7 +741,7 @@ datos_unicos <- datos_modificados %>%
 
 En el presente subapartado se llevará a cabo la elaboración e interpretación de los gráficos que de momento se han considerado relevantes, los cuales se muestran a continuación.
 
-Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre €1 y €5000.
+Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre 1 y 5000 euros.
 
 ```{r fig-costo-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo de siniestros por año", fig.align='center'}
 datos_modificados %>%
@@ -769,7 +769,7 @@ costos_anyo_total <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_2/figuras/distibucion_costo_anyo_total.png",costos_anyo_total, width = 11, height = 7, dpi = 300)
 ```
 
-El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los €500. Sin embargo, destaca un pico pronunciado alrededor de los €900, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
+El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los 500 euros. Sin embargo, destaca un pico pronunciado alrededor de los 900 euros, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
 
 Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
 
@@ -1070,33 +1070,33 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 ## Fichas de resultados
 
 ::: callout-note
-# Ficha 1: Análisis por Tipo de Vehículo
+# Ficha 1: análisis por tipo de vehículo
 
 ***Nivel descriptivo***
 
-*Titular:* *Turismos lideran el costo anual de siniestros, furgonetas la frecuencia*
+*Titular:* *Vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia*
 
-*Nombre del hallazgo/resultado:* Existen diferencias notables entre la frecuencia y severidad según el tipo de vehículo
+*Nombre del hallazgo/resultado:* existen diferencias notables entre la frecuencia y severidad según el tipo de vehículo
 
-*Resumen en una oración:* Turismos poseen mayor costo anual que otro tipo de vehículos, las furgonetas presentan mayor frecuencia de siniestros.
+*Resumen en una oración:* los vehículos de turismo poseen un mayor costo anual de siniestros, en compararción a los otros tipos de vehículos, mientras tanto, las furgonetas presentan una mayor frecuencia de siniestros.
 
-*Método o análisis que lo produjo:* Este análisis se produjo gracias a un gráfico realizado a través de los datos en el que se compara el número de siniestros según el tipo de vehículo y el costo de los siniestros por año según el vehículo. El gráfico se compone de dos gráficos de violín; para esto se utilizó la función geom_violin() y una escala logarítmica en base 10 en el eje Y para una mejor visualización.
+*Método o análisis que lo produjo:* este análisis se produjo gracias a un gráfico realizado a través de los datos, en el que se compara el número de siniestros según el tipo de vehículo y el costo de los siniestros por año según el vehículo. El gráfico se compone de dos gráficos de violín; para esto se utilizó la función geom_violin() y una escala logarítmica en base 10 en el eje Y para una mejor visualización.
 
-*Evidencia:* El gráfico utilizado para este análisis corresponde a la figura 5 de la bitácora 2.
+*Evidencia:* el gráfico utilizado para este análisis corresponde a la figura 5 de la segunda bitácora.
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* A través de este hallazgo se puede evidenciar cierto patrón tanto en la frecuencia como en la severidad de los siniestros, uno de los componentes de la pregunta de investigación es qué factores influyen en la frecuencia y severidad de los siniestros; con este hallazgo se puede evidenciar que el tipo de vehículo influye en la frecuencia y severidad, donde los vehículos particulares (turismos) tienen mayor costo de siniestros por año, mientras que el tipo de vehículo de furgoneta posee mayor cantidad de siniestros por año
+*Conexión con la pregunta de investigación:* a través de este hallazgo se puede evidenciar cierto patrón tanto en la frecuencia como en la severidad de los siniestros, uno de los componentes de la pregunta de investigación es qué factores influyen en la frecuencia y la severidad de los siniestros; con este hallazgo se puede evidenciar que el tipo de vehículo influye en la frecuencia y la severidad, donde los vehículos particulares (turismo) tienen mayor costo de siniestros por año, mientras que el tipo de vehículo de furgoneta posee mayor cantidad de siniestros por año.
 
-*Contraste con la literatura:* En contraste con las fichas de literatura, coincide con lo que proponen Fress (2021) y Omari et al. (2018) porque ambos trabajos plantean que se debe trabajar con la frecuencia y severidad por separado para así asignar distribuciones diferentes según el comportamiento de cada variable.
+*Contraste con la literatura:* en contraste con las fichas de literatura, coincide con lo que proponen Fress (2021) y Omari et al. (2018), ya que ambos trabajos plantean que se debe trabajar con la frecuencia y la severidad por separado para así asignar distribuciones diferentes según el comportamiento de cada variable.
 
-*Lo que NO explica este resultado:* Este hallazgo no responde a qué factores hacen que las furgonetas tengan mayor número de siniestros ni por qué los turismos poseen mayor costo anual que otro tipo de vehículos
+*Lo que NO explica este resultado:* este hallazgo no responde a qué factores hacen que las furgonetas tengan mayor número de siniestros ni por qué los vehículos de turismo poseen mayor costo anual de siniestros, en comparación a los otros tipos de vehículos.
 
-*Implicación para el siguiente paso:* Este hallazgo permite incluir justificadamente al tipo de vehículo como una de las variables para modelos en la bitácora 3; además de utilizar distribuciones cero infladas para la frecuencia dada la concentración de ceros en la variable `N_claims_year` y para el costo de los siniestros por año se seguirá el enfoque de Omari et al. (2018) de evaluar empíricamente la distribución que ofrezca mejor ajuste.
+*Implicación para el siguiente paso:* el hallazgo permite incluir justificadamente al tipo de vehículo como una de las variables para modelos en la tercera bitácora; además de utilizar distribuciones cero infladas para la frecuencia dada la concentración de ceros en la variable `N_claims_year` y para el costo de los siniestros por año, se seguirá el enfoque de Omari et al. (2018), al evaluar empíricamente la distribución que ofrezca mejor ajuste.
 :::
 
 ::: callout-note
-# Ficha 2: Exceso de ceros
+# Ficha 2: exceso de ceros
 
 ***Nivel descriptivo***
 
@@ -1104,47 +1104,73 @@ Se observa que la zona rural concentra una mayor cantidad total de registros, ta
 
 *Nombre del hallazgo/resultado:* Exceso de ceros en las variables de frecuencia y severidad anual
 
-*Resumen en una oración:* La gran mayoría de los registros anuales presenta cero siniestros y costo nulo.
+*Resumen en una oración:* la gran mayoría de los registros anuales presenta cero siniestros y costo nulo.
 
-*Método o análisis que lo produjo:* Este hallazgo se obtuvo mediante estadísticos descriptivos calculados con la función `stat.desc()` del paquete `pastecs`, complementados con tablas resumen por tipo de vehículo y zona. Se observó que la mediana de `N_claims_year` y `Cost_claims_year` es igual a cero, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
+*Método o análisis que lo produjo:* este hallazgo se obtuvo mediante estadísticos descriptivos calculados con la función `stat.desc()` del paquete `pastecs`, complementados con tablas resumen por tipo de vehículo y zona. Se observó que la mediana de `N_claims_year` y `Cost_claims_year` es igual a cero, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
 
-*Evidencia:* La @tbl-estad-desc muestra que la mediana de `N_claims_year` es 0 frente a una media de 0.39, y que la mediana de `Cost_claims_year` es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la @tbl-categorias refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
+*Evidencia:* la @tbl-estad-desc muestra que la mediana de `N_claims_year` es 0 frente a una media de 0.39, y que la mediana de `Cost_claims_year` es 0 frente a una media de 153.56. Esto implica que al menos el 50 % de los registros son cero, mientras que unos pocos valores positivos elevan la media, lo que evidencia una alta concentración de ceros. Adicionalmente, la @tbl-categorias refuerza este patrón al mostrar que la mayoría de observaciones presentan ausencia de siniestros independientemente del tipo de vehículo.
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* La pregunta de investigación busca identificar los factores que influyen en la frecuencia y severidad de los siniestros. Este hallazgo es fundamental porque establece que ambas variables presentan un exceso de ceros, lo que condiciona la forma en que deben modelarse y evita el uso de enfoques que asuman distribuciones estándar sin este comportamiento.
+*Conexión con la pregunta de investigación:* la pregunta de investigación busca identificar los factores que influyen en la frecuencia y severidad de los siniestros. Este hallazgo es fundamental porque establece que ambas variables presentan un exceso de ceros, lo que condiciona la forma en que deben modelarse y evita el uso de enfoques que asuman distribuciones estándar sin este comportamiento.
 
-*Contraste con la literatura:* Este resultado es consistente con lo planteado por @hiraldo2005siniestros, quienes documentan una alta concentración de ceros en datos de frecuencia de seguros y argumentan que parte de estos no responde a ausencia de riesgo, sino a la no declaración de siniestros pequeños. Asimismo, coincide con @ayuso2015modelizacion, quienes evidencian que distribuciones clásicas como la Poisson no logran capturar adecuadamente este tipo de datos, especialmente en presencia de exceso de ceros.
+*Contraste con la literatura:* este resultado es consistente con lo planteado por @hiraldo2005siniestros, quienes documentan una alta concentración de ceros en datos de frecuencia de seguros y argumentan que parte de estos no responde a ausencia de riesgo, sino a la no declaración de siniestros pequeños. Asimismo, coincide con @ayuso2015modelizacion, quienes evidencian que las distribuciones clásicas como la Poisson no logran capturar adecuadamente este tipo de datos, especialmente en presencia de exceso de ceros.
 
-*Lo que NO explica este resultado:* Este hallazgo no permite diferenciar si los ceros observados corresponden a asegurados que no experimentaron siniestros o a aquellos que decidieron no reportarlos. Tampoco permite identificar los factores que explican esta acumulación de ceros, por lo que no es suficiente para definir por sí solo el modelo adecuado.
+*Lo que NO explica este resultado:* el hallazgo no permite diferenciar si los ceros observados corresponden a asegurados que no experimentaron siniestros o a aquellos que decidieron no reportarlos. Tampoco permite identificar los factores que explican esta acumulación de ceros, por lo que no es suficiente para definir por sí solo el modelo adecuado.
 
-*Implicación para el siguiente paso:* En próximos avances deberá compararse la proporción de ceros observada en `N_claims_year` y `Cost_claims_year` contra la proporción que distribuciones estándar como la Poisson o la binomial negativa esperarían generar con los mismos parámetros. Si los datos tienen más ceros de los que esas distribuciones predicen, entonces un modelo estándar los va a ajustar mal y será necesario usar modelos inflados de ceros, como el ZINB para frecuencia o la Poisson-inversa gaussiana cero inflada para severidad, tal como proponen @hiraldo2005siniestros y @ayuso2015modelizacion respectivamente. Si el exceso no se confirma, un GLM convencional podría ser suficiente.
+*Implicación para el siguiente paso:* en los próximos avances deberá compararse la proporción de ceros observada en `N_claims_year` y `Cost_claims_year` contra la proporción que distribuciones estándar como la Poisson o la binomial negativa, esperarían generar con los mismos parámetros. Si los datos tienen más ceros de los que esas distribuciones predicen, entonces un modelo estándar los va a ajustar mal y será necesario usar modelos inflados de ceros, como el ZINB para la frecuencia o la Poisson-inversa gaussiana cero inflada para la severidad, tal como proponen @hiraldo2005siniestros y @ayuso2015modelizacion respectivamente. Si el exceso no se confirma, un GLM convencional podría ser suficiente.
 :::
 
 ::: callout-note
-# Ficha 3: Vehículos más comunes que presentan reclamos
+# Ficha 3: vehículos más comunes que presentan reclamos
 
 ***Nivel descriptivo***
 
 *Titular:* *Vehículos comunes concentran reclamos superiores a €900*
 
-*Nombre del hallazgo/resultado:* Concentración de reclamos más costosos corresponden a vehículos de características intermedias.
+*Nombre del hallazgo/resultado:* Concentración de reclamos más costosos corresponden a vehículos de características intermedias
 
-*Resumen en una oración:* Los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
+*Resumen en una oración:* los reclamos más costosos se concentran en vehículos de características intermedias (comunes).
 
-*Método o análisis que lo produjo:* Gráficos de distribución para variables físicas del vehículo, filtrando los registros con `Cost_claims_year` \> 900.
+*Método o análisis que lo produjo:* los gráficos de distribución para las variables físicas del vehículo, filtrando los registros con `Cost_claims_year` \> 900.
 
-*Evidencia:* La @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
+*Evidencia:* la @fig-peso muestra que los casos con costos superiores a €900 se concentran principalmente en vehículos con pesos entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 hp, cilindraje entre 1400 y 2000, y mayor presencia de vehículos de 5 puertas (4 puertas y cajuela).
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este resultado se relaciona directamente con la parte de la pregunta que busca explicar cómo intervienen las características del vehículo en la severidad de los siniestros. La concentración de reclamos superiores a €900 en vehículos de características medias sugiere que el aumento en el costo no parece estar asociado únicamente con vehículos extremos o especiales, sino principalmente con vehículos de uso común, posiblemente turismos familiares o incluso cotidianos.
+*Conexión con la pregunta de investigación:* este resultado se relaciona directamente con la parte de la pregunta que busca explicar cómo intervienen las características del vehículo en la severidad de los siniestros. La concentración de reclamos superiores a 900 euros en vehículos de características medias sugiere que el aumento en el costo no parece estar asociado únicamente con vehículos extremos o especiales, sino principalmente con vehículos de uso común, posiblemente los de turismo, los familiares o incluso los cotidianos.
 
-*Contraste con la literatura:* El resultado coincide parcialmente con Guillén et al. (2021) y Omari et al. (2018), quienes consideran la frecuencia y la severidad como dimensiones centrales en el análisis de seguros de automóviles. Además, Alvia Párraga y Linares Giler (2024) señalan que factores como el tipo de vehículo, la edad del conductor y el contexto geográfico pueden influir en los accidentes de tránsito. Sin embargo, este hallazgo solo muestra una concentración descriptiva de reclamos superiores a €900, por lo que no permite confirmar una relación causal entre las características del vehículo y la severidad del siniestro.
+*Contraste con la literatura:* el resultado coincide parcialmente con Guillén et al. (2021) y Omari et al. (2018), quienes consideran la frecuencia y la severidad como dimensiones centrales en el análisis de seguros de automóviles. Además, Alvia Párraga y Linares Giler (2024) señalan que factores como el tipo de vehículo, la edad del conductor y el contexto geográfico pueden influir en los accidentes de tránsito. Sin embargo, este hallazgo solo muestra una concentración descriptiva de reclamos superiores a 900 euros, por lo que no permite confirmar una relación causal entre las características del vehículo y la severidad del siniestro.
 
-*Lo que NO explica este resultado:* Este resultado no permite concluir que los vehículos con estas características tengan mayor riesgo de generar reclamos costosos, porque no se compara contra la distribución total de vehículos en la base. Es posible que estos rangos aparezcan más porque son los tipos de vehículos más frecuentes. Además, no controla otras variables como zona, edad del asegurado, historial de siniestros, antigüedad con la aseguradora o tipo de riesgo.
+*Lo que NO explica este resultado:* el resultado no permite concluir que los vehículos con estas características tengan mayor riesgo de generar reclamos costosos, porque no se compara contra la distribución total de vehículos en la base. Es posible que estos rangos aparezcan más porque son los tipos de vehículos más frecuentes. Además, no controla otras variables como zona, edad del asegurado, historial de siniestros, antigüedad con la aseguradora o tipo de riesgo.
 
-*Implicación para el siguiente paso:* El siguiente paso debería ser profundizar en la revisión de literatura relacionada con los factores que influyen en el monto de los reclamos vehiculares. Esto permitiría contrastar los resultados obtenidos con estudios previos e identificar si variables como la antigüedad del vehículo, el tipo de combustible o las características del siniestro han sido asociadas anteriormente con reclamos de mayor severidad.
+*Implicación para el siguiente paso:* el siguiente paso debería ser profundizar en la revisión de literatura relacionada con los factores que influyen en el monto de los reclamos vehiculares. Esto permitiría contrastar los resultados obtenidos con estudios previos e identificar si variables como la antigüedad del vehículo, el tipo de combustible o las características del siniestro han sido asociadas anteriormente con reclamos de mayor severidad.
+:::
+
+::: callout-note
+# Ficha 4: valores atípicos en el costo anual de los siniestros y el número de siniestros por año
+
+***Nivel descriptivo***
+
+*Titular: Variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados*
+
+*Nombre del hallazgo/resultado:* Las variables del costo anual de los siniestros y el número de siniestros por año presentan valores mayormente bajos o moderados, no obstante, existen algunos valores muy elevados que podrían influir en el análisis de las variables.
+
+*Resumen en una oración:* pese a la presencia de una alta concentración de ceros en los valores de las variables mencionadas, se identificaron valores atípicos marcados, mostrando importantes diferencias entre los clientes de la cartera.
+
+*Método o análisis que lo produjo:* en el desarrollo de la sección 3.2.2.2 *Detección de valores atípicos (outliers)*, contenida en la segunda bitácora, se realizó un conjunto de boxplots orientados a ilustrar el comportemiento de los valores de determinadas variables de interés para el proyecto, dentro de ellas, el costo anual de los siniestros y el número de siniestros reportados por año. A partir de esto, se encontró el hallazgo planteado.
+
+*Evidencia:* el gráfico que respalda el hallazgo corresponde a la figura 3 de la segunda bitácora: *Boxplots de variables clave para la identificación de valores atípicos*.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* la pregunta de investigación se compone de dos elementos: la relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros. Como es posible notar, las variables del número de siniestros por año (frecuencia) y del costo anual de los siniestros (severidad), constituyen una parte importante en ambos elementos de la propuesta. En motivo de lo anterior, resulta fundamental comprender el comportamiento de los valores de dichas variables, con el objetivo de crear asociaciones con los comportamientos presentados por los valores de las demás variables y de esta forma encaminar el trabajo a resolver el problema planteado.
+
+*Contraste con la literatura:* en referencia a lo planteado por Omari et al. (2018), se reafirma la importancia de manejar con cautela la selección de las distribuciones para modelar las variables de la frecuencia y la severidad de los siniestros. En concordancia con lo planteado por los autores, se resalta que las distribuciones seleccionadas deben responder a las características observadas en los datos, empleando modelos separados, puesto que una elección inadecuada puede afectar directamente la veracidad de las conclusiones construidas.
+
+*Lo que NO explica este resultado:* el presente hallazgo solo muestra el comportamiento de los valores de las variables mencionadas, si bien representa un buen primer acercamiento a la resolución del problema, no es suficiente para identificar la posible existencia de una relación entre este par de variables con la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo; tampoco es posible determinar los factores que explican el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera el monto de 900 euros. En conclusión, el hallazgo representa únicamente una visualización inicial, por lo que se requiere de un estudio mucho más exhaustivo para acercarse a la construcción de conclusiones pertinentes.
+
+*Implicación para el siguiente paso:* a partir del hallazgo encontrado, resulta pertinente estudiar el comportamiento de los valores de las demás variables, con el objetivo de encontrar potenciales asociaciones entre ambos comportamientos y de esta forma, acceder a una guía inicial sobre la existencia de posibles relaciones entre las variables.
 :::
 
 ## La imagen que cuenta la historia
@@ -1212,25 +1238,25 @@ El análisis de correlación representa una herramienta importante para el estud
 
 *Año:* 2015.
 
-*Nombre del tema:* Análisis de los factores sociodemográficos y de las lesiones causadas por accidentes de tránsito que influyen en el tiempo de hospitalización de las víctimas.
+*Nombre del tema:* análisis de los factores sociodemográficos y de las lesiones causadas por accidentes de tránsito que influyen en el tiempo de hospitalización de las víctimas.
 
 *Clasificación:* Metodológica.
 
 Se eligió esta etiqueta pues el artículo compara distribuciones como la Poisson, binomial negativa y Poisson-inversa gaussiana y sus modificaciones cero infladas para ver cuál brinda el mejor ajuste a los datos de severidad.
 
-*Resumen en una oración:* Comparación entre distribuciones discretas para modelar días de hospitalización por accidentes de tránsito.
+*Resumen en una oración:* comparación entre distribuciones discretas para modelar días de hospitalización por accidentes de tránsito.
 
-*Argumento central:* Se determinó que la distribución Poisson-inversa gaussiana cero inflada ha ofrecido mejores resultados a la hora de detectar los factores que inciden en la duración de la hospitalización y en qué medida.
+*Argumento central:* se determinó que la distribución Poisson-inversa gaussiana cero inflada ha ofrecido mejores resultados a la hora de detectar los factores que inciden en la duración de la hospitalización y en qué medida.
 
-*Problemas con el argumento o el tema:* Primero, los autores del artículo señalan que una de las grandes limitaciones fue no tener en cuenta las posibles interrelaciones de las distintas lesiones en una misma víctima; además, otra de las limitaciones fue que no se dispone de información sobre indicadores de severidad de las lesiones ni información acerca del uso de dispositivos de seguridad, ubicación de los pasajeros o conducción bajo efectos de sustancias.
+*Problemas con el argumento o el tema:* primero, los autores del artículo señalan que una de las grandes limitaciones fue no tener en cuenta las posibles interrelaciones de las distintas lesiones en una misma víctima; además, otra de las limitaciones fue que no se dispone de información sobre indicadores de severidad de las lesiones ni información acerca del uso de dispositivos de seguridad, ubicación de los pasajeros o conducción bajo efectos de sustancias.
 
 ***Nivel analítico***
 
-*Conexión con mi proyecto:* Este artículo se relaciona en gran medida con el proyecto, pues una de las partes de la pregunta de investigación es qué factores influyen en el aumento abrupto en el umbral de los €900 en el costo de reclamos por año; como en el artículo se modela una variable de severidad la cual son los días de hospitalización, se podría adaptar para el caso de la variable `Cost_claims_year`; además trabaja con distribuciones cero infladas, extremadamente útil para el caso de esta investigación pues la variable "Cost_claims_year" posee muchos ceros.
+*Conexión con mi proyecto:* este artículo se relaciona en gran medida con el proyecto, pues una de las partes de la pregunta de investigación es qué factores influyen en el aumento abrupto en el umbral de los €900 en el costo de reclamos por año; como en el artículo se modela una variable de severidad la cual son los días de hospitalización, se podría adaptar para el caso de la variable `Cost_claims_year`; además trabaja con distribuciones cero infladas, extremadamente útil para el caso de esta investigación pues la variable "Cost_claims_year" posee muchos ceros.
 
-*Lo que NO dice el autor:* El artículo no trabaja con datos monetarios, sino con unidades de tiempo, en este caso días, por lo que existe la limitación de análisis para el costo monetario de los siniestros.
+*Lo que NO dice el autor:* el artículo no trabaja con datos monetarios, sino con unidades de tiempo, en este caso días, por lo que existe la limitación de análisis para el costo monetario de los siniestros.
 
-*Contraste con otra fuente:* En referencia a la ficha de *Goldburd et al. (2025)* en la que se propone utilizar el modelo lineal generalizado GLM para modelar la severidad, asume de cierta forma que los datos son ideales y que no hay que hacerles modificaciones. Mientras que *Ayuso-Gutiérrez et al. (2015)* proponen una metodología para datos que poseen gran cantidad de ceros mediante la aplicación de distribuciones cero infladas, como es el caso de los datos del proyecto de investigación; de este modo, el artículo de Ayuso-Gutiérrez et al. (2015) se complementa con el enfoque de Goldburd et al. (2025) pues ofrece una solución específica para el manejo de datos que poseen una concentración inusual de observaciones en determinado valor, aspecto que Goldburd et al. (2025) no abordan.
+*Contraste con otra fuente:* en referencia a la ficha de *Goldburd et al. (2025)* en la que se propone utilizar el modelo lineal generalizado GLM para modelar la severidad, asume de cierta forma que los datos son ideales y que no hay que hacerles modificaciones. Mientras que *Ayuso-Gutiérrez et al. (2015)* proponen una metodología para datos que poseen gran cantidad de ceros mediante la aplicación de distribuciones cero infladas, como es el caso de los datos del proyecto de investigación; de este modo, el artículo de Ayuso-Gutiérrez et al. (2015) se complementa con el enfoque de Goldburd et al. (2025) pues ofrece una solución específica para el manejo de datos que poseen una concentración inusual de observaciones en determinado valor, aspecto que Goldburd et al. (2025) no abordan.
 
 *Evaluación de aplicabilidad (escala 1–5):* 4.5.
 
@@ -1307,7 +1333,7 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 -   Además, se fortaleció la comprensión del análisis descriptivo como una etapa clave para conocer la estructura de los datos. A partir de la revisión de tablas, valores faltantes, valores atípicos y gráficos, se aprendió a identificar patrones iniciales sin llegar a conclusiones apresuradas. En adición a esto, se comprendió que la literatura consultada no solo funciona como respaldo teórico, sino también como una guía para interpretar los resultados y orientar los siguientes pasos del proyecto. Este proceso permitió conectar mejor los hallazgos descriptivos con la pregunta de investigación
 
--   A partir de la construcción de los gráficos, se aprendió que no solamente consiste en hacer gráficos sin decisiones detrás, durante el proceso de la creación de gráficos se pensaron y descartaron diversos gráficos por distintas razones, ya sea que no estaban alineados con la pregunta de investigación u otros motivos, además de esto, se aprendió que en algunas ocasiones es necesario cambiar la escala de alguno de los ejes para que la visualización del gráfico sea lo mejor posible; y se reconoció el papel importante que toma la selección de un determinado estilo para todos los gráficos, para que así todos se vean más homogéneos entre sí.
+-   A partir de la construcción de los gráficos, se aprendió que no solamente consiste en hacer gráficos sin decisiones detrás, durante el proceso de la creación de gráficos se pensaron y descartaron diversos gráficos por distintas razones, ya sea que no estaban alineados con la pregunta de investigación u otros motivos, además de esto, se aprendió que en algunas ocasiones es necesario cambiar la escala de alguno de los ejes para que la visualización del gráfico sea lo mejor posible; y se reconoció el papel importante que toma la selección de un determinado estilo para todos los gráficos, para que de esta forma todos se vean más homogéneos entre sí.
 
 -   Se aprendió que la escritura científica exige un proceso de revisión constante, pues, al releer secciones redactadas anteriormente, se identificaron ideas que, aunque correctas, podían expresarse con mayor precisión o cohesión. Esto evidenció que la óptima escritura no es un resultado inmediato, sino el producto de múltiples iteraciones sobre un mismo texto.
 
@@ -1315,7 +1341,7 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 
 ## Audiencia del proyecto
 
-Esta semana le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los 900 euros y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
+Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que más del 85% de los asegurados presentan cero reclamaciones, además, existe una concentración atípica en los costos de reclamos por año cerca del umbral de los 900 euros y que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros. Con base en estos hallazgos se contempla utilizar modelos con distribuciones cero infladas para las siguientes bitácoras.
 
 ## Registro del uso de IA
 
@@ -1325,13 +1351,13 @@ En la presente bitácora, se acudió en una única ocasión a la guía de la int
 
 *Prompt:* “Necesito ayuda para estructurar una tabla en R Markdown usando knitr::kable() y kableExtra, de forma que tenga un formato estándar para un documento en PDF. Quiero que la tabla tenga título, encabezado repetido si ocupa más de una página.”
 
-*Respuesta de la IA:* La IA, mediante múltiples respuestas, explicó cómo construir una tabla con knitr::kable() y darle formato con kableExtra, esto último con motivo estético. Se mostró una estructura base que incluía el uso de caption para el título, booktabs = TRUE para mejorar el estilo de las líneas, longtable = TRUE para permitir tablas largas, y align para definir la alineación de las columnas. También se explicó cómo aplicar opciones de estilo con kable_styling(), como repetir el encabezado, centrar la tabla, ajustar el tamaño de letra y controlar el ancho de cada columna con column_spec().
+*Respuesta de la IA:* la IA, mediante múltiples respuestas, explicó cómo construir una tabla con knitr::kable() y darle formato con kableExtra, esto último con motivo estético. Se mostró una estructura base que incluía el uso de caption para el título, booktabs = TRUE para mejorar el estilo de las líneas, longtable = TRUE para permitir tablas largas, y align para definir la alineación de las columnas. También se explicó cómo aplicar opciones de estilo con kable_styling(), como repetir el encabezado, centrar la tabla, ajustar el tamaño de letra y controlar el ancho de cada columna con column_spec().
 
-*Evaluación:* La respuesta fue útil porque permitió entender la función de cada parte del código y no solo copiarlo, se modificó la estructura base explicada en repetidas ocasiones dependiendo del formato que se quería para cada tabla. Sirvió especialmente para aprender cómo hacer una tabla más ordenada y presentable en un documento PDF, ya que con otras alaternativas la tabla salía desordenada al generar el documento. También ayudó a corregir problemas comunes, como tablas muy anchas, encabezados que no se repiten o columnas mal distribuidas o no centradas. Lo que quedó pendiente fue ajustar los anchos de las columnas según el contenido específico de cada tabla, porque esos valores dependen del tipo de datos que se estén presentando.
+*Evaluación:* la respuesta fue útil porque permitió entender la función de cada parte del código y no solo copiarlo, se modificó la estructura base explicada en repetidas ocasiones dependiendo del formato que se quería para cada tabla. Sirvió especialmente para aprender cómo hacer una tabla más ordenada y presentable en un documento PDF, ya que con otras alaternativas la tabla salía desordenada al generar el documento. También ayudó a corregir problemas comunes, como tablas muy anchas, encabezados que no se repiten o columnas mal distribuidas o no centradas. Lo que quedó pendiente fue ajustar los anchos de las columnas según el contenido específico de cada tabla, porque esos valores dependen del tipo de datos que se estén presentando.
 
-*Modificaciones:* Se adaptó la estructura propuesta a todas las tablas presentes en este documento. Se cambiaron el nombre del objeto de datos, el título de la tabla y los anchos de las columnas para que el contenido no quedara amontonado o que se saliera de la hoja. También se mantuvo el encabezado en negrita, se centró la tabla y se redujo el tamaño de letra para que se ajustara mejor al formato del documento.
+*Modificaciones:* se adaptó la estructura propuesta a todas las tablas presentes en este documento. Se cambiaron el nombre del objeto de datos, el título de la tabla y los anchos de las columnas para que el contenido no quedara amontonado o que se saliera de la hoja. También se mantuvo el encabezado en negrita, se centró la tabla y se redujo el tamaño de letra para que se ajustara mejor al formato del documento.
 
-*Aprendizaje:* Se aprendió a crear una tabla con formato más claro y prolijo usando knitr::kable() y kableExtra. También se comprendió cómo controlar elementos importantes del diseño, como el título, la alineación, el tamaño de letra, el ancho de columnas y la repetición del encabezado en tablas largas, y a reordenar los datos en caso de que no quedara estético el resultado.
+*Aprendizaje:* se aprendió a crear una tabla con formato más claro y prolijo usando knitr::kable() y kableExtra. También se comprendió cómo controlar elementos importantes del diseño, como el título, la alineación, el tamaño de letra, el ancho de columnas y la repetición del encabezado en tablas largas, y a reordenar los datos en caso de que no quedara estético el resultado.
 
 ## Registro del trabajo en equipo
 
