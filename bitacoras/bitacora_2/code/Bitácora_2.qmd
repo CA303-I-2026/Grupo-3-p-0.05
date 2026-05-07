@@ -781,7 +781,7 @@ datos_unicos %>%
   scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + # Color según densidad
   geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + # Crear una regresión lineal
   scale_x_continuous(breaks = seq(20,100,10)) +
-  labs(title = "Relación entre Edad e histórico de reclamos",
+  labs(title = "Relación entre edad e histórico de reclamos",
        x = "Edad", 
        y = "Número de reclamos",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
@@ -794,7 +794,7 @@ dispersion_edad_h_reclamos <- datos_unicos %>%
   scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + # Color según densidad
   geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + # Crear una regresión lineal
   scale_x_continuous(breaks = seq(20,100,10)) +
-  labs(title = "Relación entre Edad e histórico de reclamos",
+  labs(title = "Relación entre edad e histórico de reclamos",
        x = "Edad", 
        y = "Número de reclamos",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
