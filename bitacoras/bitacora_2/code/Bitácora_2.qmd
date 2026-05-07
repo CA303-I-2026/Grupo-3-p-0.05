@@ -705,7 +705,7 @@ colnames(tabla_desc) <- c(
 
 knitr::kable(
   tabla_desc,
-  caption = "Estadísticos descriptivos de las variables cuantitativas relevantes para el análisis de frecuencia y severidad de los siniestros.",
+  caption = "Estadísticos descriptivos de las variables cuantitativas relevantes para el análisis de frecuencia y severidad de los siniestros",
   booktabs = TRUE,
   longtable = TRUE,
   align = c("l", rep("c", ncol(tabla_desc) - 1))
