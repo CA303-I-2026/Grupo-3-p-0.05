@@ -59,6 +59,12 @@ format:
 ## Base de datos
 ![](distibucion_costo_anyo.png){height=90%}
 
+## Base de datos
+![](Tabla_estadísticos_descriptivos.png)
+
+## Base de datos
+![](velas_atipicos.png){height=90%}
+
 
 ## Metodología propuesta
 ### Proceso metodológico a seguir 
