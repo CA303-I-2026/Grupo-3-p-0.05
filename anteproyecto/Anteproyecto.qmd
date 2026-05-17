@@ -1,5 +1,5 @@
 ---
-bibliography: ../../../referencias/referencias.bib
+bibliography: ../referencias/referencias.bib
 csl: https://www.zotero.org/styles/apa
 format: 
  pdf: 
@@ -21,7 +21,7 @@ format:
    header-includes:
             - \usepackage{indentfirst}
             - \setlength{\parindent}{1.27cm} 
-   include-before-body: Portada.tex
+   #include-before-body: Portada.tex
 ---
 
 ```{=latex}
@@ -29,3 +29,60 @@ format:
 ```
 
 \newpage
+
+# Propuesta metodológica
+
+## Enfoque metodológico
+
+## Análisis descriptivo de la frecuencia y severidad de siniestros
+
+## Análisis de correlación entre variables cuantitativas
+
+El análisis de correlación entre variables se llevará a cabo con el propósito de identificar posibles relaciones entre las características del asegurado y del vehículo con la frecuencia y la severidad de los siniestros. En esta etapa se busca reconocer patrones iniciales que permitan orientar la interpretación de los resultados posteriormente.
+
+Para las variables cuantitativas, se utilizarán coeficientes de correlación como una primera herramienta de análisis. Esta decisión se fundamenta en los aportes de @vinuesa2016 y @patel2025, quienes presentan la correlación como una herramienta útil para estudiar el grado de asociación entre variables. Para esto se emplearán coeficientes de correlación calculados mediante funciones de R. En particular, se considerarán los métodos de *Pearson*, *Spearman* y *Kendall*, según las características de las variables analizadas. Pearson se utilizará únicamente como referencia cuando se quiera evaluar una posible relación lineal entre variables cuantitativas. Sin embargo, debido a la alta concentración de ceros, la presencia de valores atípicos y la posible falta de normalidad en las variables de siniestralidad que se determinó en la etapa del análisis descriptivo en la Bitácora 2, se dará prioridad a los coeficientes no paramétricos de *Spearman* y *Kendall*. Aún así, previamente se hará la prueba de normalidad de las variables mediante R con un `shapiro.test()`.
+
+El cálculo de la correlación como tal se realizará mediante las funciones `cor()` y `cor.test()` de R, utilizando el método correcto de acuerdo a los datos obtenidos con la prueba *Shapiro*. La función `cor()` permitirá obtener el coeficiente de correlación entre pares de variables o construir matrices de correlación, mientras que `cor.test()` permitirá evaluar la significancia estadística de cada asociación.
+
+En esa misma línea, se analizarán relaciones como:
+
+-   La edad del asegurado con el número de siniestros por año
+-   La antigüedad (del asegurado) con la aseguradora con la frecuencia de siniestros
+-   El historial de siniestros con la frecuencia anual
+-   Las características físicas del vehículo con el costo anual de los siniestros.
+
+Estas asociaciones se complementarán con gráficos de dispersión y líneas de tendencia, con el fin de observar si existe algún patrón visual entre las variables que posteriormente sea útil en el análisis de resultados.
+
+Es importante aclarar que la correlación no permite afirmar que una variable cause cambios en otra. Por esta razón, los resultados obtenidos en esta sección se interpretarán únicamente como asociaciones preliminares. Esto es coherente con lo señalado por @vinuesa2016, quien advierte que la correlación puede mostrar variación conjunta entre variables, pero no necesariamente causalidad.
+
+## Comparación entre grupos para variables categóricas
+
+Además del análisis de asociación entre variables cuantitativas, se realizará una comparación entre grupos para estudiar cómo varían la frecuencia y la severidad de los siniestros según variables categóricas. Entre estas variables se considerarán el tipo de vehículo, la zona de circulación y, en caso de ser pertinente, el tipo de combustible.
+
+Esta etapa se fundamenta en la literatura revisada, ya que distintos autores resaltan la importancia de analizar la siniestralidad a partir de características del asegurado y del vehículo. Por ejemplo, @hiraldo2005siniestros estudian la frecuencia de los siniestros considerando variables asociadas al perfil del conductor y al vehículo. De forma similar, @omari2018modeling plantean que la frecuencia y la severidad deben estudiarse por separado, debido a que representan componentes distintos del riesgo asegurador.
+
+Para realizar esta comparación, se construirán tablas resumen por grupo. En estas tablas se podrán incluir indicadores como cantidad de observaciones, porcentaje de asegurados sin siniestros, frecuencia promedio de siniestros, mediana del costo anual y porcentaje de registros con costos positivos. También se emplearán gráficos comparativos, como gráficos de barras, boxplots o gráficos de violín, para visualizar diferencias entre categorías.
+
+El objetivo de esta etapa no será afirmar que un grupo es necesariamente más riesgoso que otro, sino identificar si existen diferencias descriptivas entre las categorías analizadas.
+
+## Análisis del umbral de los 900 euros
+
+Como parte del análisis de la severidad, se estudiará de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanza o supera los 900 euros. Esta decisión responde al comportamiento observado en el análisis exploratorio, donde se identificó una concentración particular de reclamos alrededor de dicho monto.
+
+Para abordar este fenómeno sin recurrir a modelos estadísticos avanzados, se construirá una variable categórica (una variable indicadora) que divida los registros en dos grupos: siniestros con costo menor a 900 euros y siniestros con costo mayor o igual a 900 euros.
+
+$$
+Y =
+\begin{cases}
+1, & \text{si } \text{Cost\_claims\_year} \geq 900,\\
+0, & \text{si } \text{Cost\_claims\_year} < 900.
+\end{cases}
+$$
+
+A partir de esta clasificación, se compararán las características de ambos grupos con el fin de identificar posibles diferencias en edad del asegurado, antigüedad con la aseguradora, historial de siniestros, tipo de vehículo, zona de circulación, peso, largo, potencia y valor del vehículo.
+
+El análisis del umbral se realizará mediante tablas de proporciones y gráficos comparativos entre categorías. En particular, se calculará el porcentaje de registros que alcanzan o superan los 900 euros dentro de cada categoría de interés. De esta manera, será posible identificar qué grupos presentan mayor concentración de reclamos de alta severidad.
+
+\newpage
+
+# Referencias
