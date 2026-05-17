@@ -3,18 +3,33 @@ title: "Intervención de la edad del asegurado, la antigüedad con la asegurador
 author: "Alexandra González, Estefanía Mora, Daniela Prado y José Miguel Rodríguez"
 format:
   beamer:
-    theme: Madrid
-    colortheme: dolphin
+    theme: CambridgeUS
+    colortheme: seahorse
     toc: false
-    slide-level: 2
     aspectratio: 169
-fontsize: 11pt
+    slide-number: true
+    navigation: empty
+    fontsize: 11pt
+    number-sections: false
+    include-in-header:
+            text: |
+                \setbeamertemplate{footline}[frame number]
+                \setbeamerfont{author}{size=\small, series=\itshape}
+                
 ---
 
-# Metodología propuesta 
+## Introducción
+
+## Pregunta de investigación
+
+## Base de datos
+
+
+
+## Metodología propuesta
 
 ¿Qué técnicas o modelos planean usar? ¿Por qué esas y no otras? Mencionen al menos una alternativa que descartaron y la razón.
 
-# Resultados esperados 
+## Resultados esperados
 
 ¿Qué esperan encontrar? ¿Cómo sabrán si su pregunta quedó respondida?
