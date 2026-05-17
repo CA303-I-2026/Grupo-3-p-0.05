@@ -1,6 +1,0 @@
----
-title: "Anteproyecto_Presentación"
-format: revealjs
-editor: visual
----
-
