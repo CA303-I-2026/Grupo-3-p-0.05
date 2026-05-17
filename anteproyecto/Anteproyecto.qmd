@@ -34,7 +34,27 @@ format:
 
 ## Enfoque metodológico
 
+El análisis propuesto se estructura en cuatro etapas complementarias. En primer lugar, se llevará a cabo un análisis descriptivo de las variables respuesta, frecuencia y severidad de los siniestros, por separado. En segundo lugar, se explorarán las relaciones entre las variables explicativas cuantitativas y dichas variables respuesta mediante análisis de correlación. En tercer lugar, se compararán grupos definidos por variables categóricas. Finalmente, se estudiará de forma específica el comportamiento de los registros cuyo costo anual supera el umbral de los 900 euros.
+
+Este enfoque responde a las características observadas en los datos durante la Bitácora 2: una alta concentración de ceros tanto en la frecuencia como en la severidad, la presencia de valores atípicos marcados y una distribución fuertemente asimétrica en el costo anual de los siniestros. Estas características condicionan las herramientas estadísticas aplicables y justifican la elección de un análisis descriptivo y de asociación antes de proceder a cualquier modelación.
+
+Como alternativa considerada y descartada, la literatura revisada propone el uso de Modelos Lineales Generalizados (GLM) como herramienta estándar para modelar la frecuencia y la severidad en seguros de automóviles [@goldburd2025]. Sin embargo, dado que el objetivo del presente proyecto es identificar asociaciones entre variables y no construir un modelo predictivo o de tarifación, y considerando además que los supuestos del GLM estándar, como la ausencia de exceso de ceros y la independencia entre observaciones, no se cumplen de forma satisfactoria en estos datos, se optó por no implementar esta metodología en la presente etapa del análisis.
+
 ## Análisis descriptivo de la frecuencia y severidad de siniestros
+
+Siguiendo el planteamiento de @frees2021 y @omari2018modeling, la frecuencia y la severidad de los siniestros constituyen dos componentes distintos del riesgo asegurador y, por tanto, deben analizarse por separado. La frecuencia corresponde al número de siniestros ocurridos en un periodo determinado, mientras que la severidad se refiere al costo económico asociado a cada uno de ellos. Esta distinción es fundamental, ya que ambas variables presentan naturalezas estadísticas diferentes: la frecuencia corresponde a una variable discreta de conteo, mientras que la severidad es una variable continua y estrictamente no negativa.
+
+**Frecuencia de siniestros**
+
+Para la variable `N_claims_year`, se elaborará una tabla de distribución de frecuencias mediante la función `table()` de R, que permitirá identificar cuántos registros presentan cero, uno, dos o más siniestros en el año. A partir de esta tabla, se calculará el porcentaje de asegurados que no reportó ningún siniestro durante el período analizado. Complementariamente, se obtendrán estadísticos descriptivos, media, mediana y desviación estándar, mediante la función `stat.desc()` del paquete `pastecs`, siguiendo el mismo procedimiento empleado en la Bitácora 2. Se elaborará además un histograma con `geom_histogram()` o un gráfico de barras con `geom_bar()` dentro del entorno `ggplot2` para visualizar la distribución de esta variable.
+
+La alta concentración de ceros observada en la Bitácora 2, donde más del 85 % de los registros no presentaron siniestros, se analizará con especial atención. @hiraldo2005siniestros documentan un fenómeno equivalente en datos de seguros de automóviles, similar al trabajado en este proyecto, y señalan que esta concentración puede responder tanto a la ausencia real de siniestros como a la decisión de algunos asegurados de no declarar eventos de baja cuantía. Por esta razón, el exceso de ceros no se tratará como un artefacto que deba eliminarse, sino como una característica informativa de los datos que debe considerarse en la interpretación de los resultados.
+
+**Severidad de siniestros**
+
+Para la variable `Cost_claims_year`, se calculará en primer lugar la proporción de registros con costo igual a cero mediante `mean()` aplicado a una condición lógica, con el fin de cuantificar la magnitud del exceso de ceros en esta dimensión. Posteriormente, el análisis descriptivo se realizará sobre los registros con costos estrictamente positivos, filtrando la base con `filter()` del paquete `dplyr` y aplicando nuevamente `stat.desc()` para obtener medidas de tendencia central y dispersión. Se elaborará un histograma del costo con `geom_histogram()` para observar la forma de la distribución, y un boxplot con `geom_boxplot()` para identificar la magnitud y distribución de los valores atípicos.
+
+Estas visualizaciones ya fueron construidas en la Bitácora 2 (Figuras 3 y 4) y servirán como base para la interpretación en esta etapa. La distribución fuertemente asimétrica hacia la derecha y la presencia de valores extremos son consistentes con lo descrito por @omari2018modeling, quienes advierten que los datos de severidad en seguros de automóviles suelen presentar colas pesadas que dificultan el uso de distribuciones simples.
 
 ## Análisis de correlación entre variables cuantitativas
 
