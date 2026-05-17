@@ -15,10 +15,31 @@ format:
             text: |
                 \setbeamertemplate{footline}[frame number]
                 \setbeamerfont{author}{size=\small, series=\itshape}
+                \setlength{\parskip}{0.5cm}
                 
 ---
 
-## Introducción
+## Introducción: análisis exploratorio inicial
+
+::: columns
+
+:::: column
+![](Analisis_exploratorio_inicial.jpeg){width=110%}
+::::
+
+:::: column
+- El gráfico muestra la cantidad de reclamos de acuerdo al costo de los mismos. 
+
+
+- **Mejor visualización:** no se contemplan los montos superiores a €5,000.
+
+
+- **Singularidad:** se presenta un cambio abrupto en la cantidad de reclamos cuando el monto de los mismos alcanza los €900.
+
+::::
+
+:::
+
 
 ## Pregunta de investigación
 
