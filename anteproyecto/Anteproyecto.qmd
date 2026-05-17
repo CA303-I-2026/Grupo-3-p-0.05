@@ -1,0 +1,31 @@
+---
+bibliography: ../../../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
+format: 
+ pdf: 
+   papersize: letter
+   documentclass: article
+   lang: es-CR
+   titlepage: true
+   toc: true
+   toc-title: "Índice"
+   toccolor: "black"
+   fontsize: "11pt"
+   mainfont: Times New Roman
+   urlcolor: "blue"
+   number-sections: true
+   margin-left: "2.54cm"
+   margin-right: "2.54cm"
+   margin-top: "2.54cm"
+   margin-bottom: "2.54cm"
+   header-includes:
+            - \usepackage{indentfirst}
+            - \setlength{\parindent}{1.27cm} 
+   include-before-body: Portada.tex
+---
+
+```{=latex}
+\setcounter{page}{1} 
+```
+
+\newpage
