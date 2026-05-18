@@ -25,16 +25,17 @@ format:
 
 :::: column
 ![](Analisis_exploratorio_inicial.jpeg){width=110%}
+
 ::::
 
 :::: column
-- El gráfico muestra la cantidad de reclamos de acuerdo al costo de los mismos. 
+- El gráfico muestra la cantidad de reclamos de acuerdo al costo de los mismos. \vspace{0.3cm}
 
 
-- **Mejor visualización:** no se contemplan los montos superiores a €5,000.
+- **Mejor visualización:** no se contemplan los montos superiores a €5,000.\vspace{0.3cm}
 
 
-- **Singularidad:** se presenta un cambio abrupto en la cantidad de reclamos cuando el monto de los mismos alcanza los €900.
+- **Singularidad:** se presenta un cambio abrupto en la cantidad de reclamos cuando el monto de los mismos alcanza los €900.\vspace{0.3cm}
 
 ::::
 
@@ -42,28 +43,41 @@ format:
 
 
 ## Pregunta de investigación
+###
 ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
 
-- **Actuarios**
+###
+Relevante para: \vspace{0.1cm}
 
-- **Aseguradoras de automóviles**
+- **Actuarios** \vspace{0.1cm}
 
-## Base de datos
-
-- Los datos se obtuvieron de la Universidad de Valencia, España, de la página Mendeley Data.
-
-- Posee 105.555 observaciones, 53.502 observaciones únicas y 30 variables.
-
-- Variables como "Date_lapse" posee 70.408 NA representando un 66.7% de los datos.
+- **Aseguradoras de automóviles** \vspace{0.1cm}
 
 ## Base de datos
-![](distibucion_costo_anyo.png){height=90%}
+###
+- Los datos se obtuvieron de la Universidad de Valencia, España, de la página Mendeley Data. \vspace{0.1cm}
+
+- Posee 105,555 observaciones, 53,502 observaciones únicas y 30 variables. \vspace{0.1cm}
+
+- Variables como "Date_lapse" posee 70,408 NA, representando un 66.7% de los datos. \vspace{0.3cm}
+
+###
+\begin{center}
+\includegraphics[width=0.5\linewidth]{mendeleydata.png}
+\end{center}
+
+## Base de datos
+\begin{center}
+\includegraphics[width=0.75\linewidth]{distibucion_costo_anyo.png}
+\end{center}
 
 ## Base de datos
 ![](Tabla_estadísticos_descriptivos.png)
 
 ## Base de datos
-![](velas_atipicos.png){height=90%}
+\begin{center}
+\includegraphics[width=0.6\linewidth]{velas_atipicos.png}
+\end{center}
 
 
 ## Metodología propuesta
