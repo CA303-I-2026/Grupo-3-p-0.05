@@ -30,7 +30,7 @@ grados_libertad_residuales = df.residual(modelo_poisson) # Número total de grad
 dispersión = residuo_varianza/grados_libertad_residuales # El resultado de este cociente es 1.232824, por lo que los datos poseen sobredispersión  ya que el cociente es mayor a 1.
 
 # Comparación de la proporción de ceros con respecto al total de datos
-ceros_original <- sum(datos$N_claims_year == 0)/nrow(datos) # 81,388% delos datos son cero
+ceros_original <- sum(datos$N_claims_year == 0)/nrow(datos) # 81.39% de los datos son cero
 media_observada <- mean(datos$N_claims_year) # Promedio observado en los datos
 ceros_esperados <- exp(-media_observada) # Sería calcular la probabilidad de X = 0 en una poisson, usando la media que se obtuvo a partir de los datos originales
 diferencia_medias <-  round((ceros_original - ceros_esperados),3)*100 # Hay una direfencia porcentual de 14 entre el porcentaje de ceros de los datos y el porcentaje de ceros que se esperaría obtener a partir de la posisson
