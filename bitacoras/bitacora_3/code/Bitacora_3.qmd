@@ -42,6 +42,22 @@ La fase en la que se encuentra el proyecto actualmente, está enfocada en efectu
 
 ## Propuesta metodológica
 
+
+### Análisis fallido
+
+#### Modelo Poisson para la frecuencia de siniestros
+
+Para modelar la frecuencia de los siniestros se intentó ajustar un modelo lineal generalizado (GLM) con distribución Poisson para identificar las variables que influyen en la frecuencia de los siniestros por año. Las variables explicativas utilizadas fueron la edad del asegurado, la antigüedad del asegurado con la aseguradora (Seniority), el número de reclamos histórico (N_claims_history), el tipo de vehículo (Type_risk), el número de puertas (N_doors), el largo de vehículo (Length) y el peso del vehículo (Weight). El modelo se ajustó utilizando la función "glm()", utilizando "family = poisson()".
+
+El modelo de Poisson falló por dos razones principales. La primera, es que el modelo de Poisson asume que la media y la varianza son iguales o que no distan por mucho. Sin embargo, gracias al análisis exploratorio realizado, se encontró que la variable N_claims_year tiene una media de aproximadamente 0.39, mientras que la varianza es de aproximadamente 1.22; lo que representa un indicio de sobredispersión en los datos. Luego se procedió a calcular la relación entre la varianza y la media (varianza/media) y se obtuvo que es de 3.09, el cual es mayor a uno, por lo que según el índice de sobredispersión de datos, se confirma que hay sobredispersión.
+
+La segunda razón por la cual el modelo de Poisson falló fue porque subestima drásticamente la cantidad de ceros; en los datos se observó que aproximadamente 81.39% del número de reclamos por año son cero, mientras que el modelo de Poisson, utilizando la media original de 0.39, estima que habrá 67.39%  de ceros, esto resulta en una diferencia de 14 puntos porcentuales, evidenciando un exceso de ceros que la distribución Poisson no puede generar con la media de los datos.
+
+Para saber que el modelo de Poisson falló se realizaron 3 pruebas. Primero, se calculó la relación entre la varianza y la media, obteniendo un valor de 3.09, que como ya se indicó, implica sobredispersión en los datos. Segundo, se realizó una comparación entre los ceros observados y la proporción de ceros esperada con la distribución Poisson, de esta prueba se obtuvo que ambos valores distaban de 14 puntos porcentuales en la proporción de ceros. Tercero, se calculó el estadístico de sobredispersión por medio de los residuos de desviación del modelo de Poisson, de este cálculo se obtuvo un valor de 1.23, el cual es mayor a 1, lo que indica que hay una mayor variabilidad en los datos de la que el modelo Poisson puede contemplar.
+
+Gracias a este fallo, se aprendió que para datos con alta concentración de ceros en la frecuencia no pueden modelarse por medio de una distribución Poisson, idea reforzada por la literatura consultada a lo largo de la investigación. Además de esto, se observó que la sobredispersión está presente incluso antes de controlar los datos con variables explicativas. Por esto, se descarta el uso del modelo Poisson para trabajar la frecuencia de los siniestros. 
+ 
+
 ## Construcción de las fichas de resultados
 
 ::: callout-note
