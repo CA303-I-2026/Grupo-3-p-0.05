@@ -1,0 +1,159 @@
+---
+bibliography: ../../../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
+format: 
+  pdf: 
+    papersize: letter
+    documentclass: article
+    lang: es-CR
+    titlepage: true
+    toc: true
+    toc-title: "Índice"
+    toccolor: "black"
+    fontsize: "11pt"
+    mainfont: Times New Roman
+    urlcolor: "blue"
+    number-sections: true
+    margin-left: "2.54cm"
+    margin-right: "2.54cm"
+    margin-top: "2.54cm"
+    margin-bottom: "2.54cm"
+    header-includes:
+      - \usepackage{indentfirst}
+      - \setlength{\parindent}{1.27cm}
+      - \usepackage{longtable}
+      - \usepackage{array}
+      - \renewcommand{\arraystretch}{1.5}
+      - \setlength{\tabcolsep}{8pt}
+    include-before-body: Portada.tex
+---
+
+```{=latex}
+\setcounter{page}{1} 
+```
+
+\newpage
+
+# Parte de planificación
+
+La fase en la que se encuentra el proyecto actualmente, está enfocada en efectuar los análisis de modelación necesarios con tal de aproximarse a la construcción de los resultados finales, lo anterior mediante el ajuste y el desarrollo de la metodología propuesta en el anteproyecto. En vista de esto, las secciones posteriores se encargan de materializar las ideas abordadas tanto en las bitácoras pasadas como en la presentación brindada por el equipo.
+
+## Análisis de la modelación
+
+## Propuesta metodológica
+
+## Construcción de las fichas de resultados
+
+::: callout-note
+:::
+
+## Ordenamiento de los elementos del reporte
+
+## La imagen que cuenta la historia
+
+# Arco narrativo del proyecto
+
+# Parte de escritura
+
+# Parte de reflexión
+
+# Fichas literarias construidas en la tercera bitácora
+
+::: callout-note
+:::
+
+# Implementación de la retroalimentación
+
+Las observaciones extendidas a partir de la revisión de la tercera bitácora se efectuaron en torno a cuatro ejes: ... . En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintas áreas.
+
+# Relativo al trabajo en equipo
+
+## Rastro de decisiones
+
+Durante la elaboración de la tercera bitácora, el equipo se vio en la necesidad de tomar una serie de decisiones con el objetivo de desarrollar óptimamente las tareas requeridas. Dichas decisiones atrevesaron varios ejes, los cuales se detallan a continuación en compañía de los párrafos explicativos correspondientes.
+
+## Diario de aprendizaje
+
+La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, en torno al proceso acumulativo del desarrollo del proyecto. Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al entregar la segunda bitácora? Dichas oraciones proceden a detallarse como sigue:
+
+## Audiencia del proyecto
+
+Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que
+
+## Registro del uso de IA
+
+En la presente bitácora, se acudió en una única ocasión a la guía de la inteligencia artificial. De esta manera, se detalla a continuación el respectivo registro:
+
+*Herramienta:*
+
+*Prompt:*
+
+*Respuesta de la IA:*
+
+*Evaluación:*
+
+*Modificaciones:*
+
+*Aprendizaje:*
+
+## Registro del trabajo en equipo
+
+La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las secciones en las que cada uno se desempeñó:
+
++:------------------------------:+:-----------------------------------------------------:+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Alexandra González Bermúdez    | Corrección en base a la retroalimentación             |
+|                                |                                                       |
+|                                | Arco narrativo del proyecto                           |
+|                                |                                                       |
+|                                | La imagen que cuenta la historia                      |
+|                                |                                                       |
+|                                | Parte de escritura                                    |
+|                                |                                                       |
+|                                | Registro del trabajo en equipo                        |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Emily Estefanía Mora Contreras | Análisis de la modelación                             |
+|                                |                                                       |
+|                                | Propuesta metodológica                                |
+|                                |                                                       |
+|                                | Parte de reflexión                                    |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| Daniela Prado Vargas           | Análisis de la modelación                             |
+|                                |                                                       |
+|                                | Ordenamiento de los elementos del reporte             |
+|                                |                                                       |
+|                                | Rastro de decisiones                                  |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+| **Nombre**                     | **Contribuciones**                                    |
++--------------------------------+-------------------------------------------------------+
+| José Miguel Rodríguez Gómez    | Organización de las tareas de acuerdo a su dificultad |
+|                                |                                                       |
+|                                | Análisis de la modelación                             |
+|                                |                                                       |
+|                                | Audiencia del proyecto                                |
+|                                |                                                       |
+|                                | Diario de aprendizaje                                 |
+|                                |                                                       |
+|                                | Construcción de fichas de resultados                  |
++--------------------------------+-------------------------------------------------------+
+
+\newpage
+
+# Referencias
