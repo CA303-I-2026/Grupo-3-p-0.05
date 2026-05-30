@@ -429,6 +429,83 @@ Gracias a este fallo, se aprendió que para datos con alta concentración de cer
 # Fichas literarias construidas en la tercera bitácora
 
 ::: callout-note
+# Marambakuyana y Shongwe (2024)
+
+***Nivel descriptivo***
+
+*Título:* *Composite and Mixture Distributions for Heavy-Tailed Data—An Application to Insurance Claims*
+
+*Autores:* Walena Anesu Marambakuyana y Sandile Charles Shongwe.
+
+*Año:* 2024.
+
+*Nombre del tema:* comparación de modelos compuestos y modelos de mezcla para ajustar datos de reclamos de seguros con colas pesadas.
+
+*Clasificación:* Metodológica.
+
+Se eligió esta etiqueta porque el artículo compara una gran cantidad de distribuciones paramétricas, modelos compuestos y modelos de mezcla para determinar cuáles se ajustan mejor a datos de reclamos de seguros. En particular, los autores analizan 256 modelos compuestos y 256 modelos de mezcla derivados de 16 distribuciones paramétricas populares.
+
+*Resumen en una oración:* el artículo compara modelos compuestos y modelos de mezcla para analizar reclamos de seguros con distribuciones asimétricas y colas pesadas.
+
+*Argumento central:* los autores sostienen que los modelos compuestos y de mezcla ofrecen mayor flexibilidad que las distribuciones clásicas para modelar reclamos de seguros, especialmente cuando los datos presentan asimetría, alta severidad y colas pesadas. Sin embargo, concluyen que, para los dos conjuntos de datos analizados, los modelos compuestos tienden a brindar mejores estimaciones de riesgo que los modelos de mezcla.
+
+*Problemas con el argumento o el tema:* una limitación importante es que el artículo se concentra en datos positivos de reclamos, por lo que no aborda directamente variables con exceso de ceros o acumulaciones en valores específicos como 0 o 900. Además, los propios autores advierten que no existe un modelo universalmente superior, ya que el mejor modelo depende de la estructura de los datos y de las métricas de riesgo utilizadas. También señalan que el acceso a datos reales de aseguradoras suele estar limitado por restricciones privadas, lo cual dificulta el uso de técnicas más avanzadas y procesos de validación más robustos.
+
+***Nivel analítico***
+
+*Conexión con mi proyecto:* este artículo se relaciona directamente con el proyecto porque trabaja con reclamos de seguros y con la modelización de variables de severidad. En el proyecto, la variable `Cost_claims_year` también representa una medida de severidad monetaria, por lo que la comparación entre distribuciones compuestas y modelos de mezcla puede servir como referencia metodológica para analizar la distribución de los costos. Además, el artículo es útil para justificar el uso de modelos más flexibles cuando los datos presentan asimetría y colas pesadas, características que pueden estar presentes en los reclamos con costos altos.
+
+*Lo que NO dice el autor:* el artículo no estudia una variable con concentración específica en un umbral fijo como €900, ni propone una metodología diseñada para detectar un salto abrupto en un valor determinado. Tampoco trabaja con una distribución cero-inflada o con una masa puntual en valores como 0 o 900; más bien, se enfoca en reclamos positivos y en el ajuste de colas pesadas.
+
+*Contraste con otra fuente:* en comparación con *Ayuso-Gutiérrez et al. (2015)*, este artículo no se enfoca en datos con exceso de ceros, sino en reclamos positivos con colas pesadas. Mientras *Ayuso-Gutiérrez et al. (2015)* es más útil para justificar modelos cero inflados, *Marambakuyana y Shongwe (2024)* es más útil para justificar el uso de distribuciones compuestas y de mezcla en datos de severidad monetaria. Ambas fuentes se complementan: la primera ayuda a pensar el problema de la acumulación en cero, mientras que la segunda permite analizar la severidad de los costos positivos y las colas de la distribución.
+
+*Evaluación de aplicabilidad (escala 1–5):* 4.
+
+La metodología es bastante aplicable al proyecto porque permite justificar el análisis de la variable `Cost_claims_year` como una variable de severidad con posible asimetría y cola pesada. Sin embargo, no recibe 5 porque el artículo no aborda directamente el problema de una concentración en el valor 900 ni el exceso de ceros.
+
+*Pregunta que le haría al autor:* ¿Cómo modificaría los modelos compuestos o de mezcla para incorporar una masa puntual en valores específicos como 0 y 900 dentro de una variable de costos de reclamos?
+
+*Resumen argumentativo:* Lo que los autores intentan resolver es cómo modelar datos de reclamos de seguros que presentan asimetría y colas pesadas, ya que las distribuciones clásicas como lognormal, gamma, Weibull o Pareto pueden no ser suficientemente flexibles para describir toda la estructura de los datos. Para esto, comparan 256 modelos compuestos y 256 modelos de mezcla construidos a partir de 16 distribuciones paramétricas. Los modelos compuestos dividen la distribución en dos partes: una para reclamos pequeños o moderados y otra para reclamos grandes; en cambio, los modelos de mezcla combinan dos distribuciones sobre el mismo dominio. Los autores evalúan los modelos mediante criterios como NLL, AIC y BIC, además de medidas de riesgo como VaR y TVaR. Su conclusión principal es que los modelos compuestos tienden a producir mejores estimaciones de riesgo para los datos analizados. Para el proyecto, este artículo es útil porque respalda la idea de no asumir una única distribución simple para `Cost_claims_year`, sino comparar modelos flexibles capaces de capturar comportamientos distintos entre reclamos pequeños, moderados y altos. No obstante, como el proyecto también tiene concentración en 0 y posiblemente en 900, esta metodología debería complementarse con modelos que permitan masas puntuales o componentes discretos.
+:::
+
+::: callout-note
+# Počuča et al. (2020)
+
+***Nivel descriptivo***
+
+*Título:* *Modeling Frequency and Severity of Claims with the Zero-Inflated Generalized Cluster-Weighted Models*
+
+*Autores:* Nikola Počuča, Petar Jevtić, Paul D. McNicholas y Tatjana Miljkovic.
+
+*Año:* 2020.
+
+*Nombre del tema:* modelización conjunta de la frecuencia y severidad de reclamos de seguros mediante modelos generalizados ponderados por conglomerados con inflación de ceros.
+
+*Clasificación:* Metodológica.
+
+Se eligió esta etiqueta porque el artículo propone una extensión metodológica de los modelos *cluster-weighted models* para adaptarlos a datos de seguros. En particular, introduce los modelos generalizados ponderados por conglomerados y una versión cero inflada para trabajar con reclamos que presentan exceso de ceros.
+
+*Resumen en una oración:* el artículo propone modelos cero inflados basados en conglomerados para analizar conjuntamente la frecuencia y la severidad de reclamos de seguros.
+
+*Argumento central:* los autores sostienen que los modelos tradicionales pueden ser insuficientes para representar datos de seguros cuando existen distintas fuentes de heterogeneidad y exceso de ceros; por ello, proponen los modelos ZI-GCWM, los cuales permiten clasificar observaciones en grupos latentes y, al mismo tiempo, modelar la presencia de ceros en los reclamos.
+
+*Problemas con el argumento o el tema:* una posible limitación es que la metodología es más compleja que modelos más tradicionales como GLM, modelos cero inflados simples o distribuciones compuestas. Esto puede dificultar su implementación e interpretación en un proyecto aplicado. Además, aunque el artículo trabaja con exceso de ceros, no se enfoca específicamente en una acumulación en un valor monetario distinto de cero, como el umbral de €900.
+
+***Nivel analítico***
+
+*Conexión con mi proyecto:* este artículo se relaciona directamente con el proyecto porque la variable `Cost_claims_year` presenta una gran cantidad de ceros, lo cual sugiere que no todos los asegurados generan reclamos durante el periodo observado. La propuesta de los autores es útil porque permite modelar datos de seguros con exceso de ceros y, además, considera la heterogeneidad entre grupos de pólizas o asegurados. Esto puede ser relevante para analizar si ciertos grupos de observaciones tienen mayor probabilidad de presentar reclamos positivos o costos más altos.
+
+*Lo que NO dice el autor:* el artículo no se centra en explicar un salto abrupto en un umbral monetario específico como €900. Aunque el modelo cero inflado ayuda a tratar el exceso de ceros, no resuelve directamente el problema de una concentración adicional en otro valor puntual. Por eso, para el proyecto, esta fuente debería complementarse con una metodología que permita analizar masas puntuales o cambios estructurales alrededor del umbral de €900.
+
+*Contraste con otra fuente:* en comparación con *Marambakuyana y Shongwe (2024)*, este artículo se enfoca más en el exceso de ceros y en la modelización conjunta de frecuencia y severidad, mientras que Marambakuyana y Shongwe se concentran en distribuciones compuestas y de mezcla para datos positivos con colas pesadas. Por otra parte, en contraste con *Ayuso-Gutiérrez et al. (2015)*, ambos artículos consideran datos con exceso de ceros, pero *Počuča et al. (2020)* incorpora una estructura de conglomerados latentes que permite capturar heterogeneidad entre grupos de asegurados.
+
+*Evaluación de aplicabilidad (escala 1–5):* 4.5.
+
+La metodología es altamente aplicable al proyecto porque trabaja directamente con reclamos de seguros y con exceso de ceros, dos elementos centrales de la variable `Cost_claims_year`. Sin embargo, no recibe 5 porque no aborda de forma específica la acumulación en el valor €900, por lo que habría que adaptar el enfoque o combinarlo con otro modelo.
+
+*Pregunta que le haría al autor:* ¿Cómo podría adaptarse el modelo ZI-GCWM para incluir no solo inflación en cero, sino también una concentración adicional en un valor monetario específico como €900?
+
+*Resumen argumentativo:* Lo que los autores intentan resolver es cómo modelar datos de seguros donde la frecuencia y la severidad de los reclamos no se comportan de manera homogénea para todos los asegurados. Para esto, extienden los modelos ponderados por conglomerados y proponen una versión cero inflada, llamada ZI-GCWM, que permite trabajar con datos donde existen muchos ceros provenientes de distintas fuentes. La idea central es que los datos pueden estar formados por grupos latentes con comportamientos diferentes, por lo que un único modelo global podría no capturar adecuadamente la relación entre las variables explicativas, la frecuencia de reclamos y la severidad. Para el proyecto, esta metodología es especialmente útil porque `Cost_claims_year` tiene una concentración importante en cero, lo cual puede interpretarse como ausencia de reclamos o ausencia de costo durante el periodo observado. Además, el enfoque por conglomerados puede ayudar a identificar grupos de observaciones con distintos patrones de riesgo. No obstante, como el proyecto también analiza el comportamiento alrededor del umbral de €900, sería necesario complementar este enfoque con una estrategia que permita estudiar ese punto específico de acumulación.
 :::
 
 # Implementación de la retroalimentación
