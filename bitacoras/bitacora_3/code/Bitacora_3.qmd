@@ -42,9 +42,9 @@ La fase en la que se encuentra el proyecto actualmente, está enfocada en efectu
 
 ## Propuesta metodológica
 
-La propuesta metodológica de esta investigación se organiza como una secuencia de análisis orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles. En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y severidad, el estudio de asociaciones entre variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros. En esta bitácora, dichos ejes se mantienen, pero se reformulan con mayor precisión metodológica para incorporar la retroalimentación recibida y avanzar hacia una etapa de modelación más robusta.
+La propuesta metodológica de esta investigación se organiza como una secuencia de análisis orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles. En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y severidad, el estudio de asociaciones entre variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros. En esta bitácora, dichos ejes se mantienen, pero se reformulan con mayor precisión para incorporar la retroalimentación recibida.
 
-El punto de partida de la metodología es que las variables de siniestralidad no presentan un comportamiento simple. La frecuencia de siniestros corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Además, en la exploración previa se identificó una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros. Estas características hacen necesario utilizar una combinación de métodos descriptivos, comparativos y de modelación exploratoria, en lugar de depender únicamente de promedios generales o de modelos estadísticos simples.
+El punto de partida de la metodología es que las variables de siniestralidad no presentan un comportamiento simple como se observó en el análisis descriptivo de la bitácora 2. La frecuencia de siniestros corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Además, se identificó una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros. Estas características hacen necesario utilizar una combinación de métodos descriptivos, comparativos y de modelación exploratoria, dependiendo de las variables que se vayan a analizar.
 
 ### Formulación de los métodos
 
@@ -54,7 +54,7 @@ La razón por la cual se eligió esta organización se debe a que permite avanza
 
 #### Análisis descriptivo de frecuencia y severidad
 
-El primer método consistirá en realizar un análisis descriptivo de las dos variables respuesta principales del proyecto: la frecuencia anual de siniestros y la severidad anual de los siniestros. Esta separación es necesaria de acuerdo a la literatura consultada, porque ambas variables tienen naturalezas estadísticas distintas. La frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Por esta razón, no se analizarán como si representaran el mismo fenómeno, sino como dos componentes complementarios del riesgo asegurador.
+El primer método consistirá en realizar un análisis descriptivo de las dos variables principales del proyecto: la frecuencia anual de siniestros y la severidad anual de los siniestros. Esta separación es necesaria de acuerdo a la literatura consultada, porque ambas variables tienen naturalezas estadísticas distintas. La frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Por esta razón, no se analizarán como si representaran el mismo fenómeno, sino como dos componentes complementarios del riesgo asegurador.
 
 Sea
 
@@ -88,7 +88,7 @@ $$
 \widehat{p}_0 = \frac{\#\{i : N_i = 0\}}{n}.
 $$
 
-Este cálculo es relevante porque permite cuantificar el exceso de ceros en la frecuencia de siniestros. Si una proporción muy alta de registros tiene (N_i=0), entonces la frecuencia no puede analizarse únicamente mediante medidas como la media, ya que esta podría ocultar la concentración de asegurados sin reclamos.
+Este cálculo es relevante porque permite cuantificar el exceso de ceros en la frecuencia de siniestros. Si una proporción muy alta de registros tiene $N_i=0$, entonces la frecuencia no puede analizarse únicamente mediante medidas como la media, ya que esta podría ocultar la concentración de asegurados sin reclamos.
 
 Además, para la variable $N_i$ se calcularán medidas descriptivas como media, mediana, desviación estándar, mínimo, máximo y cuartiles. Estas medidas se complementarán con gráficos de barras o histogramas, con el fin de observar visualmente si la mayoría de los registros se concentra en cero, si existen registros con múltiples siniestros y qué tan dispersa es la frecuencia anual.
 
@@ -106,27 +106,15 @@ $$
 
 Esto significa que, además de estudiar la proporción de costos iguales a cero, se examinará la distribución del costo anual únicamente entre los registros donde sí hubo un costo positivo. Sobre este subconjunto se calcularán medidas como media, mediana, desviación estándar, cuartiles, mínimo y máximo. También se construirán histogramas y boxplots para observar la forma de la distribución, la presencia de asimetría hacia la derecha y posibles valores extremos.
 
-Esta separación es importante porque la variable de severidad puede estar afectada por dos fenómenos distintos: por un lado, la ausencia de costos registrados, y por otro, la magnitud de los costos cuando efectivamente existe un reclamo. Si ambos fenómenos se mezclan sin distinción, las medidas descriptivas pueden ser poco informativas. Por ejemplo, una mediana igual a cero no necesariamente implica que los reclamos sean baratos, sino que la mayoría de los registros no tiene costo asociado.
+Esta separación es importante porque la variable de severidad puede estar afectada por dos fenómenos distintos: por un lado, la ausencia de costos registrados, y por otro, la magnitud de los costos cuando efectivamente existe un reclamo.
 
-El análisis descriptivo se escoge como primer método porque permite conocer la estructura básica de las variables respuesta antes de aplicar técnicas de asociación, comparación entre grupos o análisis del umbral de alta severidad. En particular, este método permite identificar si las variables presentan exceso de ceros, alta dispersión, asimetría o valores atípicos. Estos elementos son fundamentales para justificar las decisiones metodológicas posteriores.
+En particular, el análisis descriptivo permite identificar si las variables presentan exceso de ceros, alta dispersión, asimetría o valores atípicos. Estos elementos son fundamentales para justificar las decisiones metodológicas posteriores.
 
 En relación con la pregunta de investigación, este análisis permite caracterizar el comportamiento general de la siniestralidad en la base de datos. La frecuencia muestra qué tan común es que los asegurados presenten reclamos durante el año, mientras que la severidad muestra qué tan altos son los costos cuando estos reclamos ocurren. Por lo tanto, el análisis descriptivo constituye el punto de partida para estudiar qué características del asegurado o del vehículo podrían estar asociadas con una mayor frecuencia o severidad de siniestros.
 
 #### Análisis de asociación entre variables cuantitativas
 
 El segundo método consistirá en estudiar la asociación entre variables cuantitativas del asegurado o del vehículo y las variables de siniestralidad. El propósito de esta etapa no será establecer relaciones causales, sino identificar patrones de asociación que permitan explorar si ciertas características numéricas se relacionan con una mayor frecuencia o severidad de los siniestros.
-
-Sea $X_i$ una variable cuantitativa explicativa asociada al registro $i$, por ejemplo la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros, el peso del vehículo, la potencia, el largo o el valor del vehículo. Se estudiará su relación con las variables respuesta definidas anteriormente:
-
-$$
-N_i = \texttt{N\_claims\_year}_i
-$$
-
-y
-
-$$
-Y_i = \texttt{Cost\_claims\_year}_i.
-$$
 
 En una primera etapa, se elaborarán gráficos de dispersión entre cada variable cuantitativa $X_i$ y las variables de respuesta $N_i$ y $Y_i$. Estos gráficos permitirán observar si existen patrones visuales, relaciones crecientes o decrecientes, agrupamientos, valores atípicos o ausencia aparente de asociación. En el caso de la severidad, también se considerará el análisis sobre los costos positivos, $Y_i \mid Y_i > 0,$ para evitar que la gran cantidad de ceros oculte el comportamiento de los montos efectivamente reclamados.
 
@@ -143,7 +131,7 @@ r =
 },
 $$
 
-donde $Z_i$ representa una variable de siniestralidad, como $N_i$, $Y_i$ o el costo positivo $Y_i \mid Y_i>0$. El coeficiente de Pearson mide la intensidad y dirección de una relación lineal entre dos variables cuantitativas.
+donde $Z_i$ representa una variable de siniestralidad, como $N_i$, $Y_i$ o el costo positivo $Y_i \mid Y_i>0$.
 
 Sin embargo, debido a las características observadas en las variables de siniestralidad, especialmente la alta concentración de ceros, la presencia de valores extremos y la asimetría hacia la derecha en la severidad, Pearson se utilizará únicamente como una referencia inicial. En este contexto, se dará prioridad a coeficientes no paramétricos como Spearman y Kendall, ya que estos no requieren asumir normalidad ni una relación estrictamente lineal entre las variables.
 
@@ -199,19 +187,19 @@ $$
 
 Este coeficiente es útil porque evalúa la asociación a partir del orden relativo de los datos, por lo que puede ser más adecuado cuando existen distribuciones asimétricas, valores extremos o relaciones no lineales.
 
-En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada.
+En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada. El método que se va a utilizar se va a determinar mediante un `shapiro.test()`, el cual va a identifcar si las variables tienen distribución normal, o no. En caso de que si, se utilizará el método Pearson, y en caso de que no se utilizará Kendall o Spearman según sea pertinente. 
 
 #### Comparación entre grupos para variables categóricas
 
 El tercer método consistirá en comparar la frecuencia y la severidad de los siniestros entre grupos definidos por variables categóricas. Este análisis es necesario porque algunas características relevantes del asegurado o del vehículo no son cuantitativas, sino cualitativas. Por ejemplo, variables como el tipo de vehículo, la zona de circulación o el tipo de combustible no se analizan adecuadamente mediante correlaciones, sino mediante comparaciones entre grupos.
 
-Sea $X_i$ una variable categórica asociada al registro $i$, cuyos posibles valores son:
+En este caso, considere $X_i$ una variable categórica asociada al registro $i$, cuyos posibles valores son:
 
 $$
 X_i \in \{g_1,g_2,\ldots,g_m\},
 $$
 
-donde $g_1,g_2,\ldots,g_m$ representan las categorías o grupos de la variable. Por ejemplo, si $X_i$ representa la zona de circulación, entonces cada $g_j$ corresponde a una zona específica.
+donde $g_1,g_2,\ldots,g_m$ representan las categorías o grupos de la variable. 
 
 El objetivo será comparar el comportamiento de las variables de siniestralidad dentro de cada grupo. Para la frecuencia de siniestros, se analizará la variable: $N_i$.
 
@@ -261,7 +249,7 @@ ya que la mediana es menos sensible a valores extremos que la media. Esto es rel
 
 Para complementar la comparación entre grupos, se construirán tablas resumen que integren indicadores de frecuencia y severidad. Estas tablas permitirán observar, para cada categoría, la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo y las medidas principales del costo positivo. De esta manera, será posible comparar no solo cuántos siniestros ocurren en cada grupo, sino también qué tan costosos son cuando ocurren.
 
-Además, se elaborarán gráficos comparativos. Para la frecuencia de siniestros se podrán utilizar gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo. Para la severidad se podrán utilizar boxplots o gráficos de violín, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos.
+Además, se elaborarán gráficos comparativos. Para la frecuencia de siniestros se van a utilizar gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo. Para la severidad se van a utilizar boxplots o gráficos de violín, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos.
 
 Cuando se desee evaluar la asociación entre una variable categórica y una variable binaria de siniestralidad, se definirá una variable indicadora. A partir de esta variable se podrán construir tablas resumen y de comparación. Estas tablas permitirán comparar la proporción de registros con costo positivo dentro de cada categoría.
 
@@ -275,9 +263,9 @@ $$
 H_1: \text{existe asociación entre la variable categórica y la presencia de costo positivo}.
 $$
 
-No obstante, esta prueba se interpretará con cautela. Si algunas categorías tienen pocos registros o frecuencias esperadas muy pequeñas, los resultados pueden no ser estables. En esos casos, se dará prioridad a la interpretación descriptiva mediante tablas, proporciones y gráficos.
+No obstante, esta prueba se interpretará con cautela. Si algunas categorías tienen pocos registros o frecuencias esperadas muy pequeñas, los resultados pueden no ser estables. En esos casos, se dará prioridad a la interpretación descriptiva mediante tablas, proporciones y gráficos, no tanto a las hipótesis. 
 
-Este método se escoge porque permite analizar variables que no pueden estudiarse adecuadamente mediante correlación. Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas. Esto es importante porque la siniestralidad puede variar según perfiles o clases de asegurados y vehículos.
+Este método se escoge porque permite analizar variables que no pueden estudiarse adecuadamente mediante correlación. Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas.
 
 En relación con la pregunta de investigación, la comparación entre grupos permite identificar si ciertas categorías presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados. De esta manera, el análisis aporta evidencia descriptiva sobre posibles diferencias en la siniestralidad según características del asegurado o del vehículo.
 
@@ -285,7 +273,7 @@ En relación con la pregunta de investigación, la comparación entre grupos per
 
 El cuarto método consistirá en analizar de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanza o supera los 900 euros. En el anteproyecto, este umbral se había planteado mediante una variable indicadora que separaba los costos menores a 900 euros de los costos mayores o iguales a dicho valor. Sin embargo, a partir de la retroalimentación recibida, este análisis se reformula para incorporar tres elementos adicionales: una interpretación mediante distribución mixta, un análisis de la cola derecha de la distribución y la construcción de intervalos de confianza para las proporciones estimadas.
 
-Sea $Y_i = \texttt{Cost\_claims\_year}_i$, el costo anual de siniestros asociado al registro $i$. El análisis exploratorio previo mostró que esta variable presenta una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos. Por esta razón, no se asumirá que todos los valores de $Y_i$ provienen de una única distribución homogénea. En cambio, se considerará que la variable puede entenderse como una mezcla de distintos comportamientos.
+El análisis exploratorio previo mostró que la variable $Y_i$ presenta una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos. Por esta razón, no se asumirá que todos los valores de $Y_i$ provienen de una única distribución homogénea. En cambio, se considerará que la variable puede entenderse como una mezcla de distintos comportamientos (distribución mixta).
 
 De manera general, la distribución del costo anual se puede expresar como:
 
@@ -301,7 +289,7 @@ $$
 
 Este planteamiento se inspira en el uso de modelos de mezcla en datos de seguros, donde se reconoce que los reclamos pueden presentar exceso de ceros, asimetría y colas pesadas. @mara2024 estudian distribuciones compuestas y distribuciones de mezcla aplicadas a datos de reclamos de seguros, señalando que estos modelos son útiles para representar datos de colas pesadas y mejorar el ajuste cuando una sola distribución no describe adecuadamente el comportamiento de las pérdidas. Además, @pov2020 proponen modelos con inflación de ceros para frecuencia y severidad de reclamos en seguros generales, precisamente para tratar datos con exceso de ceros provenientes de fuentes heterogéneas.
 
-En este proyecto no se ajustará todavía un modelo de mezcla paramétrico completo, sino que se utilizará la idea de mezcla como una guía metodológica para clasificar e interpretar los datos. Por ello, se definirá la siguiente variable categórica:
+En este proyecto se utilizará la idea de mezcla como una guía metodológica para clasificar e interpretar los datos. Por ello, se definirá la siguiente variable categórica:
 
 $$
 G_i =
@@ -333,7 +321,7 @@ $$
 \sum_{i=1}^{n} A_i.
 $$
 
-Esta proporción permitirá cuantificar qué parte de la base de datos se encuentra en la cola derecha de la distribución de severidad. En este contexto, la cola derecha se refiere al conjunto de observaciones con costos más altos. Su análisis es importante porque, en seguros, los reclamos extremos pueden representar una parte relevante del costo total, aunque ocurran con menor frecuencia.
+Esta proporción permitirá cuantificar qué parte de la base de datos se encuentra en la cola derecha de la distribución de severidad. En este contexto, la cola derecha se refiere al conjunto de observaciones con costos más altos.
 
 También se calcularán proporciones condicionadas por grupo. Si $X_i$ representa una variable categórica, como tipo de vehículo, zona de circulación o tipo de combustible, entonces para cada grupo $g$ se estimará:
 
@@ -373,9 +361,7 @@ $$
 \sum_{i=1}^{n} I(Y_i \geq u),
 $$
 
-donde $I(Y_i \geq u)$ es una función indicadora que toma el valor 1 si el costo anual del registro $i$ es mayor o igual al umbral $u$, y 0 en caso contrario.
-
-Este análisis permitirá valorar si el umbral de 900 euros representa una separación razonable dentro de la distribución. Si los patrones observados se mantienen al usar 800, 900 y 1000 euros, entonces el análisis será considerado más robusto. Si las conclusiones cambian considerablemente al modificar el umbral, entonces el valor de 900 euros deberá interpretarse con mayor cautela.
+donde $I(Y_i \geq u)$ es una función indicadora que toma el valor 1 si el costo anual del registro $i$ es mayor o igual al umbral $u$, y 0 en caso contrario. Este análisis permitirá valorar si el umbral de 900 euros representa una separación razonable dentro de la distribución.
 
 Este método se escoge porque permite estudiar la severidad alta sin reducir el análisis a un único promedio general. La presencia de muchos ceros, costos positivos moderados y valores extremos sugiere que el costo anual de siniestros tiene comportamientos distintos dentro de la misma variable. Por eso, el enfoque de mezcla, el análisis de cola y los intervalos de confianza permiten interpretar de forma más cuidadosa qué proporción de registros se ubica en la zona de alta severidad y qué características podrían estar asociadas con esos reclamos.
 
@@ -391,9 +377,9 @@ En tercer lugar, la comparación entre grupos permite estudiar variables categó
 
 Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad. Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual. De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución. Además, la construcción de intervalos de confianza y el análisis de sensibilidad del umbral permiten interpretar los resultados con mayor cautela.
 
-En conjunto, estos métodos se escogen porque la base de datos no presenta un comportamiento simple. La presencia de muchos ceros, costos positivos asimétricos y valores extremos hace que un único promedio general o una sola prueba estadística no sean suficientes para responder la pregunta de investigación. Por esta razón, la metodología combina análisis descriptivo, medidas de asociación, comparación entre grupos y análisis específico de alta severidad.
-
 ### Programa maqueta
+
+
 
 ### Etapa de validación
 
