@@ -395,7 +395,107 @@ En conjunto, estos métodos se escogen porque la base de datos no presenta un co
 
 ### Programa maqueta
 
-### Eatapa de validación
+### Etapa de validación
+
+### Respaldo de la propuesta metodológica
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+library(lubridate)
+library(tidyverse)
+library(readr)
+
+datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
+datos_modificados <- read.csv("../../../datos/procesados/datos_modificados.csv")
+
+paleta_pamplemousse <- c(
+  "#E56B78",
+  "#F29CA3",
+  "#F2C38F",
+  "#36B7B4",
+  "#1E9CC7",
+  "#253494"
+)
+
+estilo_grupo3 <- theme_cowplot(font_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11)
+  )
+```
+
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+distribucion_frecuencia <- datos %>% 
+  filter(N_claims_year <= 10) %>% 
+  group_by(N_claims_year) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = N_claims_year, y = conteo)) +
+  geom_col(fill = paleta_pamplemousse[1], color = "white") +
+  geom_text(aes(label = conteo), size = 3, vjust = -0.3) +
+  scale_x_continuous(breaks = seq(0,10,1)) +
+  scale_y_continuous(breaks = seq(0,80000,10000),
+                     labels = scales::comma) +
+  labs(title = "Distribución de la frecuencia de los siniestros menores a 10",
+       x = "Número de siniestros por año",
+       y = "Cantidad de observaciones",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png",distribucion_frecuencia, width = 9, height = 6.5, dpi = 300)
+```
+![Distribución de la frecuencia de los siniestros menores a 10](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png)
+
+AGREGAR JUSTIFICACIÓN (Gran concentración de ceros en la frecuencia de los siniestros)
+
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+ceros_frecuencia <- data.frame(
+  Origen = c("Ceros observados", "Ceros esperados"),
+  Porcentaje = c(81.39, 67.39)
+)
+
+comparacion_ceros_poisson <- ceros_frecuencia %>% 
+  ggplot(aes(x = Origen, y = Porcentaje, fill = Origen)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = paste0(Porcentaje, "%")), vjust = -0.5) +
+  scale_fill_manual(values = c(paleta_pamplemousse[1], paleta_pamplemousse[6])) +
+  labs(title = "Comparación entre ceros observados y esperados",
+       subtitle = "Modelado mediante una distribución Poisson",
+       x = "",
+       y = "Porcentaje de ceros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 100) +
+  estilo_grupo3 + 
+  theme(plot.caption = element_text(hjust = 2))
+
+ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",comparacion_ceros_poisson, width = 8, height = 7, dpi = 300)
+```
+
+![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png)
+
+Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna "N_claims_year".
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+boxplot_costos <- datos %>%
+  filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
+  ggplot(aes(y = Cost_claims_year)) +
+  geom_boxplot(fill = paleta_pamplemousse[2], color = "black") +
+  labs(title = "Distribución de los costos de reclamos por año",
+       subtitle = "Costos mayores a €0 y menores a €5,000",
+       y = "Costo anual",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
+```
+![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png)
+
+El boxplot muestra que la variable "Cost_claims_year" presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendalll en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
+
 
 ### Análisis fallido
 
