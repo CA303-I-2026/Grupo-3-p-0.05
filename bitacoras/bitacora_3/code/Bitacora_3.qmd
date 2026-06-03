@@ -392,7 +392,8 @@ library(dplyr)
 library(lubridate)
 library(tidyverse)
 library(readr)
-
+library(corrplot)
+library(ggcorrplot)
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 datos_modificados <- read.csv("../../../datos/procesados/datos_modificados.csv")
 
@@ -413,6 +414,7 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
   )
 ```
 
+#### Análisis descriptivo de la frecuencia y severidad
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 distribucion_frecuencia <- datos %>% 
@@ -435,7 +437,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.p
 ```
 ![Distribución de la frecuencia de los siniestros menores a 10](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png)
 
-AGREGAR JUSTIFICACIÓN (Gran concentración de ceros en la frecuencia de los siniestros)
+En el gráfico sobre la distribución de la frecuencia de los reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos. Además de esto, se puede ver que la distribución es decreciente, entre más aumenta la cantidad de reclamos, más disminuye la cantidad de observaciones.
 
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
@@ -463,7 +465,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",com
 
 ![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png)
 
-Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna "N_claims_year".
+Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año. Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna "N_claims_year".
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 boxplot_costos <- datos %>%
@@ -480,7 +482,139 @@ ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos
 ```
 ![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png)
 
-El boxplot muestra que la variable "Cost_claims_year" presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendalll en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
+El boxplot muestra la distribución de la variable "Cost_claims_year" para reclamos mayores a €0 y menores a €5000, en el cual se puede observar que esta variable presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendall en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
+
+
+AGREGAR LA TABLA DE ESTADÍSTICOS (media, mediana, varianza, porcentaje de ceros,etc)
+
+#### Análisis de asociación entre variables cuantitativas
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+variables_cor <- datos_modificados %>%
+  select(N_claims_year, Cost_claims_year, edad, Seniority, 
+         N_claims_history, Weight, Power, Value_vehicle)
+
+correlacion_spearman <- cor(variables_cor, method = "spearman", use = "complete.obs")
+
+colores_paleta <- c(paleta_pamplemousse[6], paleta_pamplemousse[3], paleta_pamplemousse[1])
+
+matriz_correlacion <- ggcorrplot(correlacion_spearman,
+           method = "square", # Forma de las correlaciones
+           type = "upper",
+           lab = TRUE, # Mostrar los valores dentro de los cuadrados
+           lab_size = 3.5,
+           title = "Matriz de correlaciones de las variables numéricas",
+           colors = colores_paleta,
+           legend.title = "Correlación") + 
+  labs(x = NULL, y = NULL, 
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") + # Arreglar problema de nombre en los ejes
+  estilo_grupo3 +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))  # Etiquetas del eje "x" en vertical
+
+ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_correlacion, width = 9, height = 9, dpi = 300)
+```
+
+![Matriz de correlaciones de variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png)
+
+De este gráfico se puede observar que existe una correlación casi perfecta entre la variable del número de reclamos por año (N_claims_year) y la variable de costos de reclamos por años (Cost_claims_year), ya que se obtuvo que $\rho$ = 0.99, este es un resultado esperable ya que entre más número de reclamos haya, mayor será el costo acumulado.
+
+También se puede observar que la variable de número de reclamos histórico (N_claims_history) tiene correlación positiva con algunas de las variables; primero, con la antigüedad del asegurado con la aseguradora con $\rho$ = 0.50, lo que indica una correlación positiva moderada. Además de esto, también posee una correlación positiva con el número de reclamos por año (N_claims_year), con $\rho$ = 0.38, lo que indica una correlación positiva leve al igual que con la variable del costo de reclamos por año (Cost_claims_year) con $\rho$ = 0.36.
+
+Otra de las correlaciones encontradas es la del peso del vehículo (Weight) con dos variables que corresponden a características físicas del vehículo; primero, el peso tiene una correlación positiva de $\rho$ = 0.87 con el valor del vehículo (Value_vehicle), por lo que hay una correlación positiva fuerte, lo que indica que entre mayor sea el peso del vehículo, mayor será el valor del vehículo. Segundo, el peso posee una correlación positiva fuerte con la potencia del vehículo, con $\rho$ = 0.67. Además de esto, la potencia del vehículo (Power), posee una correlación positiva fuerte con el valor del vehículo (Value_vehicle).
+
+Para el caso de la edad, no se encontraron correlaciones relevantes con las demás variables, ya que los coeficientes de correlación están muy cerca de cero, lo que indica una correlación muy débil, casi nula.
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+shapiro.test(datos$N_claims_year[1:5000])
+```
+
+Como se mencionó anteriormente, se utilizó el método de Spearman ya que se aplicó la prueba de Shapiro-Wilk para comprobar si la variable "N_claims_year" sigue una distribución normal, para esto se utilizó la función "shapiro.test" tomando una muestra de 5000 valores de la variable, se obtuvo un estadístico W = 0.37226 y un p-value < 2.2e-16; como el p-value es menor a 0.05; entonces se puede rechazar la hipótesis de que la variable se distribuye como una normal, por esta razón no se utilizó el coeficiente de correlación de Pearson.
+
+
+#### Comparación entre grupos para variables categóricas
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+frecuencia_promedio_vehiculo <- datos_modificados %>%
+  group_by(categoria) %>%
+  summarise(frecuencia_promedio = mean(N_claims_year, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = factor(categoria), y = frecuencia_promedio, fill = factor(categoria))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(frecuencia_promedio, 3)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:4]) +
+  labs(title = "Frecuencia promedio de siniestros por tipo de vehículo",
+       x = "Tipo de vehículo",
+       y = "Frecuencia promedio de siniestros por año",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  scale_y_continuous(breaks = seq(0, 0.6, 0.1)) +
+  ylim (0, 0.6) + # Hacer que el eje "y" vaya de 0 hasta 0.6
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png", frecuencia_promedio_vehiculo, width = 10, height = 7, dpi = 300)
+```
+
+![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png)
+
+Este gráfico muestra que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
+
+Estos resultados indican que el tipo de vehículo es un factor de importancia en la frecuencia de siniestros; las furgonetas son el tipo de vehículo con la mayor frecuencia promedio de siniestros anual, las furgonetas poseen en promedio más del doble de siniestros que las motocicletas y más de 500 veces más siniestros en promedio que los vehículos agrícolas.
+
+Este hallazgo indica que la variable del tipo de vehículo "Type_risk" interviene en la frecuencia de los siniestros.
+
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+velas_tipo_vehiculo <- datos_modificados %>% 
+    filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = factor(categoria), y = Cost_claims_year, fill = factor(categoria))) +
+  geom_boxplot() +
+  scale_fill_manual(values = paleta_pamplemousse[1:4]) +
+  labs(title = "Distribución del costo anual por tipo de vehículo",
+       subtitle = "Filtrado para costos anuales mayores a 0 y menores a 5000",
+       x = "Tipo de vehículo",
+       y = "Costo anual",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, 5000, 500)) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", velas_tipo_vehiculo, width = 10, height = 7, dpi = 300)
+
+```
+
+
+![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png)
+
+#### Análisis del umbral de 900 euros mediante distribución mixta
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+proporcion_mayores_900 <- datos_modificados %>%
+  mutate(mayores_900 = ifelse(Cost_claims_year >= 900, 1, 0)) %>%
+  group_by(categoria) %>%
+  summarise(proporcion_900 = mean(mayores_900, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = factor(categoria), y = proporcion_900, fill = factor(categoria))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(proporcion_900, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:4]) +
+  labs(title = "Proporción de reclamos con costo mayor a €900 por tipo de vehículo",
+       x = "Tipo de vehículo",
+       y = "Proporción de reclamos mayores a €900",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 0.2) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png", proporcion_mayores_900, width = 10, height = 7, dpi = 300)
+
+datos_modificados %>% 
+  filter(categoria == "Agrícola", Cost_claims_year >= 900)
+```
+
+![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png)
+
+Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900. 
+
+Este hallazgo indica que las furgonetas y turismos, no solamente poseen mayor frecuencia promedio, sino que también poseen mayor proporción de casos en donde los reclamos superan o son iguales al monto de los €900, lo que puede indicar que estos dos tipos de vehículos son relevantes para explicar el comportamiento en el umbral de los €900.
 
 
 ### Análisis fallido
