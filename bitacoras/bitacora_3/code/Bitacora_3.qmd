@@ -1190,7 +1190,7 @@ Este proceso tiene como finalidad organizar la información de manera estructura
 
 Como primer paso en este proceso, se identifican y clasifican los elementos de reporte del proyecto en primarios y secundarios, según su nivel de importancia para el desarrollo de la investigación. Los elementos primarios corresponden a aquellos sin los cuales el trabajo perdería sentido, mientras que los secundarios aportan apoyo y contexto, pero no son fundamentales.
 
-```{r}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_elementos <- tibble(
   Primarios = c("Teoría A", "Idea A", "Resultado A", "Resultado C"),
   Secundarios = c("Teoría B", "Idea B", "Resultado B", "Resultado D")
