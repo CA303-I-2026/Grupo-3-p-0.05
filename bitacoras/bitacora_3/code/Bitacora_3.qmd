@@ -40,6 +40,518 @@ La fase en la que se encuentra el proyecto actualmente, está enfocada en efectu
 
 ## Análisis de la modelación
 
+Para esta sección se retomó el prototipo de modelación elaborado en la Bitácora #2. En esa etapa se había construido una primera versión de la base de datos modificada, en la cual se cargaban los datos originales, se transformaban las variables de fecha, se creaba una variable categórica para el tipo de vehículo y se calculaba la edad del asegurado.
+
+Sin embargo, para la Bitácora #3 fue necesario ampliar y mejorar ese procesamiento inicial, con el fin de que el código fuera más completo, robusto y reproducible. Por esta razón, se mantuvo la carga automática de la base original, pero se agregaron nuevas variables derivadas que son relevantes para el análisis actuarial, como la antigüedad de la licencia y la edad del vehículo.
+
+### Carga de datos de forma automática
+
+Antes de iniciar el análisis descriptivo, se realiza la carga automática de la base de datos. Este paso permite que el código lea directamente el archivo desde la carpeta correspondiente, sin necesidad de seleccionar los datos manualmente.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Librerías necesarias para el análisis
+
+library(tidyverse)
+library(lubridate)
+library(readr)
+library(knitr)
+library(kableExtra)
+library(cowplot)
+library(scales)
+library(dplyr)
+
+# Paleta utilizada desde la Bitácora 2
+
+paleta_pamplemousse <- c(
+  "#E56B78",
+  "#F29CA3",
+  "#F2C38F",
+  "#36B7B4",
+  "#1E9CC7",
+  "#253494"
+)
+
+# Estilo gráfico reutilizado desde la Bitácora 2
+
+estilo_grupo3 <- theme_cowplot(font_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11)
+  )
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+datos <- read.csv(
+  "../../../datos/originales/Motor vehicle insurance data.csv",
+  sep = ";"
+)
+
+datos_modificados <- datos %>% 
+  mutate(
+    Date_start_contract = as.Date(Date_start_contract, format = "%d/%m/%Y"),
+    Date_last_renewal = as.Date(Date_last_renewal, format = "%d/%m/%Y"),
+    Date_next_renewal = as.Date(Date_next_renewal, format = "%d/%m/%Y"),
+    Date_birth = as.Date(Date_birth, format = "%d/%m/%Y"),
+    Date_driving_licence = as.Date(Date_driving_licence, format = "%d/%m/%Y"),
+    Date_lapse = as.Date(Date_lapse, format = "%d/%m/%Y"),
+    
+    categoria = case_when(
+      Type_risk == 1 ~ "Motocicleta",
+      Type_risk == 2 ~ "Furgoneta",
+      Type_risk == 3 ~ "Turismo",
+      Type_risk == 4 ~ "Agricola",
+      TRUE ~ "Sin clasificar"
+    ),
+    
+    edad = floor(time_length(interval(Date_birth, Date_start_contract), "years")),
+    antiguedad_licencia = floor(time_length(interval(Date_driving_licence, Date_start_contract), "years")),
+    edad_vehiculo = year(Date_start_contract) - Year_matriculation
+  )
+
+```
+
+### Análisis descriptivo completo de la base de datos
+
+Una vez cargada y procesada la base de datos, se realiza un análisis descriptivo general con el propósito de conocer la estructura de la información disponible. Esta etapa permite resumir las principales características de los asegurados, los vehículos y el historial de siniestros registrado en la base.
+
+El análisis descriptivo se organiza a partir de la pregunta de investigación del proyecto. Por esta razón, se seleccionan variables relacionadas con tres dimensiones principales: las características del asegurado, las características del vehículo y el historial de siniestros. Las variables `N_claims_year` y `Cost_claims_year` son centrales, ya que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
+
+#### Resumen general de la base de datos
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_info <- data.frame(
+  Caracteristica = c(
+    "Total de registros",
+    "Total de variables",
+    "Asegurados únicos",
+    "Promedio de registros por asegurado",
+    "Fecha más antigua de inicio de contrato",
+    "Fecha más reciente de renovación",
+    "Tipos de vehículo"
+  ),
+  Valor = c(
+    format(nrow(datos_modificados), big.mark = ","),
+    ncol(datos_modificados),
+    format(n_distinct(datos_modificados$ID), big.mark = ","),
+    round(nrow(datos_modificados) / n_distinct(datos_modificados$ID), 2),
+    as.character(min(datos_modificados$Date_start_contract, na.rm = TRUE)),
+    as.character(max(datos_modificados$Date_last_renewal, na.rm = TRUE)),
+    paste(unique(datos_modificados$categoria), collapse = ", ")
+  )
+)
+
+knitr::kable(
+  tabla_info,
+  caption = "Resumen general de la base de datos",
+  booktabs = TRUE,
+  align = c("l", "c")
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 10,
+    latex_options = c("hold_position")
+  ) %>%
+  kableExtra::row_spec(
+    0,
+    bold = TRUE
+  ) %>%
+  kableExtra::column_spec(
+    1,
+    bold = TRUE,
+    width = "7cm"
+  ) %>%
+  kableExtra::column_spec(
+    2,
+    width = "8cm"
+  )
+```
+
+La tabla muestra que la base contiene 105,555 registros y 34 variables, correspondientes a 53,502 asegurados únicos. Esto indica que algunos asegurados aparecen más de una vez en la base, lo cual se confirma con el promedio de 1.97 registros por asegurado. Además, la información cubre contratos desde 1980 hasta renovaciones registradas en 2018, por lo que se dispone de un periodo amplio para el análisis. Finalmente, se observa que la base incluye cuatro tipos de vehículos: motocicleta, turismo, furgoneta y agrícola, lo cual permite comparar posteriormente el comportamiento de los siniestros según la categoría de riesgo asegurada.
+
+#### Tratamiento de valores faltantes
+
+También se revisa la presencia de valores faltantes, ya que estos pueden afectar el análisis descriptivo y la posterior construcción de modelos. Esta revisión permite identificar cuáles variables requieren tratamiento especial antes de ser utilizadas en una etapa de modelación.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_faltantes <- datos_modificados %>%
+  summarise(across(everything(), ~ sum(is.na(.)))) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Total_NA"
+  ) %>%
+  mutate(
+    Porcentaje = round(Total_NA / nrow(datos_modificados) * 100, 2)
+  ) %>%
+  filter(Total_NA > 0) %>%
+  arrange(desc(Porcentaje)) %>%
+  mutate(
+    Total_NA = format(Total_NA, big.mark = ","),
+    Porcentaje = paste0(Porcentaje, " %")
+  ) %>%
+  rename(
+    `Total de valores faltantes` = Total_NA,
+    `Porcentaje de valores faltantes` = Porcentaje
+  )
+
+knitr::kable(
+  tabla_faltantes,
+  caption = "Resumen de valores faltantes por variable",
+  booktabs = TRUE,
+  longtable = TRUE,
+  align = c("l", "r", "r")
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 10
+  )
+```
+
+La tabla muestra que la base presenta valores faltantes únicamente en tres variables. La variable con mayor cantidad de datos faltantes es Date_lapse, con 70,408 registros faltantes, lo que representa un 66.7 % de la base. Esto puede deberse a que no todos los contratos han tenido una fecha de cancelación o finalización registrada.
+
+También se observan valores faltantes en Length, con 10,329 registros equivalentes al 9.79 %, y en Type_fuel, con 1,764 registros, equivalentes al 1.67 %. En comparación con Date_lapse, estas dos variables tienen una proporción menor de datos faltantes.
+
+A partir de la revisión anterior, se definió un tratamiento básico para las variables con valores faltantes. La variable `Date_lapse` se excluye del análisis descriptivo principal, debido a que presenta una proporción elevada de datos ausentes y no resulta indispensable para responder la pregunta de investigación. En el caso de `Length`, se utiliza una imputación mediante la mediana según el tipo de vehículo, ya que se trata de una variable numérica asociada con las características físicas del automóvil. Finalmente, para `Type_fuel`, se eliminan los registros faltantes, pues representan una proporción baja de la base.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+datos_analisis <- datos_modificados %>%
+  select(-Date_lapse) %>%
+  group_by(categoria) %>%
+  mutate(
+    Length = ifelse(
+      is.na(Length),
+      median(Length, na.rm = TRUE),
+      Length
+    )
+  ) %>%
+  ungroup() %>%
+  filter(!is.na(Type_fuel))
+```
+
+#### Resumen de frecuencia y severidad
+
+Para estudiar la frecuencia y la severidad de los siniestros, se seleccionan variables cuantitativas relacionadas con las características del asegurado, el vehículo y el historial de reclamos. En particular, se consideran variables como la edad, la antigüedad con la aseguradora, el número de siniestros, el costo anual de los siniestros, el valor del vehículo y otras características físicas del automóvil.
+
+omo primer acercamiento a la pregunta de investigación, se resumen las variables asociadas directamente con la frecuencia y la severidad de los siniestros. La frecuencia se representa mediante `N_claims_year`, mientras que la severidad se aproxima con `Cost_claims_year`.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+variables_modelacion <- c(
+  "ID",
+  "categoria",
+  "Area",
+  "edad",
+  "Seniority",
+  "antiguedad_licencia",
+  "edad_vehiculo",
+  "Power",
+  "Value_vehicle",
+  "Weight",
+  "Length",
+  "N_claims_year",
+  "Cost_claims_year",
+  "N_claims_history",
+  "R_Claims_history"
+)
+
+datos_modelacion <- datos_analisis %>%
+  select(all_of(variables_modelacion))
+
+tabla_frecuencia_severidad <- datos_modelacion %>%
+  summarise(
+    `Promedio de siniestros anuales` = mean(N_claims_year, na.rm = TRUE),
+    `Mediana de siniestros anuales` = median(N_claims_year, na.rm = TRUE),
+    `Máximo de siniestros anuales` = max(N_claims_year, na.rm = TRUE),
+    `% sin siniestros anuales` = mean(N_claims_year == 0, na.rm = TRUE) * 100,
+    `Costo promedio anual` = mean(Cost_claims_year, na.rm = TRUE),
+    `Costo mediano anual` = median(Cost_claims_year, na.rm = TRUE),
+    `Costo máximo anual` = max(Cost_claims_year, na.rm = TRUE),
+    `% con costo anual igual a 0` = mean(Cost_claims_year == 0, na.rm = TRUE) * 100
+  ) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Indicador",
+    values_to = "Valor"
+  ) %>%
+  mutate(Valor = round(Valor, 2))
+
+knitr::kable(
+  tabla_frecuencia_severidad,
+  caption = "Resumen descriptivo de frecuencia y severidad de siniestros",
+  booktabs = TRUE
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 9,
+    latex_options = c("hold_position")
+  )
+```
+
+La tabla muestra que la mayoría de los registros no presenta siniestros durante el año. Esto se observa en la mediana de siniestros anuales, que es 0, y en el porcentaje de registros sin siniestros, que corresponde al 81.21 %. Es decir, una parte importante de la cartera no generó reclamos en el periodo analizado.
+
+En cuanto a la frecuencia, el promedio de siniestros anuales es de 0.40, lo cual indica que, en general, la cantidad de reclamos por registro es baja. Sin embargo, el máximo observado es de 25 siniestros anuales, lo que evidencia la presencia de algunos casos extremos con una frecuencia mucho mayor que el comportamiento típico.
+
+Respecto a la severidad, el costo promedio anual es de 155.60, mientras que la mediana es 0. Esta diferencia indica que la distribución de los costos está concentrada en cero, pero existen algunos reclamos con montos elevados que aumentan el promedio. Esto se confirma con el costo máximo anual de 260,853.24.
+
+#### Estadística descriptiva completa de variables cuantitativas
+
+Además de las variables principales de frecuencia y severidad, se analizan variables cuantitativas relacionadas con el asegurado, el vehículo y el historial de reclamos. Esto permite observar la variabilidad de los datos e identificar posibles factores asociados con el riesgo asegurado.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+variables_relevantes <- c(
+  "edad",
+  "Seniority",
+  "antiguedad_licencia",
+  "N_claims_year",
+  "Cost_claims_year",
+  "N_claims_history",
+  "R_Claims_history",
+  "edad_vehiculo",
+  "Power",
+  "Value_vehicle",
+  "Weight",
+  "Length"
+)
+
+tabla_descriptiva <- datos_modelacion %>%
+  select(all_of(variables_relevantes)) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Valor"
+  ) %>%
+  group_by(Variable) %>%
+  summarise(
+    n_validos = sum(!is.na(Valor)),
+    n_nulos = sum(is.na(Valor)),
+    minimo = min(Valor, na.rm = TRUE),
+    Q1 = quantile(Valor, 0.25, na.rm = TRUE),
+    media = mean(Valor, na.rm = TRUE),
+    mediana = median(Valor, na.rm = TRUE),
+    Q3 = quantile(Valor, 0.75, na.rm = TRUE),
+    maximo = max(Valor, na.rm = TRUE),
+    desv_estandar = sd(Valor, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    across(
+      c(minimo, Q1, media, mediana, Q3, maximo, desv_estandar),
+      ~ round(., 3)
+    )
+  )
+
+knitr::kable(
+  tabla_descriptiva,
+  caption = "Estadística descriptiva de variables cuantitativas relevantes",
+  booktabs = TRUE,
+  longtable = TRUE
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header", "scale_down"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 8
+  )
+```
+
+La tabla muestra que no hay datos nulos en las variables analizadas.
+
+Lo más importante es que las variables de reclamos, como Cost_claims_year y N_claims_year, están muy concentradas en cero, porque sus cuartiles y medianas son 0. Esto indica que la mayoría de asegurados no presentó reclamos, aunque existen algunos casos extremos con costos o cantidades muy altas.
+
+También se observan posibles valores atípicos en variables como Cost_claims_year, Power, Weight y Value_vehicle, por sus máximos elevados.
+
+#### Concentración de ceros y umbral de 900 euros
+
+Dado que la pregunta de investigación considera el comportamiento de los reclamos cuando su costo supera los 900 euros, se analiza la concentración de observaciones en cero y alrededor de ese umbral. Este paso permite identificar si existe una acumulación particular de registros que deba considerarse en la etapa de modelación.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_ceros_umbral <- datos_modelacion %>%
+  summarise(
+    `Registros sin siniestros anuales` = sum(N_claims_year == 0, na.rm = TRUE),
+    `% sin siniestros anuales` = mean(N_claims_year == 0, na.rm = TRUE) * 100,
+    `Registros con costo igual a 0` = sum(Cost_claims_year == 0, na.rm = TRUE),
+    `% con costo igual a 0` = mean(Cost_claims_year == 0, na.rm = TRUE) * 100,
+    `Registros con costo igual a 900` = sum(Cost_claims_year == 900, na.rm = TRUE),
+    `% con costo igual a 900` = mean(Cost_claims_year == 900, na.rm = TRUE) * 100,
+    `Registros con costo mayor a 900` = sum(Cost_claims_year > 900, na.rm = TRUE),
+    `% con costo mayor a 900` = mean(Cost_claims_year > 900, na.rm = TRUE) * 100
+  ) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Indicador",
+    values_to = "Valor"
+  ) %>%
+  mutate(Valor = round(Valor, 2))
+
+knitr::kable(
+  tabla_ceros_umbral,
+  caption = "Concentración de ceros y comportamiento respecto al umbral de 900 euros",
+  booktabs = TRUE
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 9,
+    latex_options = c("hold_position")
+  )
+```
+
+Esta tabla confirma que hay una alta concentración de ceros en los reclamos. El 81.21% de los registros no tuvo siniestros anuales, lo cual coincide con los registros cuyo costo fue igual a 0. Esto significa que la mayoría de asegurados no generó costos por reclamos durante el año.
+
+Además, no hay registros con costo exactamente igual a 900 euros, pero sí hay 3779 casos con costos mayores a 900, equivalentes al 3.64% de la base.
+
+#### Detección de valores atípicos
+
+Como parte del análisis descriptivo, se revisa la presencia de valores atípicos en las variables cuantitativas más relevantes. Esta revisión es importante porque los datos de seguros suelen presentar valores extremos, especialmente en variables relacionadas con costos y número de reclamos.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+variables_outliers <- c(
+  "edad",
+  "Seniority",
+  "antiguedad_licencia",
+  "N_claims_year",
+  "Cost_claims_year",
+  "N_claims_history",
+  "R_Claims_history",
+  "edad_vehiculo",
+  "Power",
+  "Value_vehicle",
+  "Weight",
+  "Length"
+)
+
+tabla_outliers <- datos_modelacion %>%
+  select(all_of(variables_outliers)) %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = "Variable",
+    values_to = "Valor"
+  ) %>%
+  group_by(Variable) %>%
+  summarise(
+    Q1 = quantile(Valor, 0.25, na.rm = TRUE),
+    Q3 = quantile(Valor, 0.75, na.rm = TRUE),
+    IQR = Q3 - Q1,
+    limite_inferior = Q1 - 1.5 * IQR,
+    limite_superior = Q3 + 1.5 * IQR,
+    total_outliers = sum(
+      Valor < limite_inferior | Valor > limite_superior,
+      na.rm = TRUE
+    ),
+    porcentaje_outliers = round(total_outliers / sum(!is.na(Valor)) * 100, 2),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    across(where(is.numeric), ~ round(., 3))
+  )
+
+knitr::kable(
+  tabla_outliers,
+  caption = "Detección de valores atípicos mediante el método IQR",
+  booktabs = TRUE,
+  longtable = TRUE
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header", "scale_down"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 8
+  )
+```
+
+Lo más relevante es que Cost_claims_year y N_claims_year tienen el mayor porcentaje de atípicos, con 18.79% cada una. Esto ocurre porque la mayoría de registros está en cero, entonces cualquier valor positivo de reclamo se identifica como atípico.
+
+También destacan Weight, Power, R_Claims_history y Seniority, con porcentajes entre 7% y 9.7%, lo que sugiere presencia de valores extremos en características del vehículo y del historial del asegurado.
+
+En cambio, variables como edad, antiguedad_licencia y edad_vehiculo tienen pocos valores atípicos, por lo que parecen más estables.
+
+#### Frecuencia y severidad según tipo de vehículo
+
+Para responder a la pregunta de investigación, también se analiza si el comportamiento de los siniestros varía según el tipo de vehículo asegurado. Esta comparación permite identificar posibles diferencias entre categorías de riesgo.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_categoria <- datos_modelacion %>%
+  group_by(categoria) %>%
+  summarise(
+    `Cantidad de registros` = n(),
+    `% del total` = round(n() / nrow(datos_modelacion) * 100, 2),
+    `Promedio de siniestros` = round(mean(N_claims_year, na.rm = TRUE), 3),
+    `% sin siniestros` = round(mean(N_claims_year == 0, na.rm = TRUE) * 100, 2),
+    `Costo promedio` = round(mean(Cost_claims_year, na.rm = TRUE), 2),
+    `Costo mediano` = round(median(Cost_claims_year, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+knitr::kable(
+  tabla_categoria,
+  caption = "Frecuencia y severidad de siniestros según tipo de vehículo",
+  booktabs = TRUE
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 8,
+    latex_options = c("hold_position")
+  )
+```
+
+La mayoría de registros corresponde a vehículos de turismo, con casi el 80% del total. Luego siguen las furgonetas con 12.73% y las motocicletas con 6.61%.
+
+En cuanto a siniestros, las furgonetas presentan el mayor promedio de siniestros, con 0.568, y también el costo promedio más alto, con 166.35. Los vehículos de turismo tienen un costo promedio parecido, de 165.10, pero un promedio de siniestros menor.
+
+Las categorías agrícola y motocicleta muestran porcentajes muy altos sin siniestros, especialmente agrícola con 99.86%, por lo que su costo promedio es muy bajo.
+
+#### Frecuencia y severidad según zona
+
+También se analiza el comportamiento de los siniestros según la zona registrada en la base de datos. Esta variable permite explorar si existen diferencias entre zonas urbanas y rurales en la frecuencia y severidad de los reclamos.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_zona <- datos_modelacion %>%
+  mutate(
+    zona = ifelse(Area == 0, "Rural", "Urbana")
+  ) %>%
+  group_by(zona) %>%
+  summarise(
+    `Cantidad de registros` = n(),
+    `% del total` = round(n() / nrow(datos_modelacion) * 100, 2),
+    `Promedio de siniestros` = round(mean(N_claims_year, na.rm = TRUE), 3),
+    `% sin siniestros` = round(mean(N_claims_year == 0, na.rm = TRUE) * 100, 2),
+    `Costo promedio` = round(mean(Cost_claims_year, na.rm = TRUE), 2),
+    `Costo mediano` = round(median(Cost_claims_year, na.rm = TRUE), 2),
+    .groups = "drop"
+  )
+
+knitr::kable(
+  tabla_zona,
+  caption = "Frecuencia y severidad de siniestros según zona",
+  booktabs = TRUE
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 8,
+    latex_options = c("hold_position")
+  )
+```
+
+En primer lugar, se observa que la mayor parte de la base corresponde a la zona rural, con un 72.7% de los registros. La zona urbana representa una proporción menor, con 27.3%. Esto indica que la cartera analizada tiene una mayor presencia de asegurados rurales.
+
+Sin embargo, aunque la zona rural tiene más registros, la zona urbana presenta un mayor promedio de siniestros, con 0.458 frente a 0.376 en la zona rural. Esto sugiere que, en promedio, los asegurados urbanos reportan siniestros con mayor frecuencia.
+
+También se observa que el costo promedio es más alto en la zona urbana: 175.56 frente a 148.10 en la zona rural. Esto podría indicar que los siniestros urbanos no solo ocurren con mayor frecuencia, sino que además tienden a generar costos ligeramente más altos.
+
+Por otro lado, en ambas zonas el costo mediano es 0, lo cual confirma que la mayoría de registros no presenta costos por siniestros. Aun así, el porcentaje sin siniestros es un poco menor en la zona urbana, con 79.36%, comparado con 81.91% en la zona rural.
+
+En conjunto, el análisis descriptivo permite identificar varios elementos relevantes para la etapa de modelación. Primero, la base presenta una estructura con múltiples registros por asegurado, lo cual permite estudiar el comportamiento anual de los siniestros. Segundo, se observa una concentración importante de registros sin siniestros o con costos iguales a cero, aspecto que debe considerarse al modelar la frecuencia y la severidad. Tercero, las variables relacionadas con los costos presentan asimetría y valores extremos, lo cual es característico en datos de seguros. Finalmente, las comparaciones por tipo de vehículo y zona muestran que existen diferencias entre grupos, por lo que estas variables pueden ser consideradas como posibles factores explicativos en la modelación posterior.
+
+### Ajuste completo del modelo
+
+### Análisis de diagnósticos del modelo seleccionado
+
 ## Propuesta metodológica
 
 La propuesta metodológica de esta investigación se organiza como una secuencia de análisis orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles. En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y severidad, el estudio de asociaciones entre variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros. En esta bitácora, dichos ejes se mantienen, pero se reformulan con mayor precisión para incorporar la retroalimentación recibida.
