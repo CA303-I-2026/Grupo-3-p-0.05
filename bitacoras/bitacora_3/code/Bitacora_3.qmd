@@ -1184,9 +1184,80 @@ Gracias a este fallo, se aprendió que para datos con alta concentración de cer
 
 ## Ordenamiento de los elementos del reporte
 
-En la presente sección se realizará el ordenamiento de los elementos de reporte identificados durante el desarrollo del proyecto, clasificándolos como primarios o secundarios según su nivel de relevancia y aporte a la investigación. Estos elementos pueden corresponder a hipótesis, ideas, teorías provenientes de la literatura, así como a hallazgos y resultados obtenidos durante la ejecución del proyecto.
+En la presente sección se realizará el ordenamiento de los elementos de reporte identificados durante el desarrollo del proyecto, los cuales serán clasificados como primarios o secundarios según su nivel de relevancia y aporte a la investigación. Estos elementos incluyen hipótesis, ideas, teorías provenientes de la literatura, así como hallazgos y resultados obtenidos a lo largo de la ejecución del proyecto.
 
-Este proceso tiene como objetivo identificar los componentes fundamentales del trabajo y establecer una estructura lógica para la elaboración del borrador final, facilitando la organización y presentación de los contenidos en las diferentes secciones del informe.
+Este proceso tiene como finalidad organizar la información de manera estructurada, de modo que sirva como base para la construcción del borrador final del informe.
+
+Como primer paso en este proceso, se identifican y clasifican los elementos de reporte del proyecto en primarios y secundarios, según su nivel de importancia para el desarrollo de la investigación. Los elementos primarios corresponden a aquellos sin los cuales el trabajo perdería sentido, mientras que los secundarios aportan apoyo y contexto, pero no son fundamentales.
+
+```{r}
+tabla_elementos <- tibble(
+  Primarios = c("Teoría A", "Idea A", "Resultado A", "Resultado C"),
+  Secundarios = c("Teoría B", "Idea B", "Resultado B", "Resultado D")
+)
+
+knitr::kable(
+  tabla_elementos,
+  booktabs = TRUE,
+  longtable = TRUE,
+  align = c("l", "l") 
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 11
+  ) %>%
+  
+  kableExtra::add_header_above(
+    c("Elementos de reporte" = 2), 
+    line = TRUE
+  )
+```
+
+Posteriormente, con base en la clasificación anterior, se establece una propuesta de organización para la redacción del informe final. La siguiente tabla presenta la distribución de los elementos dentro de las distintas secciones del documento, con el objetivo de garantizar una estructura lógica, coherente y ordenada para la presentación del trabajo.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+tabla_guia <- tibble(
+  Sección = c(
+    "Introducción", "Introducción", "Introducción", "Introducción", "Introducción",
+    "Metodología", "Metodología", "Metodología", "Metodología",
+    "Resultados", "Resultados", "Resultados"
+  ),
+  `Temas a tratar` = c(
+    "1. Teoría A (Primario)",
+    "2. Idea B (Primario)",
+    "3. Resultado de otro autor A (Secundario)",
+    "4. Resultado de otro autor B (Secundario)",
+    "5. etc.",
+    "1. Detalle de los datos. (Primario)",
+    "2. Método A (Primario)",
+    "3. Método B (Secundario)",
+    "4. Diagnóstico del modelo (Primario)",
+    "1. Resultado A (Primario)",
+    "2. Resultado B (Secundario)",
+    "3. etc."
+  )
+)
+
+knitr::kable(
+  tabla_guia,
+  booktabs = TRUE,
+  longtable = TRUE,
+  align = c("l", "l")
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("repeat_header"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 11
+  ) %>%
+  kableExtra::collapse_rows(
+    columns = 1, 
+    valign = "top",     
+    latex_hline = "major" 
+  )
+```
 
 ## La imagen que cuenta la historia
 
