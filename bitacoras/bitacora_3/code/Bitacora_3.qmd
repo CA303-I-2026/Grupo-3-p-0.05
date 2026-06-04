@@ -1184,6 +1184,10 @@ Gracias a este fallo, se aprendió que para datos con alta concentración de cer
 
 ## Ordenamiento de los elementos del reporte
 
+En la presente sección se realizará el ordenamiento de los elementos de reporte identificados durante el desarrollo del proyecto, clasificándolos como primarios o secundarios según su nivel de relevancia y aporte a la investigación. Estos elementos pueden corresponder a hipótesis, ideas, teorías provenientes de la literatura, así como a hallazgos y resultados obtenidos durante la ejecución del proyecto.
+
+Este proceso tiene como objetivo identificar los componentes fundamentales del trabajo y establecer una estructura lógica para la elaboración del borrador final, facilitando la organización y presentación de los contenidos en las diferentes secciones del informe.
+
 ## La imagen que cuenta la historia
 
 # Arco narrativo del proyecto
