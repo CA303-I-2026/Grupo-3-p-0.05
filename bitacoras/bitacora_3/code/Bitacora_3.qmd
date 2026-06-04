@@ -1058,6 +1058,57 @@ Estos resultados indican que el tipo de vehículo es un factor de importancia en
 Este hallazgo indica que la variable del tipo de vehículo "Type_risk" interviene en la frecuencia de los siniestros.
 
 
+```{r}
+proporcion_sin_siniestros <- datos_modificados %>% 
+  group_by(categoria) %>% 
+  summarise(proporcion_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE), n = n()) %>% 
+  ggplot(aes(x = factor(categoria), y = proporcion_sin_siniestros, fill = factor(categoria))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(proporcion_sin_siniestros, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:4]) + 
+  labs(title = "Proporción de asegurados sin siniestros por tipo de vehículo",
+       x = "Tipo de vehículo",
+       y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0,1) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png", proporcion_sin_siniestros, width = 10, height = 7, dpi = 300)
+```
+
+![Proporción de asegurados sin siniestros según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png)
+
+Como se puede observar en el gráfico anterior, los vehículos agrícolas son los que poseen mayor proporción de asegurados sin siniestros, con un 99.88% que no presentan reclamaciones, seguido por las motocicletas las cuales poseen un 92.43% de asegurados sin reclamaciones, los turismos poseen un 80.74% y las furgonetas un 77.19%.
+
+Estos hallazgos concuerdan con el hallazgo anterior, ya que las furgonetas no solamente poseen la mayor frecuencia promedio: 0.568, sino que también poseen la menor proporción de asegurados sin siniestros: 77.19%. A diferencia de los vehículos agrícolas los cuales prácticamente nunca reportan siniestros y son los que mayor proporción de asegurados sin siniestros tienen, con 99.88% como se mencionó anteriormente.
+
+
+```{r}
+
+dist_costo_positivo <- datos_modificados %>% 
+  group_by(categoria) %>% 
+  summarise(proporcion_costo_mayor_0 = mean(Cost_claims_year > 0, na.rm = TRUE), n = n()) %>% 
+  ggplot(aes(x = factor(categoria), y = proporcion_costo_mayor_0, fill = factor(categoria))) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(proporcion_costo_mayor_0, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:4]) + 
+  labs(title = "Proporción de registros con costo de siniestros mayor a €0 por tipo de vehículo",
+       x = "Tipo de vehículo",
+       y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0,1) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.png", dist_costo_positivo, width = 10, height = 7, dpi = 300)
+```
+
+![Proporción de registros con costo positivo según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.png)
+
+En este gráfico se puede observar que los vehículos agrícolas son los que poseen la menor proporción de registros con costo mayor a €0, con una proporción de 0.12%, seguido de las motocicletas las cuales tienen un 7.57%, luego los turismos con 19.26% y finalmente, las furgonetas son las que tienen la mayor proporción, con 22.81%. El presente gráfico y el anterior son complementarios, ya que las furgonetas, las cuales tienen un 77.19% en la proporción de asegurados sin siniestros, son las que mayor proporción de asegurados con costo positivo tiene, con 22.81%. En contraste, los vehículos agrícolas los cuales son los que poseen mayor proporción sin siniestros, con 99.88%, tienen prácticamente una nula presencia en la proporción de costos positivos, con 0.12%.
+
+
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 velas_tipo_vehiculo <- datos_modificados %>% 
     filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
