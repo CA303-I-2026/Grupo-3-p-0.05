@@ -760,18 +760,6 @@ Además, se elaborarán gráficos comparativos. Para la frecuencia de siniestros
 
 Cuando se desee evaluar la asociación entre una variable categórica y una variable binaria de siniestralidad, se definirá una variable indicadora. A partir de esta variable se podrán construir tablas resumen y de comparación. Estas tablas permitirán comparar la proporción de registros con costo positivo dentro de cada categoría.
 
-Si se considera pertinente, se podrá aplicar una prueba de independencia $\chi^2$ para evaluar si la presencia de costo positivo está asociada con la variable categórica. Las hipótesis de esta prueba serán:
-
-$$
-H_0: \text{la variable categórica y la presencia de costo positivo son independientes},
-$$
-
-$$
-H_1: \text{existe asociación entre la variable categórica y la presencia de costo positivo}.
-$$
-
-No obstante, esta prueba se interpretará con cautela. Si algunas categorías tienen pocos registros o frecuencias esperadas muy pequeñas, los resultados pueden no ser estables. En esos casos, se dará prioridad a la interpretación descriptiva mediante tablas, proporciones y gráficos, no tanto a las hipótesis. 
-
 Este método se escoge porque permite analizar variables que no pueden estudiarse adecuadamente mediante correlación. Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas.
 
 En relación con la pregunta de investigación, la comparación entre grupos permite identificar si ciertas categorías presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados. De esta manera, el análisis aporta evidencia descriptiva sobre posibles diferencias en la siniestralidad según características del asegurado o del vehículo.
