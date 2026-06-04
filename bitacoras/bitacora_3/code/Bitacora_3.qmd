@@ -113,8 +113,6 @@ datos_modificados <- datos %>%
 
 ### Análisis descriptivo completo de la base de datos
 
-Una vez cargada y procesada la base de datos, se realiza un análisis descriptivo general con el propósito de conocer la estructura de la información disponible. Esta etapa permite resumir las principales características de los asegurados, los vehículos y el historial de siniestros registrado en la base.
-
 El análisis descriptivo se organiza a partir de la pregunta de investigación del proyecto. Por esta razón, se seleccionan variables relacionadas con tres dimensiones principales: las características del asegurado, las características del vehículo y el historial de siniestros. Las variables `N_claims_year` y `Cost_claims_year` son centrales, ya que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
 
 #### Resumen general de la base de datos
@@ -145,21 +143,18 @@ knitr::kable(
   tabla_info,
   caption = "Resumen general de la base de datos",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "c")
 ) %>%
   kableExtra::kable_styling(
     full_width = FALSE,
     position = "center",
     font_size = 10,
-    latex_options = c("hold_position")
-  ) %>%
-  kableExtra::row_spec(
-    0,
-    bold = TRUE
+    latex_options = c("repeat_header"),
+    repeat_header_text = "continuación"
   ) %>%
   kableExtra::column_spec(
     1,
-    bold = TRUE,
     width = "7cm"
   ) %>%
   kableExtra::column_spec(
@@ -236,7 +231,7 @@ datos_analisis <- datos_modificados %>%
 
 Para estudiar la frecuencia y la severidad de los siniestros, se seleccionan variables cuantitativas relacionadas con las características del asegurado, el vehículo y el historial de reclamos. En particular, se consideran variables como la edad, la antigüedad con la aseguradora, el número de siniestros, el costo anual de los siniestros, el valor del vehículo y otras características físicas del automóvil.
 
-omo primer acercamiento a la pregunta de investigación, se resumen las variables asociadas directamente con la frecuencia y la severidad de los siniestros. La frecuencia se representa mediante `N_claims_year`, mientras que la severidad se aproxima con `Cost_claims_year`.
+Como primer acercamiento a la pregunta de investigación, se resumen las variables asociadas directamente con la frecuencia y la severidad de los siniestros. La frecuencia se representa mediante `N_claims_year`, mientras que la severidad se aproxima con `Cost_claims_year`.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 variables_modelacion <- c(
