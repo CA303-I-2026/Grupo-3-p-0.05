@@ -1322,6 +1322,32 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
+Para estudiar el comportamiento del costo anual de los siniestros en el umbral de los €900, se propuso un modelo de distribución mixta, separado en tres componentes, primero, una masa puntual ubicada en cero, para la cual los costos corresponden a 0 (Y = 0). Segundo, una distribución para los costos ubicados entre €0 y €900, sin incluir (0 < Y < 900). Tercero, una distribución para los costos mayores o iguales a €900 (Y ≥ 900), la cual para una mejor visualización gráfica se acotó a €20000. A continuación se presentan los resultados obtenidos a través del ajuste de distribuciones para costos mayores a €0.
+
+Para el intervalo de 0 a 900, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre €0 y €900, las cuales fueron la distribución Lognormal y la distribución Gamma. Por medio del paquete "fitdistrplus" se realizó el ajuste, del cual se obtuvo que el Criterio de Información de Akaike (AIC) tuvo un valor de 211,339.9 para el caso de la distribución Lognormal, mientras que para la distribución Gamma se obtuvo un AIC de 212,684.5, resultando en una diferencia de 1,344.6; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Gamma, lo que indica que posee un mejor ajuste para los datos. De esta forma se seleccionó la Lognormal para modelar los costos que están en el intervalo ]0,900[. A partir del paquete "fitdistrplus" y su función "fitdist()" se obtuvo que los parámetros para esta distribución son: meanlog = 5.2785366 y sdlog = 0.9693318. Los siguientes gráficos muestran pruebas adicionales que se realizaron para comparar ambas distribuciones.
+
+
+![Gráficos diagnósticos de la distribución Lognormal para el intervalo 0 < Y < 900  ](../../../bitacoras/bitacora_3/figuras/diagnostico_lognormal.png)
+
+![Gráficos diagnósticos de la distribución Gamma para el intervalo 0 < Y < 900  ](../../../bitacoras/bitacora_3/figuras/diagnostico_gamma.png)
+
+Además, la siguiente figura muestra la comparación entre la distribución Lognormal y la Gamma, superpuestas al histograma de los costos en el intervalo 0 < Y < 900:
+
+
+![Comparación de las distribuciones Lognormal y Gamma para el intervalo 0 < Y < 900](../../../bitacoras/bitacora_3/figuras/comparacion_lognormal_gamma.png)
+
+
+Para el intervalo de los valores mayores o iguales a 900 (Y ≥ 900), primero se acotaron los costos por €20,000, de modo que quedó el intervalo (900 ≤ Y ≤ 20,000). Después, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre €900 y €20,000, las cuales fueron la distribución Lognormal y la distribución Pareto. Por medio del paquete "fitdistrplus" y la función "fitdist()" se realizó el ajuste para la distribución Lognormal, del cual se obtuvo que el AIC tuvo un valor de 64,536.62, mientras que para la distribución Pareto se obtuvo un AIC de 66422.61, resultando en una diferencia de 1,885.99; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Pareto, lo que indica que posee un mejor ajuste para los datos. De esta forma se seleccionó la Lognormal para modelar los costos que están en el intervalo (Y ≥ 900). Además, se obtuvo que los parámetros para esta distribución Lognormal son: meanlog = 7.5571894 y sdlog = 0.6816524. Los siguientes gráficos muestran pruebas adicionales que se realizaron para comparar ambas distribuciones.
+
+![Gráficos diagnósticos de la distribución Lognormal para el intervalo 900 ≤ Y ≤ 20,000](../../../bitacoras/bitacora_3/figuras/diagnostico_lognormal_mayores_900.png)
+
+![Gráficos diagnósticos de la distribución Pareto para el intervalo 900 ≤ Y ≤ 20,000](../../../bitacoras/bitacora_3/figuras/diagnostico_pareto.png)
+Además, la siguiente figura muestra la comparación entre la distribución Lognormal y la Pareto, superpuestas al histograma de los costos en el intervalo 900 ≤ Y ≤ 20,000:
+
+
+![Comparación de las distribuciones Lognormal y Pareto para el intervalo 900 ≤ Y ≤ 20,000](../../../bitacoras/bitacora_3/figuras/comparacion_lognormal_pareto.png)
+
+
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 proporcion_mayores_900 <- datos_modificados %>%
   mutate(mayores_900 = ifelse(Cost_claims_year >= 900, 1, 0)) %>%
