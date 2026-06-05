@@ -1153,7 +1153,7 @@ comparacion_ceros_poisson <- ceros_frecuencia %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",comparacion_ceros_poisson, width = 8, height = 7, dpi = 300)
 ```
 
-![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png)
+![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png){width=80%}
 
 Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año. Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna "N_claims_year".
 
@@ -1171,7 +1171,7 @@ boxplot_costos <- datos %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
 ```
 
-![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png)
+![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){height=12cm}
 
 El boxplot muestra la distribución de la variable "Cost_claims_year" para reclamos mayores a €0 y menores a €5000, en el cual se puede observar que esta variable presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendall en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
 
@@ -1205,7 +1205,7 @@ matriz_correlacion <- ggcorrplot(correlacion_spearman,
 ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_correlacion, width = 9, height = 9, dpi = 300)
 ```
 
-![Matriz de correlaciones de variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png)
+![Matriz de correlaciones de variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){height=70%}
 
 De este gráfico se puede observar que existe una correlación casi perfecta entre la variable del número de reclamos por año (N_claims_year) y la variable de costos de reclamos por años (Cost_claims_year), ya que se obtuvo que $\rho$ = 0.99, este es un resultado esperable ya que entre más número de reclamos haya, mayor será el costo acumulado.
 
@@ -1243,7 +1243,7 @@ frecuencia_promedio_vehiculo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png", frecuencia_promedio_vehiculo, width = 10, height = 7, dpi = 300)
 ```
 
-![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png)
+![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){width=90%}
 
 Este gráfico muestra que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
 
@@ -1251,7 +1251,7 @@ Estos resultados indican que el tipo de vehículo es un factor de importancia en
 
 Este hallazgo indica que la variable del tipo de vehículo "Type_risk" interviene en la frecuencia de los siniestros.
 
-```{r}
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 proporcion_sin_siniestros <- datos_modificados %>% 
   group_by(categoria) %>% 
   summarise(proporcion_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE), n = n()) %>% 
@@ -1270,13 +1270,13 @@ proporcion_sin_siniestros <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png", proporcion_sin_siniestros, width = 10, height = 7, dpi = 300)
 ```
 
-![Proporción de asegurados sin siniestros según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png)
+![Proporción de asegurados sin siniestros según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png){width=90%}
 
 Como se puede observar en el gráfico anterior, los vehículos agrícolas son los que poseen mayor proporción de asegurados sin siniestros, con un 99.88% que no presentan reclamaciones, seguido por las motocicletas las cuales poseen un 92.43% de asegurados sin reclamaciones, los turismos poseen un 80.74% y las furgonetas un 77.19%.
 
 Estos hallazgos concuerdan con el hallazgo anterior, ya que las furgonetas no solamente poseen la mayor frecuencia promedio: 0.568, sino que también poseen la menor proporción de asegurados sin siniestros: 77.19%. A diferencia de los vehículos agrícolas los cuales prácticamente nunca reportan siniestros y son los que mayor proporción de asegurados sin siniestros tienen, con 99.88% como se mencionó anteriormente.
 
-```{r}
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 
 dist_costo_positivo <- datos_modificados %>% 
   group_by(categoria) %>% 
@@ -1296,7 +1296,7 @@ dist_costo_positivo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.png", dist_costo_positivo, width = 10, height = 7, dpi = 300)
 ```
 
-![Proporción de registros con costo positivo según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.png)
+![Proporción de registros con costo positivo según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.png){width=90%}
 
 En este gráfico se puede observar que los vehículos agrícolas son los que poseen la menor proporción de registros con costo mayor a €0, con una proporción de 0.12%, seguido de las motocicletas las cuales tienen un 7.57%, luego los turismos con 19.26% y finalmente, las furgonetas son las que tienen la mayor proporción, con 22.81%. El presente gráfico y el anterior son complementarios, ya que las furgonetas, las cuales tienen un 77.19% en la proporción de asegurados sin siniestros, son las que mayor proporción de asegurados con costo positivo tiene, con 22.81%. En contraste, los vehículos agrícolas los cuales son los que poseen mayor proporción sin siniestros, con 99.88%, tienen prácticamente una nula presencia en la proporción de costos positivos, con 0.12%.
 
@@ -1319,7 +1319,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 
 ```
 
-![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png)
+![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png){width=90%}
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
@@ -1351,22 +1351,23 @@ Además, la siguiente figura muestra la comparación entre la distribución Logn
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE}
 proporciones <- datos_modificados %>%
-  mutate(Grupo = case_when(
+  mutate(Grupo = factor(case_when(
     Cost_claims_year == 0 ~ "Ceros",
     Cost_claims_year > 0 & Cost_claims_year < 900 ~ "Medios",
     Cost_claims_year >= 900 ~ "Altos"
-  )) %>%
+    ), levels = c("Ceros", "Medios", "Altos"))) %>% # Ordenar para que salgan en el orden ceros, medios, altos
   group_by(Grupo) %>%
   summarise(Frecuencia = n()) %>%
   mutate(Proporcion = Frecuencia / sum(Frecuencia), # Dividir cada frecuencia por el total de observaciones y redondearlo a 4
          Porcentaje = round(Proporcion * 100, 3))
 ```
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE,}
+```{r, warning= FALSE, message=FALSE, echo =FALSE}
 proporciones %>%
   kable(caption = "Proporciones de los componentes de la distribución mixta",
         booktabs = TRUE,
-        align = c("l", "r", "r", "r")) %>%
+        align = c("l", "r", "r", "r"),
+        escape = FALSE) %>%
   kable_styling(full_width = FALSE, position = "center", font_size = 10)
 ```
 
