@@ -543,8 +543,6 @@ Por otro lado, en ambas zonas el costo mediano es 0, lo cual confirma que la may
 
 #### Gráficos relevantes para el análisis descriptivo
 
-
-
 En conjunto, el análisis descriptivo permite identificar varios elementos relevantes para la etapa de modelación. Primero, la base presenta una estructura con múltiples registros por asegurado, lo cual permite estudiar el comportamiento anual de los siniestros. Segundo, se observa una concentración importante de registros sin siniestros o con costos iguales a cero, aspecto que debe considerarse al modelar la frecuencia y la severidad. Tercero, las variables relacionadas con los costos presentan asimetría y valores extremos, lo cual es característico en datos de seguros. Finalmente, las comparaciones por tipo de vehículo y zona muestran que existen diferencias entre grupos, por lo que estas variables pueden ser consideradas como posibles factores explicativos en la modelación posterior.
 
 ### Ajuste completo del modelo
@@ -698,7 +696,7 @@ $$
 
 Este coeficiente es útil porque evalúa la asociación a partir del orden relativo de los datos, por lo que puede ser más adecuado cuando existen distribuciones asimétricas, valores extremos o relaciones no lineales.
 
-En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada. El método que se va a utilizar se va a determinar mediante un `shapiro.test()`, el cual va a identifcar si las variables tienen distribución normal, o no. En caso de que si, se utilizará el método Pearson, y en caso de que no se utilizará Kendall o Spearman según sea pertinente. 
+En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada. El método que se va a utilizar se va a determinar mediante un `shapiro.test()`, el cual va a identifcar si las variables tienen distribución normal, o no. En caso de que si, se utilizará el método Pearson, y en caso de que no se utilizará Kendall o Spearman según sea pertinente.
 
 ##### Intervalos de confianza para los coeficientes de correlación
 
@@ -886,7 +884,7 @@ $$
 X_i \in \{g_1,g_2,\ldots,g_m\},
 $$
 
-donde $g_1,g_2,\ldots,g_m$ representan las categorías o grupos de la variable. 
+donde $g_1,g_2,\ldots,g_m$ representan las categorías o grupos de la variable.
 
 El objetivo será comparar el comportamiento de las variables de siniestralidad dentro de cada grupo. Para la frecuencia de siniestros, se analizará la variable: $N_i$.
 
@@ -1058,7 +1056,7 @@ Además de los criterios numéricos, se utilizarán herramientas gráficas de di
 
 Finalmente, el umbral de 900 euros se interpretará como una herramienta para separar el comportamiento de los costos moderados y de los costos altos. No se utilizará únicamente como una variable indicadora, sino como parte de una estructura de mezcla que distingue entre ausencia de costo, severidad positiva moderada y severidad alta. De esta manera, el análisis permitirá estimar tanto los pesos de cada componente como las distribuciones paramétricas que describen los costos positivos.
 
-En relación con la pregunta de investigación, este método permite identificar no solo qué proporción de registros se ubica en la zona de alta severidad, sino también qué tipo de distribución describe mejor los costos moderados y los costos altos. 
+En relación con la pregunta de investigación, este método permite identificar no solo qué proporción de registros se ubica en la zona de alta severidad, sino también qué tipo de distribución describe mejor los costos moderados y los costos altos.
 
 #### Justificación integrada de los métodos
 
@@ -1068,7 +1066,7 @@ En segundo lugar, el análisis de asociación entre variables cuantitativas perm
 
 En tercer lugar, la comparación entre grupos permite estudiar variables categóricas, como el tipo de vehículo, la zona de circulación o el tipo de combustible. Este método complementa el análisis de correlación, ya que muchas características relevantes del problema no son numéricas. A través de tablas, proporciones y gráficos comparativos, será posible observar si ciertos grupos presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad en los reclamos.
 
-Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad. Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual. De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución. 
+Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad. Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual. De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución.
 
 ### Programa maqueta
 
@@ -1126,10 +1124,10 @@ distribucion_frecuencia <- datos %>%
 
 ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png",distribucion_frecuencia, width = 9, height = 6.5, dpi = 300)
 ```
+
 ![Distribución de la frecuencia de los siniestros menores a 10](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png)
 
 En el gráfico sobre la distribución de la frecuencia de los reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos. Además de esto, se puede ver que la distribución es decreciente, entre más aumenta la cantidad de reclamos, más disminuye la cantidad de observaciones.
-
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 ceros_frecuencia <- data.frame(
@@ -1171,10 +1169,10 @@ boxplot_costos <- datos %>%
 
 ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
 ```
+
 ![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png)
 
 El boxplot muestra la distribución de la variable "Cost_claims_year" para reclamos mayores a €0 y menores a €5000, en el cual se puede observar que esta variable presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendall en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
-
 
 AGREGAR LA TABLA DE ESTADÍSTICOS (media, mediana, varianza, porcentaje de ceros,etc)
 
@@ -1220,8 +1218,7 @@ Para el caso de la edad, no se encontraron correlaciones relevantes con las dem�
 shapiro.test(datos$N_claims_year[1:5000])
 ```
 
-Como se mencionó anteriormente, se utilizó el método de Spearman ya que se aplicó la prueba de Shapiro-Wilk para comprobar si la variable "N_claims_year" sigue una distribución normal, para esto se utilizó la función "shapiro.test" tomando una muestra de 5000 valores de la variable, se obtuvo un estadístico W = 0.37226 y un p-value < 2.2e-16; como el p-value es menor a 0.05; entonces se puede rechazar la hipótesis de que la variable se distribuye como una normal, por esta razón no se utilizó el coeficiente de correlación de Pearson.
-
+Como se mencionó anteriormente, se utilizó el método de Spearman ya que se aplicó la prueba de Shapiro-Wilk para comprobar si la variable "N_claims_year" sigue una distribución normal, para esto se utilizó la función "shapiro.test" tomando una muestra de 5000 valores de la variable, se obtuvo un estadístico W = 0.37226 y un p-value \< 2.2e-16; como el p-value es menor a 0.05; entonces se puede rechazar la hipótesis de que la variable se distribuye como una normal, por esta razón no se utilizó el coeficiente de correlación de Pearson.
 
 #### Comparación entre grupos para variables categóricas
 
@@ -1253,7 +1250,6 @@ Estos resultados indican que el tipo de vehículo es un factor de importancia en
 
 Este hallazgo indica que la variable del tipo de vehículo "Type_risk" interviene en la frecuencia de los siniestros.
 
-
 ```{r}
 proporcion_sin_siniestros <- datos_modificados %>% 
   group_by(categoria) %>% 
@@ -1279,7 +1275,6 @@ Como se puede observar en el gráfico anterior, los vehículos agrícolas son lo
 
 Estos hallazgos concuerdan con el hallazgo anterior, ya que las furgonetas no solamente poseen la mayor frecuencia promedio: 0.568, sino que también poseen la menor proporción de asegurados sin siniestros: 77.19%. A diferencia de los vehículos agrícolas los cuales prácticamente nunca reportan siniestros y son los que mayor proporción de asegurados sin siniestros tienen, con 99.88% como se mencionó anteriormente.
 
-
 ```{r}
 
 dist_costo_positivo <- datos_modificados %>% 
@@ -1304,7 +1299,6 @@ ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_tipo_vehiculo.
 
 En este gráfico se puede observar que los vehículos agrícolas son los que poseen la menor proporción de registros con costo mayor a €0, con una proporción de 0.12%, seguido de las motocicletas las cuales tienen un 7.57%, luego los turismos con 19.26% y finalmente, las furgonetas son las que tienen la mayor proporción, con 22.81%. El presente gráfico y el anterior son complementarios, ya que las furgonetas, las cuales tienen un 77.19% en la proporción de asegurados sin siniestros, son las que mayor proporción de asegurados con costo positivo tiene, con 22.81%. En contraste, los vehículos agrícolas los cuales son los que poseen mayor proporción sin siniestros, con 99.88%, tienen prácticamente una nula presencia en la proporción de costos positivos, con 0.12%.
 
-
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 velas_tipo_vehiculo <- datos_modificados %>% 
     filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
@@ -1323,7 +1317,6 @@ velas_tipo_vehiculo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", velas_tipo_vehiculo, width = 10, height = 7, dpi = 300)
 
 ```
-
 
 ![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png)
 
@@ -1354,10 +1347,9 @@ datos_modificados %>%
 
 ![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png)
 
-Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900. 
+Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900.
 
 Este hallazgo indica que las furgonetas y turismos, no solamente poseen mayor frecuencia promedio, sino que también poseen mayor proporción de casos en donde los reclamos superan o son iguales al monto de los €900, lo que puede indicar que estos dos tipos de vehículos son relevantes para explicar el comportamiento en el umbral de los €900.
-
 
 ### Análisis fallido
 
@@ -1599,25 +1591,27 @@ Durante la elaboración de la tercera bitácora, el equipo se vio en la necesida
 
 La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, en torno al proceso acumulativo del desarrollo del proyecto. Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al entregar la segunda bitácora? Dichas oraciones proceden a detallarse como sigue:
 
+- Durante esta etapa, se incorporó el uso de la librería fitdistrplus en R como apoyo para el análisis metodológico de la severidad de los siniestros. Esta herramienta permitió plantear una forma más ordenada de comparar posibles distribuciones para los costos positivos, utilizando criterios de ajuste que ayudan a justificar la selección del modelo más adecuado.
+
 ## Audiencia del proyecto
 
 Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que
 
 ## Registro del uso de IA
 
-En la presente bitácora, se acudió en una única ocasión a la guía de la inteligencia artificial. De esta manera, se detalla a continuación el respectivo registro:
+Se detalla a continuación el respectivo registro:
 
-*Herramienta:*
+*Herramienta:* ChatGPT.
 
-*Prompt:*
+*Prompt:* Se solicitó apoyo (en varios prompts) para comprender cómo utilizar la librería `fitdistrplus` en R dentro de la metodología del proyecto, especialmente para analizar posibles distribuciones asociadas a la severidad de los siniestros.
 
-*Respuesta de la IA:*
+*Respuesta de la IA:*  A modo de resumen de todo el chat, la IA explicó que `fitdistrplus` permite ajustar y comparar distintas distribuciones de probabilidad a datos positivos, como los costos de siniestros. También ayudó a relacionar el uso de esta librería con una referencia bibliográfica, para justificar metodológicamente la selección de distribuciones mediante criterios de ajuste.
 
-*Evaluación:*
+*Evaluación:* La respuesta fue útil porque permitió entender mejor el propósito de la librería y cómo integrarla dentro de la metodología sin presentar el procedimiento como una decisión arbitraria.
 
-*Modificaciones:*
+*Modificaciones:* Se adaptó la explicación al contexto del proyecto, enfocándola en el análisis de severidad y en la comparación de distribuciones para los costos positivos de los siniestros.
 
-*Aprendizaje:*
+*Aprendizaje:* Se comprendió que el uso de una librería estadística debe estar acompañado de una justificación teórica y metodológica, de modo que las decisiones de modelación puedan explicarse con mayor claridad.
 
 ## Registro del trabajo en equipo
 
@@ -1644,13 +1638,19 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 +--------------------------------+-------------------------------------------------------+
 | Emily Estefanía Mora Contreras | Análisis de la modelación                             |
 |                                |                                                       |
+|                                | Carga automática de datos                             |
+|                                |                                                       |
+|                                | Análisis descriptivo completo                         |
+|                                |                                                       |
 |                                | Propuesta metodológica                                |
 |                                |                                                       |
-|                                | Parte de reflexión                                    |
+|                                | Parte de reflexión: UVE de Gowin                      |
 |                                |                                                       |
 |                                | Diario de aprendizaje                                 |
 |                                |                                                       |
 |                                | Construcción de fichas de resultados                  |
+|                                |                                                       |
+|                                | Contrucción de fichas de literatura                   |
 +--------------------------------+-------------------------------------------------------+
 | **Nombre**                     | **Contribuciones**                                    |
 +--------------------------------+-------------------------------------------------------+
