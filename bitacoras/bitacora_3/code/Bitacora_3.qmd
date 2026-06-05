@@ -1455,6 +1455,18 @@ knitr::kable(
 
 # Parte de reflexión
 
+## Reflexión sobre alcance del proyecto
+
+## Construcción y actualización de la UVE de Gowin
+
+Luego de reflexionar sobre el alcance del proyecto, se replantearon algunas ideas y se incorporaron en la figura de la UVE de Gowin trabajada previamente en la Bitácora #1. Además, se agregaron las secciones de conclusiones y registro y transformación de datos, con el fin de completar la estructura del esquema.
+
+En la sección de conclusiones, se indicó que, a partir del análisis realizado hasta el momento, es posible identificar algunas variables asociadas con la frecuencia y severidad de los siniestros. Sin embargo, es importante aclarar que estas no corresponden todavía a las conclusiones generales del proyecto, sino a observaciones preliminares basadas en los análisis desarrollados previamente. También se incluyó que el umbral de 900 euros permite distinguir reclamos de mayor severidad, aspecto que igualmente se determinó a partir del trabajo previo. Una vez que se complete el análisis restante, será posible plantear conclusiones más sólidas y contundentes.
+
+Por otro lado, en la sección de registro y transformación de datos se describe, de manera general, el tratamiento aplicado a la base de datos entre la Bitácora #2 y la Bitácora #3. En esta parte se mencionan las transformaciones realizadas sobre algunas variables y la elaboración del análisis descriptivo. Los demás elementos de la UVE de Gowin se conservaron según la construcción realizada anteriormente.
+
+![UVE de Gowin](../figuras/uve_de_gowin.pdf)
+
 # Fichas literarias construidas en la tercera bitácora
 
 ::: callout-note
