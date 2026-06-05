@@ -1083,6 +1083,7 @@ library(tidyverse)
 library(readr)
 library(corrplot)
 library(ggcorrplot)
+library(kableExtra)
 datos <- read.csv("../../../datos/originales/Motor vehicle insurance data.csv", sep = ";")
 datos_modificados <- read.csv("../../../datos/procesados/datos_modificados.csv")
 
@@ -1346,6 +1347,71 @@ Además, la siguiente figura muestra la comparación entre la distribución Logn
 
 
 ![Comparación de las distribuciones Lognormal y Pareto para el intervalo 900 ≤ Y ≤ 20,000](../../../bitacoras/bitacora_3/figuras/comparacion_lognormal_pareto.png)
+
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE}
+proporciones <- datos_modificados %>%
+  mutate(Grupo = case_when(
+    Cost_claims_year == 0 ~ "Ceros",
+    Cost_claims_year > 0 & Cost_claims_year < 900 ~ "Medios",
+    Cost_claims_year >= 900 ~ "Altos"
+  )) %>%
+  group_by(Grupo) %>%
+  summarise(Frecuencia = n()) %>%
+  mutate(Proporcion = Frecuencia / sum(Frecuencia), # Dividir cada frecuencia por el total de observaciones y redondearlo a 4
+         Porcentaje = round(Proporcion * 100, 3))
+```
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE,}
+proporciones %>%
+  kable(caption = "Proporciones de los componentes de la distribución mixta",
+        booktabs = TRUE,
+        align = c("l", "r", "r", "r")) %>%
+  kable_styling(full_width = FALSE, position = "center", font_size = 10)
+```
+
+
+A través de los resultados obtenidos, presentados en la tabla anterior, se puede observar que los costos nulos representan un 81.388% del total de registros, mientras que el 15.017% de los registros corresponden a costos medios, ubicados en el intervalo (0 < Y < 900), mientras que solamente 3.595% de los registros corresponden a costos mayores o iguales a €900.
+
+Con el análisis anterior, con las distribuciones y las proporciones determinadas, se puede construir la distribución mixta.
+$$
+Y_i \sim \pi_0 \cdot \delta_0 + \pi_1 \cdot \text{Lognormal}(\mu_1, \sigma_1) + \pi_2 \cdot \text{Lognormal}(\mu_2, \sigma_2)
+$$
+Donde:
+
+- $\pi_0 = 0.81388$
+- $\delta_0$ es una masa puntual en cero, donde $\delta_0 = 1$ si $Y = 0$, y $\delta_0 = 0$ en otro caso.
+- $\pi_1 = 0.15017$
+- $\text{Lognormal}(\mu_1, \sigma_1)$ es la distribución para costos en el intervalo ($0 < Y < 900$)
+- $\mu_1 = 5.2785366$
+- $\sigma_1 = 0.9693318$
+- $\pi_2 = 0.03595$
+- $\text{Lognormal}(\mu_2, \sigma_2)$ es la distribución para costos en el intervalo ($Y \geq 900$)
+- $\mu_2 = 7.5571894$
+- $\sigma_2 = 0.6816524$
+
+Este modelo se adapta adecuadamente a la estructura de una distribución mixta para los datos, una masa en cero de $\pi_0 = 0.81388$ de las observaciones, un componente de costos medios correspondiente al intervalo (0 < Y < 900) el cual sigue una distribución Lognormal con parámetros $\mu_1 = 5.2785366$ y $\sigma_1 = 0.9693318$, el cual posee una proporción $\pi_1 = 0.15017$ y finalmente un componente para los costos altos, correspondiente al intervalo (Y ≥ 900), el cual sigue nuevamente una distribución Lognormal con parámetros  $\mu_2 = 7.5571894$ y $\sigma_2 = 0.6816524$ el cual posee una proporción $\pi_2 = 0.03595$. La información mencionada anteriormente se resume en la siguiente tabla.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+# Tabla del modelo de distribución mixta
+tabla_modelo <- data.frame(
+  Componente = c("Costos Cero", "Costos Medios", "Costos Altos"),
+  Rango = c("$Y = 0$", "$0 < Y < 900$", "$Y \\geq 900$"),
+  Distribución = c("Masa puntual ($\\delta_0$) (Y = 0)", "Lognormal", "Lognormal"),
+  Parámetros = c("—", 
+                 "$\\mu_1 = 5.2785366$, $\\sigma_1 = 0.9693318$",
+                 "$\\mu_2 = 7.5571894$, $\\sigma_2 = 0.6816524$"),
+  Proporción = c("$\\pi_0 = 0.81388$ (81.39%)",
+                 "$\\pi_1 = 0.15017$ (15.02%)",
+                 "$\\pi_2 = 0.03595$ (3.60%)")
+)
+
+kable(tabla_modelo,
+      caption = "Parámetros del modelo de distribución mixta para el costo anual de siniestros",
+      booktabs = TRUE,
+      align = c("l", "l", "l", "l", "l")) %>%
+  kable_styling(full_width = FALSE, position = "center", font_size = 10)
+```
 
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}

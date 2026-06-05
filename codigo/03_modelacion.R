@@ -178,3 +178,14 @@ comparacion_lognormal_pareto <- datos_modificados %>%
 
 ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_lognormal_pareto.png", comparacion_lognormal_pareto, width = 10, height = 6, dpi = 300)
 
+# Cálculo de la proporción de cada componente: 
+datos_modificados %>%
+  mutate(grupo = case_when(
+    Cost_claims_year == 0 ~ "Ceros",
+    Cost_claims_year > 0 & Cost_claims_year < 900 ~ "Medios",
+    Cost_claims_year >= 900 ~ "Altos"
+  )) %>%
+  group_by(grupo) %>%
+  summarise(Frecuencia = n()) %>%
+  mutate(Proporcion = round(Frecuencia / sum(Frecuencia), 4), # Dividir cada frecuencia por el total de observaciones y redondearlo a 4 decimales
+         Porcentaje = Proporcion * 100)
