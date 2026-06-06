@@ -1175,12 +1175,82 @@ ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos
 
 El boxplot muestra la distribución de la variable "Cost_claims_year" para reclamos mayores a €0 y menores a €5000, en el cual se puede observar que esta variable presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos. Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendall en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
 
-AGREGAR LA TABLA DE ESTADÍSTICOS (media, mediana, varianza, porcentaje de ceros,etc)
+```{r}
+library(pastecs)
+
+stat_frec <- stat.desc(datos_analisis$N_claims_year, 
+                       basic = TRUE, desc = TRUE, norm = FALSE)
+
+costos_positivos <- datos_analisis$Cost_claims_year[
+                     datos_analisis$Cost_claims_year > 0]
+
+stat_sev <- stat.desc(costos_positivos, 
+                      basic = TRUE, desc = TRUE, norm = FALSE)
+
+indicadores <- c("nbr.val", "min", "max", "mean", "median", 
+                 "var", "std.dev", "coef.var")
+
+nombres <- c("N válidos", "Mínimo", "Máximo", "Media", 
+             "Mediana", "Varianza", "Desviación estándar", 
+             "Coeficiente de variación")
+
+tabla_fs <- tibble(
+  Indicador = c(
+    nombres,
+    "% de ceros (toda la variable)",
+    "Índice de sobredispersión (var/media)"
+  ),
+  frecuencia = c(
+    round(stat_frec[indicadores], 4),
+    round(mean(datos_analisis$N_claims_year == 0) * 100, 2),
+    round(var(datos_analisis$N_claims_year) /
+          mean(datos_analisis$N_claims_year), 4)
+  ),
+  severidad = c(
+    round(stat_sev[indicadores], 2),
+    round(mean(datos_analisis$Cost_claims_year == 0) * 100, 2),
+    NA
+  )
+) %>%
+  rename(
+    `Frecuencia (N_claims_year)`         = frecuencia,
+    `Severidad (Cost_claims_year)` = severidad
+  )
+
+knitr::kable(
+  tabla_fs,
+  caption = "Estadísticos descriptivos de frecuencia y severidad de siniestros",
+  booktabs = TRUE,
+  align = c("l", "r", "r"),
+  format.args = list(big.mark = ",", scientific = FALSE)
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 10,
+    latex_options = "hold_position"
+  )
+```
+Por el lado de la frecuencia, de los 103,791 registros válidos, el 81.21% no presentó ningún siniestro durante el año, lo que se confirma con una mediana de 0. Esto evidencia una alta concentración de ceros en la distribución. La media de 0.40 siniestros anuales está fuertemente influenciada por los casos extremos, siendo el máximo observado de 25 siniestros en un año.
+El índice de sobredispersión de 3.09 indica que la varianza es aproximadamente tres veces mayor que la media, lo cual viola el supuesto de equidispersión de la distribución Poisson. Esto es consistente con el análisis previo que mostró que la Poisson solo predice un 67.39% de ceros, subestimando en 14 puntos porcentuales los ceros observados. Ambos elementos en conjunto descartan el uso de Poisson para modelar esta variable.
+Por otro lado, los estadísticos de severidad se calcularon únicamente sobre los 19,499 registros con costo positivo, es decir, el 18.79% de la base. Entre estos registros, la media del costo es de €828.22, pero la mediana es de apenas €291.00, una diferencia considerable que refleja una fuerte asimetría hacia la derecha. Esto significa que la mayoría de los reclamos positivos son de baja cuantía, pero existen casos extremos que elevan el promedio, como lo confirma el máximo de €260,853.24.
+La desviación estándar de €3,353.78 es cuatro veces mayor que la media, y el coeficiente de variación de 4.05 indica una dispersión muy alta en los costos. Esto justifica el uso de la mediana como medida principal de tendencia central para la severidad, y respalda la elección de distribuciones asimétricas como la lognormal para modelar los costos positivos, como se desarrolla más adelante en el análisis del umbral de €900.
+
 
 #### Análisis de asociación entre variables cuantitativas
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
-variables_cor <- datos_modificados %>%
+shapiro.test(datos$N_claims_year[1:5000])
+```
+
+Para determinar el método de correlación más adecuado, se aplicó la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la variable `N_claims_year`. Se obtuvo un estadístico W = 0.37226 y un p-valor < 2.2e-16. Como el p-valor es menor a 0.05, se rechaza la hipótesis de normalidad, por lo que se descarta el coeficiente de Pearson y se utiliza Spearman para el análisis de correlación. Se eligió Spearman sobre Kendall porque con muestras grandes como la de este proyecto ambos coeficientes tienden a producir conclusiones similares, pero Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para este tipo de análisis exploratorio.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+# PENDIENTE: Gráficos de dispersión
+```
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+variables_cor <- datos_modelacion %>%
   select(N_claims_year, Cost_claims_year, edad, Seniority, 
          N_claims_history, Weight, Power, Value_vehicle)
 
@@ -1207,19 +1277,81 @@ ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_co
 
 ![Matriz de correlaciones de variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){height=70%}
 
-De este gráfico se puede observar que existe una correlación casi perfecta entre la variable del número de reclamos por año (N_claims_year) y la variable de costos de reclamos por años (Cost_claims_year), ya que se obtuvo que $\rho$ = 0.99, este es un resultado esperable ya que entre más número de reclamos haya, mayor será el costo acumulado.
+La matriz permite observar las asociaciones entre las variables cuantitativas. En cuanto a las variables de siniestralidad, `N_claims_history` presenta la correlación más alta con `N_claims_year` ($\rho$ = 0.38) y con `Cost_claims_year` ($\rho$ = 0.36), lo que indica que los asegurados con mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado. La correlación casi perfecta entre `N_claims_year` y `Cost_claims_year` ($\rho$ = 0.99) es un resultado esperable, ya que a mayor número de reclamos mayor será el costo acumulado, por lo que ambas variables capturan esencialmente el mismo fenómeno desde ángulos distintos.
 
-También se puede observar que la variable de número de reclamos histórico (N_claims_history) tiene correlación positiva con algunas de las variables; primero, con la antigüedad del asegurado con la aseguradora con $\rho$ = 0.50, lo que indica una correlación positiva moderada. Además de esto, también posee una correlación positiva con el número de reclamos por año (N_claims_year), con $\rho$ = 0.38, lo que indica una correlación positiva leve al igual que con la variable del costo de reclamos por año (Cost_claims_year) con $\rho$ = 0.36.
+Como observación secundaria, la matriz también muestra correlaciones altas entre variables explicativas entre sí. El peso del vehículo (`Weight`) presenta una correlación positiva fuerte con el valor del vehículo (`Value_vehicle`, $\rho$ = 0.87) y con la potencia (`Power`, $\rho$ = 0.67), lo que sugiere que estas tres variables podrían estar midiendo 
+aspectos relacionados entre sí. Esto es relevante para etapas posteriores de modelación, ya que incluir variables que están muy correlacionadas entre sí podría generar redundancia en el modelo.
 
-Otra de las correlaciones encontradas es la del peso del vehículo (Weight) con dos variables que corresponden a características físicas del vehículo; primero, el peso tiene una correlación positiva de $\rho$ = 0.87 con el valor del vehículo (Value_vehicle), por lo que hay una correlación positiva fuerte, lo que indica que entre mayor sea el peso del vehículo, mayor será el valor del vehículo. Segundo, el peso posee una correlación positiva fuerte con la potencia del vehículo, con $\rho$ = 0.67. Además de esto, la potencia del vehículo (Power), posee una correlación positiva fuerte con el valor del vehículo (Value_vehicle).
 
-Para el caso de la edad, no se encontraron correlaciones relevantes con las demás variables, ya que los coeficientes de correlación están muy cerca de cero, lo que indica una correlación muy débil, casi nula.
+```{r, echo = FALSE}
+ic_spearman <- function(var_x, var_y, df) {
+  
+  pares <- df %>% 
+    select(all_of(c(var_x, var_y))) %>% 
+    drop_na()
+  
+  n <- nrow(pares)
+  test <- cor.test(pares[[var_x]], pares[[var_y]], method = "spearman", exact = FALSE)
+  rho <- as.numeric(test$estimate)
+  
+  # Transformación Fisher
+  z <- atanh(rho)
+  se <- 1 / sqrt(n - 3)
+  z975 <- qnorm(0.975)
+  
+  ic_inf <- tanh(z - z975 * se)
+  ic_sup <- tanh(z + z975 * se)
+  
+  tibble(
+    `Variable explicativa` = var_x,
+    `Variable respuesta` = var_y,
+    `ρ Spearman` = round(rho, 4),
+    `IC inferior (95%)` = round(ic_inf, 4),
+    `IC superior (95%)` = round(ic_sup, 4),
+    `p-valor` = round(test$p.value, 6),
+    `Interpretación` = case_when(
+      ic_inf > 0 ~ "Asociación positiva",
+      ic_sup < 0 ~ "Asociación negativa",
+      TRUE       ~ "No concluyente"
+    )
+  )
+}
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
-shapiro.test(datos$N_claims_year[1:5000])
+# Variables explicativas usadas en la matriz
+vars_explicativas <- c("edad", "Seniority", "antiguedad_licencia",
+                       "edad_vehiculo", "Power", "Value_vehicle",
+                       "Weight", "N_claims_history")
+
+# Calcular IC para N_claims_year y Cost_claims_year
+tabla_ic <- map_dfr(vars_explicativas, function(v) {
+  bind_rows(
+    ic_spearman(v, "N_claims_year",    datos_modelacion),
+    ic_spearman(v, "Cost_claims_year", datos_modelacion)
+  )
+})
+
+knitr::kable(
+  tabla_ic,
+  caption = "Correlaciones de Spearman con intervalos de confianza al 95\\%",
+  booktabs = TRUE,
+  align = c("l", "l", "r", "r", "r", "r", "l"),
+  format.args = list(scientific = FALSE)
+) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 9,
+    latex_options = "hold_position"
+  ) %>%
+  kableExtra::pack_rows("Variables temporales del asegurado", 1, 8) %>%
+  kableExtra::pack_rows("Variables del vehículo e historial", 9, 16)
 ```
 
-Como se mencionó anteriormente, se utilizó el método de Spearman ya que se aplicó la prueba de Shapiro-Wilk para comprobar si la variable "N_claims_year" sigue una distribución normal, para esto se utilizó la función "shapiro.test" tomando una muestra de 5000 valores de la variable, se obtuvo un estadístico W = 0.37226 y un p-value \< 2.2e-16; como el p-value es menor a 0.05; entonces se puede rechazar la hipótesis de que la variable se distribuye como una normal, por esta razón no se utilizó el coeficiente de correlación de Pearson.
+Los resultados de la tabla confirman que ninguna variable explicativa presenta una asociación fuerte con la frecuencia ni con la severidad de los siniestros. La correlación más alta corresponde a `N_claims_history`, con $\rho$ = 0.3782 para frecuencia y $\rho$ = 0.3645 para severidad, lo que indica una asociación positiva moderada consistente con lo observado en la matriz. Este resultado es esperable desde una perspectiva actuarial, ya que el historial de reclamos es un predictor natural del comportamiento futuro.
+
+Las variables asociadas a características físicas del vehículo, como `Weight`, `Value_vehicle` y `Power`, muestran asociaciones positivas débiles con coeficientes entre 0.06 y 0.09, lo que sugiere que vehículos más pesados, valiosos o potentes están levemente asociados con mayor siniestralidad. Las variables temporales del asegurado, como `edad`, `antiguedad_licencia` y `Seniority`, presentan asociaciones negativas muy débiles con coeficientes entre -0.01 y -0.05, mientras que `edad_vehiculo` muestra una asociación positiva débil de $\rho$ = 0.066.
+
+En todos los casos los intervalos de confianza al 95% no contienen el cero, lo que indica que las asociaciones son estadísticamente distinguibles de cero. Sin embargo, dado que los coeficientes son cercanos a cero en la mayoría de los casos, estas asociaciones deben interpretarse como débiles en términos prácticos, no como relaciones sustantivas entre las variables.
 
 #### Comparación entre grupos para variables categóricas
 
