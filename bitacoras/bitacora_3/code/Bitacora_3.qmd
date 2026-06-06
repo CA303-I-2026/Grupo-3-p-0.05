@@ -1529,7 +1529,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.
 
 ![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#promedio-tipo-vehiculo width="90%"}
 
-Este gráfico muestra que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
+Se observa que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
 
 Estos resultados indican que el tipo de vehículo es un factor de importancia en la frecuencia de siniestros; las furgonetas son el tipo de vehículo con la mayor frecuencia promedio de siniestros anual, las furgonetas poseen en promedio más del doble de siniestros que las motocicletas y más de 500 veces más siniestros en promedio que los vehículos agrícolas.
 
@@ -1556,7 +1556,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png", pr
 
 ![Proporción de asegurados sin siniestros según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros.png){width="90%"}
 
-Como se puede observar en el gráfico anterior, los vehículos agrícolas son los que poseen mayor proporción de asegurados sin siniestros, con un 99.88% que no presentan reclamaciones, seguido por las motocicletas las cuales poseen un 92.43% de asegurados sin reclamaciones, los turismos poseen un 80.74% y las furgonetas un 77.19%.
+Como muestra el gráfico, los vehículos agrícolas son los que poseen mayor proporción de asegurados sin siniestros, con un 99.88% que no presentan reclamaciones, seguido por las motocicletas las cuales poseen un 92.43% de asegurados sin reclamaciones, los turismos poseen un 80.74% y las furgonetas un 77.19%.
 
 Estos hallazgos concuerdan con el hallazgo anterior, ya que las furgonetas no solamente poseen la mayor frecuencia promedio: 0.568, sino que también poseen la menor proporción de asegurados sin siniestros: 77.19%.
 A diferencia de los vehículos agrícolas los cuales prácticamente nunca reportan siniestros y son los que mayor proporción de asegurados sin siniestros tienen, con 99.88% como se mencionó anteriormente.
@@ -1608,11 +1608,208 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 
 ![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png){width="90%"}
 
-Como se puede observar en el gráfico anterior, la mediana de las furgonetas, motocicletas y turismos, se encuentra por debajo de la mitad de la caja de cada una, indicando que existe una asimetría positiva para estos tres tipos de vehículos.
+Como se puede observar, la mediana de las furgonetas, motocicletas y turismos, se encuentra por debajo de la mitad de la caja de cada una, indicando que existe una asimetría positiva para estos tres tipos de vehículos.
 Además, las cajas de las furgonetas y turismos es prácticamente igual, lo que indica que tienen una variabilidad similar, a pesar de esto, los turismos presentan muchos valores atípicos desde los 2000 hasta los 5000, mientras que las furgonetas poseen menos valores atípicos.
 
 La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos.
 Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
+
+```{r}
+tabla_resumen_tipo_vehiculo <- datos_modificados %>%
+  group_by(categoria) %>%
+  summarise(
+    n = n(),
+    frec_promedio = mean(N_claims_year, na.rm = TRUE),
+    prop_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE),
+    prop_costo_positivo = mean(Cost_claims_year > 0, na.rm = TRUE),
+    media_costo_pos = mean(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    mediana_costo_pos = median(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    q1_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.25, na.rm = TRUE),
+    q3_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.75, na.rm = TRUE),
+    max_costo_pos = max(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE)
+  )
+```
+
+```{r}
+tabla_resumen_tipo_vehiculo %>%
+  mutate(
+    frec_promedio = round(frec_promedio, 4),
+    prop_sin_siniestros = scales::percent(prop_sin_siniestros, accuracy = 0.01),
+    prop_costo_positivo = scales::percent(prop_costo_positivo, accuracy = 0.01),
+    across(c(media_costo_pos, mediana_costo_pos,
+             q1_costo_pos, q3_costo_pos, max_costo_pos),
+           ~ formatC(., format = "f", digits = 2, big.mark = ","))
+  ) %>%
+  knitr::kable(
+    col.names = c("Tipo de vehículo", "n", "Frec. promedio",
+                  "Sin siniestros", "Costo > €0",
+                  "Media (€)", "Mediana (€)", "Q1 (€)", "Q3 (€)", "Máximo (€)"),
+    caption = "Resumen de frecuencia y severidad por tipo de vehículo",
+    booktabs = TRUE,
+    align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
+    format.args = list(scientific = FALSE)
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size  = 9,
+    latex_options = "hold_position"
+  )
+```
+En cuanto a la frecuencia, los resultados confirman que las furgonetas presentan la mayor siniestralidad promedio con 0.5676 siniestros por año, seguidas por los turismos con 0.3967, las motocicletas con 0.1454 y los vehículos agrícolas con 0.0012. Este mismo ordenamiento se refleja en la proporción de asegurados sin siniestros: los vehículos agrícolas concentran el 99.88% de registros sin reclamaciones, mientras que las furgonetas tienen la menor proporción con 77.19%.
+En cuanto a la severidad, cuando se presentan siniestros, los turismos son el tipo de vehículo con mayor costo promedio (€857.00) y el mayor costo máximo registrado (€260,853.24), lo que sugiere la presencia de siniestros de alta severidad en este grupo. Sin embargo, su mediana (€298.42) es cercana a la de las furgonetas (€282.32), lo que indica que la mayoría de los siniestros en ambos grupos tienen costos similares y que la diferencia en la media está impulsada por valores extremos.
+Un hallazgo notable es que tanto las furgonetas como los turismos presentan un tercer cuartil de exactamente €882.00, lo que coincide con el umbral analizado en secciones anteriores del presente informe y sugiere una concentración de siniestros en ese valor para ambos tipos de vehículo.
+Las motocicletas, aunque con menor frecuencia que furgonetas y turismos, presentan una mediana de costo positivo de €141.25, la más baja entre los tres grupos activos, lo que indica que sus siniestros tienden a ser menos costosos. Para los vehículos agrícolas, todos los estadísticos de severidad convergen en €192.67, resultado consistente con el hecho de que prácticamente la totalidad de sus escasos registros con costo positivo corresponden a un único valor.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+frecuencia_promedio_area <- datos_modelacion %>%
+  mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
+  group_by(Area) %>%
+  summarise(frecuencia_promedio = mean(N_claims_year, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Area, y = frecuencia_promedio, fill = Area)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(frecuencia_promedio, 3)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Frecuencia promedio de siniestros por zona de circulación",
+       x = "Zona", y = "Frecuencia promedio de siniestros por año",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 0.6) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_area.png",
+       frecuencia_promedio_area, width = 10, height = 7, dpi = 300)
+```
+
+![Frecuencia promedio de siniestros por año según la zona de circulación](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_area.png){width="90%"}
+Se muestra que los asegurados en zonas urbanas presentan una mayor frecuencia promedio de siniestros anual  en comparación con los asegurados en zonas rurales. Si bien la diferencia no es tan pronunciada como la observada entre tipos de vehículo, sí existe una brecha visible entre ambas zonas, lo que sugiere que la zona de circulación tiene alguna influencia sobre la frecuencia de siniestros. Esto es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico y, por tanto, mayor exposición al riesgo de siniestros.
+
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+proporcion_sin_siniestros_area <- datos_modificados %>%
+  mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
+  group_by(Area) %>%
+  summarise(prop_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Area, y = prop_sin_siniestros, fill = Area)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(prop_sin_siniestros, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Proporción de asegurados sin siniestros por zona de circulación",
+       x = "Zona", y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 1) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros_area.png",
+       proporcion_sin_siniestros_area, width = 10, height = 7, dpi = 300)
+```
+
+![Proporción de asegurados sin siniestros según la zona de circulación](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros_area.png){width="90%"}
+La zona rural presenta una proporción de asegurados sin siniestros ligeramente mayor (82.07%) en comparación con la zona urbana. Este resultado es complementario al gráfico anterior, ya que la zona urbana, que tiene mayor frecuencia promedio de siniestros, también tiene menor proporción de asegurados sin reclamaciones. Sin embargo, la diferencia entre ambas zonas es modesta, lo que indica que la zona de circulación, aunque relevante, no genera diferencias tan marcadas en la concentración de ceros como sí lo hace el tipo de vehículo.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+dist_costo_positivo_area <- datos_modificados %>%
+  mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
+  group_by(Area) %>%
+  summarise(prop_costo_mayor_0 = mean(Cost_claims_year > 0, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Area, y = prop_costo_mayor_0, fill = Area)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(prop_costo_mayor_0, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Proporción de registros con costo de siniestros mayor a €0 por zona",
+       x = "Zona", y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 1) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png",
+       dist_costo_positivo_area, width = 10, height = 7, dpi = 300)
+```
+
+![Proporción de registros con costo positivo según la zona de circulación](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png){width="90%"}
+En este gráfico se puede observar que las zonas urbanas presentan una mayor proporción de registros con costo mayor a €0 (aproximadamente 20%) en comparación con las zonas rurales (aproximadamente 18%). Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta. La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+velas_area <- datos_modificados %>%
+  mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
+  filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Area, y = Cost_claims_year, fill = Area)) +
+  geom_boxplot() +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Distribución del costo anual por zona de circulación",
+       subtitle = "Filtrado para costos anuales mayores a 0 y menores a 5000",
+       x = "Zona", y = "Costo anual",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, 5000, 500)) +
+  guides(fill = "none") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_area.png",
+       velas_area, width = 10, height = 7, dpi = 300)
+```
+
+![Distribución del costo anual por zona de circulación](../../../bitacoras/bitacora_3/figuras/velas_costo_area.png){width="90%"}
+
+Las distribuciones del costo anual positivo son notablemente similares entre zonas rurales y urbanas. Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los €300, lo que indica una variabilidad y tendencia central muy parecidas entre zonas. En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La cantidad y distribución de estos valores atípicos es similar entre zonas, lo que refuerza la conclusión de que la zona de circulación tiene un efecto limitado sobre la severidad de los siniestros cuando estos ocurren.
+
+```{r, echo=FALSE}
+tabla_resumen_area <- datos_modelacion %>%
+  mutate(Area = factor(Area, levels = c(0, 1), 
+                       labels = c("Rural", "Urbana"))) %>%
+  group_by(Area) %>%
+  summarise(
+    n = n(),
+    frec_promedio = mean(N_claims_year, na.rm = TRUE),
+    prop_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE),
+    prop_costo_positivo = mean(Cost_claims_year > 0, na.rm = TRUE),
+    media_costo_pos = mean(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    mediana_costo_pos = median(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    q1_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.25, na.rm = TRUE),
+    q3_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.75, na.rm = TRUE),
+    max_costo_pos = max(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE)
+  )
+
+tabla_resumen_area %>%
+  mutate(
+    frec_promedio = round(frec_promedio, 4),
+    prop_sin_siniestros = scales::percent(prop_sin_siniestros, accuracy = 0.01),
+    prop_costo_positivo = scales::percent(prop_costo_positivo, accuracy = 0.01),
+    across(c(media_costo_pos, mediana_costo_pos,
+             q1_costo_pos, q3_costo_pos, max_costo_pos),
+           ~ formatC(., format = "f", digits = 2, big.mark = ","))
+  ) %>%
+  knitr::kable(
+    col.names = c("Zona", "n", "Frec. promedio",
+                    "Sin siniestros", "Costo > €0",
+                    "Media (€)", "Mediana (€)", "Q1 (€)", "Q3 (€)", "Máximo (€)"),
+    caption = "Resumen de frecuencia y severidad por zona de circulación",
+    booktabs = TRUE,
+    align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
+    format.args = list(scientific = FALSE)
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 9,
+    latex_options = "hold_position"
+  ) %>%
+  kableExtra::add_header_above(
+    c(" " = 2,
+      "Frecuencia" = 2,
+      "Severidad" = 6)
+  )
+```
+En cuanto a la frecuencia, los asegurados en zonas urbanas presentan una mayor siniestralidad promedio (0.4534 siniestros por año) en comparación con los de zonas rurales (0.3726), lo que es consistente con las condiciones de tráfico más densas características de las áreas urbanas. Esto también se refleja en la proporción de asegurados sin siniestros, que es ligeramente mayor en zonas rurales (81.91%) que en zonas urbanas (79.36%).
+
+En cuanto a la severidad, las diferencias entre zonas son menos pronunciadas que las observadas entre tipos de vehículo. La media del costo positivo es de €846.08 en zonas urbanas y €816.00 en zonas rurales, una diferencia modesta. Las medianas son también similares: €292.29 para zonas urbanas y €287.50 para zonas rurales, lo que indica que la distribución central de los costos cuando ocurre un siniestro no varía sustancialmente entre zonas.
+
+Al igual que en la tabla por tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación. El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
+
+En conjunto, estos resultados sugieren que la zona de circulación tiene una influencia moderada sobre la frecuencia de siniestros, siendo las zonas urbanas ligeramente más siniestradas, mientras que su efecto sobre la severidad es limitado.
+
+
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
