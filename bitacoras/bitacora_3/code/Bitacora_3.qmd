@@ -1321,6 +1321,11 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 
 ![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png){width=90%}
 
+Como se puede observar en el gráfico anterior, la mediana de las furgonetas, motocicletas y turismos, se encuentra por debajo de la mitad de la caja de cada una, indicando que existe una asimetría positiva para estos tres tipos de vehículos. Además, las cajas de las furgonetas y turismos es prácticamente igual, lo que indica que tienen una variabilidad similar, a pesar de esto, los turismos presentan muchos valores atípicos desde los 2000 hasta los 5000, mientras que las furgonetas poseen menos valores atípicos.
+
+La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos. Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
+
+
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
 Para estudiar el comportamiento del costo anual de los siniestros en el umbral de los €900, se propuso un modelo de distribución mixta, separado en tres componentes, primero, una masa puntual ubicada en cero, para la cual los costos corresponden a 0 (Y = 0). Segundo, una distribución para los costos ubicados entre €0 y €900, sin incluir (0 < Y < 900). Tercero, una distribución para los costos mayores o iguales a €900 (Y ≥ 900), la cual para una mejor visualización gráfica se acotó a €20000. A continuación se presentan los resultados obtenidos a través del ajuste de distribuciones para costos mayores a €0.
