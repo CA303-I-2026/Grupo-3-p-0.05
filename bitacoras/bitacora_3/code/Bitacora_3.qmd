@@ -1609,7 +1609,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 ![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png){width="90%"}
 
 Como se puede observar, la mediana de las furgonetas, motocicletas y turismos, se encuentra por debajo de la mitad de la caja de cada una, indicando que existe una asimetría positiva para estos tres tipos de vehículos.
-Además, las cajas de las furgonetas y turismos es prácticamente igual, lo que indica que tienen una variabilidad similar, a pesar de esto, los turismos presentan muchos valores atípicos desde los 2000 hasta los 5000, mientras que las furgonetas poseen menos valores atípicos.
+Además, las cajas de las furgonetas y turismos son prácticamente iguales, lo que indica que tienen una variabilidad similar, a pesar de esto, los turismos presentan muchos valores atípicos desde los 2000 hasta los 5000, mientras que las furgonetas poseen menos valores atípicos.
 
 La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos.
 Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
@@ -1656,10 +1656,12 @@ tabla_resumen_tipo_vehiculo %>%
     latex_options = "hold_position"
   )
 ```
-En cuanto a la frecuencia, los resultados confirman que las furgonetas presentan la mayor siniestralidad promedio con 0.5676 siniestros por año, seguidas por los turismos con 0.3967, las motocicletas con 0.1454 y los vehículos agrícolas con 0.0012. Este mismo ordenamiento se refleja en la proporción de asegurados sin siniestros: los vehículos agrícolas concentran el 99.88% de registros sin reclamaciones, mientras que las furgonetas tienen la menor proporción con 77.19%.
+En cuanto a la frecuencia, los resultados confirman que las furgonetas presentan la mayor siniestralidad promedio con 0.5676 siniestros por año, seguidas por los turismos con 0.3967, las motocicletas con 0.1454, y los vehículos agrícolas con 0.0012. Este mismo ordenamiento se refleja en la proporción de asegurados sin siniestros: los vehículos agrícolas concentran el 99.88% de registros sin reclamaciones, mientras que las furgonetas tienen la menor proporción con 77.19%.
 En cuanto a la severidad, cuando se presentan siniestros, los turismos son el tipo de vehículo con mayor costo promedio (€857.00) y el mayor costo máximo registrado (€260,853.24), lo que sugiere la presencia de siniestros de alta severidad en este grupo. Sin embargo, su mediana (€298.42) es cercana a la de las furgonetas (€282.32), lo que indica que la mayoría de los siniestros en ambos grupos tienen costos similares y que la diferencia en la media está impulsada por valores extremos.
 Un hallazgo notable es que tanto las furgonetas como los turismos presentan un tercer cuartil de exactamente €882.00, lo que coincide con el umbral analizado en secciones anteriores del presente informe y sugiere una concentración de siniestros en ese valor para ambos tipos de vehículo.
 Las motocicletas, aunque con menor frecuencia que furgonetas y turismos, presentan una mediana de costo positivo de €141.25, la más baja entre los tres grupos activos, lo que indica que sus siniestros tienden a ser menos costosos. Para los vehículos agrícolas, todos los estadísticos de severidad convergen en €192.67, resultado consistente con el hecho de que prácticamente la totalidad de sus escasos registros con costo positivo corresponden a un único valor.
+
+A continuación, se realizará la comparación entre grupos por área:
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 frecuencia_promedio_area <- datos_modelacion %>%
@@ -1729,7 +1731,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png",
 ```
 
 ![Proporción de registros con costo positivo según la zona de circulación](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png){width="90%"}
-En este gráfico se puede observar que las zonas urbanas presentan una mayor proporción de registros con costo mayor a €0 (aproximadamente 20%) en comparación con las zonas rurales (aproximadamente 18%). Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta. La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
+En este gráfico se puede observar que las zonas urbanas presentan una mayor proporción de registros con costo mayor a €0 (20.42 %) en comparación con las zonas rurales (17.93 %). Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta. La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 velas_area <- datos_modificados %>%
@@ -1752,7 +1754,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_area.png",
 
 ![Distribución del costo anual por zona de circulación](../../../bitacoras/bitacora_3/figuras/velas_costo_area.png){width="90%"}
 
-Las distribuciones del costo anual positivo son notablemente similares entre zonas rurales y urbanas. Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los €300, lo que indica una variabilidad y tendencia central muy parecidas entre zonas. En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La cantidad y distribución de estos valores atípicos es similar entre zonas, lo que refuerza la conclusión de que la zona de circulación tiene un efecto limitado sobre la severidad de los siniestros cuando estos ocurren.
+Las distribuciones del costo anual positivo son notablemente similares entre zonas rurales y urbanas. Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los €300, lo que indica una variabilidad y tendencia central muy parecidas entre zonas. En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La cantidad y distribución de estos valores atípicos son similares entre zonas.
 
 ```{r, echo=FALSE}
 tabla_resumen_area <- datos_modelacion %>%
@@ -1801,14 +1803,10 @@ tabla_resumen_area %>%
       "Severidad" = 6)
   )
 ```
-En cuanto a la frecuencia, los asegurados en zonas urbanas presentan una mayor siniestralidad promedio (0.4534 siniestros por año) en comparación con los de zonas rurales (0.3726), lo que es consistente con las condiciones de tráfico más densas características de las áreas urbanas. Esto también se refleja en la proporción de asegurados sin siniestros, que es ligeramente mayor en zonas rurales (81.91%) que en zonas urbanas (79.36%).
-
+En cuanto a la frecuencia, los asegurados en zonas urbanas presentan una mayor siniestralidad promedio (0.4534 siniestros por año) en comparación con los de zonas rurales (0.3726), lo que es consistente con las condiciones de tráfico más densas características de las áreas urbanas. Esto también se refleja en la proporción de asegurados sin siniestros, que es ligeramente mayor en zonas rurales (82.07%) que en zonas urbanas (79.58%).
 En cuanto a la severidad, las diferencias entre zonas son menos pronunciadas que las observadas entre tipos de vehículo. La media del costo positivo es de €846.08 en zonas urbanas y €816.00 en zonas rurales, una diferencia modesta. Las medianas son también similares: €292.29 para zonas urbanas y €287.50 para zonas rurales, lo que indica que la distribución central de los costos cuando ocurre un siniestro no varía sustancialmente entre zonas.
-
-Al igual que en la tabla por tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación. El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
-
+Como ya se observó para el tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación. El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
 En conjunto, estos resultados sugieren que la zona de circulación tiene una influencia moderada sobre la frecuencia de siniestros, siendo las zonas urbanas ligeramente más siniestradas, mientras que su efecto sobre la severidad es limitado.
-
 
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
