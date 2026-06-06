@@ -1375,7 +1375,7 @@ frecuencia_promedio_vehiculo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png", frecuencia_promedio_vehiculo, width = 10, height = 7, dpi = 300)
 ```
 
-![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){width=90%}
+![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#promedio-tipo-vehiculo width=90%}
 
 Este gráfico muestra que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
 
@@ -1452,6 +1452,11 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", ve
 ```
 
 ![Distribución del costo anual por tipo de vehículo](../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png){width=90%}
+
+Como se puede observar en el gráfico anterior, la mediana de las furgonetas, motocicletas y turismos, se encuentra por debajo de la mitad de la caja de cada una, indicando que existe una asimetría positiva para estos tres tipos de vehículos. Además, las cajas de las furgonetas y turismos es prácticamente igual, lo que indica que tienen una variabilidad similar, a pesar de esto, los turismos presentan muchos valores atípicos desde los 2000 hasta los 5000, mientras que las furgonetas poseen menos valores atípicos.
+
+La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos. Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
+
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
@@ -1591,6 +1596,32 @@ Para saber que el modelo de Poisson falló se realizaron 3 pruebas. Primero, se 
 Gracias a este fallo, se aprendió que para datos con alta concentración de ceros en la frecuencia no pueden modelarse por medio de una distribución Poisson, idea reforzada por la literatura consultada a lo largo de la investigación. Además de esto, se observó que la sobredispersión está presente incluso antes de controlar los datos con variables explicativas. Por esto, se descarta el uso del modelo Poisson para trabajar la frecuencia de los siniestros.
 
 ## Construcción de las fichas de resultados
+
+::: callout-note
+# Ficha 1: frecuencia promedio por tipo de vehículo
+
+***Nivel descriptivo***
+
+*Titular:* *Las furgonetas tienen mayor frecuencia promedio de siniestros*
+
+*Nombre del hallazgo/resultado:*  Existen diferencias notables en la frecuencia promedio anual según el tipo de vehículo.
+
+*Resumen en una oración:* Las furgonetas poseen la mayor frecuencia promedio, 0.568, turismos 0.397, motocicletas 0.145 y agrícolas 0.001.
+
+*Método o análisis que lo produjo:* Se calculó el promedio de la variable "N_claims_year" agrupada por el tipo de vehículo "categoria", para esto se utilizaron las funciones "group_by()" y "summarise()" de R y para la visualización de los resultados se utilizó un gráfico de barras.
+
+*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @promedio-tipo-vehiculo de la tercer bitácora, titulada "Frecuencia promedio de siniestros por año según el tipo de vehículo".
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este hallazgo responde directamente una parte de la pregunta de investigación, ya que confirma que el tipo de vehículo influye en la frecuencia de los siniestros, al encontrarse que las furgonetas y los turismos poseen una frecuencia promedio mayor a la de las motocicletas y vehículos agrícolas, los cuales poseen una frecuencia promedio mucho menor. 
+
+*Contraste con la literatura:* En relación con lo planteado por @parraga2024accidentes, se encuentra una concordancia ya que los autores plantean que el tipo de vehículo es un factor de riesgo asociado a la ocurrencia de accidentes de tránsito.
+
+*Lo que NO explica este resultado:* Este resultado no explica a qué factores se debe que las furgonetas tengan la mayor frecuencia promedio, tales como si es por el kilometraje, el uso comercial, las características de los conductores, etc.
+
+*Implicación para el siguiente paso:* La variable "categoria" creada a partir de la variable "Type_risk" del data set original, se considerará como un posible factor explicativo en el análisis de la frecuencia de los siniestros, acompañada de otras variables que también influyan en la frecuencia de los siniestros, en caso de ser identificadas.
+:::
 
 ::: callout-note
 :::
