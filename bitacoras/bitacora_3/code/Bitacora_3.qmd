@@ -159,8 +159,7 @@ knitr::kable(
     full_width = FALSE,
     position = "center",
     font_size = 10,
-    latex_options = c("repeat_header"),
-    repeat_header_text = "continuación"
+    latex_options = c("repeat_header", "scale_down"),
   ) %>%
   kableExtra::column_spec(
     1,
@@ -584,6 +583,265 @@ Por otro lado, en ambas zonas el costo mediano es 0, lo cual confirma que la may
 Aun así, el porcentaje sin siniestros es un poco menor en la zona urbana, con 79.36%, comparado con 81.91% en la zona rural.
 
 #### Gráficos relevantes para el análisis descriptivo
+
+A través de la presentación de distintos gráficos, se abordará información relevante para abordar la pregunta de investigación.
+
+Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre 1 y 5000 euros.
+
+```{r fig-costo-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo de siniestros por año", fig.align='center'}
+datos_modificados %>%
+  filter(Cost_claims_year > 0 & Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Cost_claims_year)) +
+  geom_histogram(bins=70, fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0, 5000, 500)) +
+  labs(title = "Distribución del costo de siniestros por año",
+       x = "Costo de Reclamos",
+       y = "Cantidad",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+costos_anyo_total <- datos_modificados%>%
+  filter(Cost_claims_year > 0 & Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Cost_claims_year)) +
+  geom_histogram(bins=70, fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0, 5000, 500)) +
+  labs(title = "Distribución del costo de siniestros por año",
+       x = "Costo de Reclamos",
+       y = "Cantidad",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3
+
+ggsave("../../../bitacoras/bitacora_3/figuras/distibucion_costo_anyo_total.png",costos_anyo_total, width = 11, height = 7, dpi = 300)
+```
+
+El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los 500 euros. Sin embargo, destaca un pico pronunciado alrededor de los 900 euros, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
+
+Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
+
+```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
+
+datos_modificados %>% 
+  ggplot(aes(x = edad, y = N_claims_history)) +
+  geom_hex(bins = 55) + 
+  scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + 
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + 
+  scale_x_continuous(breaks = seq(20,100,10)) +
+  labs(title = "Relación entre edad e histórico de reclamos",
+       x = "Edad", 
+       y = "Número de reclamos",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.4))
+
+dispersion_edad_h_reclamos <- datos_modificados %>% 
+  ggplot(aes(x = edad, y = N_claims_history)) +
+  geom_hex(bins = 55) + 
+  scale_fill_gradientn(colors = paleta_pamplemousse, name = "Conteo") + 
+  geom_smooth(method = "lm", color = paleta_pamplemousse[6]) + 
+  scale_x_continuous(breaks = seq(20,100,10)) +
+  labs(title = "Relación entre edad e histórico de reclamos",
+       x = "Edad", 
+       y = "Número de reclamos",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.4))
+
+ggsave("../../../bitacoras/bitacora_3/figuras/dispersion_edad_h_reclamos.png",dispersion_edad_h_reclamos, width = 11, height = 7, dpi = 300)
+
+```
+
+La mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
+
+También, se aprecia que los reclamos históricos tienden a acumularse ligeramente conforme aumenta la edad. Esto puede deberse a que las personas de mayor edad han tenido más tiempo de permanencia como aseguradas y, por lo tanto, más oportunidades de registrar reclamos a lo largo del tiempo. Sin embargo, la relación no parece ser fuerte, ya que los puntos se encuentran bastante dispersos y existen asegurados de distintas edades con valores similares de reclamos.
+
+Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones. Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
+
+Por otro lado, la @fig-violin-combinado muestra la comparación entre la frecuencia y el costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola.
+
+![Gráfico comparativo entre el número y el costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
+
+
+```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+
+violin_frecuencia <- datos_modificados %>%
+  filter(is.finite(N_claims_year)) %>%
+  mutate(categoria = factor(categoria,
+                            levels = c("Turismo", "Motocicleta", "Furgoneta", "Agricola"))) %>% 
+  ggplot(aes(x = categoria, y = N_claims_year, fill = categoria)) +
+  geom_violin(alpha = 0.6, trim = FALSE) + 
+  scale_fill_manual(values = paleta_pamplemousse[2:5]) +
+  scale_y_log10(labels = scales::comma,
+                breaks = c(1,2,3,4,5,10,15,20,25,30)) +
+  labs(title = "Cantidad de siniestros por año según tipo de vehículo",
+       x = "Tipo de vehículo", 
+       y = "Cantidad el siniestros por año") +
+  estilo_grupo3 +
+  theme(legend.position = "none")
+
+violin_costo <- datos_modificados %>%
+  filter(is.finite(Cost_claims_year)) %>%
+  mutate(categoria = factor(categoria,
+                            levels = c("Turismo", "Motocicleta", "Furgoneta", "Agricola"))) %>% 
+  ggplot(aes(x = categoria, y = Cost_claims_year, fill = categoria)) +
+  geom_violin(alpha = 0.6, trim = FALSE) + 
+  scale_fill_manual(values = paleta_pamplemousse[2:5]) +
+  scale_y_log10(labels = scales::comma,
+                breaks = c(100,500,1000,5000,10000,50000,100000)) + 
+  labs(title = "Costo de siniestros por año según tipo de vehículo",
+       x = "Tipo de vehículo", 
+       y = "Costo del siniestro por año") +
+  estilo_grupo3 +
+  theme(legend.position = "none")
+
+violin_combinado <- plot_grid(violin_costo, violin_frecuencia) %>% 
+  ggdraw() +
+  draw_label("Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+             x = 0.98, y = 0.02, hjust = 1, vjust = 2.5,  size = 9) +
+  theme(plot.margin = margin(0, 0, 15, 0)) # Ajustar el margen inferior
+
+ggsave("../../../bitacoras/bitacora_3/figuras/violin_combinado.png", violin_combinado, width = 11, height = 5, dpi = 300)
+
+```
+
+En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados. Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores. Esta situación es visible principalmente en los vehículos de turismo y las furgonetas, donde la distribución se extiende hacia valores más altos.
+
+En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículos, aunque también se observan algunos valores elevados. Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a la ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
+
+En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los vehículos de turismo presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que tales categorías de vehículo podrían estar asociadas con una mayor exposición al riesgo o con un uso más frecuente.
+
+A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los vehículos de turismo muestran una mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
+
+La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo: el peso, el largo, la potencia, el cilindraje y el número de puertas, en los casos en donde se supera el umbral de los 900 euros.
+
+```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+peso_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Weight)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[2]) +
+  scale_x_continuous(breaks = seq(0,2500, 250)) +
+  scale_y_continuous(breaks = seq(0,250,50))+
+  labs(title = "Distribución del peso de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Peso del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+largo_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Length)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[1]) +
+  scale_x_continuous(breaks = seq(0,7,0.5)) +
+  scale_y_continuous(breaks = seq(0,350,50))+
+  labs(title = "Distribución del largo de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Largo del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+potencia_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Power)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[4]) +
+  scale_x_continuous(breaks = seq(0,250,50)) +
+  labs(title = "Distribución de la potencia de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Caballos de fuerza",
+     y = "Cantidad")+
+  estilo_grupo3
+
+cilindraje_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= Cylinder_capacity)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[5]) +
+  scale_x_continuous(breaks = seq(0,3500,500)) +
+  scale_y_continuous(breaks = seq(0,600,100)) +
+  labs(title = "Distribución de la capacidad de cilindraje de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Capacidad de cilindraje",
+     y = "Cantidad")+
+  estilo_grupo3 +
+  theme(plot.title = element_text(face = "bold", size = 11.65)) 
+
+puertas_costo <- datos_modificados %>% 
+  filter(Cost_claims_year >= 900) %>% 
+  ggplot(aes(x= N_doors)) +
+  geom_histogram(bins = 75, color = "white", fill = paleta_pamplemousse[3]) +
+  scale_x_continuous(breaks = seq(0,6,1)) +
+  scale_y_continuous(breaks = seq(0,2500,250)) +
+  labs(title = "Distribución del número de puertas de los vehículos",
+     subtitle = "Filtrado por costo de siniestro por año mayor a €900",
+     x = "Número de puertas del vehículo",
+     y = "Cantidad")+
+  estilo_grupo3
+
+caracteristicas_costo <- plot_grid(peso_costo, largo_costo, potencia_costo, cilindraje_costo, puertas_costo, ncol=2)%>% 
+  ggdraw() +
+  draw_label("Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+             x = 0.98, y = 0.02, hjust = 1, vjust = 2,  size = 9)
+
+ggsave("../../../bitacoras/bitacora_3/figuras/caracteristicas_costo.png", caracteristicas_costo, width = 10, height = 11, dpi = 300)
+```
+
+![Gráfico comparativo de las características físicas del vehículo, en casos que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="90%"}
+
+En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y un cilindraje alrededor de 1400 a 2000. Lo anterior sugiere que los siniestros con costos superiores a 900 euros no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados al turismo, de uso común.
+
+En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas. Esto puede indicar que los reclamos superiores a 900 euros se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
+
+También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberán revisarse antes de sacar conclusiones definitivas.
+
+Finalmente, la @fig-cost-zona muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos de acuerdo al costo de los 900 euros.
+
+```{r fig-cost-zona, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center', fig.cap='Distribución del costo de los siniestros por zona', fig.height = 5, fig.width = 8}
+
+datos_modificados %>% 
+  filter(is.finite(Cost_claims_year) & is.finite(Area)) %>% 
+  mutate(zona = ifelse(Area == 0, "Rural", "Urbano"),
+         rango = ifelse(Cost_claims_year >= 900, ">= €900", "< €900")) %>% 
+  group_by(zona, rango) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = zona, y = conteo, fill= rango)) +
+  geom_col(position = "dodge") + 
+  geom_text(aes(label = scales::comma(conteo)), 
+             position = position_dodge(width = 0.9), 
+            vjust = -0.4) +
+  scale_y_continuous(breaks = seq(0,75000,15000), labels = scales::comma) + 
+  scale_fill_manual(values = c(paleta_pamplemousse[1], paleta_pamplemousse[6])) +
+  labs(title = "Distribución del costo de los siniestros por zona",
+       x = "Zona",
+       y = "Cantidad de siniestros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+       fill = "Costo del siniestro") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.5)) 
+
+costo_siniestro_zona <- datos_modificados %>% 
+  filter(is.finite(Cost_claims_year) & is.finite(Area)) %>% 
+  mutate(zona = ifelse(Area == 0, "Rural", "Urbano"),
+         rango = ifelse(Cost_claims_year >= 900, ">= €900", "< €900")) %>% 
+  group_by(zona, rango) %>% 
+  summarise(conteo = n()) %>% 
+  ggplot(aes(x = zona, y = conteo, fill= rango)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = scales::comma(conteo)), 
+             position = position_dodge(width = 0.9), 
+            vjust = -0.4) +
+  scale_y_continuous(breaks = seq(0,75000,15000), labels = scales::comma) + 
+  scale_fill_manual(values = c(paleta_pamplemousse[1], paleta_pamplemousse[6])) +
+  labs(title = "Distribución del costo de los siniestros por zona",
+       x = "Zona",
+       y = "Cantidad de siniestros",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2",
+       fill = "Costo del siniestro") +
+  estilo_grupo3 +
+  theme(plot.caption = element_text(hjust = 1.5)) 
+
+ggsave("../../../bitacoras/bitacora_3/figuras/costo_siniestro_zona.png",costo_siniestro_zona, width = 11, height = 7, dpi = 300)
+```
+
+En ambos casos predominan ampliamente los siniestros con costos menores a 900 euros, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
+
+Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a 900 euros como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
 
 En conjunto, el análisis descriptivo permite identificar varios elementos relevantes para la etapa de modelación.
 Primero, la base presenta una estructura con múltiples registros por asegurado, lo cual permite estudiar el comportamiento anual de los siniestros.
