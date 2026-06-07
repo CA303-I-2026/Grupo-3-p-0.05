@@ -1930,7 +1930,7 @@ datos_modificados %>%
   filter(categoria == "Agrícola", Cost_claims_year >= 900)
 ```
 
-![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png)
+![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png){#proporcion-mayores-900-tipo-vehiculo}
 
 Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900.
 
@@ -1975,7 +1975,7 @@ Por esto, se descarta el uso del modelo Poisson para trabajar la frecuencia de l
 
 *Método o análisis que lo produjo:* Se calculó el promedio de la variable "N_claims_year" agrupada por el tipo de vehículo "categoria", para esto se utilizaron las funciones "group_by()" y "summarise()" de R y para la visualización de los resultados se utilizó un gráfico de barras.
 
-*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @promedio-tipo-vehiculo de la tercer bitácora, titulada "Frecuencia promedio de siniestros por año según el tipo de vehículo".
+*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @promedio-tipo-vehiculo de la tercera bitácora, titulada "Frecuencia promedio de siniestros por año según el tipo de vehículo".
 
 ***Nivel analítico***
 
@@ -2024,6 +2024,32 @@ Tampoco identifica qué variables explicativas generan la sobredispersión obser
 
 *Implicación para el siguiente paso:* Se debe explorar modelos alternativos para la frecuencia que contemplen sobredispersión y exceso de ceros, como lo son las cuatro etapas metodológicas que se han desarrollado a lo largo de esta bitácora.
 :::
+
+::: callout-note
+# Ficha 3: proporción de reclamos mayores a €900 por tipo de vehículo
+***Nivel descriptivo***
+
+*Titular:* *Las furgonetas y turismos concentran reclamos con alta severidad*
+
+*Nombre del hallazgo/resultado:*  El tipo de vehículo influye en la proporción de reclamos del umbral que supera los €900.
+
+*Resumen en una oración:* Las furgonetas poseen la mayor proporción, 4.35%, turismos 3.79%, motocicletas 0.92% y agrícolas 0%.
+
+*Método o análisis que lo produjo:* Para este hallazgo, primero se creó una variable llamada "mayores_900", la cual toma el valor de 1 si la variable "Cost_claims_year" era mayor o igual a 900, y 0 si no. Luego se calculó el promedio de esta variable agrupando por el tipo de vehículo "categoria", obteniendo así la proporción de reclamos que supera el umbral de los €900 y se generó un gráfico de barras para la visualización de los resultados.
+
+*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @proporcion-mayores-900-tipo-vehiculo de la tercera bitácora, titulada "Proporción de reclamos mayores a €900 según el tipo de vehículo".
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este hallazgo responde directamente una parte del segundo componente de la pregunta de investigación, la cual intenta identificar qué explica el incremento abrupto en el umbral de los €900. Con este hallazgo, se puede confirmar que el tipo de vehículo es un factor relevante para explicar el comportamiento de los costos en el umbral de los €900, ya que las furgonetas y los turismos concentran las proporciones más altas de reclamos que superan este umbral. 
+
+*Contraste con la literatura:* No se identificaron estudios contemplados en esta investigación que mencionen el análisis categórico por tipo de vehículo en los costos de reclamos en un valor determinado como es el caso de este hallazgo, por lo que no se puede contrastar directamente con la literatura propuesta para esta investigación.
+
+*Lo que NO explica este resultado:* Este resultado no explica por qué las furgonetas y los turismos poseen una mayor proporción de reclamos que superan los €900. No se identifica si esta mayor proporción se debe a factores como la distancia que recorren estos tipos de vehículos, el uso comercial que se les da, características de los conductores u otros factores no contemplados en la base de datos utilizada.
+
+*Implicación para el siguiente paso:* A partir de este hallazgo, las furgonetas y turismos se identifican como dos grupos prioritarios para analizar los costos de reclamos que superen los €900. La variable del tipo de vehículo "categoria", deberá ser considerada para análisis que busquen explicar el aumento en los costos de reclamos en el umbral de los €900.
+:::
+
 
 ## Ordenamiento de los elementos del reporte
 
@@ -2315,6 +2341,8 @@ Lo anterior a través de oraciones concisas que respondan a la siguiente pregunt
 Dichas oraciones proceden a detallarse como sigue:
 
 -   Durante esta etapa, se incorporó el uso de la librería fitdistrplus en R como apoyo para el análisis metodológico de la severidad de los siniestros. Esta herramienta permitió plantear una forma más ordenada de comparar posibles distribuciones para los costos positivos, utilizando criterios de ajuste que ayudan a justificar la selección del modelo más adecuado.
+
+-   Se fortaleció el concepto de distribución mixta. A partir de la identificación visual del histograma de la variable "Cost_claims_year", se dividió esta variable en tres componentes: costos cero, costos medios y costos altos. Se aprendió a modelar la distribución de cada componente y su respectiva proporción  por medio de gráficos y comparaciones del AIC de distintas distribuciones con el fin de seleccionar la que mejor se adaptaba a cada componente.
 
 ## Audiencia del proyecto
 
