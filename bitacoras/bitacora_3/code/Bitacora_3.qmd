@@ -614,9 +614,12 @@ costos_anyo_total <- datos_modificados%>%
 ggsave("../../../bitacoras/bitacora_3/figuras/distibucion_costo_anyo_total.png",costos_anyo_total, width = 11, height = 7, dpi = 300)
 ```
 
-El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los 500 euros. Sin embargo, destaca un pico pronunciado alrededor de los 900 euros, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico. Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
+El gráfico muestra que la distribución del costo de los siniestros es fuertemente asimétrica hacia la derecha, con la mayoría de los reclamos concentrados en valores bajos, por debajo de los 500 euros.
+Sin embargo, destaca un pico pronunciado alrededor de los 900 euros, donde la frecuencia aumenta de forma abrupta respecto a los valores cercanos, sugiriendo una concentración inusual de observaciones en ese monto específico.
+Este comportamiento constituye precisamente el fenómeno que la pregunta de investigación busca explicar, ya que no responde a una distribución continua y uniforme.
 
-Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos. En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
+Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos.
+En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
 
 ```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
 
@@ -650,16 +653,19 @@ ggsave("../../../bitacoras/bitacora_3/figuras/dispersion_edad_h_reclamos.png",di
 
 ```
 
-La mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20. Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
+La mayor concentración de observaciones se encuentra en asegurados con pocos reclamos históricos, especialmente entre 0 y 5 reclamos, aunque se observa de igual manera gran concentración de cantidad de reclamos entre 5 y 20.
+Esto indica que, para la mayoría de los asegurados, el historial de reclamos es bajo, independientemente de la edad.
 
-También, se aprecia que los reclamos históricos tienden a acumularse ligeramente conforme aumenta la edad. Esto puede deberse a que las personas de mayor edad han tenido más tiempo de permanencia como aseguradas y, por lo tanto, más oportunidades de registrar reclamos a lo largo del tiempo. Sin embargo, la relación no parece ser fuerte, ya que los puntos se encuentran bastante dispersos y existen asegurados de distintas edades con valores similares de reclamos.
+También, se aprecia que los reclamos históricos tienden a acumularse ligeramente conforme aumenta la edad.
+Esto puede deberse a que las personas de mayor edad han tenido más tiempo de permanencia como aseguradas y, por lo tanto, más oportunidades de registrar reclamos a lo largo del tiempo.
+Sin embargo, la relación no parece ser fuerte, ya que los puntos se encuentran bastante dispersos y existen asegurados de distintas edades con valores similares de reclamos.
 
-Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones. Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
+Además, se observan algunos casos aislados con una cantidad alta de reclamos históricos, pero estos presentan baja concentración de observaciones.
+Por tanto, el gráfico sugiere que la edad puede estar asociada de manera leve con el historial de reclamos, aunque no explica por sí sola la variabilidad observada.
 
 Por otro lado, la @fig-violin-combinado muestra la comparación entre la frecuencia y el costo por año según el tipo de vehículo, ya sea turismo (vehículo particular), motocicleta, furgoneta o agrícola.
 
 ![Gráfico comparativo entre el número y el costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
-
 
 ```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 
@@ -703,13 +709,20 @@ ggsave("../../../bitacoras/bitacora_3/figuras/violin_combinado.png", violin_comb
 
 ```
 
-En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados. Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores. Esta situación es visible principalmente en los vehículos de turismo y las furgonetas, donde la distribución se extiende hacia valores más altos.
+En el gráfico de la izquierda se observa que los costos de siniestros presentan una distribución bastante dispersa, con una alta concentración de valores bajos y algunos casos extremos de costos elevados.
+Esto indica que, aunque la mayoría de los reclamos tiende a mantenerse en montos relativamente bajos o moderados, existen siniestros puntuales que generan costos mucho mayores.
+Esta situación es visible principalmente en los vehículos de turismo y las furgonetas, donde la distribución se extiende hacia valores más altos.
 
-En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículos, aunque también se observan algunos valores elevados. Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a la ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
+En el caso de las motocicletas, los costos parecen concentrarse en rangos más bajos en comparación con los otros tipos de vehículos, aunque también se observan algunos valores elevados.
+Por su parte, los vehículos agrícolas no presentan una distribución visible, lo que podría deberse a una cantidad muy reducida de registros o a la ausencia de siniestros relevantes en esta categoría dentro de la base analizada.
 
-En el gráfico de la derecha se muestra la cantidad de siniestros por año. La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos. Sin embargo, las furgonetas y los vehículos de turismo presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta. Esto sugiere que tales categorías de vehículo podrían estar asociadas con una mayor exposición al riesgo o con un uso más frecuente.
+En el gráfico de la derecha se muestra la cantidad de siniestros por año.
+La mayoría de los vehículos registra pocos siniestros anuales, principalmente entre uno y dos reclamos.
+Sin embargo, las furgonetas y los vehículos de turismo presentan una mayor dispersión, con algunos casos donde la cantidad de siniestros es considerablemente más alta.
+Esto sugiere que tales categorías de vehículo podrían estar asociadas con una mayor exposición al riesgo o con un uso más frecuente.
 
-A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros. Las furgonetas y los vehículos de turismo muestran una mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
+A manera de síntesis, la figura sugiere que el tipo de vehículo sí puede influir tanto en la frecuencia como en la severidad de los siniestros.
+Las furgonetas y los vehículos de turismo muestran una mayor variabilidad, mientras que las motocicletas parecen concentrarse en niveles más bajos.
 
 La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo: el peso, el largo, la potencia, el cilindraje y el número de puertas, en los casos en donde se supera el umbral de los 900 euros.
 
@@ -784,11 +797,14 @@ ggsave("../../../bitacoras/bitacora_3/figuras/caracteristicas_costo.png", caract
 
 ![Gráfico comparativo de las características físicas del vehículo, en casos que superan los €900](../../../bitacoras/bitacora_2/figuras/caracteristicas_costo.png){#fig-peso width="90%"}
 
-En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y un cilindraje alrededor de 1400 a 2000. Lo anterior sugiere que los siniestros con costos superiores a 900 euros no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados al turismo, de uso común.
+En general, se observa que estos reclamos se concentran principalmente en vehículos con pesos aproximados entre 1000 kg y 1500 kg, longitudes cercanas a 4,0–4,7 m, potencias entre 70 y 130 caballos de fuerza y un cilindraje alrededor de 1400 a 2000.
+Lo anterior sugiere que los siniestros con costos superiores a 900 euros no se distribuyen de forma uniforme entre todos los tipos de vehículos, sino que se presentan con mayor frecuencia en vehículos de características intermedias, probablemente asociados al turismo, de uso común.
 
-En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas. Esto puede indicar que los reclamos superiores a 900 euros se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
+En cuanto al número de puertas, la mayor concentración corresponde a vehículos de 5 puertas, seguido en menor medida por vehículos de 3 y 4 puertas.
+Esto puede indicar que los reclamos superiores a 900 euros se relacionan principalmente con vehículos familiares o de uso cotidiano, aunque también puede deberse a que este tipo de vehículo es más frecuente dentro de la base de datos.
 
-También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos. Por ello, estos casos deberán revisarse antes de sacar conclusiones definitivas.
+También se observan algunos valores aislados en pesos, potencias y cilindradas muy bajas o muy altas, los cuales podrían corresponder a registros atípicos, motocicletas, vehículos especiales o posibles inconsistencias en los datos.
+Por ello, estos casos deberán revisarse antes de sacar conclusiones definitivas.
 
 Finalmente, la @fig-cost-zona muestra la distribución de la cantidad de siniestros por zona, ya sea rural o urbana, dividiendo los casos de acuerdo al costo de los 900 euros.
 
@@ -841,7 +857,8 @@ ggsave("../../../bitacoras/bitacora_3/figuras/costo_siniestro_zona.png",costo_si
 
 En ambos casos predominan ampliamente los siniestros con costos menores a 900 euros, lo que indica que la mayoría de los reclamos registrados son de baja o moderada severidad.
 
-Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a 900 euros como para costos mayores o iguales a ese umbral. Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
+Se observa que la zona rural concentra una mayor cantidad total de registros, tanto para costos menores a 900 euros como para costos mayores o iguales a ese umbral.
+Sin embargo, esto no necesariamente significa que la zona rural sea más riesgosa, ya que puede deberse a que hay más pólizas o más observaciones rurales en la base de datos.
 
 En conjunto, el análisis descriptivo permite identificar varios elementos relevantes para la etapa de modelación.
 Primero, la base presenta una estructura con múltiples registros por asegurado, lo cual permite estudiar el comportamiento anual de los siniestros.
@@ -1455,7 +1472,9 @@ Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor deta
 Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual.
 De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución.
 
-Los cuatro métodos descritos anteriormente serán ejecutados en su totalidad dentro de este mismo documento. El análisis descriptivo de frecuencia y severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de €900 mediante distribución mixta se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y su ejecución coinciden en el mismo apartado. En cuanto a la validación, esta se aborda mediante tres elementos complementarios: los intervalos de confianza al 95% construidos con la transformación de Fisher para cada coeficiente de correlación de Spearman, los gráficos diagnósticos generados por el paquete fitdistrplus para cada componente de la distribución mixta, que incluyen la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P, y la prueba de Kruskal-Wallis aplicada a las variables categóricas, cuyos resultados se presentan en la sección de comparación entre grupos.
+Los cuatro métodos descritos anteriormente serán ejecutados en su totalidad dentro de este mismo documento.
+El análisis descriptivo de frecuencia y severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de €900 mediante distribución mixta se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y su ejecución coinciden en el mismo apartado.
+En cuanto a la validación, esta se aborda mediante tres elementos complementarios: los intervalos de confianza al 95% construidos con la transformación de Fisher para cada coeficiente de correlación de Spearman, los gráficos diagnósticos generados por el paquete fitdistrplus para cada componente de la distribución mixta, que incluyen la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P, y la prueba de Kruskal-Wallis aplicada a las variables categóricas, cuyos resultados se presentan en la sección de comparación entre grupos.
 
 ### Programa maqueta
 
@@ -1912,10 +1931,14 @@ tabla_resumen_tipo_vehiculo %>%
     latex_options = "hold_position"
   )
 ```
-En cuanto a la frecuencia, los resultados confirman que las furgonetas presentan la mayor siniestralidad promedio con 0.5676 siniestros por año, seguidas por los turismos con 0.3967, las motocicletas con 0.1454, y los vehículos agrícolas con 0.0012. Este mismo ordenamiento se refleja en la proporción de asegurados sin siniestros: los vehículos agrícolas concentran el 99.88% de registros sin reclamaciones, mientras que las furgonetas tienen la menor proporción con 77.19%.
-En cuanto a la severidad, cuando se presentan siniestros, los turismos son el tipo de vehículo con mayor costo promedio (€857.00) y el mayor costo máximo registrado (€260,853.24), lo que sugiere la presencia de siniestros de alta severidad en este grupo. Sin embargo, su mediana (€298.42) es cercana a la de las furgonetas (€282.32), lo que indica que la mayoría de los siniestros en ambos grupos tienen costos similares y que la diferencia en la media está impulsada por valores extremos.
+
+En cuanto a la frecuencia, los resultados confirman que las furgonetas presentan la mayor siniestralidad promedio con 0.5676 siniestros por año, seguidas por los turismos con 0.3967, las motocicletas con 0.1454, y los vehículos agrícolas con 0.0012.
+Este mismo ordenamiento se refleja en la proporción de asegurados sin siniestros: los vehículos agrícolas concentran el 99.88% de registros sin reclamaciones, mientras que las furgonetas tienen la menor proporción con 77.19%.
+En cuanto a la severidad, cuando se presentan siniestros, los turismos son el tipo de vehículo con mayor costo promedio (€857.00) y el mayor costo máximo registrado (€260,853.24), lo que sugiere la presencia de siniestros de alta severidad en este grupo.
+Sin embargo, su mediana (€298.42) es cercana a la de las furgonetas (€282.32), lo que indica que la mayoría de los siniestros en ambos grupos tienen costos similares y que la diferencia en la media está impulsada por valores extremos.
 Un hallazgo notable es que tanto las furgonetas como los turismos presentan un tercer cuartil de exactamente €882.00, lo que coincide con el umbral analizado en secciones anteriores del presente informe y sugiere una concentración de siniestros en ese valor para ambos tipos de vehículo.
-Las motocicletas, aunque con menor frecuencia que furgonetas y turismos, presentan una mediana de costo positivo de €141.25, la más baja entre los tres grupos activos, lo que indica que sus siniestros tienden a ser menos costosos. Para los vehículos agrícolas, todos los estadísticos de severidad convergen en €192.67, resultado consistente con el hecho de que prácticamente la totalidad de sus escasos registros con costo positivo corresponden a un único valor.
+Las motocicletas, aunque con menor frecuencia que furgonetas y turismos, presentan una mediana de costo positivo de €141.25, la más baja entre los tres grupos activos, lo que indica que sus siniestros tienden a ser menos costosos.
+Para los vehículos agrícolas, todos los estadísticos de severidad convergen en €192.67, resultado consistente con el hecho de que prácticamente la totalidad de sus escasos registros con costo positivo corresponden a un único valor.
 
 A continuación, se realizará la comparación entre grupos por área:
 
@@ -1939,9 +1962,9 @@ ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_area.png",
        frecuencia_promedio_area, width = 10, height = 7, dpi = 300)
 ```
 
-![Frecuencia promedio de siniestros por año según la zona de circulación](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_area.png){width="90%"}
-Se muestra que los asegurados en zonas urbanas presentan una mayor frecuencia promedio de siniestros anual  en comparación con los asegurados en zonas rurales. Si bien la diferencia no es tan pronunciada como la observada entre tipos de vehículo, sí existe una brecha visible entre ambas zonas, lo que sugiere que la zona de circulación tiene alguna influencia sobre la frecuencia de siniestros. Esto es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico y, por tanto, mayor exposición al riesgo de siniestros.
-
+![Frecuencia promedio de siniestros por año según la zona de circulación](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_area.png){width="90%"} Se muestra que los asegurados en zonas urbanas presentan una mayor frecuencia promedio de siniestros anual en comparación con los asegurados en zonas rurales.
+Si bien la diferencia no es tan pronunciada como la observada entre tipos de vehículo, sí existe una brecha visible entre ambas zonas, lo que sugiere que la zona de circulación tiene alguna influencia sobre la frecuencia de siniestros.
+Esto es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico y, por tanto, mayor exposición al riesgo de siniestros.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 proporcion_sin_siniestros_area <- datos_modificados %>%
@@ -1963,8 +1986,9 @@ ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros_area.png
        proporcion_sin_siniestros_area, width = 10, height = 7, dpi = 300)
 ```
 
-![Proporción de asegurados sin siniestros según la zona de circulación](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros_area.png){width="90%"}
-La zona rural presenta una proporción de asegurados sin siniestros ligeramente mayor (82.07%) en comparación con la zona urbana. Este resultado es complementario al gráfico anterior, ya que la zona urbana, que tiene mayor frecuencia promedio de siniestros, también tiene menor proporción de asegurados sin reclamaciones. Sin embargo, la diferencia entre ambas zonas es modesta, lo que indica que la zona de circulación, aunque relevante, no genera diferencias tan marcadas en la concentración de ceros como sí lo hace el tipo de vehículo.
+![Proporción de asegurados sin siniestros según la zona de circulación](../../../bitacoras/bitacora_3/figuras/proporcion_sin_siniestros_area.png){width="90%"} La zona rural presenta una proporción de asegurados sin siniestros ligeramente mayor (82.07%) en comparación con la zona urbana.
+Este resultado es complementario al gráfico anterior, ya que la zona urbana, que tiene mayor frecuencia promedio de siniestros, también tiene menor proporción de asegurados sin reclamaciones.
+Sin embargo, la diferencia entre ambas zonas es modesta, lo que indica que la zona de circulación, aunque relevante, no genera diferencias tan marcadas en la concentración de ceros como sí lo hace el tipo de vehículo.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 dist_costo_positivo_area <- datos_modificados %>%
@@ -1986,8 +2010,9 @@ ggsave("../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png",
        dist_costo_positivo_area, width = 10, height = 7, dpi = 300)
 ```
 
-![Proporción de registros con costo positivo según la zona de circulación](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png){width="90%"}
-En este gráfico se puede observar que las zonas urbanas presentan una mayor proporción de registros con costo mayor a €0 (20.42 %) en comparación con las zonas rurales (17.93 %). Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta. La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
+![Proporción de registros con costo positivo según la zona de circulación](../../../bitacoras/bitacora_3/figuras/dist_costo_positivo_area.png){width="90%"} En este gráfico se puede observar que las zonas urbanas presentan una mayor proporción de registros con costo mayor a €0 (20.42 %) en comparación con las zonas rurales (17.93 %).
+Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta.
+La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 velas_area <- datos_modificados %>%
@@ -2010,7 +2035,10 @@ ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_area.png",
 
 ![Distribución del costo anual por zona de circulación](../../../bitacoras/bitacora_3/figuras/velas_costo_area.png){width="90%"}
 
-Las distribuciones del costo anual positivo son notablemente similares entre zonas rurales y urbanas. Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los €300, lo que indica una variabilidad y tendencia central muy parecidas entre zonas. En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La cantidad y distribución de estos valores atípicos son similares entre zonas.
+Las distribuciones del costo anual positivo son notablemente similares entre zonas rurales y urbanas.
+Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los €300, lo que indica una variabilidad y tendencia central muy parecidas entre zonas.
+En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico.
+La cantidad y distribución de estos valores atípicos son similares entre zonas.
 
 ```{r, echo=FALSE}
 tabla_resumen_area <- datos_modelacion %>%
@@ -2059,9 +2087,14 @@ tabla_resumen_area %>%
       "Severidad" = 6)
   )
 ```
-En cuanto a la frecuencia, los asegurados en zonas urbanas presentan una mayor siniestralidad promedio (0.4578 siniestros por año) en comparación con los de zonas rurales (0.3758), lo que es consistente con las condiciones de tráfico más densas características de las áreas urbanas. Esto también se refleja en la proporción de asegurados sin siniestros, que es ligeramente mayor en zonas rurales (81.91%) que en zonas urbanas (79.36%).
-En cuanto a la severidad, las diferencias entre zonas son menos pronunciadas que las observadas entre tipos de vehículo. La media del costo positivo es de €850.65 en zonas urbanas y €818.62 en zonas rurales, una diferencia modesta. Las medianas son también similares: €295.31 para zonas urbanas y €288.98 para zonas rurales, lo que indica que la distribución central de los costos cuando ocurre un siniestro no varía sustancialmente entre zonas.
-Como ya se observó para el tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación. El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
+
+En cuanto a la frecuencia, los asegurados en zonas urbanas presentan una mayor siniestralidad promedio (0.4578 siniestros por año) en comparación con los de zonas rurales (0.3758), lo que es consistente con las condiciones de tráfico más densas características de las áreas urbanas.
+Esto también se refleja en la proporción de asegurados sin siniestros, que es ligeramente mayor en zonas rurales (81.91%) que en zonas urbanas (79.36%).
+En cuanto a la severidad, las diferencias entre zonas son menos pronunciadas que las observadas entre tipos de vehículo.
+La media del costo positivo es de €850.65 en zonas urbanas y €818.62 en zonas rurales, una diferencia modesta.
+Las medianas son también similares: €295.31 para zonas urbanas y €288.98 para zonas rurales, lo que indica que la distribución central de los costos cuando ocurre un siniestro no varía sustancialmente entre zonas.
+Como ya se observó para el tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación.
+El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
 En conjunto, estos resultados sugieren que la zona de circulación tiene una influencia moderada sobre la frecuencia de siniestros, siendo las zonas urbanas ligeramente más siniestradas, mientras que su efecto sobre la severidad es limitado.
 
 A continuación, se realiza la comparación entre grupos según el tipo de combustible del vehículo.
@@ -2086,7 +2119,9 @@ frecuencia_promedio_combustible <- datos_modificados %>%
   estilo_grupo3
 frecuencia_promedio_combustible
 ```
-Los vehículos de tipo diésel presentan una mayor frecuencia promedio de siniestros anual (0.456) en comparación con los de gasolina (0.302). Esta diferencia es más pronunciada que la observada entre zonas de circulación, lo que sugiere que el tipo de combustible podría estar asociado con patrones de uso distintos, como una mayor exposición al riesgo en vehículos diésel, que suelen destinarse a usos comerciales o de mayor kilometraje.
+
+Los vehículos de tipo diésel presentan una mayor frecuencia promedio de siniestros anual (0.456) en comparación con los de gasolina (0.302).
+Esta diferencia es más pronunciada que la observada entre zonas de circulación, lo que sugiere que el tipo de combustible podría estar asociado con patrones de uso distintos, como una mayor exposición al riesgo en vehículos diésel, que suelen destinarse a usos comerciales o de mayor kilometraje.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 proporcion_sin_siniestros_combustible <- datos_modificados %>%
@@ -2108,7 +2143,9 @@ proporcion_sin_siniestros_combustible <- datos_modificados %>%
   estilo_grupo3
 proporcion_sin_siniestros_combustible
 ```
-En línea con el hallazgo anterior, los vehículos de gasolina presentan una mayor proporción de asegurados sin siniestros (84.66 %) en comparación con los de diésel (79.15 %). Este resultado es consistente con la frecuencia promedio observada, ya que el grupo con menor siniestralidad también concentra una mayor proporción de registros sin reclamaciones.
+
+En línea con el hallazgo anterior, los vehículos de gasolina presentan una mayor proporción de asegurados sin siniestros (84.66 %) en comparación con los de diésel (79.15 %).
+Este resultado es consistente con la frecuencia promedio observada, ya que el grupo con menor siniestralidad también concentra una mayor proporción de registros sin reclamaciones.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 dist_costo_positivo_combustible <- datos_modificados %>%
@@ -2130,6 +2167,7 @@ dist_costo_positivo_combustible <- datos_modificados %>%
   estilo_grupo3
 dist_costo_positivo_combustible
 ```
+
 Este gráfico es el complemento directo del anterior: los vehículos diésel, que tienen menor proporción de asegurados sin siniestros, presentan también la mayor proporción de registros con costo mayor a €0, con un 20.85 %, frente al 15.34 % de los vehículos de gasolina.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
@@ -2150,9 +2188,13 @@ velas_combustible <- datos_modificados %>%
   estilo_grupo3
 velas_combustible
 ```
-En cuanto a la distribución del costo positivo, ambos tipos de combustible presentan una distribución similar: medianas por debajo de la mitad de la caja, lo que evidencia una asimetría positiva en ambos grupos. Las cajas tienen tamaños comparables, con valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La distribución del costo positivo no parece diferir sustancialmente entre tipos de combustible, a diferencia de lo que sí se observó en la frecuencia.
+
+En cuanto a la distribución del costo positivo, ambos tipos de combustible presentan una distribución similar: medianas por debajo de la mitad de la caja, lo que evidencia una asimetría positiva en ambos grupos.
+Las cajas tienen tamaños comparables, con valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico.
+La distribución del costo positivo no parece diferir sustancialmente entre tipos de combustible, a diferencia de lo que sí se observó en la frecuencia.
 
 Para sintetizar los resultados anteriores, la siguiente tabla presenta los principales indicadores de frecuencia y severidad para cada tipo de combustible.
+
 ```{r, echo=FALSE}
 tabla_resumen_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel)) %>%
@@ -2201,7 +2243,12 @@ tabla_resumen_combustible %>%
       "Severidad" = 6)
   )
 ```
-En cuanto a la frecuencia, los vehículos diésel presentan una mayor siniestralidad promedio (0.4556 siniestros por año) frente a los de gasolina (0.3019), lo que se refleja también en una menor proporción de asegurados sin siniestros en el grupo diésel (79.15 %) respecto al de gasolina (84.66 %). En cuanto a la severidad, las diferencias entre tipos de combustible son menores que las observadas entre tipos de vehículo. Las medias del costo positivo son similares: €829.50 para diésel y €825.32 para gasolina, y las medianas también son cercanas, con €303.11 y €262.06 respectivamente. Como ya se observó en los análisis anteriores, ambos grupos presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia del tipo de combustible. En conjunto, estos resultados sugieren que el tipo de combustible tiene una influencia moderada sobre la frecuencia de siniestros, mientras que su efecto sobre la severidad es limitado.
+
+En cuanto a la frecuencia, los vehículos diésel presentan una mayor siniestralidad promedio (0.4556 siniestros por año) frente a los de gasolina (0.3019), lo que se refleja también en una menor proporción de asegurados sin siniestros en el grupo diésel (79.15 %) respecto al de gasolina (84.66 %).
+En cuanto a la severidad, las diferencias entre tipos de combustible son menores que las observadas entre tipos de vehículo.
+Las medias del costo positivo son similares: €829.50 para diésel y €825.32 para gasolina, y las medianas también son cercanas, con €303.11 y €262.06 respectivamente.
+Como ya se observó en los análisis anteriores, ambos grupos presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia del tipo de combustible.
+En conjunto, estos resultados sugieren que el tipo de combustible tiene una influencia moderada sobre la frecuencia de siniestros, mientras que su efecto sobre la severidad es limitado.
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
@@ -2385,8 +2432,7 @@ Por esto, se descarta el uso del modelo Poisson para trabajar la frecuencia de l
 :::
 
 ::: callout-note
-
-# Ficha 2: La distribución Poisson subestima drásticamente los ceros observados en siniestros
+# Ficha 2: la distribución Poisson subestima drásticamente los ceros observados en siniestros
 
 ***Nivel descriptivo***
 
@@ -2423,29 +2469,85 @@ Tampoco identifica qué variables explicativas generan la sobredispersión obser
 
 ::: callout-note
 # Ficha 3: proporción de reclamos mayores a €900 por tipo de vehículo
+
 ***Nivel descriptivo***
 
 *Titular:* *Las furgonetas y turismos concentran reclamos con alta severidad*
 
-*Nombre del hallazgo/resultado:*  El tipo de vehículo influye en la proporción de reclamos del umbral que supera los €900.
+*Nombre del hallazgo/resultado:* El tipo de vehículo influye en la proporción de reclamos del umbral que supera los €900.
 
 *Resumen en una oración:* Las furgonetas poseen la mayor proporción, 4.35%, turismos 3.79%, motocicletas 0.92% y agrícolas 0%.
 
-*Método o análisis que lo produjo:* Para este hallazgo, primero se creó una variable llamada "mayores_900", la cual toma el valor de 1 si la variable "Cost_claims_year" era mayor o igual a 900, y 0 si no. Luego se calculó el promedio de esta variable agrupando por el tipo de vehículo "categoria", obteniendo así la proporción de reclamos que supera el umbral de los €900 y se generó un gráfico de barras para la visualización de los resultados.
+*Método o análisis que lo produjo:* Para este hallazgo, primero se creó una variable llamada "mayores_900", la cual toma el valor de 1 si la variable "Cost_claims_year" era mayor o igual a 900, y 0 si no.
+Luego se calculó el promedio de esta variable agrupando por el tipo de vehículo "categoria", obteniendo así la proporción de reclamos que supera el umbral de los €900 y se generó un gráfico de barras para la visualización de los resultados.
 
 *Evidencia:* El gráfico que respalda este hallazgo corresponde a la @proporcion-mayores-900-tipo-vehiculo de la tercera bitácora, titulada "Proporción de reclamos mayores a €900 según el tipo de vehículo".
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este hallazgo responde directamente una parte del segundo componente de la pregunta de investigación, la cual intenta identificar qué explica el incremento abrupto en el umbral de los €900. Con este hallazgo, se puede confirmar que el tipo de vehículo es un factor relevante para explicar el comportamiento de los costos en el umbral de los €900, ya que las furgonetas y los turismos concentran las proporciones más altas de reclamos que superan este umbral. 
+*Conexión con la pregunta de investigación:* Este hallazgo responde directamente una parte del segundo componente de la pregunta de investigación, la cual intenta identificar qué explica el incremento abrupto en el umbral de los €900.
+Con este hallazgo, se puede confirmar que el tipo de vehículo es un factor relevante para explicar el comportamiento de los costos en el umbral de los €900, ya que las furgonetas y los turismos concentran las proporciones más altas de reclamos que superan este umbral.
 
 *Contraste con la literatura:* No se identificaron estudios contemplados en esta investigación que mencionen el análisis categórico por tipo de vehículo en los costos de reclamos en un valor determinado como es el caso de este hallazgo, por lo que no se puede contrastar directamente con la literatura propuesta para esta investigación.
 
-*Lo que NO explica este resultado:* Este resultado no explica por qué las furgonetas y los turismos poseen una mayor proporción de reclamos que superan los €900. No se identifica si esta mayor proporción se debe a factores como la distancia que recorren estos tipos de vehículos, el uso comercial que se les da, características de los conductores u otros factores no contemplados en la base de datos utilizada.
+*Lo que NO explica este resultado:* Este resultado no explica por qué las furgonetas y los turismos poseen una mayor proporción de reclamos que superan los €900.
+No se identifica si esta mayor proporción se debe a factores como la distancia que recorren estos tipos de vehículos, el uso comercial que se les da, características de los conductores u otros factores no contemplados en la base de datos utilizada.
 
-*Implicación para el siguiente paso:* A partir de este hallazgo, las furgonetas y turismos se identifican como dos grupos prioritarios para analizar los costos de reclamos que superen los €900. La variable del tipo de vehículo "categoria", deberá ser considerada para análisis que busquen explicar el aumento en los costos de reclamos en el umbral de los €900.
+*Implicación para el siguiente paso:* A partir de este hallazgo, las furgonetas y turismos se identifican como dos grupos prioritarios para analizar los costos de reclamos que superen los €900.
+La variable del tipo de vehículo "categoria", deberá ser considerada para análisis que busquen explicar el aumento en los costos de reclamos en el umbral de los €900.
 :::
 
+::: callout-note
+# Ficha 4: ajuste de la distribución lognormal 
+
+***Nivel descriptivo***
+
+*Titular:* *La distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros*
+
+*Nombre del hallazgo/resultado:* Para los costos anuales de siniestros ubicados en el intervalo entre 0 y 900 euros, la distribución Lognormal mostró un mejor ajuste que la distribución Gamma.
+
+*Resumen en una oración:* En el intervalo $0 < Y < 900$, la distribución Lognormal obtuvo un AIC de 211,339.9, mientras que la distribución Gamma obtuvo un AIC de 212,684.5, por lo que se seleccionó la Lognormal como la distribución con mejor ajuste.
+
+*Método o análisis que lo produjo:* Se ajustaron dos distribuciones candidatas, Lognormal y Gamma, para los costos anuales positivos menores a 900 euros mediante el paquete `fitdistrplus` de R y la función `fitdist()`. Posteriormente, se compararon los valores del Criterio de Información de Akaike, AIC, para determinar cuál distribución presentaba mejor ajuste.
+
+*Evidencia:* El análisis del umbral de 900 euros (gráficos 10, 11 y 12 de la bitácora 3) muestra que la distribución Lognormal obtuvo un AIC menor que la distribución Gamma. Además, los parámetros estimados para la distribución Lognormal fueron `meanlog = 5.278536` y `sdlog = 0.969318`.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque permite estudiar la severidad de los siniestros, específicamente el comportamiento de los costos anuales positivos que no alcanzan el umbral de 900 euros. Esto ayuda a diferenciar los costos moderados de los costos de mayor severidad.
+
+*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por Delignette-Muller y Dutang (2015), quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste. En este caso, el uso de `fitdistrplus` permitió aplicar esa lógica metodológica al comparar la distribución Lognormal y la Gamma mediante el AIC, respaldando la elección de la Lognormal para los costos positivos menores a 900 euros.
+
+*Lo que NO explica este resultado:* Este resultado no explica por qué ciertos asegurados presentan costos positivos menores a 900 euros, ni permite concluir cuáles variables del asegurado o del vehículo influyen en esos costos. Además, como advierten Delignette-Muller y Dutang (2015), la elección de una distribución no debería depender únicamente de un criterio automático como el AIC, sino que también debe considerar la interpretación del problema y la visualización del ajuste.
+
+*Implicación para el siguiente paso:* La distribución Lognormal puede utilizarse como componente para modelar los costos positivos menores a 900 euros dentro del análisis de distribución mixta. Posteriormente, este componente debe complementarse con el análisis de la masa en cero y de los costos mayores o iguales a 900 euros, ya que `fitdistrplus` permite ajustar distribuciones a datos positivos, pero no resuelve por sí solo el problema de la alta concentración de ceros ni la posible cola derecha de los costos.
+::: 
+
+::: callout-note
+# Ficha 5: asociatividad entre el historial de reclamos y la siniestralidad anual
+
+***Nivel descriptivo***
+
+*Titular:* *El historial de reclamos se asocia positivamente con la siniestralidad del año analizado*
+
+*Nombre del hallazgo/resultado:* La variable `N_claims_history` presenta las correlaciones más relevantes con las variables de siniestralidad anual.
+
+*Resumen en una oración:* `N_claims_history` presenta una correlación positiva de $\rho = 0.38$ con `N_claims_year` y de $\rho = 0.36$ con `Cost_claims_year`.
+
+*Método o análisis que lo produjo:* Se construyó una matriz de correlaciones de Spearman entre las variables numéricas del conjunto de datos, con el fin de identificar asociaciones entre las variables explicativas y las variables de frecuencia y severidad de los siniestros.
+
+*Evidencia:* La matriz de correlaciones (figura 4 de la bitácora 3) muestra que `N_claims_history` tiene una correlación de 0.38 con `N_claims_year` y de 0.36 con `Cost_claims_year`.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este hallazgo se relaciona directamente con la pregunta de investigación, ya que permite identificar que el historial de reclamos del asegurado está asociado tanto con la frecuencia como con el costo anual de los siniestros.
+
+*Contraste con la literatura:* En relación con lo planteado por Vinuesa (2016), este resultado muestra una aplicación práctica del análisis de correlación, ya que se utiliza para explorar la relación entre variables cuantitativas del proyecto. En particular, la correlación positiva entre `N_claims_history`, `N_claims_year` y `Cost_claims_year` permite identificar una asociación entre el historial de reclamos y la siniestralidad anual.
+
+*Lo que NO explica este resultado:* La correlación no permite afirmar causalidad. Es decir, no se puede concluir que tener más reclamos históricos cause directamente más siniestros en el año analizado, sino solamente que ambas variables tienden a moverse en la misma dirección.
+
+*Implicación para el siguiente paso:* La variable `N_claims_history` debe considerarse como una posible variable explicativa importante en los análisis posteriores, especialmente al estudiar la frecuencia de siniestros y los costos asociados.
+:::
 
 ## Ordenamiento de los elementos del reporte
 
@@ -2718,45 +2820,51 @@ Para el proyecto, este artículo es especialmente útil porque permite justifica
 En este sentido, no sería necesario afirmar que se aplicará un modelo de mezcla complejo, sino que se compararán distribuciones candidatas de manera exploratoria y metodológicamente respaldada.
 :::
 
-
 ::: callout-note
-
 # Ostertagová et al. (2014)
 
 ***Nivel descriptivo***
 
 *Título:* Methodology and Application of the Kruskal-Wallis Test
 
-*Autor(es):* Ostertagová, E., Ostertag, O. y Kováč, J.
+*Autor(es):* Ostertagová, E., Ostertag, O.
+y Kováč, J.
 
 *Año:* 2014
 
 *Nombre del tema:* Fundamentación matemática y aplicación práctica de la prueba de Kruskal-Wallis y sus procedimientos de comparación múltiple post-hoc.
 
-*Clasificación:* Metodológica. Se eligió esta etiqueta porque el artículo no propone una teoría nueva ni realiza una revisión histórica del problema; en cambio, desarrolla el sustento matemático formal del estadístico H, incluyendo la corrección por empates y el procedimiento de comparaciones múltiples de Conover-Inman, y los ilustra mediante un ejemplo aplicado, lo que lo convierte en una guía técnica de implementación.
+*Clasificación:* Metodológica.
+Se eligió esta etiqueta porque el artículo no propone una teoría nueva ni realiza una revisión histórica del problema; en cambio, desarrolla el sustento matemático formal del estadístico H, incluyendo la corrección por empates y el procedimiento de comparaciones múltiples de Conover-Inman, y los ilustra mediante un ejemplo aplicado, lo que lo convierte en una guía técnica de implementación.
 
 *Resumen en una oración:* Desarrollo formal del estadístico de Kruskal-Wallis con corrección por empates y comparaciones múltiples de Conover-Inman.
 
-*Argumento central:* La prueba de Kruskal-Wallis constituye una alternativa no paramétrica robusta al ANOVA de una vía cuando no se cumplen los supuestos de normalidad u homocedasticidad. El artículo formaliza el cálculo del estadístico H basado en rangos, introduce la corrección necesaria cuando existen empates entre observaciones (situación frecuente en datos reales), y propone el procedimiento de Conover-Inman como método de comparaciones múltiples post-hoc, el cual aplica el método de mínima diferencia significativa de Fisher directamente sobre los rangos.
+*Argumento central:* La prueba de Kruskal-Wallis constituye una alternativa no paramétrica robusta al ANOVA de una vía cuando no se cumplen los supuestos de normalidad u homocedasticidad.
+El artículo formaliza el cálculo del estadístico H basado en rangos, introduce la corrección necesaria cuando existen empates entre observaciones (situación frecuente en datos reales), y propone el procedimiento de Conover-Inman como método de comparaciones múltiples post-hoc, el cual aplica el método de mínima diferencia significativa de Fisher directamente sobre los rangos.
 
-*Problemas con el argumento o el tema:* Los autores señalan que, si bien la prueba de Kruskal-Wallis es más flexible que el ANOVA paramétrico, sigue requiriendo que las distribuciones de los grupos tengan la misma forma, diferenciándose únicamente en su mediana, supuesto que en la práctica puede no verificarse. Además, el artículo trabaja con un ejemplo de n = 25 observaciones y cinco grupos de tamaño igual, condición que dista considerablemente de escenarios con grupos de tamaños muy desiguales o con cientos de miles de observaciones.
+*Problemas con el argumento o el tema:* Los autores señalan que, si bien la prueba de Kruskal-Wallis es más flexible que el ANOVA paramétrico, sigue requiriendo que las distribuciones de los grupos tengan la misma forma, diferenciándose únicamente en su mediana, supuesto que en la práctica puede no verificarse.
+Además, el artículo trabaja con un ejemplo de n = 25 observaciones y cinco grupos de tamaño igual, condición que dista considerablemente de escenarios con grupos de tamaños muy desiguales o con cientos de miles de observaciones.
 
 ***Nivel analítico***
 
-*Conexión con mi proyecto:* Este artículo aporta el respaldo matemático formal que justifica el uso de Kruskal-Wallis en el proyecto. Al comparar la frecuencia (N_claims_year) y la severidad (Cost_claims_year) entre categorías como el tipo de vehículo o la zona de circulación, es esperable que existan empates en los datos, por ejemplo múltiples pólizas con costo cero, por lo que la corrección del estadístico H por empates descrita en el artículo resulta directamente aplicable a la base de datos utilizada.
+*Conexión con mi proyecto:* Este artículo aporta el respaldo matemático formal que justifica el uso de Kruskal-Wallis en el proyecto.
+Al comparar la frecuencia (N_claims_year) y la severidad (Cost_claims_year) entre categorías como el tipo de vehículo o la zona de circulación, es esperable que existan empates en los datos, por ejemplo múltiples pólizas con costo cero, por lo que la corrección del estadístico H por empates descrita en el artículo resulta directamente aplicable a la base de datos utilizada.
 
-*Lo que NO dice el autor:* El artículo no discute el comportamiento de la prueba cuando el tamaño de muestra es muy grande, como ocurre en la base de datos de Lledó y Pavía (2024) con más de 100,000 observaciones, escenario en el que el estadístico H tiende a ser significativo casi con certeza incluso ante diferencias de magnitud pequeña. Esto implica que los resultados de la prueba deben interpretarse con cautela y en conjunto con los hallazgos descriptivos ya presentados, que aportan contexto sobre la magnitud real de las diferencias entre grupos.
+*Lo que NO dice el autor:* El artículo no discute el comportamiento de la prueba cuando el tamaño de muestra es muy grande, como ocurre en la base de datos de Lledó y Pavía (2024) con más de 100,000 observaciones, escenario en el que el estadístico H tiende a ser significativo casi con certeza incluso ante diferencias de magnitud pequeña.
+Esto implica que los resultados de la prueba deben interpretarse con cautela y en conjunto con los hallazgos descriptivos ya presentados, que aportan contexto sobre la magnitud real de las diferencias entre grupos.
 
-*Contraste con otra fuente:* Este artículo complementa metodológicamente las fuentes ya citadas en el proyecto, como Počuča et al. (2020), quienes trabajan con datos de seguros con exceso de ceros y heterogeneidad entre grupos. Mientras que Počuča et al. proponen modelos para capturar esa heterogeneidad, Ostertagová et al. (2014) ofrecen una herramienta formal para verificar estadísticamente si las diferencias entre grupos son distinguibles del azar, sin asumir normalidad ni homogeneidad de varianzas.
+*Contraste con otra fuente:* Este artículo complementa metodológicamente las fuentes ya citadas en el proyecto, como Počuča et al. (2020), quienes trabajan con datos de seguros con exceso de ceros y heterogeneidad entre grupos.
+Mientras que Počuča et al. proponen modelos para capturar esa heterogeneidad, Ostertagová et al. (2014) ofrecen una herramienta formal para verificar estadísticamente si las diferencias entre grupos son distinguibles del azar, sin asumir normalidad ni homogeneidad de varianzas.
 
-*Evaluación de aplicabilidad (escala 1–5):* 4. La corrección del estadístico H por empates es directamente aplicable dado el alto volumen de ceros en las variables de siniestralidad. No alcanza el puntaje máximo porque no aborda el problema de potencia excesiva con muestras de gran tamaño, aspecto relevante para la interpretación de los resultados en este proyecto.
+*Evaluación de aplicabilidad (escala 1–5):* 4.
+La corrección del estadístico H por empates es directamente aplicable dado el alto volumen de ceros en las variables de siniestralidad.
+No alcanza el puntaje máximo porque no aborda el problema de potencia excesiva con muestras de gran tamaño, aspecto relevante para la interpretación de los resultados en este proyecto.
 
 *Pregunta que le haría al autor:* Con una muestra de más de 100,000 observaciones donde prácticamente cualquier diferencia resulta estadísticamente significativa, ¿cómo recomendarían interpretar los resultados de la prueba para determinar si las diferencias entre grupos tienen relevancia práctica más allá de la significancia estadística?
 
-*Resumen argumentativo:* El problema que Ostertagová et al. (2014) abordan es la necesidad de comparar más de dos grupos cuando los supuestos del ANOVA paramétrico no se cumplen, situación que aplica directamente al proyecto dado que las variables de siniestralidad presentan distribuciones asimétricas, gran cantidad de empates y grupos de tamaños desiguales. La prueba se utiliza en este proyecto como respaldo estadístico formal de las diferencias descriptivas ya observadas entre tipos de vehículo, entre zonas de circulación y entre tipos de combustible, con el objetivo de verificar que dichas diferencias no son producto del azar sino patrones sistemáticos en los datos.
-
-::: 
-
+*Resumen argumentativo:* El problema que Ostertagová et al. (2014) abordan es la necesidad de comparar más de dos grupos cuando los supuestos del ANOVA paramétrico no se cumplen, situación que aplica directamente al proyecto dado que las variables de siniestralidad presentan distribuciones asimétricas, gran cantidad de empates y grupos de tamaños desiguales.
+La prueba se utiliza en este proyecto como respaldo estadístico formal de las diferencias descriptivas ya observadas entre tipos de vehículo, entre zonas de circulación y entre tipos de combustible, con el objetivo de verificar que dichas diferencias no son producto del azar sino patrones sistemáticos en los datos.
+:::
 
 # Implementación de la retroalimentación
 
@@ -2776,13 +2884,18 @@ La presente sección está diseñada para registrar los aprendizajes adquiridos 
 Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al entregar la segunda bitácora?
 Dichas oraciones proceden a detallarse como sigue:
 
--   Durante esta etapa, se incorporó el uso de la librería fitdistrplus en R como apoyo para el análisis metodológico de la severidad de los siniestros. Esta herramienta permitió plantear una forma más ordenada de comparar posibles distribuciones para los costos positivos, utilizando criterios de ajuste que ayudan a justificar la selección del modelo más adecuado.
+-   Durante esta etapa, se incorporó el uso de la librería fitdistrplus en R como apoyo para el análisis metodológico de la severidad de los siniestros.
+    Esta herramienta permitió plantear una forma más ordenada de comparar posibles distribuciones para los costos positivos, utilizando criterios de ajuste que ayudan a justificar la selección del modelo más adecuado.
 
--   Se fortaleció el concepto de distribución mixta. A partir de la identificación visual del histograma de la variable "Cost_claims_year", se dividió esta variable en tres componentes: costos cero, costos medios y costos altos. Se aprendió a modelar la distribución de cada componente y su respectiva proporción  por medio de gráficos y comparaciones del AIC de distintas distribuciones con el fin de seleccionar la que mejor se adaptaba a cada componente.
+-   Se fortaleció el concepto de distribución mixta.
+    A partir de la identificación visual del histograma de la variable "Cost_claims_year", se dividió esta variable en tres componentes: costos cero, costos medios y costos altos.
+    Se aprendió a modelar la distribución de cada componente y su respectiva proporción por medio de gráficos y comparaciones del AIC de distintas distribuciones con el fin de seleccionar la que mejor se adaptaba a cada componente.
 
 ## Audiencia del proyecto
 
-Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que el tipo de vehículo influye en la frecuencia de los siniestros y, además, en los costos superiores a €900 de reclamos anuales. Esto sugiere que, para la tarificación de pólizas, el tipo de vehículo debería considerarse como un factor relevante, ya que las furgonetas y los turismos concentran tanto la mayor frecuencia como los reclamos de mayor cuantía. Con base en estos hallazgos, se contempla utilizar esta variable para el análisis tanto de la frecuencia como del costo de reclamos anual mayores o iguales a €900.
+Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que el tipo de vehículo influye en la frecuencia de los siniestros y, además, en los costos superiores a €900 de reclamos anuales.
+Esto sugiere que, para la tarificación de pólizas, el tipo de vehículo debería considerarse como un factor relevante, ya que las furgonetas y los turismos concentran tanto la mayor frecuencia como los reclamos de mayor cuantía.
+Con base en estos hallazgos, se contempla utilizar esta variable para el análisis tanto de la frecuencia como del costo de reclamos anual mayores o iguales a €900.
 
 ## Registro del uso de IA
 
@@ -2801,8 +2914,6 @@ También ayudó a relacionar el uso de esta librería con una referencia bibliog
 
 *Aprendizaje:* Se comprendió que el uso de una librería estadística debe estar acompañado de una justificación teórica y metodológica, de modo que las decisiones de modelación puedan explicarse con mayor claridad.
 
-
-
 *Herramienta:* Deepseek.
 
 *Prompt:* Se solicitó información (en varios prompts) para comprender cómo utilizar la librería `fitdistrplus` en R dentro, y funciones útiles para el ajuste de distintas distribuciones para modelar la distribución mixta de los costos anuales.
@@ -2815,16 +2926,17 @@ También ayudó a relacionar el uso de esta librería con una referencia bibliog
 
 *Aprendizaje:* Se comprendió que el uso de esta libraría y sus distintas funciones haría más sencilla la construcción de la distribución mixta.
 
-
 *Herramienta:* Gemini.
 
 *Prompt:* Se solicitó apoyo para encontrar artículos académicos y metodológicos de acceso abierto (Open Access) sobre las pruebas no paramétricas de Mann-Whitney y Kruskal-Wallis, con la condición explícita de que fueran gratuitos, libres de muros de pago (paywalls) y descartando páginas web informales o de dudosa calidad.
 
-*Respuesta de la IA:* La IA sugirió artículos específicos indexados en redes científicas legítimas (como Redalyc y SciELO) y recomendó portales académicos abiertos como Dialnet. Además, proporcionó un desglose conceptual de las metodologías basadas en rangos y enseñó comandos de búsqueda avanzados (como filetype:pdf) para localizar de forma directa manuales de cátedra o tesis doctorales en formato PDF.
+*Respuesta de la IA:* La IA sugirió artículos específicos indexados en redes científicas legítimas (como Redalyc y SciELO) y recomendó portales académicos abiertos como Dialnet.
+Además, proporcionó un desglose conceptual de las metodologías basadas en rangos y enseñó comandos de búsqueda avanzados (como filetype:pdf) para localizar de forma directa manuales de cátedra o tesis doctorales en formato PDF.
 
 *Evaluación:* La respuesta fue útil porque facilitó la ruta directa hacia literatura científica formal y rigurosa sin tropezar con restricciones de pago o registros molestos, permitiendo filtrar con éxito el contenido informal de internet.
 
-*Modificaciones*: Se descartaron los primeros ejemplos de la IA debido a que eran muy informales, no tenían referencias precisas y no parecían académicos. En su lugar, se redirigió el proceso hacia las plataformas y comandos avanzados sugeridos para realizar una búsqueda propia de fuentes indexadas reales.
+*Modificaciones*: Se descartaron los primeros ejemplos de la IA debido a que eran muy informales, no tenían referencias precisas y no parecían académicos.
+En su lugar, se redirigió el proceso hacia las plataformas y comandos avanzados sugeridos para realizar una búsqueda propia de fuentes indexadas reales.
 
 *Aprendizaje:* Se descubrieron nuevos lugares y repositorios especializados (como SciELO, Redalyc y Dialnet) para encontrar artículos académicos verdaderamente útiles, expandiendo las herramientas disponibles para localizar literatura científica confiable de forma gratuita.
 
