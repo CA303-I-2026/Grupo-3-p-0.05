@@ -849,10 +849,6 @@ Segundo, se observa una concentración importante de registros sin siniestros o 
 Tercero, las variables relacionadas con los costos presentan asimetría y valores extremos, lo cual es característico en datos de seguros.
 Finalmente, las comparaciones por tipo de vehículo y zona muestran que existen diferencias entre grupos, por lo que estas variables pueden ser consideradas como posibles factores explicativos en la modelación posterior.
 
-### Ajuste completo del modelo
-
-### Análisis de diagnósticos del modelo seleccionado
-
 ## Propuesta metodológica
 
 La propuesta metodológica de esta investigación se organiza como una secuencia de análisis orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
@@ -1458,6 +1454,8 @@ A través de tablas, proporciones y gráficos comparativos, será posible observ
 Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad.
 Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual.
 De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución.
+
+Los cuatro métodos descritos anteriormente serán ejecutados en su totalidad dentro de este mismo documento. El análisis descriptivo de frecuencia y severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de €900 mediante distribución mixta se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y su ejecución coinciden en el mismo apartado. En cuanto a la validación, esta se aborda mediante tres elementos complementarios: los intervalos de confianza al 95% construidos con la transformación de Fisher para cada coeficiente de correlación de Spearman, los gráficos diagnósticos generados por el paquete fitdistrplus para cada componente de la distribución mixta, que incluyen la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P, y la prueba de Kruskal-Wallis aplicada a las variables categóricas, cuyos resultados se presentan en la sección de comparación entre grupos.
 
 ### Programa maqueta
 
