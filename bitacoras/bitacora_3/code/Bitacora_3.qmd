@@ -1872,7 +1872,7 @@ Además, las cajas de las furgonetas y turismos son prácticamente iguales, lo q
 La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos.
 Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
 
-```{r}
+```{r, echo=FALSE}
 tabla_resumen_tipo_vehiculo <- datos_modificados %>%
   group_by(categoria) %>%
   summarise(
@@ -1888,7 +1888,7 @@ tabla_resumen_tipo_vehiculo <- datos_modificados %>%
   )
 ```
 
-```{r}
+```{r, echo=FALSE}
 tabla_resumen_tipo_vehiculo %>%
   mutate(
     frec_promedio = round(frec_promedio, 4),
@@ -2066,6 +2066,144 @@ En cuanto a la severidad, las diferencias entre zonas son menos pronunciadas que
 Como ya se observó para el tipo de vehículo, ambas zonas presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia de la zona de circulación. El costo máximo registrado es mayor en zonas urbanas (€260,853.24) que en rurales (€236,285.18), aunque ambos valores corresponden a eventos extremos y no son representativos del comportamiento general.
 En conjunto, estos resultados sugieren que la zona de circulación tiene una influencia moderada sobre la frecuencia de siniestros, siendo las zonas urbanas ligeramente más siniestradas, mientras que su efecto sobre la severidad es limitado.
 
+A continuación, se realiza la comparación entre grupos según el tipo de combustible del vehículo.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+frecuencia_promedio_combustible <- datos_modificados %>%
+  filter(!is.na(Type_fuel)) %>%
+  mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
+                            labels = c("Gasolina", "Diésel"))) %>%
+  group_by(Type_fuel) %>%
+  summarise(frecuencia_promedio = mean(N_claims_year, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Type_fuel, y = frecuencia_promedio, fill = Type_fuel)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = round(frecuencia_promedio, 3)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Frecuencia promedio de siniestros por tipo de combustible",
+       x = "Tipo de combustible",
+       y = "Frecuencia promedio de siniestros por año",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 0.6) +
+  guides(fill = "none") +
+  estilo_grupo3
+frecuencia_promedio_combustible
+```
+Los vehículos de tipo diésel presentan una mayor frecuencia promedio de siniestros anual (0.456) en comparación con los de gasolina (0.302). Esta diferencia es más pronunciada que la observada entre zonas de circulación, lo que sugiere que el tipo de combustible podría estar asociado con patrones de uso distintos, como una mayor exposición al riesgo en vehículos diésel, que suelen destinarse a usos comerciales o de mayor kilometraje.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+proporcion_sin_siniestros_combustible <- datos_modificados %>%
+  filter(!is.na(Type_fuel)) %>%
+  mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
+                            labels = c("Gasolina", "Diésel"))) %>%
+  group_by(Type_fuel) %>%
+  summarise(prop_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Type_fuel, y = prop_sin_siniestros, fill = Type_fuel)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(prop_sin_siniestros, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Proporción de asegurados sin siniestros por tipo de combustible",
+       x = "Tipo de combustible",
+       y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 1) +
+  guides(fill = "none") +
+  estilo_grupo3
+proporcion_sin_siniestros_combustible
+```
+En línea con el hallazgo anterior, los vehículos de gasolina presentan una mayor proporción de asegurados sin siniestros (84.66 %) en comparación con los de diésel (79.15 %). Este resultado es consistente con la frecuencia promedio observada, ya que el grupo con menor siniestralidad también concentra una mayor proporción de registros sin reclamaciones.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+dist_costo_positivo_combustible <- datos_modificados %>%
+  filter(!is.na(Type_fuel)) %>%
+  mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
+                            labels = c("Gasolina", "Diésel"))) %>%
+  group_by(Type_fuel) %>%
+  summarise(prop_costo_mayor_0 = mean(Cost_claims_year > 0, na.rm = TRUE), n = n()) %>%
+  ggplot(aes(x = Type_fuel, y = prop_costo_mayor_0, fill = Type_fuel)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = scales::percent(prop_costo_mayor_0, accuracy = 0.01)), vjust = -0.5) +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Proporción de registros con costo de siniestros mayor a €0 por tipo de combustible",
+       x = "Tipo de combustible",
+       y = "Proporción",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  ylim(0, 1) +
+  guides(fill = "none") +
+  estilo_grupo3
+dist_costo_positivo_combustible
+```
+Este gráfico es el complemento directo del anterior: los vehículos diésel, que tienen menor proporción de asegurados sin siniestros, presentan también la mayor proporción de registros con costo mayor a €0, con un 20.85 %, frente al 15.34 % de los vehículos de gasolina.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+velas_combustible <- datos_modificados %>%
+  filter(!is.na(Type_fuel), Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
+  mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
+                            labels = c("Gasolina", "Diésel"))) %>%
+  ggplot(aes(x = Type_fuel, y = Cost_claims_year, fill = Type_fuel)) +
+  geom_boxplot() +
+  scale_fill_manual(values = paleta_pamplemousse[1:2]) +
+  labs(title = "Distribución del costo anual por tipo de combustible",
+       subtitle = "Filtrado para costos anuales mayores a 0 y menores a 5000",
+       x = "Tipo de combustible",
+       y = "Costo anual",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0, 5000, 500)) +
+  guides(fill = "none") +
+  estilo_grupo3
+velas_combustible
+```
+En cuanto a la distribución del costo positivo, ambos tipos de combustible presentan una distribución similar: medianas por debajo de la mitad de la caja, lo que evidencia una asimetría positiva en ambos grupos. Las cajas tienen tamaños comparables, con valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico. La distribución del costo positivo no parece diferir sustancialmente entre tipos de combustible, a diferencia de lo que sí se observó en la frecuencia.
+
+Para sintetizar los resultados anteriores, la siguiente tabla presenta los principales indicadores de frecuencia y severidad para cada tipo de combustible.
+```{r, echo=FALSE}
+tabla_resumen_combustible <- datos_modificados %>%
+  filter(!is.na(Type_fuel)) %>%
+  mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
+                            labels = c("Gasolina", "Diésel"))) %>%
+  group_by(Type_fuel) %>%
+  summarise(
+    n = n(),
+    frec_promedio = mean(N_claims_year, na.rm = TRUE),
+    prop_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE),
+    prop_costo_positivo = mean(Cost_claims_year > 0, na.rm = TRUE),
+    media_costo_pos = mean(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    mediana_costo_pos = median(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE),
+    q1_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.25, na.rm = TRUE),
+    q3_costo_pos = quantile(Cost_claims_year[Cost_claims_year > 0], 0.75, na.rm = TRUE),
+    max_costo_pos = max(Cost_claims_year[Cost_claims_year > 0], na.rm = TRUE)
+  )
+
+tabla_resumen_combustible %>%
+  mutate(
+    frec_promedio = round(frec_promedio, 4),
+    prop_sin_siniestros = scales::percent(prop_sin_siniestros, accuracy = 0.01),
+    prop_costo_positivo = scales::percent(prop_costo_positivo, accuracy = 0.01),
+    across(c(media_costo_pos, mediana_costo_pos,
+             q1_costo_pos, q3_costo_pos, max_costo_pos),
+           ~ formatC(., format = "f", digits = 2, big.mark = ","))
+  ) %>%
+  knitr::kable(
+    col.names = c("Tipo de combustible", "n", "Frec. promedio",
+                  "Sin siniestros", "Costo > €0",
+                  "Media (€)", "Mediana (€)", "Q1 (€)", "Q3 (€)", "Máximo (€)"),
+    caption = "Resumen de frecuencia y severidad por tipo de combustible",
+    booktabs = TRUE,
+    align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
+    format.args = list(scientific = FALSE)
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    position = "center",
+    font_size = 9,
+    latex_options = "hold_position"
+  ) %>%
+  kableExtra::add_header_above(
+    c(" " = 2,
+      "Frecuencia" = 2,
+      "Severidad" = 6)
+  )
+```
+En cuanto a la frecuencia, los vehículos diésel presentan una mayor siniestralidad promedio (0.4556 siniestros por año) frente a los de gasolina (0.3019), lo que se refleja también en una menor proporción de asegurados sin siniestros en el grupo diésel (79.15 %) respecto al de gasolina (84.66 %). En cuanto a la severidad, las diferencias entre tipos de combustible son menores que las observadas entre tipos de vehículo. Las medias del costo positivo son similares: €829.50 para diésel y €825.32 para gasolina, y las medianas también son cercanas, con €303.11 y €262.06 respectivamente. Como ya se observó en los análisis anteriores, ambos grupos presentan un tercer cuartil de €882.00, lo que refuerza la hipótesis de una concentración de siniestros en ese umbral con independencia del tipo de combustible. En conjunto, estos resultados sugieren que el tipo de combustible tiene una influencia moderada sobre la frecuencia de siniestros, mientras que su efecto sobre la severidad es limitado.
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
 
@@ -2121,6 +2259,8 @@ proporciones %>%
         align = c("l", "r", "r", "r"),
         escape = FALSE) %>%
   kable_styling(full_width = FALSE, position = "center", font_size = 10)
+
+sum(proporciones$Proporcion)
 ```
 
 A través de los resultados obtenidos, presentados en la tabla anterior, se puede observar que los costos nulos representan un 81.388% del total de registros, mientras que el 15.017% de los registros corresponden a costos medios, ubicados en el intervalo (0 \< Y \< 900), mientras que solamente 3.595% de los registros corresponden a costos mayores o iguales a €900.
