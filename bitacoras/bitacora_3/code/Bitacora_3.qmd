@@ -2604,7 +2604,7 @@ Dichas oraciones proceden a detallarse como sigue:
 
 ## Audiencia del proyecto
 
-Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que
+Esta semana el equipo le diría a un actuario que se enfoca en el área de seguros para vehículos que se descubrió que el tipo de vehículo influye en la frecuencia de los siniestros y, además, en los costos superiores a €900 de reclamos anuales. Esto sugiere que, para la tarificación de pólizas, el tipo de vehículo debería considerarse como un factor relevante, ya que las furgonetas y los turismos concentran tanto la mayor frecuencia como los reclamos de mayor cuantía. Con base en estos hallazgos, se contempla utilizar esta variable para el análisis tanto de la frecuencia como del costo de reclamos anual mayores o iguales a €900.
 
 ## Registro del uso de IA
 
@@ -2622,6 +2622,20 @@ También ayudó a relacionar el uso de esta librería con una referencia bibliog
 *Modificaciones:* Se adaptó la explicación al contexto del proyecto, enfocándola en el análisis de severidad y en la comparación de distribuciones para los costos positivos de los siniestros.
 
 *Aprendizaje:* Se comprendió que el uso de una librería estadística debe estar acompañado de una justificación teórica y metodológica, de modo que las decisiones de modelación puedan explicarse con mayor claridad.
+
+
+
+*Herramienta:* Deepseek.
+
+*Prompt:* Se solicitó información (en varios prompts) para comprender cómo utilizar la librería `fitdistrplus` en R dentro, y funciones útiles para el ajuste de distintas distribuciones para modelar la distribución mixta de los costos anuales.
+
+*Respuesta de la IA:* A modo de resumen de todo el chat, la IA explicó que `fitdistrplus` tiene diversas funciones muy útiles como `fitdist` la cual devuelve un objeto con los parámetros de la distribución seleccionada que mejor se ajustan a los datos, además, dijo que ese objeto tiene un atributo `$aic` el cual devuelve el aic del ajuste de la distribución seleccionada, además de esto, comentó que con la función `plot()` se realizaba un gráfico con 4 pruebas y explicó cómo superponer varias distribuciones a la vez sobre el gráfico del histograma de costos.
+
+*Evaluación:* La respuesta fue muy útil porque permitió hacer más sencilla la comparación de las distribuciones candidatas para la distribución mixta de los costos anuales.
+
+*Modificaciones:* Se adaptó la explicación al contexto del proyecto, utilizando las distribuciones candidatas seleccionadas por el grupo a partir de la visualización de la forma del histograma de los costos anuales.
+
+*Aprendizaje:* Se comprendió que el uso de esta libraría y sus distintas funciones haría más sencilla la construcción de la distribución mixta.
 
 ## Registro del trabajo en equipo
 
