@@ -1306,9 +1306,8 @@ Además, se elaborarán gráficos comparativos.
 En el caso de la frecuencia de los siniestros se utilizarán gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo.
 En el caso de la severidad se utilizarán boxplots o gráficos de violín, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos.
 
-Cuando se desee evaluar la asociación entre una variable categórica y una variable binaria de siniestralidad, se definirá una variable indicadora.
-A partir de esta variable se podrán construir tablas resumen y de comparación.
-Estas tablas permitirán comparar la proporción de registros con costo positivo dentro de cada categoría.
+Cuando se desee evaluar la asociación entre una variable categórica y una variable binaria de siniestralidad, se definirá una variable codificada numéricamente, de manera que las categorías de las variables se expresen a través de números, en vías de facilitar tanto su estudio como su manipulación.
+A partir de esta variable se podrán construir tablas resumen y de comparación, que permitirán comparar la proporción de registros con costo positivo dentro de cada categoría.
 
 La escogencia de dicho método se basa en que permite analizar la asociación entre variables que no pueden estudiarse adecuadamente mediante correlación.
 Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas.
@@ -1320,11 +1319,11 @@ De esta manera, el análisis aporta evidencia descriptiva sobre posibles diferen
 
 El cuarto método consistirá en analizar de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanza o supera los 900 euros.
 En el anteproyecto, este umbral se había planteado mediante una variable indicadora que separaba los costos menores a 900 euros de los costos mayores o iguales a dicho valor.
-Sin embargo, a partir de la retroalimentación recibida, este análisis se reformula para incorporar tres elementos adicionales: una interpretación mediante distribución mixta, un análisis de la cola derecha de la distribución y el ajuste de distribuciones paramétricas utilizando el paquete `fitdistrplus` de R.
+Sin embargo, a partir de la retroalimentación recibida, dicha propuesta se reformula para incorporar tres elementos adicionales: una interpretación mediante distribución mixta, un análisis de la cola derecha de la distribución y el ajuste de las distribuciones paramétricas utilizando el paquete `fitdistrplus` de R.
 
 El análisis exploratorio previo mostró que la variable $Y_i$ presenta una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos.
 Por esta razón, no se asumirá que todos los valores de $Y_i$ provienen de una única distribución homogénea.
-En cambio, se considerará que la variable puede entenderse como una mezcla de distintos comportamientos (distribución mixta).
+En cambio, se considerará que la variable puede entenderse como una mezcla de distintos comportamientos: distribución mixta.
 
 De manera general, la distribución del costo anual se puede expresar como:
 
@@ -1339,11 +1338,11 @@ $$
 \pi_0+\pi_1+\pi_2=1.
 $$
 
-Este planteamiento se inspira en el uso de modelos de mezcla en datos de seguros, donde se reconoce que los reclamos pueden presentar exceso de ceros, asimetría y colas pesadas.
+El planteamiento se inspira en el uso de modelos de mezcla en datos de seguros, donde se reconoce que los reclamos pueden presentar características como el exceso de ceros, la asimetría y las colas pesadas.
 @mara2024 estudian distribuciones compuestas y distribuciones de mezcla aplicadas a datos de reclamos de seguros, señalando que estos modelos son útiles para representar datos de colas pesadas y mejorar el ajuste cuando una sola distribución no describe adecuadamente el comportamiento de las pérdidas.
-Además, @pov2020 proponen modelos con inflación de ceros para frecuencia y severidad de reclamos en seguros generales, precisamente para tratar datos con exceso de ceros provenientes de fuentes heterogéneas.
+Además, @pov2020 proponen modelos con inflación de ceros para la frecuencia y la severidad de los reclamos en seguros generales, precisamente para tratar datos con exceso de ceros provenientes de fuentes heterogéneas.
 
-Para operacionalizar esta idea, se definirá una variable categórica $G_i$ de la siguiente manera:
+Para operacionalizar la idea, se definirá una variable categórica $G_i$ de la siguiente manera:
 
 $$
 G_i =
@@ -1361,35 +1360,34 @@ Los pesos de la mezcla se estimarán mediante las proporciones observadas en la 
 
 $$
 \widehat{\pi}_0 =
-\frac{\#\{i:Y_i=0\}}{n},
+\frac{\{i:Y_i=0\}}{n},
 $$
 
 $$
 \widehat{\pi}_1 =
-\frac{\#\{i:0<Y_i<900\}}{n},
+\frac{\{i:0<Y_i<900\}}{n},
 $$
 
 y
 
 $$
 \widehat{\pi}_2 =
-\frac{\#\{i:Y_i\geq 900\}}{n}.
+\frac{\{i:Y_i\geq 900\}}{n}.
 $$
 
-Estas proporciones permitirán cuantificar qué parte de la base corresponde a registros sin costo, qué parte corresponde a costos positivos moderados y qué parte se ubica en la zona de alta severidad.
+Las proporciones anteriores permitirán cuantificar qué parte de la base corresponde a registros sin costo, qué parte corresponde a costos positivos moderados y qué parte se ubica en la zona de alta severidad.
 
 Posteriormente, se utilizará el paquete `fitdistrplus` de R para ajustar distribuciones paramétricas a los componentes positivos del costo anual.
 Este paquete, de acuerdo a @deli2015 permite ajustar distribuciones paramétricas a datos no censurados o censurados y ofrece distintos métodos de estimación, como máxima verosimilitud, estimación por momentos, estimación por cuantiles, bondad de ajuste y máximo espaciamiento.
 En este proyecto, se utilizará principalmente para comparar distribuciones candidatas y estimar los parámetros de aquellas que se adapten mejor a los datos observados.
 
-Primero, se analizarán los costos positivos menores a 900 euros:
+Primero, se analizarán los costos positivos menores a 900 euros, que son los reclamos de severidad positiva moderada:
 
 $$
 Y_i \mid 0<Y_i<900.
 $$
 
-Este componente corresponde a los reclamos de severidad positiva moderada.
-Para este grupo se evaluarán distribuciones candidatas como gamma, lognormal, Weibull y exponencial, debido a que son distribuciones usuales para variables continuas positivas y asimétricas.
+Para este grupo se evaluarán distribuciones candidatas como gamma, lognormal, Weibull y exponencial, debido a que son las distribuciones usuales para variables continuas positivas y asimétricas.
 
 Luego, se analizarán los costos mayores o iguales a 900 euros:
 
@@ -1400,7 +1398,7 @@ $$
 Este componente corresponde a la cola derecha de la distribución, es decir, a los reclamos de mayor severidad.
 El objetivo será determinar si los costos altos presentan un comportamiento distinto al de los costos positivos moderados y si requieren una distribución diferente para describirlos adecuadamente.
 
-Para cada componente positivo, y siguiendo con lo indicado por @deli2015, se estimarán los parámetros de las distribuciones candidatas.
+Para cada componente positivo, y siguiendo lo indicado por @deli2015, se estimarán los parámetros de las distribuciones candidatas.
 De forma general, si $F_j(y \mid \theta_j)$ representa una distribución candidata para el componente $j$, el objetivo será estimar el vector de parámetros $\theta_j$.
 Mediante máxima verosimilitud, estos parámetros se obtienen maximizando la función de verosimilitud:
 
@@ -1441,7 +1439,7 @@ BIC =
 k\ln(n).
 $$
 
-En ambos casos, valores más bajos indican un mejor equilibrio entre ajuste y complejidad del modelo.
+En ambos casos, valores más bajos indican un mejor equilibrio entre el ajuste y la complejidad del modelo.
 
 Además de los criterios numéricos, se utilizarán herramientas gráficas de diagnóstico generadas a partir de los ajustes, como comparaciones entre la función de distribución empírica y la función de distribución ajustada.
 Estos gráficos permitirán evaluar visualmente si la distribución seleccionada representa adecuadamente los datos observados.
@@ -1450,21 +1448,21 @@ Finalmente, el umbral de 900 euros se interpretará como una herramienta para se
 No se utilizará únicamente como una variable indicadora, sino como parte de una estructura de mezcla que distingue entre ausencia de costo, severidad positiva moderada y severidad alta.
 De esta manera, el análisis permitirá estimar tanto los pesos de cada componente como las distribuciones paramétricas que describen los costos positivos.
 
-En relación con la pregunta de investigación, este método permite identificar no solo qué proporción de registros se ubica en la zona de alta severidad, sino también qué tipo de distribución describe mejor los costos moderados y los costos altos.
+En relación con la pregunta de investigación, el método explicado permite identificar no solo qué proporción de registros se ubica en la zona de alta severidad, sino también qué tipo de distribución describe mejor los costos moderados y los costos altos.
 
 #### Justificación integrada de los métodos
 
 Los métodos propuestos se organizan como una secuencia de análisis complementarios.
-En primer lugar, el análisis descriptivo permite caracterizar la estructura general de las variables de siniestralidad, distinguiendo entre frecuencia y severidad.
-Esta distinción es necesaria porque la frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa.
+En primer lugar, el análisis descriptivo permite caracterizar la estructura general de las variables de la siniestralidad, haciendo una distinción entre la frecuencia y la severidad.
+Tal distinción es necesaria, dado que la frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa.
 Además, el análisis descriptivo permite identificar características importantes de los datos, como el exceso de ceros, la asimetría y la presencia de valores extremos.
 
-En segundo lugar, el análisis de asociación entre variables cuantitativas permite explorar si características numéricas del asegurado o del vehículo se relacionan con la frecuencia o la severidad de los siniestros.
+En segundo lugar, el análisis de asociación entre las variables cuantitativas permite explorar si características numéricas del asegurado o del vehículo se relacionan con la frecuencia o la severidad de los siniestros.
 Este método no busca establecer causalidad, sino identificar patrones preliminares que puedan orientar la interpretación de los resultados.
 Debido a que las variables de siniestralidad pueden presentar distribuciones asimétricas y valores atípicos, se dará prioridad a coeficientes no paramétricos como Spearman y Kendall.
 
 En tercer lugar, la comparación entre grupos permite estudiar variables categóricas, como el tipo de vehículo, la zona de circulación o el tipo de combustible.
-Este método complementa el análisis de correlación, ya que muchas características relevantes del problema no son numéricas.
+Se complementa el análisis de correlación, ya que muchas características relevantes del problema no son numéricas.
 A través de tablas, proporciones y gráficos comparativos, será posible observar si ciertos grupos presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad en los reclamos.
 
 Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad.
@@ -1472,7 +1470,7 @@ Este método incorpora la retroalimentación recibida, al no tratar el umbral ú
 De esta manera, se distinguen registros sin costo, registros con costos positivos moderados y registros ubicados en la cola derecha de la distribución.
 
 Los cuatro métodos descritos anteriormente serán ejecutados en su totalidad dentro de este mismo documento.
-El análisis descriptivo de frecuencia y severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de €900 mediante distribución mixta se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y su ejecución coinciden en el mismo apartado.
+El análisis descriptivo de la frecuencia y la severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de los 900 euros mediante una distribución mixta; se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y la ejecución coinciden en el mismo apartado.
 En cuanto a la validación, esta se aborda mediante tres elementos complementarios: los intervalos de confianza al 95% construidos con la transformación de Fisher para cada coeficiente de correlación de Spearman, los gráficos diagnósticos generados por el paquete fitdistrplus para cada componente de la distribución mixta, que incluyen la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P, y la prueba de Kruskal-Wallis aplicada a las variables categóricas, cuyos resultados se presentan en la sección de comparación entre grupos.
 
 ### Programa maqueta
@@ -1524,7 +1522,7 @@ distribucion_frecuencia <- datos %>%
   scale_x_continuous(breaks = seq(0,10,1)) +
   scale_y_continuous(breaks = seq(0,80000,10000),
                      labels = scales::comma) +
-  labs(title = "Distribución de la frecuencia de los siniestros menores a 10",
+  labs(title = "Distribución de la frecuencia de la cantidades de siniestros menores a 10",
        x = "Número de siniestros por año",
        y = "Cantidad de observaciones",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
@@ -1535,8 +1533,8 @@ ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.p
 
 ![Distribución de la frecuencia de los siniestros menores a 10](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png)
 
-En el gráfico sobre la distribución de la frecuencia de los reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos.
-Además de esto, se puede ver que la distribución es decreciente, entre más aumenta la cantidad de reclamos, más disminuye la cantidad de observaciones.
+En el gráfico sobre la distribución de la frecuencia de las cantidades de reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos.
+Además de esto, se puede ver que la distribución es decreciente, conforme aumenta la cantidad de reclamos, disminuye la cantidad de observaciones.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 ceros_frecuencia <- data.frame(
@@ -1564,7 +1562,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",com
 ![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png){width="80%"}
 
 Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año.
-Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna "N_claims_year".
+Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna *N_claims_year*.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 boxplot_costos <- datos %>%
@@ -1582,8 +1580,9 @@ ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos
 
 ![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){height="12cm"}
 
-El boxplot muestra la distribución de la variable "Cost_claims_year" para reclamos mayores a €0 y menores a €5000, en el cual se puede observar que esta variable presenta una fuerte asimetría hacia la derecha, alta concentración en valores bajos y múltiples valores atípicos.
-Esto justifica el uso de coeficientes no paramétricos como el Spearman y el Kendall en vez del Pearson para el análisis de asociación de las variables y el uso de la mediana en vez de la media debido a la gran cantidad de valores atípicos.
+El boxplot muestra la distribución de la variable *Cost_claims_year* para reclamos mayores a 0 euros y menores a 5000 euros.
+En la figura, se puede observar que la variable presenta una fuerte asimetría hacia la derecha, una alta concentración en valores bajos y múltiples valores atípicos.
+Lo anterior justifica el uso de coeficientes no paramétricos: Spearman y Kendall, para el análisis de la asociación entre las variables, en lugar del coeficiente de Pearson; así como el uso de la mediana en lugar de la media, debido a la gran cantidad de valores atípicos.
 
 ```{r}
 library(pastecs)
@@ -1642,19 +1641,19 @@ knitr::kable(
   )
 ```
 
-Por el lado de la frecuencia, de los 103,791 registros válidos, el 81.21% no presentó ningún siniestro durante el año, lo que se confirma con una mediana de 0.
+En lo que respecta a la frecuencia, de los 103,791 registros válidos, el 81.21% no presentó ningún siniestro durante el año, lo que se confirma con una mediana de cero.
 Esto evidencia una alta concentración de ceros en la distribución.
 La media de 0.40 siniestros anuales está fuertemente influenciada por los casos extremos, siendo el máximo observado de 25 siniestros en un año.
-El índice de sobredispersión de 3.09 indica que la varianza es aproximadamente tres veces mayor que la media, lo cual viola el supuesto de equidispersión de la distribución Poisson.
-Esto es consistente con el análisis previo que mostró que la Poisson solo predice un 67.39% de ceros, subestimando en 14 puntos porcentuales los ceros observados.
+El índice de sobredispersión de 3.09 indica que la varianza es aproximadamente tres veces mayor que la media, lo cual viola el supuesto de equidispersión de la distribución Poisson, lo cual es consistente con el análisis previo, donde se mostró que dicha distribución solo predice un 67.39% de ceros, subestimando en 14 puntos porcentuales los ceros observados.
 Ambos elementos en conjunto descartan el uso de Poisson para modelar esta variable.
-Por otro lado, los estadísticos de severidad se calcularon únicamente sobre los 19,499 registros con costo positivo, es decir, el 18.79% de la base.
-Entre estos registros, la media del costo es de €828.22, pero la mediana es de apenas €291.00, una diferencia considerable que refleja una fuerte asimetría hacia la derecha.
-Esto significa que la mayoría de los reclamos positivos son de baja cuantía, pero existen casos extremos que elevan el promedio, como lo confirma el máximo de €260,853.24.
-La desviación estándar de €3,353.78 es cuatro veces mayor que la media, y el coeficiente de variación de 4.05 indica una dispersión muy alta en los costos.
-Esto justifica el uso de la mediana como medida principal de tendencia central para la severidad, y respalda la elección de distribuciones asimétricas como la lognormal para modelar los costos positivos, como se desarrolla más adelante en el análisis del umbral de €900.
 
-#### Análisis de asociación entre variables cuantitativas
+Por otro lado, los estadísticos de severidad se calcularon únicamente sobre los 19,499 registros con costo positivo, es decir, el 18.79% de la base.
+Entre estos registros, la media del costo es de 828.22 euros, pero la mediana es de apenas 291.00 euros, una diferencia considerable que refleja una fuerte asimetría hacia la derecha.
+Así, la mayoría de los reclamos positivos son de baja cuantía, pero existen casos extremos que elevan el promedio, como lo confirma el máximo de 260,853.24 euros.
+La desviación estándar de 3,353.78 euros es cuatro veces mayor que la media, y el coeficiente de variación de 4.05 indica una dispersión muy alta en los costos.
+Se justifica de esta manera el uso de la mediana como medida principal de tendencia central para la severidad, y respalda la elección de distribuciones asimétricas como la lognormal para modelar los costos positivos.
+
+#### Análisis de asociación entre las variables cuantitativas
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 shapiro.test(datos$N_claims_year[1:5000])
@@ -2556,8 +2555,7 @@ Es decir, no se puede concluir que tener más reclamos históricos cause directa
 :::
 
 ::: callout-note
-
-# Ficha 6: convergencia del tercer cuartil en €882 entre grupos**
+# Ficha 6: convergencia del tercer cuartil en €882 entre grupos\*\*
 
 ***Nivel descriptivo***
 
@@ -2567,23 +2565,36 @@ Es decir, no se puede concluir que tener más reclamos históricos cause directa
 
 *Resumen en una oración:* El Q3 del costo positivo converge en €882.00 para todos los grupos categóricos analizados.
 
-*Método o análisis que lo produjo:* Se calcularon estadísticos descriptivos del costo anual de siniestros positivos (Costo > €0) desagregados por las variables categóricas Type_risk (tipo de vehículo), Area (zona de circulación) y Type_fuel (tipo de combustible), utilizando `group_by()` y `summarise()` de R. Los resultados se presentaron en tablas resumen con los indicadores de frecuencia y severidad por grupo.
+*Método o análisis que lo produjo:* Se calcularon estadísticos descriptivos del costo anual de siniestros positivos (Costo \> €0) desagregados por las variables categóricas Type_risk (tipo de vehículo), Area (zona de circulación) y Type_fuel (tipo de combustible), utilizando `group_by()` y `summarise()` de R.
+Los resultados se presentaron en tablas resumen con los indicadores de frecuencia y severidad por grupo.
 
 *Evidencia:* Tabla 11 (resumen por tipo de vehículo: Q3 = €882.00 para Furgoneta y Turismo), Tabla 12 (resumen por zona: Q3 = €882.00 para Rural y Urbana) y Tabla 13 (resumen por tipo de combustible: Q3 = €882.00 para Gasolina y Diésel).
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este hallazgo conecta directamente con el segundo componente de la pregunta de investigación, que busca explicar el aumento abrupto de reclamos cuando el costo supera los €900. El hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de €882 en todos los grupos estudiados sugiere que el umbral de €900 no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo, independiente de las características del asegurado o del vehículo. Esto refuerza la pertinencia metodológica de usar €900 como separador entre el componente de costos medios y el de costos altos en el modelo de distribución mixta.
+*Conexión con la pregunta de investigación:* Este hallazgo conecta directamente con el segundo componente de la pregunta de investigación, que busca explicar el aumento abrupto de reclamos cuando el costo supera los €900.
+El hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de €882 en todos los grupos estudiados sugiere que el umbral de €900 no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo, independiente de las características del asegurado o del vehículo.
+Esto refuerza la pertinencia metodológica de usar €900 como separador entre el componente de costos medios y el de costos altos en el modelo de distribución mixta.
 
-*Contraste con la literatura:* Este resultado es consistente con lo planteado por Marambakuyana y Shongwe (2024) en su ficha literaria, quienes señalan que los modelos compuestos dividen la distribución en dos partes: una para reclamos pequeños o moderados y otra para reclamos grandes. Esta división reconoce implícitamente la existencia de un punto de separación natural entre distintos regímenes de severidad. La convergencia del Q3 en €882 en todos los grupos sugiere que ese punto de separación constituye una propiedad de la distribución global del costo y no un efecto particular de algún subgrupo específico, lo cual fortalece la justificación del umbral como criterio de segmentación.
+*Contraste con la literatura:* Este resultado es consistente con lo planteado por Marambakuyana y Shongwe (2024) en su ficha literaria, quienes señalan que los modelos compuestos dividen la distribución en dos partes: una para reclamos pequeños o moderados y otra para reclamos grandes.
+Esta división reconoce implícitamente la existencia de un punto de separación natural entre distintos regímenes de severidad.
+La convergencia del Q3 en €882 en todos los grupos sugiere que ese punto de separación constituye una propiedad de la distribución global del costo y no un efecto particular de algún subgrupo específico, lo cual fortalece la justificación del umbral como criterio de segmentación.
 
-*Comparación explícita entre lo obtenido y lo esperado según la literatura:* La literatura revisada, en particular Marambakuyana y Shongwe (2024) y el planteamiento general de los modelos de distribución mixta, anticipaba que los datos de seguros presentan regímenes diferenciados de severidad, pero no especificaba que el punto de transición entre regímenes sería tan consistente entre subgrupos. Lo obtenido va más allá de lo esperado. No solo se confirma la existencia de un umbral de severidad, sino que este umbral se manifiesta de forma casi idéntica (Q3 ≈ €882) en los distintos tipos de vehículo, en ambas zonas de circulación y en ambos tipos de combustible. Este comportamiento no era predecible a partir de la literatura, ya que sería razonable esperar que grupos con perfiles de riesgo distintos, como furgonetas y motocicletas, o zonas urbanas y rurales, presentaran cuartiles superiores diferentes. La coincidencia observada sugiere que el umbral de €900 podría estar relacionado con alguna característica institucional del mercado asegurador, como franquicias, límites de cobertura o criterios administrativos. Aunque esta interpretación no puede confirmarse con los datos disponibles, constituye una hipótesis interesante para investigaciones futuras.
+*Comparación explícita entre lo obtenido y lo esperado según la literatura:* La literatura revisada, en particular Marambakuyana y Shongwe (2024) y el planteamiento general de los modelos de distribución mixta, anticipaba que los datos de seguros presentan regímenes diferenciados de severidad, pero no especificaba que el punto de transición entre regímenes sería tan consistente entre subgrupos.
+Lo obtenido va más allá de lo esperado.
+No solo se confirma la existencia de un umbral de severidad, sino que este umbral se manifiesta de forma casi idéntica (Q3 ≈ €882) en los distintos tipos de vehículo, en ambas zonas de circulación y en ambos tipos de combustible.
+Este comportamiento no era predecible a partir de la literatura, ya que sería razonable esperar que grupos con perfiles de riesgo distintos, como furgonetas y motocicletas, o zonas urbanas y rurales, presentaran cuartiles superiores diferentes.
+La coincidencia observada sugiere que el umbral de €900 podría estar relacionado con alguna característica institucional del mercado asegurador, como franquicias, límites de cobertura o criterios administrativos.
+Aunque esta interpretación no puede confirmarse con los datos disponibles, constituye una hipótesis interesante para investigaciones futuras.
 
-*Lo que NO explica este resultado:* Este resultado no explica por qué el tercer cuartil converge específicamente en €882 y no en otro valor cercano al umbral. Tampoco permite determinar si esta convergencia responde a una característica intrínseca de los datos, a una convención del mercado asegurador español o a algún aspecto del proceso de recolección de información. Además, no aporta evidencia sobre la distribución de los costos que exceden dicho umbral ni sobre las variables que podrían estar asociadas con la pertenencia al componente de costos altos.
+*Lo que NO explica este resultado:* Este resultado no explica por qué el tercer cuartil converge específicamente en €882 y no en otro valor cercano al umbral.
+Tampoco permite determinar si esta convergencia responde a una característica intrínseca de los datos, a una convención del mercado asegurador español o a algún aspecto del proceso de recolección de información.
+Además, no aporta evidencia sobre la distribución de los costos que exceden dicho umbral ni sobre las variables que podrían estar asociadas con la pertenencia al componente de costos altos.
 
-*Implicación para el siguiente paso:* La consistencia del Q3 en €882 entre todos los grupos refuerza la decisión de utilizar €900 como umbral de segmentación en el modelo de distribución mixta. Además, sugiere que este umbral puede incorporarse como variable de análisis para comparar grupos, evaluando si la proporción de registros que supera los €900 difiere significativamente entre categorías. Este análisis ya se realizó parcialmente para el tipo de vehículo en la Figura 20 y podría extenderse a la zona de circulación y al tipo de combustible.
+*Implicación para el siguiente paso:* La consistencia del Q3 en €882 entre todos los grupos refuerza la decisión de utilizar €900 como umbral de segmentación en el modelo de distribución mixta.
+Además, sugiere que este umbral puede incorporarse como variable de análisis para comparar grupos, evaluando si la proporción de registros que supera los €900 difiere significativamente entre categorías.
+Este análisis ya se realizó parcialmente para el tipo de vehículo en la Figura 20 y podría extenderse a la zona de circulación y al tipo de combustible.
 :::
-
 
 ## Ordenamiento de los elementos del reporte
 
