@@ -1802,7 +1802,7 @@ frecuencia_promedio_vehiculo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png", frecuencia_promedio_vehiculo, width = 10, height = 7, dpi = 300)
 ```
 
-![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#promedio-tipo-vehiculo width="90%"}
+![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#fig-promedio-tipo-vehiculo width="90%"}
 
 Se observa que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
 
@@ -2333,18 +2333,19 @@ La información mencionada anteriormente se resume en la siguiente tabla.
 # Tabla del modelo de distribución mixta
 tabla_modelo <- data.frame(
   Componente = c("Costos Cero", "Costos Medios", "Costos Altos"),
-  Rango = c("$Y = 0$", "$0 < Y < 900$", "$Y \\geq 900$"),
-  Distribución = c("Masa puntual ($\\delta_0$) (Y = 0)", "Lognormal", "Lognormal"),
+  Rango = c("Y = 0", "0 < Y < 900", "Y ≥ 900"),
+  Distribución = c("Masa puntual δ (Y = 0)", "Lognormal", "Lognormal"),
   Parámetros = c("—", 
-                 "$\\mu_1 = 5.2785366$, $\\sigma_1 = 0.9693318$",
-                 "$\\mu_2 = 7.5571894$, $\\sigma_2 = 0.6816524$"),
-  Proporción = c("$\\pi_0 = 0.81388$ (81.39%)",
-                 "$\\pi_1 = 0.15017$ (15.02%)",
-                 "$\\pi_2 = 0.03595$ (3.60%)")
+                 "μ₁ = 5.2785366, σ₁ = 0.9693318",
+                 "μ₂ = 7.5571894, σ₂ = 0.6816524"),
+  Proporción = c("π₀ = 0.81388 (81.39%)",
+                 "π₁ = 0.15017 (15.02%)",
+                 "π₂ = 0.03595 (3.60%)")
 )
 
 kable(tabla_modelo,
       caption = "Parámetros del modelo de distribución mixta para el costo anual de siniestros",
+      escape = FALSE,
       booktabs = TRUE,
       align = c("l", "l", "l", "l", "l")) %>%
   kable_styling(full_width = FALSE, position = "center", font_size = 10)
@@ -2369,11 +2370,10 @@ proporcion_mayores_900 <- datos_modificados %>%
 
 ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png", proporcion_mayores_900, width = 10, height = 7, dpi = 300)
 
-datos_modificados %>% 
-  filter(categoria == "Agrícola", Cost_claims_year >= 900)
 ```
 
-![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png){#proporcion-mayores-900-tipo-vehiculo}
+![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png){#fig-proporcion-mayores-900-tipo-vehiculo fig-pos="H"}
+
 
 Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900.
 
@@ -2418,7 +2418,7 @@ Por esto, se descarta el uso del modelo Poisson para trabajar la frecuencia de l
 
 *Método o análisis que lo produjo:* Se calculó el promedio de la variable "N_claims_year" agrupada por el tipo de vehículo "categoria", para esto se utilizaron las funciones "group_by()" y "summarise()" de R y para la visualización de los resultados se utilizó un gráfico de barras.
 
-*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @promedio-tipo-vehiculo de la tercera bitácora, titulada "Frecuencia promedio de siniestros por año según el tipo de vehículo".
+*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @fig-promedio-tipo-vehiculo de la tercera bitácora, titulada "Frecuencia promedio de siniestros por año según el tipo de vehículo".
 
 ***Nivel analítico***
 
@@ -2481,7 +2481,7 @@ Tampoco identifica qué variables explicativas generan la sobredispersión obser
 *Método o análisis que lo produjo:* Para este hallazgo, primero se creó una variable llamada "mayores_900", la cual toma el valor de 1 si la variable "Cost_claims_year" era mayor o igual a 900, y 0 si no.
 Luego se calculó el promedio de esta variable agrupando por el tipo de vehículo "categoria", obteniendo así la proporción de reclamos que supera el umbral de los €900 y se generó un gráfico de barras para la visualización de los resultados.
 
-*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @proporcion-mayores-900-tipo-vehiculo de la tercera bitácora, titulada "Proporción de reclamos mayores a €900 según el tipo de vehículo".
+*Evidencia:* El gráfico que respalda este hallazgo corresponde a la @fig-proporcion-mayores-900-tipo-vehiculo de la tercera bitácora, titulada "Proporción de reclamos mayores a €900 según el tipo de vehículo".
 
 ***Nivel analítico***
 
