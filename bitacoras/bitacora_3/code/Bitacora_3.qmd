@@ -1660,10 +1660,10 @@ Se justifica de esta manera el uso de la mediana como medida principal de tenden
 shapiro.test(datos$N_claims_year[1:5000])
 ```
 
-Para determinar el método de correlación más adecuado, se aplicó la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la variable `N_claims_year`.
+Para determinar el método de correlación más adecuado, se aplicó la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la variable *N_claims_year*.
 Se obtuvo un estadístico W = 0.37226 y un p-valor \< 2.2e-16.
 Como el p-valor es menor a 0.05, se rechaza la hipótesis de normalidad, por lo que se descarta el coeficiente de Pearson y se utiliza Spearman para el análisis de correlación.
-Se eligió Spearman sobre Kendall porque con muestras grandes como la de este proyecto ambos coeficientes tienden a producir conclusiones similares, pero Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para este tipo de análisis exploratorio.
+Se eligió Spearman sobre Kendall porque con muestras grandes, como la de este proyecto, ambos coeficientes tienden a producir conclusiones similares, pero Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para este tipo de análisis exploratorio.
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 # PENDIENTE: Gráficos de dispersión
@@ -1695,15 +1695,15 @@ matriz_correlacion <- ggcorrplot(correlacion_spearman,
 ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_correlacion, width = 9, height = 9, dpi = 300)
 ```
 
-![Matriz de correlaciones de variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){height="70%"}
+![Matriz de correlaciones de las variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){height="70%"}
 
 La matriz permite observar las asociaciones entre las variables cuantitativas.
-En cuanto a las variables de siniestralidad, `N_claims_history` presenta la correlación más alta con `N_claims_year` ($\rho$ = 0.38) y con `Cost_claims_year` ($\rho$ = 0.36), lo que indica que los asegurados con mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado.
-La correlación casi perfecta entre `N_claims_year` y `Cost_claims_year` ($\rho$ = 0.99) es un resultado esperable, ya que a mayor número de reclamos mayor será el costo acumulado, por lo que ambas variables capturan esencialmente el mismo fenómeno desde ángulos distintos.
+En cuanto a las variables de la siniestralidad, *N_claims_history* presenta la correlación más alta con *N_claims_year* ($\rho$ = 0.38) y con *Cost_claims_year* ($\rho$ = 0.36), lo que indica que los asegurados con mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado.
+La correlación casi perfecta entre *N_claims_year* y *Cost_claims_year* ($\rho$ = 0.99) es un resultado esperable, ya que a mayor número de reclamos mayor será el costo acumulado, por lo que ambas variables capturan esencialmente el mismo fenómeno desde ángulos distintos.
 
 Como observación secundaria, la matriz también muestra correlaciones altas entre variables explicativas entre sí.
-El peso del vehículo (`Weight`) presenta una correlación positiva fuerte con el valor del vehículo (`Value_vehicle`, $\rho$ = 0.87) y con la potencia (`Power`, $\rho$ = 0.67), lo que sugiere que estas tres variables podrían estar midiendo aspectos relacionados entre sí.
-Esto es relevante para etapas posteriores de modelación, ya que incluir variables que están muy correlacionadas entre sí podría generar redundancia en el modelo.
+El peso del vehículo (*Weight*) presenta una correlación positiva fuerte con el valor del vehículo *(Value_vehicle*, $\rho$ = 0.87) y con la potencia *(Power*, $\rho$ = 0.67), lo que sugiere que estas tres variables podrían estar midiendo aspectos relacionados entre sí.
+Lo anterior es relevante para las etapas posteriores de modelación, ya que incluir variables que están muy correlacionadas entre sí podría generar redundancia en el modelo.
 
 ```{r, echo = FALSE}
 ic_spearman <- function(var_x, var_y, df) {
@@ -1770,16 +1770,16 @@ knitr::kable(
 ```
 
 Los resultados de la tabla confirman que ninguna variable explicativa presenta una asociación fuerte con la frecuencia ni con la severidad de los siniestros.
-La correlación más alta corresponde a `N_claims_history`, con $\rho$ = 0.3782 para frecuencia y $\rho$ = 0.3645 para severidad, lo que indica una asociación positiva moderada consistente con lo observado en la matriz.
+La correlación más alta corresponde a *N_claims_history*, con $\rho$ = 0.3782 para la frecuencia y $\rho$ = 0.3645 para la severidad, presenta una asociación positiva moderada consistente con lo observado en la matriz.
 Este resultado es esperable desde una perspectiva actuarial, ya que el historial de reclamos es un predictor natural del comportamiento futuro.
 
-Las variables asociadas a características físicas del vehículo, como `Weight`, `Value_vehicle` y `Power`, muestran asociaciones positivas débiles con coeficientes entre 0.06 y 0.09, lo que sugiere que vehículos más pesados, valiosos o potentes están levemente asociados con mayor siniestralidad.
-Las variables temporales del asegurado, como `edad`, `antiguedad_licencia` y `Seniority`, presentan asociaciones negativas muy débiles con coeficientes entre -0.01 y -0.05, mientras que `edad_vehiculo` muestra una asociación positiva débil de $\rho$ = 0.066.
+Las variables asociadas a características físicas del vehículo, como *Weight, Value_vehicle* y *Power,* muestran asociaciones positivas débiles con coeficientes entre 0.06 y 0.09, lo que sugiere que vehículos más pesados, valiosos o potentes están levemente asociados con mayor siniestralidad.
+Las variables del asegurado, como *edad, antiguedad_licencia* y *Seniority,* presentan asociaciones negativas muy débiles con coeficientes entre -0.01 y -0.05, mientras que *edad_vehiculo* muestra una asociación positiva débil de $\rho$ = 0.066.
 
-En todos los casos los intervalos de confianza al 95% no contienen el cero, lo que indica que las asociaciones son estadísticamente distinguibles de cero.
+En todos los casos, los intervalos de confianza al 95% no contienen el cero, lo que indica que las asociaciones son estadísticamente distinguibles de cero.
 Sin embargo, dado que los coeficientes son cercanos a cero en la mayoría de los casos, estas asociaciones deben interpretarse como débiles en términos prácticos, no como relaciones sustantivas entre las variables.
 
-#### Comparación entre grupos para variables categóricas
+#### Comparación entre grupos definidos a partir de variables categóricas
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 frecuencia_promedio_vehiculo <- datos_modificados %>%
