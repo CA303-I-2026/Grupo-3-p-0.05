@@ -44,15 +44,15 @@ En vista de esto, las secciones posteriores se encargan de materializar las idea
 
 ## Análisis de la modelación
 
-Para esta sección se retomó el prototipo de modelación elaborado en la Bitácora #2.
-En esa etapa se había construido una primera versión de la base de datos modificada, en la cual se cargaban los datos originales, se transformaban las variables de fecha, se creaba una variable categórica para el tipo de vehículo y se calculaba la edad del asegurado.
+Para esta sección se retomó el prototipo de modelación elaborado en la segunda bitácora.
+Anteriormente, se había construido una primera versión de la base de datos modificada: se cargaban los datos originales, se transformaban las variables de fecha, se creaba una variable categórica para el tipo de vehículo y se calculaba la edad del asegurado.
 
-Sin embargo, para la Bitácora #3 fue necesario ampliar y mejorar ese procesamiento inicial, con el fin de que el código fuera más completo, robusto y reproducible.
+Sin embargo, para la presente bitácora fue necesario tanto ampliar como mejorar el procesamiento inicial, con el fin de que el código fuera más completo, robusto y reproducible.
 Por esta razón, se mantuvo la carga automática de la base original, pero se agregaron nuevas variables derivadas que son relevantes para el análisis actuarial, como la antigüedad de la licencia y la edad del vehículo.
 
 ### Carga de datos de forma automática
 
-Antes de iniciar el análisis descriptivo, se realiza la carga automática de la base de datos.
+Previo a iniciar el análisis descriptivo, se realiza la carga automática de la base de datos.
 Este paso permite que el código lea directamente el archivo desde la carpeta correspondiente, sin necesidad de seleccionar los datos manualmente.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -122,7 +122,7 @@ datos_modificados <- datos %>%
 
 El análisis descriptivo se organiza a partir de la pregunta de investigación del proyecto.
 Por esta razón, se seleccionan variables relacionadas con tres dimensiones principales: las características del asegurado, las características del vehículo y el historial de siniestros.
-Las variables `N_claims_year` y `Cost_claims_year` son centrales, ya que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
+Las variables *N_claims_year* y *Cost_claims_year* son centrales, ya que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
 
 #### Resumen general de la base de datos
 
@@ -172,14 +172,14 @@ knitr::kable(
 ```
 
 La tabla muestra que la base contiene 105,555 registros y 34 variables, correspondientes a 53,502 asegurados únicos.
-Esto indica que algunos asegurados aparecen más de una vez en la base, lo cual se confirma con el promedio de 1.97 registros por asegurado.
-Además, la información cubre contratos desde 1980 hasta renovaciones registradas en 2018, por lo que se dispone de un periodo amplio para el análisis.
-Finalmente, se observa que la base incluye cuatro tipos de vehículos: motocicleta, turismo, furgoneta y agrícola, lo cual permite comparar posteriormente el comportamiento de los siniestros según la categoría de riesgo asegurada.
+Lo anterior indica que algunos asegurados aparecen más de una vez en la base de datos, lo cual se confirma con el promedio de 1.97 registros por asegurado.
+Además, la información cubre contratos desde 1980 hasta renovaciones registradas en el 2018, de forma que se dispone de un amplio periodo para el análisis.
+Finalmente, se observa que la base incluye cuatro tipos de vehículos: motocicleta, turismo, furgoneta y agrícola; así, es posible comparar posteriormente el comportamiento de los siniestros según la categoría de riesgo asegurada.
 
 #### Tratamiento de valores faltantes
 
-También se revisa la presencia de valores faltantes, ya que estos pueden afectar el análisis descriptivo y la posterior construcción de modelos.
-Esta revisión permite identificar cuáles variables requieren tratamiento especial antes de ser utilizadas en una etapa de modelación.
+Asimismo, se revisa la presencia de valores faltantes, ya que estos pueden afectar el análisis descriptivo y la posterior construcción de los modelos.
+La revisión permite identificar cuáles variables requieren tratamiento especial antes de ser utilizadas en la etapa de modelación posterior.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_faltantes <- datos_modificados %>%
@@ -218,17 +218,17 @@ knitr::kable(
   )
 ```
 
-La tabla muestra que la base presenta valores faltantes únicamente en tres variables.
-La variable con mayor cantidad de datos faltantes es Date_lapse, con 70,408 registros faltantes, lo que representa un 66.7 % de la base.
+A partir de la tabla, se visualiza que la base presenta valores faltantes únicamente en tres variables.
+La variable con la mayor cantidad de datos faltantes es *Date_lapse*, con 70,408 registros faltantes, lo que representa un 66.7 % de la base.
 Esto puede deberse a que no todos los contratos han tenido una fecha de cancelación o finalización registrada.
 
-También se observan valores faltantes en Length, con 10,329 registros equivalentes al 9.79 %, y en Type_fuel, con 1,764 registros, equivalentes al 1.67 %.
-En comparación con Date_lapse, estas dos variables tienen una proporción menor de datos faltantes.
+También se observan valores faltantes en *Length*, con 10,329 registros equivalentes al 9.79 %, y en *Type_fuel*, con 1,764 registros, equivalentes al 1.67 %.
+En comparación con *Date_lapse*, estas dos variables tienen una proporción menor de datos faltantes.
 
-A partir de la revisión anterior, se definió un tratamiento básico para las variables con valores faltantes.
-La variable `Date_lapse` se excluye del análisis descriptivo principal, debido a que presenta una proporción elevada de datos ausentes y no resulta indispensable para responder la pregunta de investigación.
-En el caso de `Length`, se utiliza una imputación mediante la mediana según el tipo de vehículo, ya que se trata de una variable numérica asociada con las características físicas del automóvil.
-Finalmente, para `Type_fuel`, se eliminan los registros faltantes, pues representan una proporción baja de la base.
+En vista de la revisión anterior, se definió un tratamiento básico para las variables con valores faltantes.
+La variable *Date_lapse* se excluye del análisis descriptivo principal, debido a que presenta una proporción elevada de datos ausentes y no resulta indispensable para responder la pregunta de investigación.
+En el caso de *Length*, se utiliza una imputación mediante la mediana según el tipo de vehículo, ya que se trata de una variable numérica asociada con las características físicas del automóvil.
+Finalmente, para *Type_fuel*, se eliminan los registros faltantes, pues representan una proporción baja de la base.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 datos_analisis <- datos_modificados %>%
@@ -245,13 +245,13 @@ datos_analisis <- datos_modificados %>%
   filter(!is.na(Type_fuel))
 ```
 
-#### Resumen de frecuencia y severidad
+#### Resumen de la frecuencia y la severidad
 
 Para estudiar la frecuencia y la severidad de los siniestros, se seleccionan variables cuantitativas relacionadas con las características del asegurado, el vehículo y el historial de reclamos.
 En particular, se consideran variables como la edad, la antigüedad con la aseguradora, el número de siniestros, el costo anual de los siniestros, el valor del vehículo y otras características físicas del automóvil.
 
 Como primer acercamiento a la pregunta de investigación, se resumen las variables asociadas directamente con la frecuencia y la severidad de los siniestros.
-La frecuencia se representa mediante `N_claims_year`, mientras que la severidad se aproxima con `Cost_claims_year`.
+La frecuencia se representa mediante *N_claims_year*, mientras que la severidad se visualiza a través de *Cost_claims_year*.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 variables_modelacion <- c(
@@ -307,20 +307,20 @@ knitr::kable(
 ```
 
 La tabla muestra que la mayoría de los registros no presenta siniestros durante el año.
-Esto se observa en la mediana de siniestros anuales, que es 0, y en el porcentaje de registros sin siniestros, que corresponde al 81.21 %.
+Esto se observa en la mediana de siniestros anuales, que es cero, y en el porcentaje de registros sin siniestros, que corresponde al 81.21 %.
 Es decir, una parte importante de la cartera no generó reclamos en el periodo analizado.
 
 En cuanto a la frecuencia, el promedio de siniestros anuales es de 0.40, lo cual indica que, en general, la cantidad de reclamos por registro es baja.
 Sin embargo, el máximo observado es de 25 siniestros anuales, lo que evidencia la presencia de algunos casos extremos con una frecuencia mucho mayor que el comportamiento típico.
 
-Respecto a la severidad, el costo promedio anual es de 155.60, mientras que la mediana es 0.
-Esta diferencia indica que la distribución de los costos está concentrada en cero, pero existen algunos reclamos con montos elevados que aumentan el promedio.
-Esto se confirma con el costo máximo anual de 260,853.24.
+Respecto a la severidad, el costo promedio anual es de 155.60 euros, mientras que la mediana es cero.
+La diferencia observada indica que la distribución de los costos está concentrada en cero, no obstante, existen algunos reclamos con montos elevados que aumentan el promedio.
+Lo dicho antes se confirma con el costo máximo anual de 260,853.24 euros.
 
-#### Estadística descriptiva completa de variables cuantitativas
+#### Estadística descriptiva completa de las variables cuantitativas
 
-Además de las variables principales de frecuencia y severidad, se analizan variables cuantitativas relacionadas con el asegurado, el vehículo y el historial de reclamos.
-Esto permite observar la variabilidad de los datos e identificar posibles factores asociados con el riesgo asegurado.
+Además de las variables principales: la frecuencia y la severidad, se analizan variables cuantitativas relacionadas con el asegurado, el vehículo y el historial de reclamos.
+De esta manera, se observa la variabilidad de los datos y se identifican posibles factores asociados con el riesgo.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 variables_relevantes <- c(
@@ -379,17 +379,17 @@ knitr::kable(
   )
 ```
 
-La tabla muestra que no hay datos nulos en las variables analizadas.
+La construcción arriba, muestra que no hay datos nulos en las variables analizadas.
 
-Lo más importante es que las variables de reclamos, como Cost_claims_year y N_claims_year, están muy concentradas en cero, porque sus cuartiles y medianas son 0.
-Esto indica que la mayoría de asegurados no presentó reclamos, aunque existen algunos casos extremos con costos o cantidades muy altas.
+Es importante resaltar que las variables de reclamos, como *Cost_claims_year* y *N_claims_year*, están muy concentradas en cero: sus cuartiles y sus medianas son cero.
+Constituye un indicador de que la mayoría de asegurados no presentó reclamos, aunque existen algunos casos extremos con costos o cantidades muy altas.
 
-También se observan posibles valores atípicos en variables como Cost_claims_year, Power, Weight y Value_vehicle, por sus máximos elevados.
+Por otro lado, se observan posibles valores atípicos en variables como *Cost_claims_year, Power, Weight* y *Value_vehicle*, por sus máximos elevados.
 
 #### Concentración de ceros y umbral de 900 euros
 
 Dado que la pregunta de investigación considera el comportamiento de los reclamos cuando su costo supera los 900 euros, se analiza la concentración de observaciones en cero y alrededor de ese umbral.
-Este paso permite identificar si existe una acumulación particular de registros que deba considerarse en la etapa de modelación.
+Tal paso permite identificar si existe una acumulación particular de registros que deba considerarse en la etapa de la modelación.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_ceros_umbral <- datos_modelacion %>%
@@ -423,16 +423,16 @@ knitr::kable(
   )
 ```
 
-Esta tabla confirma que hay una alta concentración de ceros en los reclamos.
-El 81.21% de los registros no tuvo siniestros anuales, lo cual coincide con los registros cuyo costo fue igual a 0.
-Esto significa que la mayoría de asegurados no generó costos por reclamos durante el año.
+La tabla extendida, confirma que hay una alta concentración de ceros en los reclamos.
+El 81.21% de los registros no presentó siniestros anuales, lo cual coincide con los registros cuyo costo fue igual a cero.
+Así, la mayoría de los asegurados no generó costos por concepto de reclamaciones durante el año.
 
-Además, no hay registros con costo exactamente igual a 900 euros, pero sí hay 3779 casos con costos mayores a 900, equivalentes al 3.64% de la base.
+Además, no hay registros con un costo exactamente igual a los 900 euros, pero sí hay 3,779 casos con costos mayores a los 900 euros, equivalentes al 3.64% de la base de datos.
 
 #### Detección de valores atípicos
 
 Como parte del análisis descriptivo, se revisa la presencia de valores atípicos en las variables cuantitativas más relevantes.
-Esta revisión es importante porque los datos de seguros suelen presentar valores extremos, especialmente en variables relacionadas con costos y número de reclamos.
+Dicha revisión es importante en vista de que los datos de seguros suelen presentar valores extremos, especialmente en las variables relacionadas con los costos y el número de reclamos.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 variables_outliers <- c(
@@ -489,17 +489,17 @@ knitr::kable(
   )
 ```
 
-Lo más relevante es que Cost_claims_year y N_claims_year tienen el mayor porcentaje de atípicos, con 18.79% cada una.
-Esto ocurre porque la mayoría de registros está en cero, entonces cualquier valor positivo de reclamo se identifica como atípico.
+El elemento de mayor relevancia percibido, consiste en que las variables de *Cost_claims_year* y *N_claims_year* tienen el mayor porcentaje de valores atípicos, con 18.79% cada una.
+Esto ocurre porque la mayoría de registros está en cero, de forma que cualquier valor positivo de reclamo se identifica como atípico.
 
-También destacan Weight, Power, R_Claims_history y Seniority, con porcentajes entre 7% y 9.7%, lo que sugiere presencia de valores extremos en características del vehículo y del historial del asegurado.
+También sobresalen *Weight, Power, R_Claims_history* y *Seniority*, con porcentajes entre 7% y 9.7%, lo que sugiere la presencia de valores extremos en las características del vehículo y el historial del asegurado.
 
-En cambio, variables como edad, antiguedad_licencia y edad_vehiculo tienen pocos valores atípicos, por lo que parecen más estables.
+En contraste, ciertas variables como *edad, antiguedad_licencia* y *edad_vehiculo* presentan escasos valores atípicos, a la vez que parecieran ser más estables.
 
-#### Frecuencia y severidad según tipo de vehículo
+#### La frecuencia y la severidad según el tipo de vehículo
 
-Para responder a la pregunta de investigación, también se analiza si el comportamiento de los siniestros varía según el tipo de vehículo asegurado.
-Esta comparación permite identificar posibles diferencias entre categorías de riesgo.
+En vías de responder a la pregunta de investigación, también se analiza el comportamiento de los siniestros de acuerdo al tipo de vehículo asegurado.
+La comparación a efectuar, permite la identificación de posibles diferencias entre las categorías de riesgo.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_categoria <- datos_modelacion %>%
@@ -528,17 +528,17 @@ knitr::kable(
 ```
 
 La mayoría de registros corresponde a vehículos de turismo, con casi el 80% del total.
-Luego siguen las furgonetas con 12.73% y las motocicletas con 6.61%.
+Luego, siguen las furgonetas con 12.73% y las motocicletas con 6.61%.
 
-En cuanto a siniestros, las furgonetas presentan el mayor promedio de siniestros, con 0.568, y también el costo promedio más alto, con 166.35.
-Los vehículos de turismo tienen un costo promedio parecido, de 165.10, pero un promedio de siniestros menor.
+En cuanto a los siniestros, las furgonetas presentan el mayor promedio de estos, con 0.568, y también el costo promedio más alto, con un valor de 166.35 euros.
+Los vehículos de turismo tienen un costo promedio parecido: 165.10 euros, pero un promedio de siniestros menor.
 
-Las categorías agrícola y motocicleta muestran porcentajes muy altos sin siniestros, especialmente agrícola con 99.86%, por lo que su costo promedio es muy bajo.
+Las categorías agrícola y motocicleta muestran porcentajes muy altos sin siniestros, especialmente la clase agrícola con 99.86%, en consecuencia, su costo promedio es muy bajo.
 
-#### Frecuencia y severidad según zona
+#### La frecuencia y la severidad según el tipo de zona
 
-También se analiza el comportamiento de los siniestros según la zona registrada en la base de datos.
-Esta variable permite explorar si existen diferencias entre zonas urbanas y rurales en la frecuencia y severidad de los reclamos.
+Igualmente, se analiza el comportamiento de los siniestros según la zona registrada en la base de datos.
+Esta variable permite explorar si existen diferencias entre las zonas urbanas y las zonas rurales, en lo que respecta a la frecuencia y la severidad de los reclamos.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_zona <- datos_modelacion %>%
@@ -571,22 +571,22 @@ knitr::kable(
 
 En primer lugar, se observa que la mayor parte de la base corresponde a la zona rural, con un 72.7% de los registros.
 La zona urbana representa una proporción menor, con 27.3%.
-Esto indica que la cartera analizada tiene una mayor presencia de asegurados rurales.
+La cartera analizada tiene una mayor presencia de asegurados rurales.
 
 Sin embargo, aunque la zona rural tiene más registros, la zona urbana presenta un mayor promedio de siniestros, con 0.458 frente a 0.376 en la zona rural.
-Esto sugiere que, en promedio, los asegurados urbanos reportan siniestros con mayor frecuencia.
+Lo anterior sugiere que, en promedio, los asegurados urbanos reportan siniestros con mayor frecuencia.
 
-También se observa que el costo promedio es más alto en la zona urbana: 175.56 frente a 148.10 en la zona rural.
-Esto podría indicar que los siniestros urbanos no solo ocurren con mayor frecuencia, sino que además tienden a generar costos ligeramente más altos.
+También se observa que el costo promedio es más alto en la zona urbana: 175.56 euros frente a 148.10 euros en la zona rural.
+De esta forma, los siniestros urbanos no solo ocurren con mayor frecuencia, sino que además tienden a generar costos más altos.
 
-Por otro lado, en ambas zonas el costo mediano es 0, lo cual confirma que la mayoría de registros no presenta costos por siniestros.
+Por otro lado, en ambas zonas la mediana del costo es cero, lo cual confirma que la mayoría de registros no presenta costos por concepto de reclamaciones.
 Aun así, el porcentaje sin siniestros es un poco menor en la zona urbana, con 79.36%, comparado con 81.91% en la zona rural.
 
 #### Gráficos relevantes para el análisis descriptivo
 
-A través de la presentación de distintos gráficos, se abordará información relevante para abordar la pregunta de investigación.
+A través de la presentación de distintos gráficos, se abordará la información relevante para la pregunta de investigación planteada.
 
-Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con costo entre 1 y 5000 euros.
+Como se observa en la @fig-costo-reclamos, se presenta la distribución del costo de los siniestros por año, considerando únicamente los registros con un costo entre 1 y 5000 euros.
 
 ```{r fig-costo-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo de siniestros por año", fig.align='center'}
 datos_modificados %>%
@@ -1034,7 +1034,7 @@ $$
 (X_i-X_j)(Z_i-Z_j)<0.
 $$
 
-Si $C$representa el número de pares concordantes y $D$ el número de pares discordantes, el coeficiente de Kendall se define como:
+Si $C$ representa el número de pares concordantes y $D$ el número de pares discordantes, el coeficiente de Kendall se define como:
 
 $$
 \tau =
@@ -2374,7 +2374,6 @@ ggsave("../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehicu
 
 ![Proporción de reclamos mayores a €900 según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/proporcion_mayores_900_tipo_vehiculo.png){#fig-proporcion-mayores-900-tipo-vehiculo fig-pos="H"}
 
-
 Como se puede observar, las furgonetas son las que tienen la mayor proporción de reclamos mayores a €900, presentando un 4.35% de casos en los que los reclamos son mayores a €900, seguidamente se encuentran los turismos con 3.79%, luego las motocicletas con 0.92% y por último los vehículos agrícolas con 0.00%, en donde no hay ningún caso en el que un vehículo agrícola posea un reclamo mayor a €900.
 
 Este hallazgo indica que las furgonetas y turismos, no solamente poseen mayor frecuencia promedio, sino que también poseen mayor proporción de casos en donde los reclamos superan o son iguales al monto de los €900, lo que puede indicar que estos dos tipos de vehículos son relevantes para explicar el comportamiento en el umbral de los €900.
@@ -2498,7 +2497,7 @@ La variable del tipo de vehículo "categoria", deberá ser considerada para aná
 :::
 
 ::: callout-note
-# Ficha 4: ajuste de la distribución lognormal 
+# Ficha 4: ajuste de la distribución lognormal
 
 ***Nivel descriptivo***
 
@@ -2508,20 +2507,26 @@ La variable del tipo de vehículo "categoria", deberá ser considerada para aná
 
 *Resumen en una oración:* En el intervalo $0 < Y < 900$, la distribución Lognormal obtuvo un AIC de 211,339.9, mientras que la distribución Gamma obtuvo un AIC de 212,684.5, por lo que se seleccionó la Lognormal como la distribución con mejor ajuste.
 
-*Método o análisis que lo produjo:* Se ajustaron dos distribuciones candidatas, Lognormal y Gamma, para los costos anuales positivos menores a 900 euros mediante el paquete `fitdistrplus` de R y la función `fitdist()`. Posteriormente, se compararon los valores del Criterio de Información de Akaike, AIC, para determinar cuál distribución presentaba mejor ajuste.
+*Método o análisis que lo produjo:* Se ajustaron dos distribuciones candidatas, Lognormal y Gamma, para los costos anuales positivos menores a 900 euros mediante el paquete `fitdistrplus` de R y la función `fitdist()`.
+Posteriormente, se compararon los valores del Criterio de Información de Akaike, AIC, para determinar cuál distribución presentaba mejor ajuste.
 
-*Evidencia:* El análisis del umbral de 900 euros (gráficos 10, 11 y 12 de la bitácora 3) muestra que la distribución Lognormal obtuvo un AIC menor que la distribución Gamma. Además, los parámetros estimados para la distribución Lognormal fueron `meanlog = 5.278536` y `sdlog = 0.969318`.
+*Evidencia:* El análisis del umbral de 900 euros (gráficos 10, 11 y 12 de la bitácora 3) muestra que la distribución Lognormal obtuvo un AIC menor que la distribución Gamma.
+Además, los parámetros estimados para la distribución Lognormal fueron `meanlog = 5.278536` y `sdlog = 0.969318`.
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque permite estudiar la severidad de los siniestros, específicamente el comportamiento de los costos anuales positivos que no alcanzan el umbral de 900 euros. Esto ayuda a diferenciar los costos moderados de los costos de mayor severidad.
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque permite estudiar la severidad de los siniestros, específicamente el comportamiento de los costos anuales positivos que no alcanzan el umbral de 900 euros.
+Esto ayuda a diferenciar los costos moderados de los costos de mayor severidad.
 
-*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por Delignette-Muller y Dutang (2015), quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste. En este caso, el uso de `fitdistrplus` permitió aplicar esa lógica metodológica al comparar la distribución Lognormal y la Gamma mediante el AIC, respaldando la elección de la Lognormal para los costos positivos menores a 900 euros.
+*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por Delignette-Muller y Dutang (2015), quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste.
+En este caso, el uso de `fitdistrplus` permitió aplicar esa lógica metodológica al comparar la distribución Lognormal y la Gamma mediante el AIC, respaldando la elección de la Lognormal para los costos positivos menores a 900 euros.
 
-*Lo que NO explica este resultado:* Este resultado no explica por qué ciertos asegurados presentan costos positivos menores a 900 euros, ni permite concluir cuáles variables del asegurado o del vehículo influyen en esos costos. Además, como advierten Delignette-Muller y Dutang (2015), la elección de una distribución no debería depender únicamente de un criterio automático como el AIC, sino que también debe considerar la interpretación del problema y la visualización del ajuste.
+*Lo que NO explica este resultado:* Este resultado no explica por qué ciertos asegurados presentan costos positivos menores a 900 euros, ni permite concluir cuáles variables del asegurado o del vehículo influyen en esos costos.
+Además, como advierten Delignette-Muller y Dutang (2015), la elección de una distribución no debería depender únicamente de un criterio automático como el AIC, sino que también debe considerar la interpretación del problema y la visualización del ajuste.
 
-*Implicación para el siguiente paso:* La distribución Lognormal puede utilizarse como componente para modelar los costos positivos menores a 900 euros dentro del análisis de distribución mixta. Posteriormente, este componente debe complementarse con el análisis de la masa en cero y de los costos mayores o iguales a 900 euros, ya que `fitdistrplus` permite ajustar distribuciones a datos positivos, pero no resuelve por sí solo el problema de la alta concentración de ceros ni la posible cola derecha de los costos.
-::: 
+*Implicación para el siguiente paso:* La distribución Lognormal puede utilizarse como componente para modelar los costos positivos menores a 900 euros dentro del análisis de distribución mixta.
+Posteriormente, este componente debe complementarse con el análisis de la masa en cero y de los costos mayores o iguales a 900 euros, ya que `fitdistrplus` permite ajustar distribuciones a datos positivos, pero no resuelve por sí solo el problema de la alta concentración de ceros ni la posible cola derecha de los costos.
+:::
 
 ::: callout-note
 # Ficha 5: asociatividad entre el historial de reclamos y la siniestralidad anual
@@ -2542,9 +2547,11 @@ La variable del tipo de vehículo "categoria", deberá ser considerada para aná
 
 *Conexión con la pregunta de investigación:* Este hallazgo se relaciona directamente con la pregunta de investigación, ya que permite identificar que el historial de reclamos del asegurado está asociado tanto con la frecuencia como con el costo anual de los siniestros.
 
-*Contraste con la literatura:* En relación con lo planteado por Vinuesa (2016), este resultado muestra una aplicación práctica del análisis de correlación, ya que se utiliza para explorar la relación entre variables cuantitativas del proyecto. En particular, la correlación positiva entre `N_claims_history`, `N_claims_year` y `Cost_claims_year` permite identificar una asociación entre el historial de reclamos y la siniestralidad anual.
+*Contraste con la literatura:* En relación con lo planteado por Vinuesa (2016), este resultado muestra una aplicación práctica del análisis de correlación, ya que se utiliza para explorar la relación entre variables cuantitativas del proyecto.
+En particular, la correlación positiva entre `N_claims_history`, `N_claims_year` y `Cost_claims_year` permite identificar una asociación entre el historial de reclamos y la siniestralidad anual.
 
-*Lo que NO explica este resultado:* La correlación no permite afirmar causalidad. Es decir, no se puede concluir que tener más reclamos históricos cause directamente más siniestros en el año analizado, sino solamente que ambas variables tienden a moverse en la misma dirección.
+*Lo que NO explica este resultado:* La correlación no permite afirmar causalidad.
+Es decir, no se puede concluir que tener más reclamos históricos cause directamente más siniestros en el año analizado, sino solamente que ambas variables tienden a moverse en la misma dirección.
 
 *Implicación para el siguiente paso:* La variable `N_claims_history` debe considerarse como una posible variable explicativa importante en los análisis posteriores, especialmente al estudiar la frecuencia de siniestros y los costos asociados.
 :::
@@ -2901,6 +2908,8 @@ Con base en estos hallazgos, se contempla utilizar esta variable para el anális
 
 Se detalla a continuación el respectivo registro:
 
+#### Primer registro
+
 *Herramienta:* ChatGPT.
 
 *Prompt:* Se solicitó apoyo (en varios prompts) para comprender cómo utilizar la librería `fitdistrplus` en R dentro de la metodología del proyecto, especialmente para analizar posibles distribuciones asociadas a la severidad de los siniestros.
@@ -2914,6 +2923,8 @@ También ayudó a relacionar el uso de esta librería con una referencia bibliog
 
 *Aprendizaje:* Se comprendió que el uso de una librería estadística debe estar acompañado de una justificación teórica y metodológica, de modo que las decisiones de modelación puedan explicarse con mayor claridad.
 
+#### Segundo registro
+
 *Herramienta:* Deepseek.
 
 *Prompt:* Se solicitó información (en varios prompts) para comprender cómo utilizar la librería `fitdistrplus` en R dentro, y funciones útiles para el ajuste de distintas distribuciones para modelar la distribución mixta de los costos anuales.
@@ -2925,6 +2936,8 @@ También ayudó a relacionar el uso de esta librería con una referencia bibliog
 *Modificaciones:* Se adaptó la explicación al contexto del proyecto, utilizando las distribuciones candidatas seleccionadas por el grupo a partir de la visualización de la forma del histograma de los costos anuales.
 
 *Aprendizaje:* Se comprendió que el uso de esta libraría y sus distintas funciones haría más sencilla la construcción de la distribución mixta.
+
+#### Tercer registro
 
 *Herramienta:* Gemini.
 
@@ -2960,6 +2973,8 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 |                                | Diario de aprendizaje                                 |
 |                                |                                                       |
 |                                | Construcción de fichas de resultados                  |
+|                                |                                                       |
+|                                | Revisión de la redacción del documento                |
 +--------------------------------+-------------------------------------------------------+
 | **Nombre**                     | **Contribuciones**                                    |
 +--------------------------------+-------------------------------------------------------+
