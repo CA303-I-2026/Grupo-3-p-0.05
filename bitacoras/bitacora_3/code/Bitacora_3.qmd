@@ -1556,7 +1556,8 @@ comparacion_ceros_poisson <- ceros_frecuencia %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   ylim(0, 100) +
   estilo_grupo3 + 
-  theme(plot.caption = element_text(hjust = 2))
+  theme(plot.caption = element_text(hjust = 2),
+        plot.subtitle = element_text(hjust = 0.5) )
 
 ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",comparacion_ceros_poisson, width = 8, height = 7, dpi = 300)
 ```
