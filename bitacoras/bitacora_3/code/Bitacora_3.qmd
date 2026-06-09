@@ -2679,6 +2679,37 @@ knitr::kable(
 
 ## La imagen que cuenta la historia
 
+A continuación, se adjunta la imagen que, hasta ahora, representa la mejor visualización del trabajo:
+
+![](images/clipboard-1050018462.png){fig-align="center" width="560"}
+
+Previo a profundizar en la argumentación, es preciso recordar que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros.
+En la bitácora pasada, se definió el pimer aspecto mencionado como el elemento central del proyecto, de modo que la imagen seleccionada se enfoca en presentar nueva información respecto a este.
+
+Además de lo mencionado anteriormente, otro criterio de selección de la imagen consistió en la relevancia de la información que presenta.
+A partir de la visualización, es posible notar que determinadas variables de interés para el proyecto poseen ya sea una correlación despreciable o una correlación mediana, con la frecuencia y la severidad de los siniestros, variables representandas a través de *N_claims_year* y *Cost_claims_year,* respectivamente.
+
+En primer lugar, se tiene que las variables del valor del vehículo (*Value_vehicle*), la potencia del vehículo (*Power*), el peso del vehículo (*Weigth*), la antigüedad con la aseguradora (*Seniority*) y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros.
+De acuerdo a @vinuesa2016, se presenta una correlación despreciable cuando el coeficiente calculado es estrictamente menor al valor absoluto de 0.1, condición que se cumple en el caso de las variables mencionadas.
+Este resultado es de gran importancia, ya que se determina que la edad del asegurado, la antigüedad con la aseguradora, el valor del vehículo, al igual que la potencia y el peso del mismo, son componentes que poseen una relación despreciable con las variables respuesta.
+
+Por otro lado, en lo que respecta al historial de siniestros (*N_claims_history*), se tiene que presenta una correlación mediana con la frecuencia y la severidad de los mismos.
+Según @vinuesa2016, el valor del coeficiente para una correlación mediana debe ser estrictamente mayor al valor absoluto de 0.3 y menor o igual al valor absoluto de 0.5.
+El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0.38 y 0.36 respectivamente, sitúandose en el rango especificado.
+Así, se determina que el historial de siniestros posee una relación media con las variables respuesta.
+
+Seguidamente, a partir de la observación de la imagen y en el contexto del aseguramiento, alguien podría distinguir un elemento principal: los asegurados con un mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado.
+Así, el historial de reclamos constituye una característica de los asegurados indicadora de riesgo.
+Se podría tomar la decisión de emprender acciones pertinentes que mitiguen el riesgo asociado a dicha característica, con el objetivo de mantener un mayor control sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y resguardar de esta forma la capacidad de pago de la aseguradora.
+
+En conocimiento de la información extendida por el gráfico y en consideración de lo desarrollado hasta la segunda bitácora, la comprensión del problema ha evolucionado.
+Con los resultados obtenidos en la presente bitácora, mostrados además en la imagen, se concluyó que determinadas variables comprendidas en el problema de investigación poseen una relación despreciable con las variables respuesta, de manera que su intervención en ellas es despreciable de igual manera.
+Dado lo anterior, se determina a la vez que estas variables no representan buenos prospectos explicativos para el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
+
+Finalmente, en caso de que la imagen presentada fuera la portada del artículo del proyecto, predominaría una historia: la relación que presentan determinadas variables entre sí.
+La visualización no solo muestra la correlación de las variables contempladas con la frecuencia y la severidad de los siniestros, sino que también expone la correlación que presentan las variables entre ellas mismas.
+Así, la imagen constituye un espacio de interacción multidireccional, en el cual se cuentan múltiples historias simultáneamente, la historia de cómo interactúan las variables entre sí.
+
 # Arco narrativo del proyecto
 
 # Parte de escritura
