@@ -1,4 +1,4 @@
-# Proyecto CA303 — [Título del Proyecto]
+# Proyecto CA303 — Intervención de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y la severidad de los siniestros
 
 ## Integrantes del grupo
 
