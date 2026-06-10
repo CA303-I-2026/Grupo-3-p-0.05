@@ -865,6 +865,24 @@ Segundo, se observa una concentración importante de registros sin siniestros o 
 Tercero, las variables relacionadas con los costos presentan asimetría y valores extremos, un elemento característico de los datos de seguros.
 Finalmente, las comparaciones por tipo de vehículo y zona muestran que existen diferencias entre grupos, por lo que estas variables pueden ser consideradas como posibles factores explicativos en la modelación posterior.
 
+### Ajuste completo del modelo seleccionado
+
+Con base en los hallazgos del análisis descriptivo, el equipo seleccionó cuatro métodos complementarios que permiten responder de manera progresiva a la pregunta de investigación: el análisis descriptivo de la frecuencia y la severidad, el estudio de asociaciones entre variables cuantitativas mediante correlaciones de Spearman con intervalos de confianza, la comparación entre grupos definidos por variables categóricas y el análisis del umbral de los 900 euros mediante una distribución mixta.
+La descripción detallada del fundamento matemático de cada uno de estos métodos se presenta en la sección 1.2 de este documento, donde también se justifica explícitamente por qué cada método fue elegido por encima de alternativas.
+Los resultados del ajuste, es decir, la ejecución completa de estos métodos sobre los datos reales, se encuentran en la sección 1.2.4, donde cada análisis incluye comentarios que lo vinculan con la pregunta de investigación.
+
+La selección de métodos responde directamente a las características observadas en los datos: la concentración de ceros hace necesario tratar la frecuencia y la severidad de forma separada; la asimetría y los valores extremos justifican el uso de coeficientes no paramétricos en lugar de Pearson; la presencia de variables categóricas como el tipo de vehículo exige un enfoque comparativo entre grupos; y la concentración de reclamos alrededor del umbral de los 900 euros motiva el modelado mediante una estructura de mezcla en lugar de una distribución única.
+En este sentido, el modelo es la respuesta directa a lo que los propios datos mostraron en la fase exploratoria.
+
+### Análisis de diagnósticos del modelo
+
+La calidad del ajuste se evaluó mediante distintos elementos de diagnóstico, que se encuentran integrados en los resultados de la sección 1.2.4.
+Para el análisis de correlaciones de Spearman, el diagnóstico se basa en los intervalos de confianza al 95% construidos con la transformación de Fisher: un intervalo que no contiene el cero indica que la asociación es estadísticamente distinguible de cero, mientras que la magnitud del coeficiente permite juzgar si esa asociación es sustantiva o meramente formal.
+Para la comparación entre grupos categóricos, la prueba de Kruskal-Wallis opera como herramienta de diagnóstico inferencial, al evaluar si las diferencias observadas entre categorías como el tipo de vehículo o la zona de circulación son consistentes con variaciones esperables bajo la hipótesis de igualdad distribucional.
+Para el análisis del umbral de los 900 euros, el diagnóstico se realiza mediante los gráficos generados por el paquete `fitdistrplus`: la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P permiten evaluar si las distribuciones seleccionadas, lognormal para ambos componentes positivos, representan adecuadamente el comportamiento observado en los datos.
+
+De manera general, los diagnósticos realizados sugieren que los métodos seleccionados son apropiados para las características de los datos analizados. Además, las asociaciones observadas son estadísticamente distinguibles de cero, aunque de magnitud limitada, y la estructura de mezcla logra capturar adecuadamente el comportamiento de la distribución del costo anual de siniestros. Estos resultados se presentan con mayor detalle en las secciones siguientes.
+
 ## Propuesta metodológica
 
 La propuesta metodológica del proyecto se organiza como una secuencia de distintos análisis, orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
@@ -1473,11 +1491,19 @@ Los cuatro métodos descritos anteriormente serán ejecutados en su totalidad de
 El análisis descriptivo de la frecuencia y la severidad, el análisis de correlaciones de Spearman con intervalos de confianza de Fisher, la comparación entre grupos categóricos y el análisis del umbral de los 900 euros mediante una distribución mixta; se desarrollaron con los datos reales del dataset de Lledó & Pavía (2024), por lo que el programa maqueta y la ejecución coinciden en el mismo apartado.
 En cuanto a la validación, esta se aborda mediante tres elementos complementarios: los intervalos de confianza al 95% construidos con la transformación de Fisher para cada coeficiente de correlación de Spearman, los gráficos diagnósticos generados por el paquete fitdistrplus para cada componente de la distribución mixta, que incluyen la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P, y la prueba de Kruskal-Wallis aplicada a las variables categóricas, cuyos resultados se presentan en la sección de comparación entre grupos.
 
-### Programa maqueta
+### Programa maqueta, etapa de validación y respaldo de la propuesta metodológica
 
-### Etapa de validación
+Dado que los cuatro métodos descritos anteriormente se ejecutan directamente sobre los datos reales del *dataset* de Lledó & Pavía (2024), el programa maqueta y los resultados finales coinciden en un mismo espacio de trabajo.
+Es decir, no existe una fase de prototipado separada del análisis real: el código que se presenta a continuación es, a la vez, el programa exploratorio en el que se afinaron los parámetros y la implementación definitiva que produce los resultados reportados.
+Esta decisión responde a que los datos ya estaban disponibles desde la primera bitácora y a que el equipo consideró más transparente mostrar directamente cómo cada función, parámetro y gráfico surgió de la exploración iterativa del *dataset* real.
 
-### Respaldo de la propuesta metodológica
+La validación de cada método se encuentra integrada en el propio análisis, no en una sección separada.
+Para el análisis de asociación entre variables cuantitativas, la validez se sustenta en los intervalos de confianza al 95% construidos mediante la transformación de Fisher para cada coeficiente de correlación de Spearman: si el intervalo no contiene el cero, la asociación es estadísticamente distinguible de cero.
+Para la comparación entre grupos categóricos, se aplica la prueba de Kruskal-Wallis, cuyo resultado aparece en la sección correspondiente y permite evaluar si las diferencias observadas entre grupos son consistentes con lo que cabría esperar bajo la hipótesis nula de igualdad de distribuciones.
+Finalmente, para el análisis del umbral de los 900 euros mediante distribución mixta, la validación se realiza a través de los gráficos diagnósticos generados por el paquete `fitdistrplus`: la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P permiten juzgar visualmente si la distribución seleccionada representa adecuadamente los datos de cada componente.
+
+En conjunto, los resultados que se presentan a continuación constituyen el respaldo empírico de la propuesta metodológica.
+Cada análisis se conecta con la pregunta de investigación mediante comentarios explícitos dentro del propio texto, de modo que sea posible rastrear, para cada hallazgo, de qué manera este contribuye, o no, a explicar la frecuencia y la severidad de los siniestros en la cartera de seguros de automóviles analizada.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
@@ -1510,6 +1536,11 @@ estilo_grupo3 <- theme_cowplot(font_size = 12) +
 ```
 
 #### Análisis descriptivo de la frecuencia y la severidad
+
+El primer conjunto de resultados corresponde al análisis descriptivo de las dos variables centrales del proyecto.
+La finalidad de este análisis es caracterizar la estructura de la siniestralidad antes de aplicar métodos comparativos o de ajuste distribucional.
+Tal como se anticipó en la formulación metodológica, la frecuencia y la severidad se analizan de manera separada, dada su naturaleza estadística diferente.
+Los resultados que se presentan a continuación son, al mismo tiempo, el programa maqueta y la ejecución final: dado que el análisis se realizó sobre los datos reales desde el inicio, no hay distinción entre la fase de exploración y la fase de reporte.
 
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 distribucion_frecuencia <- datos %>% 
@@ -1656,14 +1687,18 @@ Se justifica de esta manera el uso de la mediana como medida principal de tenden
 
 #### Análisis de asociación entre las variables cuantitativas
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
-shapiro.test(datos$N_claims_year[1:5000])
-```
+Una vez completado el análisis descriptivo de la frecuencia y la severidad, el segundo método explora si las variables cuantitativas del asegurado o del vehículo se asocian con el número o el costo de los siniestros.
+Este análisis no busca establecer causalidad, sino identificar patrones preliminares que orienten la interpretación.
+Como primer paso, se determina el método de correlación apropiado mediante la prueba de normalidad de Shapiro-Wilk: si se rechaza la normalidad, se prioriza el coeficiente de Spearman sobre Pearson, lo que constituye en sí mismo un elemento de diagnóstico que garantiza la adecuación del método al tipo de datos analizados.
 
 Para determinar el método de correlación más adecuado, se aplicó la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la variable *N_claims_year*.
 Se obtuvo un estadístico W = 0.37226 y un p-valor \< 2.2e-16.
 Como el p-valor es menor a 0.05, se rechaza la hipótesis de normalidad, por lo que se descarta el coeficiente de Pearson y se utiliza Spearman para el análisis de correlación.
 Se eligió Spearman sobre Kendall porque con muestras grandes, como la de este proyecto, ambos coeficientes tienden a producir conclusiones similares, pero Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para este tipo de análisis exploratorio.
+
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+shapiro.test(datos$N_claims_year[1:5000])
+```
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
 # PENDIENTE: Gráficos de dispersión
@@ -1781,6 +1816,12 @@ Sin embargo, dado que los coeficientes son cercanos a cero en la mayoría de los
 
 #### Comparación entre grupos definidos a partir de variables categóricas
 
+Una vez caracterizadas las asociaciones entre variables cuantitativas, el análisis avanza hacia las variables categóricas del *dataset*.
+Este tercer método completa el panorama exploratorio al incorporar factores que no pueden estudiarse mediante correlación: el tipo de vehículo, la zona de circulación y el tipo de combustible.
+La comparación entre grupos responde directamente a la pregunta de investigación, pues permite identificar si ciertas categorías concentran una mayor frecuencia de siniestros, una mayor proporción de costos positivos o una severidad más alta cuando ocurre un reclamo.
+Para cada variable categórica se presentan gráficos de barras para la frecuencia, boxplots para la severidad y tablas resumen que integran ambas dimensiones.
+Al final de cada bloque comparativo se incluye la prueba de Kruskal-Wallis como elemento de validación, cuyo resultado permite evaluar si las diferencias observadas entre grupos son estadísticamente consistentes.
+
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 frecuencia_promedio_vehiculo <- datos_modificados %>%
   group_by(categoria) %>%
@@ -1794,7 +1835,7 @@ frecuencia_promedio_vehiculo <- datos_modificados %>%
        y = "Frecuencia promedio de siniestros por año",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   scale_y_continuous(breaks = seq(0, 0.6, 0.1)) +
-  ylim (0, 0.6) + # Hacer que el eje "y" vaya de 0 hasta 0.6
+  ylim (0, 0.6) + 
   guides(fill = "none") +
   estilo_grupo3
 
@@ -2256,6 +2297,11 @@ Como ya se observó en los análisis anteriores, ambos grupos presentan un terce
 En conjunto, estos resultados sugieren que el tipo de combustible tiene una influencia moderada sobre la frecuencia de siniestros, mientras que su efecto sobre la severidad es limitado.
 
 #### Análisis del umbral de 900 euros mediante distribución mixta
+
+El cuarto y último método del análisis integra los hallazgos anteriores al estudiar con mayor detalle la estructura del costo anual de siniestros en torno al umbral de los 900 euros.
+La comparación entre grupos ya mostró que, en prácticamente todos los subconjuntos analizados, el tercer cuartil del costo positivo se ubica en 882 euros, lo que sugiere una concentración sistemática de siniestros cerca de ese umbral.
+El análisis de distribución mixta permite formalizar esa observación, estimando las proporciones de cada componente y las distribuciones paramétricas que mejor describen los costos en cada rango.
+Este método responde directamente a la pregunta de investigación, pues permite cuantificar qué fracción de la cartera genera reclamos de alta severidad y caracterizar la forma de esa distribución.
 
 Para estudiar el comportamiento del costo anual de los siniestros en el umbral de los €900, se propuso un modelo de distribución mixta, separado en tres componentes, primero, una masa puntual ubicada en cero, para la cual los costos corresponden a 0 (Y = 0).
 Segundo, una distribución para los costos ubicados entre €0 y €900, sin incluir (0 \< Y \< 900).
