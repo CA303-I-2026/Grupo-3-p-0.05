@@ -667,7 +667,7 @@ Por otro lado, la @fig-violin-combinado muestra la comparación entre la frecuen
 
 ![Gráfico comparativo entre el número y el costo de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/violin_combinado.png){#fig-violin-combinado width="100%"}
 
-```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-violin-siniestros, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo y cantidad de siniestros por año según tipo de vehículo", fig.align='center'}
 
 violin_frecuencia <- datos_modificados %>%
   filter(is.finite(N_claims_year)) %>%
@@ -726,7 +726,7 @@ Las furgonetas y los vehículos de turismo muestran una mayor variabilidad, mien
 
 La @fig-peso muestra la comparación entre la distribución de distintas características físicas del vehículo: el peso, el largo, la potencia, el cilindraje y el número de puertas, en los casos en donde se supera el umbral de los 900 euros.
 
-```{r , warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-caracteristicas-vehiculos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución de las características físicas de los vehículos con costos de siniestro altos", fig.align='center'}
 peso_costo <- datos_modificados %>% 
   filter(Cost_claims_year >= 900) %>% 
   ggplot(aes(x= Weight)) +
@@ -869,14 +869,14 @@ Finalmente, las comparaciones por tipo de vehículo y zona muestran que existen 
 
 Con base en los hallazgos del análisis descriptivo, el equipo seleccionó cuatro métodos complementarios que permiten responder de manera progresiva a la pregunta de investigación: el análisis descriptivo de la frecuencia y la severidad, el estudio de asociaciones entre variables cuantitativas mediante correlaciones de Spearman con intervalos de confianza, la comparación entre grupos definidos por variables categóricas y el análisis del umbral de los 900 euros mediante una distribución mixta.
 La descripción detallada del fundamento matemático de cada uno de estos métodos se presenta en la sección 1.2 de este documento, donde también se justifica explícitamente por qué cada método fue elegido por encima de alternativas.
-Los resultados del ajuste, es decir, la ejecución completa de estos métodos sobre los datos reales, se encuentran en la sección 1.2.4, donde cada análisis incluye comentarios que lo vinculan con la pregunta de investigación.
+Los resultados del ajuste, es decir, la ejecución completa de estos métodos sobre los datos reales, se encuentran en la sección 1.2.2, donde cada análisis incluye comentarios que lo vinculan con la pregunta de investigación.
 
 La selección de métodos responde directamente a las características observadas en los datos: la concentración de ceros hace necesario tratar la frecuencia y la severidad de forma separada; la asimetría y los valores extremos justifican el uso de coeficientes no paramétricos en lugar de Pearson; la presencia de variables categóricas como el tipo de vehículo exige un enfoque comparativo entre grupos; y la concentración de reclamos alrededor del umbral de los 900 euros motiva el modelado mediante una estructura de mezcla en lugar de una distribución única.
 En este sentido, el modelo es la respuesta directa a lo que los propios datos mostraron en la fase exploratoria.
 
 ### Análisis de diagnósticos del modelo
 
-La calidad del ajuste se evaluó mediante distintos elementos de diagnóstico, que se encuentran integrados en los resultados de la sección 1.2.4.
+La calidad del ajuste se evaluó mediante distintos elementos de diagnóstico, que se encuentran integrados en los resultados de la sección 1.2.2.
 Para el análisis de correlaciones de Spearman, el diagnóstico se basa en los intervalos de confianza al 95% construidos con la transformación de Fisher: un intervalo que no contiene el cero indica que la asociación es estadísticamente distinguible de cero, mientras que la magnitud del coeficiente permite juzgar si esa asociación es sustantiva o meramente formal.
 Para la comparación entre grupos categóricos, la prueba de Kruskal-Wallis opera como herramienta de diagnóstico inferencial, al evaluar si las diferencias observadas entre categorías como el tipo de vehículo o la zona de circulación son consistentes con variaciones esperables bajo la hipótesis de igualdad distribucional.
 Para el análisis del umbral de los 900 euros, el diagnóstico se realiza mediante los gráficos generados por el paquete `fitdistrplus`: la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P permiten evaluar si las distribuciones seleccionadas, lognormal para ambos componentes positivos, representan adecuadamente el comportamiento observado en los datos.
@@ -1542,7 +1542,7 @@ La finalidad de este análisis es caracterizar la estructura de la siniestralida
 Tal como se anticipó en la formulación metodológica, la frecuencia y la severidad se analizan de manera separada, dada su naturaleza estadística diferente.
 Los resultados que se presentan a continuación son, al mismo tiempo, el programa maqueta y la ejecución final: dado que el análisis se realizó sobre los datos reales desde el inicio, no hay distinción entre la fase de exploración y la fase de reporte.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-frecuencia-siniestros-baja, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución de la frecuencia de siniestros para registros con diez o menos casos anuales", fig.align='center'}
 distribucion_frecuencia <- datos %>% 
   filter(N_claims_year <= 10) %>% 
   group_by(N_claims_year) %>% 
@@ -1567,7 +1567,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.p
 En el gráfico sobre la distribución de la frecuencia de las cantidades de reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos.
 Además de esto, se puede ver que la distribución es decreciente, conforme aumenta la cantidad de reclamos, disminuye la cantidad de observaciones.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-comparacion-ceros-poisson, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Comparación porcentual entre los ceros observados y los esperados bajo una distribución Poisson", fig.align='center'}
 ceros_frecuencia <- data.frame(
   Origen = c("Ceros observados", "Ceros esperados"),
   Porcentaje = c(81.39, 67.39)
@@ -1596,7 +1596,7 @@ ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",com
 Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año.
 Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna *N_claims_year*.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-boxplot-costos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Diagrama de caja para los costos anuales de reclamos entre €0 y €5,000", fig.align='center'}
 boxplot_costos <- datos %>%
   filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
   ggplot(aes(y = Cost_claims_year)) +
@@ -1616,7 +1616,7 @@ El boxplot muestra la distribución de la variable *Cost_claims_year* para recla
 En la figura, se puede observar que la variable presenta una fuerte asimetría hacia la derecha, una alta concentración en valores bajos y múltiples valores atípicos.
 Lo anterior justifica el uso de coeficientes no paramétricos: Spearman y Kendall, para el análisis de la asociación entre las variables, en lugar del coeficiente de Pearson; así como el uso de la mediana en lugar de la media, debido a la gran cantidad de valores atípicos.
 
-```{r}
+```{r tbl-estadisticos-descriptivos, warning=FALSE, message=FALSE, echo=FALSE}
 library(pastecs)
 
 stat_frec <- stat.desc(datos_analisis$N_claims_year, 
@@ -1704,7 +1704,7 @@ shapiro.test(datos$N_claims_year[1:5000])
 # PENDIENTE: Gráficos de dispersión
 ```
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-matriz-correlacion, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Matriz de correlación de Spearman para las variables numéricas del modelo", fig.align='center'}
 variables_cor <- datos_modelacion %>%
   select(N_claims_year, Cost_claims_year, edad, Seniority, 
          N_claims_history, Weight, Power, Value_vehicle)
@@ -1822,7 +1822,7 @@ La comparación entre grupos responde directamente a la pregunta de investigaci�
 Para cada variable categórica se presentan gráficos de barras para la frecuencia, boxplots para la severidad y tablas resumen que integran ambas dimensiones.
 Al final de cada bloque comparativo se incluye la prueba de Kruskal-Wallis como elemento de validación, cuyo resultado permite evaluar si las diferencias observadas entre grupos son estadísticamente consistentes.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-frecuencia-promedio-vehiculo, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Frecuencia promedio de siniestros anuales según la categoría del vehículo", fig.align='center'}
 frecuencia_promedio_vehiculo <- datos_modificados %>%
   group_by(categoria) %>%
   summarise(frecuencia_promedio = mean(N_claims_year, na.rm = TRUE), n = n()) %>%
@@ -1850,7 +1850,7 @@ Estos resultados indican que el tipo de vehículo es un factor de importancia en
 
 Este hallazgo indica que la variable del tipo de vehículo "Type_risk" interviene en la frecuencia de los siniestros.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-proporcion-sin-siniestros, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de pólizas sin reportes de siniestros según el tipo de vehículo", fig.align='center'}
 proporcion_sin_siniestros <- datos_modificados %>% 
   group_by(categoria) %>% 
   summarise(proporcion_sin_siniestros = mean(N_claims_year == 0, na.rm = TRUE), n = n()) %>% 
@@ -1876,8 +1876,7 @@ Como muestra el gráfico, los vehículos agrícolas son los que poseen mayor pro
 Estos hallazgos concuerdan con el hallazgo anterior, ya que las furgonetas no solamente poseen la mayor frecuencia promedio: 0.568, sino que también poseen la menor proporción de asegurados sin siniestros: 77.19%.
 A diferencia de los vehículos agrícolas los cuales prácticamente nunca reportan siniestros y son los que mayor proporción de asegurados sin siniestros tienen, con 99.88% como se mencionó anteriormente.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
-
+```{r fig-proporcion-costo-positivo, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de registros con costos de siniestro mayores a cero según el tipo de vehículo", fig.align='center'}
 dist_costo_positivo <- datos_modificados %>% 
   group_by(categoria) %>% 
   summarise(proporcion_costo_mayor_0 = mean(Cost_claims_year > 0, na.rm = TRUE), n = n()) %>% 
@@ -1902,7 +1901,7 @@ En este gráfico se puede observar que los vehículos agrícolas son los que pos
 El presente gráfico y el anterior son complementarios, ya que las furgonetas, las cuales tienen un 77.19% en la proporción de asegurados sin siniestros, son las que mayor proporción de asegurados con costo positivo tiene, con 22.81%.
 En contraste, los vehículos agrícolas los cuales son los que poseen mayor proporción sin siniestros, con 99.88%, tienen prácticamente una nula presencia en la proporción de costos positivos, con 0.12%.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-boxplot-costo-vehiculo, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo anual de siniestros por tipo de vehículo para valores entre €0 y €5,000", fig.align='center'}
 velas_tipo_vehiculo <- datos_modificados %>% 
     filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
   ggplot(aes(x = factor(categoria), y = Cost_claims_year, fill = factor(categoria))) +
@@ -1982,7 +1981,7 @@ Para los vehículos agrícolas, todos los estadísticos de severidad convergen e
 
 A continuación, se realizará la comparación entre grupos por área:
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-frecuencia-promedio-area, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Frecuencia promedio de siniestros anuales según la zona de circulación (rural o urbana)", fig.align='center'}
 frecuencia_promedio_area <- datos_modelacion %>%
   mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
   group_by(Area) %>%
@@ -2008,7 +2007,7 @@ Se muestra que los asegurados en zonas urbanas presentan una mayor frecuencia pr
 Si bien la diferencia no es tan pronunciada como la observada entre tipos de vehículo, sí existe una brecha visible entre ambas zonas, lo que sugiere que la zona de circulación tiene alguna influencia sobre la frecuencia de siniestros.
 Esto es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico y, por tanto, mayor exposición al riesgo de siniestros.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-proporcion-sin-siniestros-area, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de pólizas sin reportes de siniestros según la zona de circulación", fig.align='center'}
 proporcion_sin_siniestros_area <- datos_modificados %>%
   mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
   group_by(Area) %>%
@@ -2034,7 +2033,7 @@ La zona rural presenta una proporción de asegurados sin siniestros ligeramente 
 Este resultado es complementario al gráfico anterior, ya que la zona urbana, que tiene mayor frecuencia promedio de siniestros, también tiene menor proporción de asegurados sin reclamaciones.
 Sin embargo, la diferencia entre ambas zonas es modesta, lo que indica que la zona de circulación, aunque relevante, no genera diferencias tan marcadas en la concentración de ceros como sí lo hace el tipo de vehículo.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-proporcion-costo-positivo-area, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de registros con costos de siniestro mayores a cero según la zona de circulación", fig.align='center'}
 dist_costo_positivo_area <- datos_modificados %>%
   mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
   group_by(Area) %>%
@@ -2060,7 +2059,7 @@ En este gráfico se puede observar que las zonas urbanas presentan una mayor pro
 Este resultado es el complemento directo del gráfico anterior: la zona urbana, que tiene menor proporción de asegurados sin siniestros (79.58%), es también la que mayor proporción de registros con costo positivo presenta.
 La diferencia entre zonas es de aproximadamente 2 puntos porcentuales, modesta pero consistente con el patrón de mayor siniestralidad en entornos urbanos.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-boxplot-costo-area, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo anual de siniestros por zona de circulación para valores entre €0 y €5,000", fig.align='center'}
 velas_area <- datos_modificados %>%
   mutate(Area = factor(Area, levels = c(0,1), labels = c("Rural","Urbana"))) %>%
   filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
@@ -2145,7 +2144,7 @@ En conjunto, estos resultados sugieren que la zona de circulación tiene una inf
 
 A continuación, se realiza la comparación entre grupos según el tipo de combustible del vehículo.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-frecuencia-promedio-combustible, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo", fig.align='center'}
 frecuencia_promedio_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel)) %>%
   mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
@@ -2169,7 +2168,7 @@ frecuencia_promedio_combustible
 Los vehículos de tipo diésel presentan una mayor frecuencia promedio de siniestros anual (0.456) en comparación con los de gasolina (0.302).
 Esta diferencia es más pronunciada que la observada entre zonas de circulación, lo que sugiere que el tipo de combustible podría estar asociado con patrones de uso distintos, como una mayor exposición al riesgo en vehículos diésel, que suelen destinarse a usos comerciales o de mayor kilometraje.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-proporcion-sin-siniestros-combustible, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo", fig.align='center'}
 proporcion_sin_siniestros_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel)) %>%
   mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
@@ -2193,7 +2192,7 @@ proporcion_sin_siniestros_combustible
 En línea con el hallazgo anterior, los vehículos de gasolina presentan una mayor proporción de asegurados sin siniestros (84.66 %) en comparación con los de diésel (79.15 %).
 Este resultado es consistente con la frecuencia promedio observada, ya que el grupo con menor siniestralidad también concentra una mayor proporción de registros sin reclamaciones.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-proporcion-costo-positivo-combustible, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo", fig.align='center'}
 dist_costo_positivo_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel)) %>%
   mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
@@ -2216,7 +2215,7 @@ dist_costo_positivo_combustible
 
 Este gráfico es el complemento directo del anterior: los vehículos diésel, que tienen menor proporción de asegurados sin siniestros, presentan también la mayor proporción de registros con costo mayor a €0, con un 20.85 %, frente al 15.34 % de los vehículos de gasolina.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
+```{r fig-boxplot-costo-combustible, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución del costo anual de siniestros por tipo de combustible para valores entre €0 y €5,000", fig.align='center'}
 velas_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel), Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
   mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
@@ -2402,7 +2401,7 @@ kable(tabla_modelo,
   kable_styling(full_width = FALSE, position = "center", font_size = 10)
 ```
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r fig-proporcion-costo-alto-vehiculo, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Porcentaje de reclamos con un costo anual igual o superior a €900 según el tipo de vehículo", fig.align='center'}
 proporcion_mayores_900 <- datos_modificados %>%
   mutate(mayores_900 = ifelse(Cost_claims_year >= 900, 1, 0)) %>%
   group_by(categoria) %>%
