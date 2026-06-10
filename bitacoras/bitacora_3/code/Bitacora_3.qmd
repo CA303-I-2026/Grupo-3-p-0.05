@@ -2955,7 +2955,25 @@ Las observaciones extendidas a partir de la revisión de la tercera bitácora se
 ## Rastro de decisiones
 
 Durante la elaboración de la tercera bitácora, el equipo se vio en la necesidad de tomar una serie de decisiones con el objetivo de desarrollar óptimamente las tareas requeridas.
-Dichas decisiones atrevesaron varios ejes, los cuales se detallan a continuación en compañía de los párrafos explicativos correspondientes.
+Dichas decisiones atravesaron varios ejes, los cuales se detallan a continuación en compañía de los párrafos explicativos correspondientes.
+
+### Inclusión de nuevas fichas de literatura
+
+Para la elaboración de la propuesta metodológica correspondiente a la tercera bitácora, se incorporaron cuatro nuevas fichas de literatura que no estaban presentes en bitácoras anteriores, estas corresponden a @ostertagova2014methodology, @deli2015, @mara2024 y @pov2020.
+
+La inclusión de @ostertagova2014methodology respondió a la necesidad de respaldar metodológicamente la prueba de Kruskal-Wallis, utilizada en el análisis de la comparación entre grupos. Dado que los datos de la siniestralidad no cumplen con los supuestos de normalidad necesarios para un ANOVA paramétrico, se requirió una prueba no parametrizada. Por otro lado, la incorporación de la ficha de @deli2015 se incluyó para justificar el uso del paquete  `fitdistrplus` en el ajuste de distribuciones para la construcción de la distribución mixta para los costos de los siniestros. La inclusión de @mara2024 respondió a la necesidad de respaldar el análisis de la cola derecha de la distribución del costo anual de siniestros, ya que el artículo estudia distribuciones compuestas para datos de reclamos que presentan asimetría y colas pesadas. La ficha de @pov2020 se incorporó para justificar metodológicamente el tratamiento del exceso de ceros en la variable `Cost_claims_year`, dado que los autores proponen modelos cero inflados para datos de seguros en los que no hay homogeneidad entre grupos.
+
+### Selección de la distribución para la distribución mixta del costo de reclamos anual
+
+Para modelar los costos positivos de los reclamos, se consideraron 3 distribuciones candidatas. Primero, para los costos moderados (0 < Y < 900) se consideró una distribución lognormal y una distribución gamma, para ambas distribuciones, se escogieron los parámetros obtenidos por medio de la estimación por máxima verosimilitud y para realizar la comparación entre ambas se comparó el valor del AIC de cada una, resultando que la distribución lognormal tenía un valor de AIC significativamente menor que el de la distribución gamma, por esta razón, para el intervalo de los €0 a los €900 se seleccionó la distribución lognormal con los parámetros anteriormente mencionados en la bitácora. Para los costos altos (Y ≥ 900), se consideró una distribución Pareto y una lognormal, estimando sus parámetros por máxima verosimilitud y comparando sus AIC, se obtuvo nuevamente que la distribución lognormal tenía un AIC menor que la distribución pareto, es por esto que para los costos altos también se seleccionó una distribución lognormal.
+
+### Modificaciones en la propuesta metodológica
+
+La propuesta metodológica experimentó varios cambios a lo largo del desarrollo del trabajo.
+
+En primer lugar, inicialmente no se había contemplado calcular intervalos de confianza para las correlaciones entre las variables numéricas. Sin embargo, tras una conversación con el profesor, se acordó incorporarlos con el fin de verificar el rango en el que se encuentra cada coeficiente de correlación. De esta forma, se construyeron intervalos de confianza del 95% para los coeficientes de correlación de Spearman.
+
+Por otra parte, debido a la manera en que se planteó en un inicio la propuesta metodológica, se consideró calcular intervalos de confianza para las proporciones de los tres componentes de la distribución mixta. No obstante, luego de tener una reunión con el profesor, se cambió drásticamente la forma en que se construiría dicha distribución para los costos. En un principio, se había planteado utilizar una función indicadora para determinar si se tenía un costo cero o no. Posteriormente, se optó por construir la distribución mixta mediante tres componentes: una masa puntual ubicada en cero, una distribución para los costos medios y otra distribución para los costos altos. Los parámetros de cada componente se estimaron por medio del método de máxima verosimilitud, utilizando el paquete `fitdistrplus` de R.
 
 ## Diario de aprendizaje
 
