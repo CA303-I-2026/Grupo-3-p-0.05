@@ -3054,16 +3054,21 @@ Los parámetros de cada componente se estimaron por medio del método de máxima
 
 ## Diario de aprendizaje
 
-La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, en torno al proceso acumulativo del desarrollo del proyecto.
-Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿Qué sabemos ahora que no sabíamos al entregar la segunda bitácora?
+La presente sección está diseñada para registrar los aprendizajes adquiridos durante la elaboración de la bitácora, en torno al proceso acumulativo del desarrollo del proyecto: ¿qué fue difícil?,
+¿qué resultó distinto a lo planeado?
+Lo anterior a través de oraciones concisas que respondan a la siguiente pregunta: ¿qué sabemos ahora que no sabíamos al entregar la segunda bitácora?
 Dichas oraciones proceden a detallarse como sigue:
 
 -   Durante esta etapa, se incorporó el uso de la librería fitdistrplus en R como apoyo para el análisis metodológico de la severidad de los siniestros.
     Esta herramienta permitió plantear una forma más ordenada de comparar posibles distribuciones para los costos positivos, utilizando criterios de ajuste que ayudan a justificar la selección del modelo más adecuado.
 
 -   Se fortaleció el concepto de distribución mixta.
-    A partir de la identificación visual del histograma de la variable "Cost_claims_year", se dividió esta variable en tres componentes: costos cero, costos medios y costos altos.
+    A partir de la identificación visual del histograma de la variable *Cost_claims_year*, se dividió esta variable en tres componentes: costos cero, costos medios y costos altos.
     Se aprendió a modelar la distribución de cada componente y su respectiva proporción por medio de gráficos y comparaciones del AIC de distintas distribuciones con el fin de seleccionar la que mejor se adaptaba a cada componente.
+
+-   Un elemento difícil para el trabajo colaborativo en la presente entrega, fue el carácter acumulativo de determinadas tareas.
+    En particular, la dependencia de la *Parte de escritura* hacia las fichas de resultados elaboradas en la tercera bitácora, generó que fuera poco viable iniciar tal sección previo a terminar estas últimas.
+    En consecuencia, dicho apartado de considerable densidad, tuvo que desarrollarse en un periodo de menor extensión al planeado.
 
 ## Audiencia del proyecto
 
@@ -3129,9 +3134,9 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 +--------------------------------+-------------------------------------------------------+
 | Alexandra González Bermúdez    | Corrección en base a la retroalimentación             |
 |                                |                                                       |
-|                                | Arco narrativo del proyecto                           |
-|                                |                                                       |
 |                                | La imagen que cuenta la historia                      |
+|                                |                                                       |
+|                                | Ordenamiento de los elementos del reporte             |
 |                                |                                                       |
 |                                | Parte de escritura                                    |
 |                                |                                                       |
@@ -3165,9 +3170,7 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 +--------------------------------+-------------------------------------------------------+
 | Daniela Prado Vargas           | Análisis de la modelación                             |
 |                                |                                                       |
-|                                | Ordenamiento de los elementos del reporte             |
-|                                |                                                       |
-|                                | Rastro de decisiones                                  |
+|                                | Arco narrativo del proyecto                           |
 |                                |                                                       |
 |                                | Diario de aprendizaje                                 |
 |                                |                                                       |
@@ -3180,6 +3183,8 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 |                                | Análisis de la modelación                             |
 |                                |                                                       |
 |                                | Audiencia del proyecto                                |
+|                                |                                                       |
+|                                | Rastro de decisiones                                  |
 |                                |                                                       |
 |                                | Diario de aprendizaje                                 |
 |                                |                                                       |
