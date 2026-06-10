@@ -881,7 +881,9 @@ Para el análisis de correlaciones de Spearman, el diagnóstico se basa en los i
 Para la comparación entre grupos categóricos, la prueba de Kruskal-Wallis opera como herramienta de diagnóstico inferencial, al evaluar si las diferencias observadas entre categorías como el tipo de vehículo o la zona de circulación son consistentes con variaciones esperables bajo la hipótesis de igualdad distribucional.
 Para el análisis del umbral de los 900 euros, el diagnóstico se realiza mediante los gráficos generados por el paquete `fitdistrplus`: la comparación entre la función de distribución empírica y la teórica, el gráfico Q-Q y el gráfico P-P permiten evaluar si las distribuciones seleccionadas, lognormal para ambos componentes positivos, representan adecuadamente el comportamiento observado en los datos.
 
-De manera general, los diagnósticos realizados sugieren que los métodos seleccionados son apropiados para las características de los datos analizados. Además, las asociaciones observadas son estadísticamente distinguibles de cero, aunque de magnitud limitada, y la estructura de mezcla logra capturar adecuadamente el comportamiento de la distribución del costo anual de siniestros. Estos resultados se presentan con mayor detalle en las secciones siguientes.
+De manera general, los diagnósticos realizados sugieren que los métodos seleccionados son apropiados para las características de los datos analizados.
+Además, las asociaciones observadas son estadísticamente distinguibles de cero, aunque de magnitud limitada, y la estructura de mezcla logra capturar adecuadamente el comportamiento de la distribución del costo anual de siniestros.
+Estos resultados se presentan con mayor detalle en las secciones siguientes.
 
 ## Propuesta metodológica
 
@@ -2637,7 +2639,7 @@ Es decir, no se puede concluir que tener más reclamos históricos cause directa
 
 ***Nivel descriptivo***
 
-*Titular:* El umbral de €900 emerge como límite natural en múltiples grupos
+*Titular:* *El umbral de €900 emerge como límite natural en múltiples grupos*
 
 *Nombre del hallazgo/resultado:* El tercer cuartil del costo positivo de siniestros es exactamente €882.00 en todos los grupos analizados, independientemente del tipo de vehículo, zona de circulación o tipo de combustible.
 
@@ -2735,19 +2737,18 @@ La zona de circulación se contempla como una característica asociada a los veh
 
 ## Ordenamiento de los elementos del reporte
 
-En la presente sección se realizará el ordenamiento de los elementos de reporte identificados durante el desarrollo del proyecto, los cuales serán clasificados como primarios o secundarios según su nivel de relevancia y aporte a la investigación.
-Estos elementos incluyen hipótesis, ideas, teorías provenientes de la literatura, así como hallazgos y resultados obtenidos a lo largo de la ejecución del proyecto.
+En la presente sección se realizará el ordenamiento de los elementos del reporte, los cuales serán clasificados como primarios o secundarios según su nivel de relevancia y aporte a la investigación.
+Se incluyen hipótesis, ideas, teorías provenientes de la literatura, así como hallazgos y resultados obtenidos a lo largo de la ejecución del proyecto.
 
 Este proceso tiene como finalidad organizar la información de manera estructurada, de modo que sirva como base para la construcción del borrador final del informe.
 
-Como primer paso en este proceso, se identifican y clasifican los elementos de reporte del proyecto en primarios y secundarios, según su nivel de importancia para el desarrollo de la investigación.
+Como primer paso en el proceso, se identifican y clasifican los elementos del proyecto en primarios y secundarios, según su nivel de importancia para el desarrollo de la investigación.
 Los elementos primarios corresponden a aquellos sin los cuales el trabajo perdería sentido, mientras que los secundarios aportan apoyo y contexto, pero no son fundamentales.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_elementos <- tibble(
-  Primarios = c("Teoría A", "Idea A", "Resultado A", "Resultado C"),
-  Secundarios = c("Teoría B", "Idea B", "Resultado B", "Resultado D")
-)
+  Primarios = c("Frees (2021):\\textit{Loss data analytics}", "Ayuso-Gutierrez et al. (2015): \\textit{Modelización del tiempo de hospitalización en lesiones por tránsito}", "Vinuesa (2016): \\textit{Correlación: teoría y práctica}", "Resultado: \\textit{vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia}","Resultado: \\textit{las furgonetas tienen mayor frecuencia promedio de siniestros}", "Resultado: \\textit{vehículos comunes concentran reclamos superiores a €900}", "Resultado: \\textit{las furgonetas y los vehículos de turismo concentran reclamos con alta severidad}", "Resultado: \\textit{el historial de reclamos se asocia positivamente con la siniestralidad del año analizado}", "Resultado: \\textit{el umbral de €900 emerge como límite natural en múltiples grupos}", "Resultado: \\textit{ciertas variables asociadas a las características del asegurado y a las características del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros}", "Resultado: \\textit{la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación}"),
+  Secundarios = c("Guillen et al. (2021): \\textit{Modelos predictivos del riesgo y aplicaciones a los seguros}", "Omari et al. (2018): \\textit{ Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions}","Resultado: \\textit{más del 85% de asegurados no reportó siniestros en el año}", "Resultado: \\textit{variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados}", "Resultado: \\textit{la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros}", "Resultado: \\textit{la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros}"))
 
 knitr::kable(
   tabla_elementos,
@@ -2763,36 +2764,39 @@ knitr::kable(
   ) %>%
   
   kableExtra::add_header_above(
-    c("Elementos de reporte" = 2), 
+    c("Elementos del reporte" = 2), 
     line = TRUE
   )
 ```
 
 Posteriormente, con base en la clasificación anterior, se establece una propuesta de organización para la redacción del informe final.
-La siguiente tabla presenta la distribución de los elementos dentro de las distintas secciones del documento, con el objetivo de garantizar una estructura lógica, coherente y ordenada para la presentación del trabajo.
+La siguiente tabla presenta la distribución de los elementos dentro de las distintas secciones del documento, con el objetivo de garantizar una estructura lógica, coherente y ordenada para la presentación final del trabajo.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_guia <- tibble(
   Sección = c(
-    "Introducción", "Introducción", "Introducción", "Introducción", "Introducción",
-    "Metodología", "Metodología", "Metodología", "Metodología",
-    "Resultados", "Resultados", "Resultados"
-  ),
+    "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Metodología", "Metodología", "Metodología",
+    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados"),
   `Temas a tratar` = c(
-    "1. Teoría A (Primario)",
-    "2. Idea B (Primario)",
-    "3. Resultado de otro autor A (Secundario)",
-    "4. Resultado de otro autor B (Secundario)",
-    "5. etc.",
-    "1. Detalle de los datos. (Primario)",
-    "2. Método A (Primario)",
-    "3. Método B (Secundario)",
-    "4. Diagnóstico del modelo (Primario)",
-    "1. Resultado A (Primario)",
-    "2. Resultado B (Secundario)",
-    "3. etc."
-  )
-)
+    "1. Frees (2021): Loss data analytics (Primario)",
+    "2. Omari et al. (2018): Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions (Secundario)",
+    "3. Resultado: variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados (Secundario)",
+    "4. Resultado: más del 85% de asegurados no reportó siniestros en el año (Secundario)",
+    "5. Vinuesa (2016): Correlación: teoría y práctica (Primario)",
+    "6. Guillen et al. (2021): Modelos predictivos del riesgo y aplicaciones a los seguros (Secundario)", 
+    "7. Ayuso-Gutierrez et al. (2015): Modelización del tiempo de hospitalización en lesiones por tránsito (Primario)", 
+    "1. Resultado: la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros (Secundario)",
+    "2. Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros (Secundario)",
+    "3. Resultado: (Secundario)",
+    "1. Resultado: el historial de reclamos se asocia positivamente con la siniestralidad del año analizado (Primario)",
+    "2.Resultado: el umbral de €900 emerge como límite natural en múltiples grupos (Primario)",
+    "3. Resultado: ciertas variables asociadas a las características del asegurado y a las características del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros (Primario)", 
+    "4. Resultado: la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación (Primario)", 
+    "5. Resultado: vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia (Primario)",
+    "6. Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros(Primario)",
+    "7. Resultado: vehículos comunes concentran reclamos superiores a €900 (Primario)",
+    "8. Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad  (Primario)"))
+
 
 knitr::kable(
   tabla_guia,
@@ -3083,8 +3087,22 @@ La prueba se utiliza en este proyecto como respaldo estadístico formal de las d
 
 # Implementación de la retroalimentación
 
-Las observaciones extendidas a partir de la revisión de la tercera bitácora se efectuaron en torno a cuatro ejes: ...
-. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintas áreas.
+Las recomendaciones extendidas a partir de la presentación del anteproyecto se efectuaron en torno a dos ejes: el uso de intervalos de confianza para el cálculo de las correlaciones y una interpretación mediante distribución mixta para el análisis del umbral de 900 euros.
+En la presente entrega se procuró implementar las distintas recomendaciones, por lo que se detalla a continuación la manera en que esto fue realizado, según las distintas áreas.
+
+### Intervalos de confianza 
+
+En la sección *Análisis de asociación entre las variables cuantitavivas*, se desarrolló el cálculo de los coeficientes de correlación de Spearman de las variables cuantitativas contempladas en la pregunta de investigación, respecto a la frecuencia y la severidad de los siniestros.
+
+Además de calcular los coeficientes de correlación planteados, se construyeron intervalos de confianza con el objetivo de evaluar la precisión de las asociaciones estimadas.
+De esta manera, se procuró no interpretar únicamente el valor del coeficiente, sino también considerar la incertidumbre asociada a su estimación.
+
+### Análisis del umbral de 900 euros
+
+Después, en la sección *Análisis del umbral de 900 euros mediante distribución mixta*, se desarrolló el cuarto y último método del análisis.
+Se integraron los hallazgos obtenidos hasta ese momento con tal de estudiar a mayor profundidad la estructura del costo anual de siniestros en torno al umbral de los 900 euros.
+El análisis de distribución mixta utilizado, permitió formalizar la concentración de siniestros en dicha área, estimando las proporciones de cada componente y las distribuciones paramétricas que mejor describen los costos en cada rango.
+El método descrito responde directamente a la pregunta de investigación, pues permite cuantificar qué fracción de la cartera genera reclamos de alta severidad y caracterizar la forma de esa distribución.
 
 # Relativo al trabajo en equipo
 
@@ -3137,7 +3155,7 @@ Dichas oraciones proceden a detallarse como sigue:
     A partir de la identificación visual del histograma de la variable *Cost_claims_year*, se dividió esta variable en tres componentes: costos cero, costos medios y costos altos.
     Se aprendió a modelar la distribución de cada componente y su respectiva proporción por medio de gráficos y comparaciones del AIC de distintas distribuciones con el fin de seleccionar la que mejor se adaptaba a cada componente.
 
--   Un elemento difícil para el trabajo colaborativo en la presente entrega, fue el carácter acumulativo de determinadas tareas.
+-   Un elemento obstaculizador para el trabajo colaborativo en la presente entrega, fue el carácter acumulativo de determinadas tareas.
     En particular, la dependencia de la *Parte de escritura* hacia las fichas de resultados elaboradas en la tercera bitácora, generó que fuera poco viable iniciar tal sección previo a terminar estas últimas.
     En consecuencia, dicho apartado de considerable densidad, tuvo que desarrollarse en un periodo de menor extensión al planeado.
 
