@@ -3061,8 +3061,22 @@ La prueba se utiliza en este proyecto como respaldo estadístico formal de las d
 
 # Implementación de la retroalimentación
 
-Las observaciones extendidas a partir de la revisión de la tercera bitácora se efectuaron en torno a cuatro ejes: ...
-. En la presente entrega se procuró implementar los distintos puntos de mejora, por lo que se detalla a continuación la manera en que esto fue realizado, según los distintas áreas.
+Las recomendaciones extendidas a partir de la presentación del anteproyecto se efectuaron en torno a dos ejes: el uso de intervalos de confianza para el cálculo de las correlaciones y una interpretación mediante distribución mixta para el análisis del umbral de 900 euros.
+En la presente entrega se procuró implementar las distintas recomendaciones, por lo que se detalla a continuación la manera en que esto fue realizado, según las distintas áreas.
+
+### Intervalos de confianza 
+
+En la sección *Análisis de asociación entre las variables cuantitavivas*, se desarrolló el cálculo de los coeficientes de correlación de Spearman de las variables cuantitativas contempladas en la pregunta de investigación, respecto a la frecuencia y la severidad de los siniestros.
+
+Además de calcular los coeficientes de correlación planteados, se construyeron intervalos de confianza con el objetivo de evaluar la precisión de las asociaciones estimadas.
+De esta manera, se procuró no interpretar únicamente el valor del coeficiente, sino también considerar la incertidumbre asociada a su estimación.
+
+### Análisis del umbral de 900 euros
+
+Después, en la sección *Análisis del umbral de 900 euros mediante distribución mixta*, se desarrolló el cuarto y último método del análisis.
+Se integraron los hallazgos obtenidos hasta ese momento con tal de estudiar a mayor profundidad la estructura del costo anual de siniestros en torno al umbral de los 900 euros.
+El análisis de distribución mixta utilizado, permitió formalizar la concentración de siniestros en dicha área, estimando las proporciones de cada componente y las distribuciones paramétricas que mejor describen los costos en cada rango.
+El método descrito responde directamente a la pregunta de investigación, pues permite cuantificar qué fracción de la cartera genera reclamos de alta severidad y caracterizar la forma de esa distribución.
 
 # Relativo al trabajo en equipo
 
