@@ -1544,30 +1544,42 @@ La finalidad de este análisis es caracterizar la estructura de la siniestralida
 Tal como se anticipó en la formulación metodológica, la frecuencia y la severidad se analizan de manera separada, dada su naturaleza estadística diferente.
 Los resultados que se presentan a continuación son, al mismo tiempo, el programa maqueta y la ejecución final: dado que el análisis se realizó sobre los datos reales desde el inicio, no hay distinción entre la fase de exploración y la fase de reporte.
 
+Para evaluar el comportamiento de la frecuencia de siniestros, se examina en primera instancia la distribución de los registros anuales concentrados en el rango de menor actividad. El análisis visual de este componente permite identificar las características particulares de la masa de probabilidad en los valores bajos de la escala, prestando especial atención a la proporción de pólizas que no registraron reclamaciones durante el periodo observado. A continuación, se presenta la distribución empírica detallada para este segmento de la cartera:
+
 ```{r fig-frecuencia-siniestros-baja, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución de la frecuencia de siniestros para registros con diez o menos casos anuales", fig.align='center'}
 distribucion_frecuencia <- datos %>% 
   filter(N_claims_year <= 10) %>% 
   group_by(N_claims_year) %>% 
   summarise(conteo = n()) %>% 
+  mutate(p_k = conteo / sum(conteo),
+         etiqueta = if_else(N_claims_year <= 2,
+                            paste0(scales::comma(conteo), "\n(", scales::percent(p_k, accuracy = 0.01), ")"),
+                            scales::percent(p_k, accuracy = 0.01))) %>%
   ggplot(aes(x = N_claims_year, y = conteo)) +
-  geom_col(fill = paleta_pamplemousse[1], color = "white") +
-  geom_text(aes(label = conteo), size = 3, vjust = -0.3) +
-  scale_x_continuous(breaks = seq(0,10,1)) +
-  scale_y_continuous(breaks = seq(0,80000,10000),
-                     labels = scales::comma) +
-  labs(title = "Distribución de la frecuencia de la cantidades de siniestros menores a 10",
+  geom_col(fill = paleta_pamplemousse[1], width = 0.75) +
+  geom_text(aes(label = etiqueta), 
+            size = 2.5, 
+            vjust = -0.4, 
+            lineheight = 0.85,
+            fontface = "bold") + 
+  scale_x_continuous(breaks = seq(0, 10, 1)) +
+  scale_y_continuous(breaks = seq(0, 80000, 20000),
+                     labels = scales::comma,
+                     limits = c(0, 90000)) + 
+  labs(title = "Distribución de la frecuencia de las cantidades de siniestros menores a 10",
        x = "Número de siniestros por año",
        y = "Cantidad de observaciones",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.title = element_text(size = 12, face = "bold"),
+        plot.caption = element_text(size = 7.5))
 
-ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png",distribucion_frecuencia, width = 9, height = 6.5, dpi = 300)
+ggsave("../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png",
+       distribucion_frecuencia, width = 8, height = 5, dpi = 300)
 ```
+![Distribución de la frecuencia de siniestros para registros con diez o menos casos anuales](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png){#fig-frecuencia-siniestros-baja}
 
-![Distribución de la frecuencia de los siniestros menores a 10](../../../bitacoras/bitacora_3/figuras/distribucion_frecuencia_menor_10.png)
-
-En el gráfico sobre la distribución de la frecuencia de las cantidades de reclamos menores o iguales a 10, se puede observar que hay una gran concentración de observaciones en 0, con un total de 85,909 observaciones, representando aproximadamente un 81.39% de los datos.
-Además de esto, se puede ver que la distribución es decreciente, conforme aumenta la cantidad de reclamos, disminuye la cantidad de observaciones.
+En la @fig-frecuencia-siniestros-baja se puede observar una alta concentración de observaciones en el valor cero, con un total de 85,909 registros que representan el 81.46% de los datos. A este comportamiento le siguen los registros con un único siniestro anual (9,539 observaciones, 9.04%) y con dos siniestros (4,961 observaciones, 4.70%). En contraste, las frecuencias para tres o más siniestros decrecen de manera drástica, variando desde un 2.31% para tres reclamos, hasta alcanzar apenas un 0.06% en el caso de diez siniestros anuales.Esta estructura evidencia una distribución marcadamente decreciente donde, conforme aumenta la cantidad de siniestros, el volumen de observaciones disminuye de forma pronunciada. Dicho patrón confirma la presencia de un exceso de ceros en la variable de conteo (N_claims_year), un hallazgo crítico para la selección del modelo de frecuencia, ya que una distribución Poisson estándar sería inadecuada debido a la sobredispersión y a la incapacidad de capturar correctamente esta concentración extrema en el origen.
 
 ```{r fig-comparacion-ceros-poisson, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Comparación porcentual entre los ceros observados y los esperados bajo una distribución Poisson", fig.align='center'}
 ceros_frecuencia <- data.frame(
@@ -1593,12 +1605,12 @@ comparacion_ceros_poisson <- ceros_frecuencia %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png",comparacion_ceros_poisson, width = 8, height = 7, dpi = 300)
 ```
 
-![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png){width="80%"}
+![Comparación entre los ceros observados y los ceros esperados en la frecuencia de los siniestros utilizando una distribución Poisson](../../../bitacoras/bitacora_3/figuras/comparacion_ceros_poisson.png){#fig-comparacion-ceros-poisson width="80%"}
 
-Este gráfico muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año.
+En la @fig-comparacion-ceros-poisson muestra la proporción de ceros observados en los datos originales con la proporción de ceros esperada según una distribución Poisson de parámetro $\lambda$ = 0.39, el cual es el promedio de la frecuencia de siniestros por año.
 Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es de 67.39%, mientras que la proporción de ceros observada en los datos es de 81.39%, resultando en una diferencia de 14% en la proporción de ceros, lo que indica que la distribución Poisson no es adecuada para modelar la frecuencia de los siniestros debido a la gran cantidad de ceros observada en la columna *N_claims_year*.
 
-```{r fig-boxplot-costos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Diagrama de caja para los costos anuales de reclamos entre €0 y €5,000", fig.align='center'}
+```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 boxplot_costos <- datos %>%
   filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
   ggplot(aes(y = Cost_claims_year)) +
@@ -1608,15 +1620,41 @@ boxplot_costos <- datos %>%
        y = "Costo anual",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   estilo_grupo3
-
 ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
 ```
 
-![Distribución de los costos de reclamos por año mayores a €0 y menores a €5,000](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){height="12cm"}
+![Distribución de los costos de reclamos por año](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){#fig-boxplot-costos width="80%"}
 
-El boxplot muestra la distribución de la variable *Cost_claims_year* para reclamos mayores a 0 euros y menores a 5000 euros.
+La @fig-boxplot-costos muestra la distribución de la variable *Cost_claims_year* para reclamos mayores a 0 euros y menores a 5000 euros.
 En la figura, se puede observar que la variable presenta una fuerte asimetría hacia la derecha, una alta concentración en valores bajos y múltiples valores atípicos.
 Lo anterior justifica el uso de coeficientes no paramétricos: Spearman y Kendall, para el análisis de la asociación entre las variables, en lugar del coeficiente de Pearson; así como el uso de la mediana en lugar de la media, debido a la gran cantidad de valores atípicos.
+
+```{r fig-histograma-costos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Distribución de los costos anuales de reclamos estrictamente positivos", fig.align='center', fig.width=6.5, fig.height=5.5}
+histograma_costos <- datos %>%
+  filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
+  ggplot(aes(x = Cost_claims_year)) +
+  geom_histogram(fill = paleta_pamplemousse[2],
+                 bins = 50) +
+  scale_x_continuous(labels = scales::dollar_format(prefix = "€", big.mark = ",")) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(title = "Distribución de los costos anuales de reclamos",
+       subtitle = "Costos estrictamente positivos y menores a €5,000",
+       x = "Costo anual (€)",
+       y = "Cantidad de observaciones",
+       caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
+  estilo_grupo3 +
+  theme(
+    plot.title = element_text(hjust = 0.5),   
+    plot.subtitle = element_text(hjust = 0.5)  
+  )
+
+ggsave("../../../bitacoras/bitacora_3/figuras/histograma_costos.png",
+       histograma_costos, width = 6.5, height = 5.5, dpi = 300)
+```
+
+![Distribución de los costos anuales de reclamos estrictamente positivos](../../../bitacoras/bitacora_3/figuras/histograma_costos.png){#fig-histograma-costos width="80%"}
+
+La @fig-histograma-costos muestra la distribución de los costos anuales de reclamos para valores estrictamente positivos menores a €5,000, evidenciando una marcada asimetría positiva con una concentración masiva de observaciones en el rango de €0 a €500, donde se alcanza el pico más alto del gráfico con más de 4,000 registros. Conforme se incrementa el costo anual, la cantidad de observaciones decrece de forma abrupta, con la notable excepción de una barra inusualmente alta en la región inmediatamente anterior a los €1,000, la cual rompe la tendencia decreciente al rozar las 2,000 observaciones y sugiere una acumulación sistemática de siniestros justo antes de dicho umbral. Posterior a este repunte, la frecuencia se desploma y se extiende de manera casi asintótica hacia los €5,000, conformando una cola larga y pesada en la que el volumen de registros se reduce al mínimo.
 
 ```{r tbl-estadisticos-descriptivos, warning=FALSE, message=FALSE, echo=FALSE}
 library(pastecs)
@@ -1637,26 +1675,35 @@ nombres <- c("N válidos", "Mínimo", "Máximo", "Media",
              "Mediana", "Varianza", "Desviación estándar", 
              "Coeficiente de variación")
 
+q_frec <- quantile(datos_analisis$N_claims_year, probs = c(0.25, 0.75))
+q_sev  <- quantile(costos_positivos,             probs = c(0.25, 0.75))
+
 tabla_fs <- tibble(
   Indicador = c(
     nombres,
+    "Cuartil 1 (Q1)",
+    "Cuartil 3 (Q3)",
     "% de ceros (toda la variable)",
     "Índice de sobredispersión (var/media)"
   ),
   frecuencia = c(
     round(stat_frec[indicadores], 4),
+    round(q_frec["25%"], 4),
+    round(q_frec["75%"], 4),
     round(mean(datos_analisis$N_claims_year == 0) * 100, 2),
     round(var(datos_analisis$N_claims_year) /
           mean(datos_analisis$N_claims_year), 4)
   ),
   severidad = c(
     round(stat_sev[indicadores], 2),
+    round(q_sev["25%"], 2),
+    round(q_sev["75%"], 2),
     round(mean(datos_analisis$Cost_claims_year == 0) * 100, 2),
     NA
   )
 ) %>%
   rename(
-    `Frecuencia (N_claims_year)`         = frecuencia,
+    `Frecuencia (N_claims_year)` = frecuencia,
     `Severidad (Cost_claims_year)` = severidad
   )
 
@@ -1675,17 +1722,9 @@ knitr::kable(
   )
 ```
 
-En lo que respecta a la frecuencia, de los 103,791 registros válidos, el 81.21% no presentó ningún siniestro durante el año, lo que se confirma con una mediana de cero.
-Esto evidencia una alta concentración de ceros en la distribución.
-La media de 0.40 siniestros anuales está fuertemente influenciada por los casos extremos, siendo el máximo observado de 25 siniestros en un año.
-El índice de sobredispersión de 3.09 indica que la varianza es aproximadamente tres veces mayor que la media, lo cual viola el supuesto de equidispersión de la distribución Poisson, lo cual es consistente con el análisis previo, donde se mostró que dicha distribución solo predice un 67.39% de ceros, subestimando en 14 puntos porcentuales los ceros observados.
-Ambos elementos en conjunto descartan el uso de Poisson para modelar esta variable.
+La @tbl-estadisticos-descriptivos detalla los indicadores estadísticos calculados para la frecuencia y la severidad de los siniestros, permitiendo cuantificar de manera rigurosa las características observadas en las fases previas. En lo que respecta a la frecuencia, de los 103,791 registros válidos, el 81.21% no presentó ningún siniestro durante el año, lo que se confirma con una mediana y un primer y tercer cuartil iguales a cero, evidenciando la masiva concentración de ceros en la distribución. La media de 0.3982 siniestros anuales se encuentra fuertemente influenciada por los casos extremos de la cartera, donde el máximo observado alcanza los 25 siniestros en un solo año. El índice de sobredispersión de 3.0855 indica que la varianza (1.2286) es más de tres veces mayor que la media, lo cual viola el supuesto clásico de equidispersión de la distribución Poisson y justifica formalmente el descarte de este modelo estándar debido a la marcada heterogeneidad y el exceso de ceros de la variable.
 
-Por otro lado, los estadísticos de severidad se calcularon únicamente sobre los 19,499 registros con costo positivo, es decir, el 18.79% de la base.
-Entre estos registros, la media del costo es de 828.22 euros, pero la mediana es de apenas 291.00 euros, una diferencia considerable que refleja una fuerte asimetría hacia la derecha.
-Así, la mayoría de los reclamos positivos son de baja cuantía, pero existen casos extremos que elevan el promedio, como lo confirma el máximo de 260,853.24 euros.
-La desviación estándar de 3,353.78 euros es cuatro veces mayor que la media, y el coeficiente de variación de 4.05 indica una dispersión muy alta en los costos.
-Se justifica de esta manera el uso de la mediana como medida principal de tendencia central para la severidad, y respalda la elección de distribuciones asimétricas como la lognormal para modelar los costos positivos.
+Por otro lado, los estadísticos de severidad se calcularon exclusivamente sobre los 19,499 registros con costos estrictamente positivos, cifra que se corresponde con el 18.79% restante de la base total (coincidiendo con el complemento del 81.21% de ceros). Entre estos registros con reclamaciones, la media del costo se sitúa en €828.22, pero la mediana es de apenas €291.00; esta brecha considerable, sumada a un primer cuartil de €96.26 y un tercer cuartil de €882.00, refleja la profunda asimetría hacia la derecha que caracteriza a la variable. La gran mayoría de los reclamos son de baja cuantía, pero coexisten con eventos extremos de altísima severidad que distorsionan el promedio, tal como lo demuestra el costo máximo registrado de €260,853.24. Esta dispersión masiva se ve reflejada en una desviación estándar de €3,353.78, la cual supera en cuatro veces el valor de la media, y en un coeficiente de variación de 4.05. Estos hallazgos validan el uso de la mediana sobre la media como métrica representativa de tendencia central y respaldan firmemente la necesidad de recurrir a distribuciones asimétricas de cola pesada para el modelado de los costos positivos.
 
 #### Análisis de asociación entre las variables cuantitativas
 
@@ -1698,7 +1737,7 @@ Se obtuvo un estadístico W = 0.37226 y un p-valor \< 2.2e-16.
 Como el p-valor es menor a 0.05, se rechaza la hipótesis de normalidad, por lo que se descarta el coeficiente de Pearson y se utiliza Spearman para el análisis de correlación.
 Se eligió Spearman sobre Kendall porque con muestras grandes, como la de este proyecto, ambos coeficientes tienden a producir conclusiones similares, pero Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para este tipo de análisis exploratorio.
 
-```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
 shapiro.test(datos$N_claims_year[1:5000])
 ```
 
@@ -1732,7 +1771,7 @@ matriz_correlacion <- ggcorrplot(correlacion_spearman,
 ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_correlacion, width = 9, height = 9, dpi = 300)
 ```
 
-![Matriz de correlaciones de las variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){height="70%"}
+![Matriz de correlaciones de las variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){#fig-matriz-correlacion height="70%"}
 
 La matriz permite observar las asociaciones entre las variables cuantitativas.
 En cuanto a las variables de la siniestralidad, *N_claims_history* presenta la correlación más alta con *N_claims_year* ($\rho$ = 0.38) y con *Cost_claims_year* ($\rho$ = 0.36), lo que indica que los asegurados con mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado.
@@ -1797,10 +1836,9 @@ knitr::kable(
   format.args = list(scientific = FALSE)
 ) %>%
   kableExtra::kable_styling(
+    latex_options = c("hold_position", "centering"),
     full_width = FALSE,
-    position = "center",
-    font_size = 9,
-    latex_options = "hold_position"
+    font_size = 9
   ) %>%
   kableExtra::pack_rows("Variables temporales del asegurado", 1, 8) %>%
   kableExtra::pack_rows("Variables del vehículo e historial", 9, 16)
@@ -2748,7 +2786,7 @@ Los elementos primarios corresponden a aquellos sin los cuales el trabajo perder
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_elementos <- tibble(
   Primarios = c("Frees (2021):\\textit{Loss data analytics}", "Ayuso-Gutierrez et al. (2015): \\textit{Modelización del tiempo de hospitalización en lesiones por tránsito}", "Vinuesa (2016): \\textit{Correlación: teoría y práctica}", "Resultado: \\textit{vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia}","Resultado: \\textit{las furgonetas tienen mayor frecuencia promedio de siniestros}", "Resultado: \\textit{vehículos comunes concentran reclamos superiores a €900}", "Resultado: \\textit{las furgonetas y los vehículos de turismo concentran reclamos con alta severidad}", "Resultado: \\textit{el historial de reclamos se asocia positivamente con la siniestralidad del año analizado}", "Resultado: \\textit{el umbral de €900 emerge como límite natural en múltiples grupos}", "Resultado: \\textit{ciertas variables asociadas a las características del asegurado y a las características del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros}", "Resultado: \\textit{la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación}"),
-  Secundarios = c("Guillen et al. (2021): \\textit{Modelos predictivos del riesgo y aplicaciones a los seguros}", "Omari et al. (2018): \\textit{ Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions}","Resultado: \\textit{más del 85% de asegurados no reportó siniestros en el año}", "Resultado: \\textit{variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados}", "Resultado: \\textit{la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros}", "Resultado: \\textit{la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros}"))
+  Secundarios = c("Guillen et al. (2021): \\textit{Modelos predictivos del riesgo y aplicaciones a los seguros}", "Omari et al. (2018): \\textit{ Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions}","Resultado: \\textit{más del 85% de asegurados no reportó siniestros en el año}", "Resultado: \\textit{variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados}", "Resultado: \\textit{la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros}", "Resultado: \\textit{la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros}","", "", "", "", ""))# espacios vacíos para poder correr el código jeje))
 
 knitr::kable(
   tabla_elementos,
@@ -2776,7 +2814,7 @@ La siguiente tabla presenta la distribución de los elementos dentro de las dist
 tabla_guia <- tibble(
   Sección = c(
     "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Metodología", "Metodología", "Metodología",
-    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados"),
+    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", ""),
   `Temas a tratar` = c(
     "1. Frees (2021): Loss data analytics (Primario)",
     "2. Omari et al. (2018): Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions (Secundario)",
@@ -2795,8 +2833,8 @@ tabla_guia <- tibble(
     "5. Resultado: vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia (Primario)",
     "6. Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros(Primario)",
     "7. Resultado: vehículos comunes concentran reclamos superiores a €900 (Primario)",
-    "8. Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad  (Primario)"))
-
+    "8. Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad  (Primario)"
+    ))
 
 knitr::kable(
   tabla_guia,
