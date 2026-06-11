@@ -2892,12 +2892,12 @@ tabla_elementos <- tibble::tibble(
   ),
   
   Secundarios = c(
-    "Guillén et al. (2021): Modelos predictivos del riesgo y aplicaciones a los seguros",
     "Omari et al. (2018): Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions",
     "Resultado: más del 85\\% de asegurados no reportó siniestros en el año",
     "Resultado: las variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados",
     "Resultado: la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros",
     "Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros", "Resultado: la variable de la frecuencia de los reclamos no satisface la hipótesis de normalidad, de manera que se opta por el coeficiente de Spearman",
+    "",
     "",
     "",
     "",
@@ -3482,6 +3482,9 @@ Dichas oraciones proceden a detallarse como sigue:
 -   Un elemento obstaculizador para el trabajo colaborativo en la presente entrega, fue el carácter acumulativo de determinadas tareas.
     En particular, la dependencia de la *Parte de escritura* hacia las fichas de resultados elaboradas en la tercera bitácora, generó que fuera poco viable iniciar tal sección previo a terminar estas últimas.
     En consecuencia, dicho apartado de considerable densidad, tuvo que desarrollarse en un periodo de menor extensión al planeado.
+
+-   Finalmente, se aprendió que la forma en que se dividía el trabajo en bitácoras anteriores, donde cada integrante tenía tareas claramente delimitadas y separadas, no funcionó igual en esta entrega.
+    La naturaleza del trabajo exigió que todos aportaran en todas las secciones, lo cual fue más complejo de coordinar pero también más enriquecedor, y el grupo reconoce que saber trabajar de esa manera es una habilidad igual de importante que cualquier herramienta estadística aprendida en el proceso.
 
 ## Audiencia del proyecto
 

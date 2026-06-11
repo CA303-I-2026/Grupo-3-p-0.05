@@ -57,7 +57,7 @@ ajuste_gamma <- fitdist(costos_intervalo, "gamma")
 
 comparacion <- data.frame(
   Districución = c("Lognormal", "Gamma"),
-  AIC = c(ajuste_lognormal$aic, ajuste_gamma$aic)
+  AIC = c(ajuste_lognormal$aic, ajuste_gamma$aic),
 )
 
 # Se puede observar que el AIC  de la lognomal es de 211,339.9 mientras que el de la gamma es de 212,684.5 resultando en una diferencia de 1344.6, por lo que el ajuste de la lognormal es mucho mejor que el ajuste de la gamma, lo que además indica una mejor representación de los datos
@@ -130,7 +130,7 @@ ajuste_lognormal_mayores_900 <- fitdist(mayores_900, "lnorm")
 
 comparacion_mayor_900 <- data.frame(
   Districución = c("Lognormal", "Pareto"),
-  AIC = c(ajuste_lognormal_mayores_900$aic, ajuste_pareto$aic)
+  AIC = c(ajuste_lognormal_mayores_900$aic, ajuste_pareto$aic),
 )
 
 # Gráfico diagnóstico para la pareto:
