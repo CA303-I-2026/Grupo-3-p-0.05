@@ -1607,11 +1607,12 @@ boxplot_costos <- datos %>%
        y = "Costo anual",
        x = "",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.subtitle = element_text(hjust = 0.5))
 ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
 ```
 
-![Distribución de los costos de reclamos por año](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){#fig-boxplot-costos width="80%"}
+![Distribución de los costos de reclamos por año](../../../bitacoras/bitacora_3/figuras/boxplot_costos.png){#fig-boxplot-costos width="80%" fig-pos="H"}
 
 La @fig-boxplot-costos muestra la distribución de la variable *Cost_claims_year* para reclamos mayores a 0 euros y menores a 5000 euros.
 En la figura, se puede observar que la variable presenta una fuerte asimetría hacia la derecha, una alta concentración en valores bajos y múltiples valores atípicos.
@@ -1938,7 +1939,8 @@ velas_tipo_vehiculo <- datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   scale_y_continuous(labels = scales::comma, breaks = seq(0, 5000, 500)) +
   guides(fill = "none") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.subtitle = element_text(hjust = 0.5))
 
 ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_tipo_vehiculo.png", velas_tipo_vehiculo, width = 10, height = 7, dpi = 300)
 
@@ -2102,7 +2104,8 @@ velas_area <- datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   scale_y_continuous(labels = scales::comma, breaks = seq(0, 5000, 500)) +
   guides(fill = "none") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.subtitle = element_text(hjust = 0.5))
 
 ggsave("../../../bitacoras/bitacora_3/figuras/velas_costo_area.png",
        velas_area, width = 10, height = 7, dpi = 300)
@@ -2191,7 +2194,8 @@ frecuencia_promedio_combustible <- datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   ylim(0, 0.6) +
   guides(fill = "none") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.title = element_text(size = 10))
 frecuencia_promedio_combustible
 ```
 
@@ -2215,7 +2219,8 @@ proporcion_sin_siniestros_combustible <- datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   ylim(0, 1) +
   guides(fill = "none") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.title = element_text(size = 10))
 proporcion_sin_siniestros_combustible
 ```
 
@@ -2239,7 +2244,8 @@ dist_costo_positivo_combustible <- datos_modificados %>%
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   ylim(0, 1) +
   guides(fill = "none") +
-  estilo_grupo3
+  estilo_grupo3 +
+  theme(plot.title = element_text(size = 10))
 dist_costo_positivo_combustible
 ```
 
