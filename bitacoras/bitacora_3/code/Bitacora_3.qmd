@@ -1316,7 +1316,7 @@ $$
 ya que la mediana es menos sensible a valores extremos que la media.
 Esto es relevante porque la severidad de los siniestros puede presentar asimetría hacia la derecha y valores atípicos.
 
-Para complementar la comparación entre grupos, se construirán tablas resumen que integren indicadores de la frecuencia y la severidad. Las tablas permitirán observar, para cada categoría, la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo y las medidas principales del costo positivo. De esta manera, será posible comparar no solo cuántos siniestros ocurren en cada grupo, sino también qué tan costosos son cuando ocurren..
+Para complementar la comparación entre grupos, se construirán tablas resumen que integren indicadores de la frecuencia y la severidad. Las tablas permitirán observar, para cada categoría, la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo y las medidas principales del costo positivo. De esta manera, será posible comparar no solo cuántos siniestros ocurren en cada grupo, sino también qué tan costosos son cuando ocurren.
 
 Además, se elaborarán gráficos comparativos. En el caso de la frecuencia de los siniestros se utilizarán gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo. En el caso de la severidad se utilizarán boxplots, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos. Dado que la severidad presenta una marcada asimetría hacia la derecha con valores extremos de gran magnitud, los boxplots se construirán filtrando los registros con costo positivo a un máximo de €5,000, con el fin de mejorar la legibilidad visual sin afectar la interpretación de la distribución central de los datos.
 
@@ -1395,7 +1395,7 @@ $$
 Y_i \mid 0<Y_i<900.
 $$
 
-Para este grupo se evaluarán distribuciones candidatas como gamma, lognormal, Weibull y exponencial, debido a que son las distribuciones usuales para variables continuas positivas y asimétricas.
+Para este grupo se evaluarán distribuciones candidatas como la lognormal y la gamma, debido a que son distribuciones usuales para variables continuas positivas y asimétricas, y porque la inspección visual preliminar del histograma descartó la Weibull y la exponencial como aproximaciones razonables para la forma observada en los datos.
 
 Luego, se analizarán los costos mayores o iguales a 900 euros:
 
@@ -1470,8 +1470,7 @@ Este método no busca establecer causalidad, sino identificar patrones prelimina
 Debido a que las variables de siniestralidad pueden presentar distribuciones asimétricas y valores atípicos, se dará prioridad a coeficientes no paramétricos como Spearman y Kendall.
 
 En tercer lugar, la comparación entre grupos permite estudiar variables categóricas, como el tipo de vehículo, la zona de circulación o el tipo de combustible.
-Se complementa el análisis de correlación, ya que muchas características relevantes del problema no son numéricas.
-A través de tablas, proporciones y gráficos comparativos, será posible observar si ciertos grupos presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad en los reclamos.
+Este método complementa el análisis de correlación, ya que muchas características relevantes del problema no son numéricas. A través de tablas, proporciones y gráficos comparativos, será posible observar si ciertos grupos presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad en los reclamos.
 
 Finalmente, el análisis del umbral de 900 euros permite estudiar con mayor detalle los reclamos de alta severidad.
 Este método incorpora la retroalimentación recibida, al no tratar el umbral únicamente como una variable indicadora, sino como parte de una posible estructura de mezcla en la distribución del costo anual.
@@ -1601,11 +1600,12 @@ Se obtuvo que, con la distribución Poisson, la proporción de ceros esperada es
 ```{r, warning= FALSE, message=FALSE, echo =FALSE, fig.align='center'}
 boxplot_costos <- datos %>%
   filter(Cost_claims_year > 0, Cost_claims_year <= 5000) %>%
-  ggplot(aes(y = Cost_claims_year)) +
+  ggplot(aes(x = "", y = Cost_claims_year)) +
   geom_boxplot(fill = paleta_pamplemousse[2], color = "black") +
   labs(title = "Distribución de los costos de reclamos por año",
        subtitle = "Costos mayores a €0 y menores a €5,000",
        y = "Costo anual",
+       x = "",
        caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2") +
   estilo_grupo3
 ggsave("../../../bitacoras/bitacora_3/figuras/boxplot_costos.png",boxplot_costos, width = 8, height = 9, dpi = 300)
@@ -2259,7 +2259,7 @@ velas_combustible
 
 En cuanto a la distribución del costo positivo, ambos tipos de combustible presentan una distribución similar: medianas por debajo de la mitad de la caja, lo que evidencia una asimetría positiva en ambos grupos.
 Las cajas tienen tamaños comparables, con valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico.
-La distribución del costo positivo no parece diferir sustancialmente entre tipos de combustible, a diferencia de lo que sí se observó en la frecuencia.
+La distribución del costo positivo no parece diferir sustancialmente entre tipos de combustible, a diferencia de lo que sí se observó en la frecuencia. En conjunto, estos resultados sugieren que el tipo de combustible diferencia más claramente a los grupos en términos de frecuencia que de severidad."
 
 Para sintetizar los resultados anteriores, la siguiente tabla presenta los principales indicadores de frecuencia y severidad para cada tipo de combustible.
 
@@ -2325,10 +2325,7 @@ La comparación entre grupos ya mostró que, en prácticamente todos los subconj
 El análisis de distribución mixta permite formalizar esa observación, estimando las proporciones de cada componente y las distribuciones paramétricas que mejor describen los costos en cada rango.
 Este método responde directamente a la pregunta de investigación, pues permite cuantificar qué fracción de la cartera genera reclamos de alta severidad y caracterizar la forma de esa distribución.
 
-Para estudiar el comportamiento del costo anual de los siniestros en el umbral de los €900, se propuso un modelo de distribución mixta, separado en tres componentes, primero, una masa puntual ubicada en cero, para la cual los costos corresponden a 0 (Y = 0).
-Segundo, una distribución para los costos ubicados entre €0 y €900, sin incluir (0 \< Y \< 900).
-Tercero, una distribución para los costos mayores o iguales a €900 (Y ≥ 900), la cual para una mejor visualización gráfica se acotó a €20000.
-A continuación se presentan los resultados obtenidos a través del ajuste de distribuciones para costos mayores a €0.
+Para estudiar el comportamiento del costo anual en torno al umbral de €900, se implementó el modelo de distribución mixta descrito en la sección metodológica, separando los registros en tres componentes: costos nulos, costos moderados (0 < Y < 900) y costos altos (Y ≥ 900). A continuación se presentan los resultados del ajuste paramétrico para cada componente positivo.
 
 Para el intervalo de 0 a 900, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre €0 y €900, las cuales fueron la distribución Lognormal y la distribución Gamma.
 Por medio del paquete "fitdistrplus" se realizó el ajuste, del cual se obtuvo que el Criterio de Información de Akaike (AIC) tuvo un valor de 211,339.9 para el caso de la distribución Lognormal, mientras que para la distribución Gamma se obtuvo un AIC de 212,684.5, resultando en una diferencia de 1,344.6; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Gamma, lo que indica que posee un mejor ajuste para los datos.
@@ -2356,7 +2353,8 @@ knitr::include_graphics("../../../bitacoras/bitacora_3/figuras/comparacion_logno
 
 La @fig-comparacion-lognormal-gamma superpone las curvas de densidad de ambas distribuciones candidatas sobre el histograma de los costos en el intervalo (0 < Y < 900), lo que permite apreciar visualmente las diferencias clave en el ajuste. El histograma base revela dos características estructurales relevantes: una concentración muy elevada de valores cercanos a €0 y una barra notablemente alta en la región próxima a €900, la cual probablemente refleja la acumulación de registros justo antes del umbral de corte del intervalo. La distribución Lognormal (representada por la curva azul) presenta un pico más pronunciado y ubicado en un valor inferior, aproximadamente entre €50 y €100, lo que le permite aproximarse de mejor manera a la concentración inicial de los datos. Por el contrario, la distribución Gamma (curva rosada) exhibe un pico más suave y desplazado hacia la derecha, alrededor de los €100, lo que provoca una sobreestimación de la densidad en el rango intermedio y una subestimación en los valores más bajos. En la cola derecha, ambas distribuciones convergen de forma similar, aunque la Lognormal mantiene una densidad ligeramente mayor en los valores cercanos al límite de €900. Estas discrepancias visuales son plenamente consistentes con los criterios de selección numérica: la Lognormal (AIC = 211,340) describe con mayor fidelidad la geometría del histograma que la Gamma (AIC = 212,685), especialmente en la región de máxima concentración de datos.
 
-Para el intervalo de los valores mayores o iguales a 900 (Y ≥ 900), primero se acotaron los costos por €20,000, de modo que quedó el intervalo (900 ≤ Y ≤ 20,000).
+Para el intervalo de los valores mayores o iguales a €900 (Y ≥ 900), se acotó el análisis a un máximo de €20,000, de modo que el intervalo de trabajo quedó definido como (900 ≤ Y ≤ 20,000). Esta restricción aplica tanto al ajuste paramétrico como a la visualización gráfica: las observaciones con costos superiores a €20,000 fueron excluidas de ambos, dado que representan valores extremos aislados que distorsionarían el ajuste y dificultarían la interpretación visual sin aportar información representativa sobre la cola.
+
 Después, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre €900 y €20,000, las cuales fueron la distribución Lognormal y la distribución Pareto.
 Por medio del paquete "fitdistrplus" y la función "fitdist()" se realizó el ajuste para la distribución Lognormal, del cual se obtuvo que el AIC tuvo un valor de 64,536.62, mientras que para la distribución Pareto se obtuvo un AIC de 66422.61, resultando en una diferencia de 1,885.99; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Pareto, lo que indica que posee un mejor ajuste para los datos.
 De esta forma se seleccionó la Lognormal para modelar los costos que están en el intervalo (Y ≥ 900).
@@ -2872,6 +2870,8 @@ La visualización no solo muestra la correlación de las variables contempladas 
 Así, la imagen constituye un espacio de interacción multidireccional, en el cual se cuentan múltiples historias simultáneamente, la historia de cómo interactúan las variables entre sí.
 
 # Arco narrativo del proyecto
+
+El modelo reveló que la siniestralidad de la cartera está dominada por un exceso estructural de ceros (81.39 %), que el historial de reclamos es el único predictor cuantitativo con asociación moderada (ρ ≈ 0.38), que el tipo de vehículo es el factor categórico con mayor diferenciación entre grupos, siendo las furgonetas las de mayor frecuencia y las furgonetas y turismos las que concentran los reclamos de alta severidad, y que el costo anual se estructura como una mezcla de tres componentes lognormales, lo que significa que la frecuencia y la severidad responden a dinámicas distintas y que ninguna variable aislada explica la siniestralidad, sino que es la combinación del tipo de vehículo, el historial y la estructura distribucional del costo lo que permite caracterizar el riesgo en esta cartera.
 
 # Parte de escritura
 
