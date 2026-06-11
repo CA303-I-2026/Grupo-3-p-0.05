@@ -985,11 +985,9 @@ Por lo tanto, el análisis descriptivo constituye un punto de partida pertinente
 #### Análisis de asociación entre las variables cuantitativas
 
 El segundo método consistirá en estudiar la asociación entre las variables cuantitativas del asegurado o del vehículo y las variables de la siniestralidad.
-El propósito de esta etapa no será establecer relaciones causales, sino identificar patrones de asociación que permitan explorar si ciertas características numéricas se relacionan con una mayor frecuencia o severidad de los siniestros.
+El propósito de esta etapa no será establecer relaciones causales, sino identificar patrones de asociación que permitan explorar si ciertas características numéricas se relacionan con una mayor frecuencia o severidad de los siniestros. Entre las variables cuantitativas consideradas se encuentran la edad del asegurado, la antigüedad como cliente, la antigüedad de la licencia de conducir, el historial de reclamos, así como el peso, la potencia, el valor y la edad del vehículo.
 
-En una primera etapa, se elaborarán gráficos de dispersión entre cada variable cuantitativa $X_i$ y las variables de respuesta $N_i$ y $Y_i$.
-Los gráficos permitirán observar si existen patrones visuales, relaciones crecientes o decrecientes, agrupamientos, valores atípicos o ausencia aparente de asociación.
-En el caso de la severidad, también se considerará el análisis sobre los costos positivos, $Y_i \mid Y_i > 0,$ para evitar que la gran cantidad de ceros oculte el comportamiento de los montos efectivamente reclamados.
+En una primera etapa, se analizará la asociación entre cada variable cuantitativa $X_i$ y las variables de respuesta $N_i$ e $Y_i$ mediante coeficientes de correlación de Spearman, presentados en una matriz de correlación y una tabla de intervalos de confianza al 95%. La matriz también permitirá identificar correlaciones entre las propias variables explicativas, lo cual constituye un diagnóstico preliminar de posible multicolinealidad relevante para las etapas de modelación. Este enfoque permite identificar la dirección y magnitud de las asociaciones de forma más precisa que un gráfico de dispersión, especialmente dado que $N_i$ toma valores enteros con alta concentración en cero, lo que dificulta la visualización directa.
 
 Posteriormente, se calcularán coeficientes de correlación entre pares de variables cuantitativas.
 En primer lugar, se considerará el coeficiente de correlación de Pearson, definido como:
@@ -1005,10 +1003,10 @@ r =
 },
 $$
 
-donde $Z_i$ representa una variable de siniestralidad, como $N_i$, $Y_i$ o el costo positivo $Y_i \mid Y_i>0$.
+donde $Z_i$ representa una variable de siniestralidad, como $N_i$ o $Y_i$. Si bien podría considerarse también el subconjunto de costos positivos $Y_i \mid Y_i > 0$, dado que la correlación entre $N_i$ e $Y_i$ es prácticamente perfecta ($\rho \approx 0.99$), el análisis sobre el costo total ya captura esencialmente la misma información, por lo que este subconjunto no se analiza por separado.
 
-Sin embargo, debido a las características observadas en las variables de la siniestralidad, especialmente la alta concentración de ceros, la presencia de valores extremos y la asimetría hacia la derecha en la severidad, Pearson se utilizará únicamente como una referencia inicial.
-En este contexto, se dará prioridad a coeficientes no paramétricos como Spearman y Kendall, ya que estos no requieren asumir normalidad ni una relación estrictamente lineal entre las variables.
+Sin embargo, debido a las características observadas en las variables de la siniestralidad, especialmente la alta concentración de ceros, la presencia de valores extremos y la asimetría hacia la derecha en la severidad, Pearson no se reportará como resultado principal. Su fórmula se presenta únicamente como punto de partida conceptual para introducir los coeficientes no paramétricos, que serán los utilizados en el análisis.
+En este contexto, se dará prioridad a coeficientes no paramétricos como Spearman y Kendall, ya que estos no requieren asumir normalidad ni una relación estrictamente lineal entre las variables. En muestras grandes, ambos coeficientes tienden a producir conclusiones similares; sin embargo, se preferirá Spearman por su mayor eficiencia computacional y su uso más extendido en la literatura para análisis exploratorios de este tipo.
 
 El coeficiente de Spearman se define como la correlación de Pearson aplicada a los rangos de las variables:
 
@@ -1318,22 +1316,12 @@ $$
 ya que la mediana es menos sensible a valores extremos que la media.
 Esto es relevante porque la severidad de los siniestros puede presentar asimetría hacia la derecha y valores atípicos.
 
-Para complementar la comparación entre grupos, se construirán tablas resumen que integren indicadores de la frecuencia y la severidad.
-Las tablas permitirán observar, para cada categoría, la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo y las medidas principales del costo positivo.
-De esta manera, será posible comparar no solo cuántos siniestros ocurren en cada grupo, sino también qué tan costosos son cuando ocurren.
+Para complementar la comparación entre grupos, se construirán tablas resumen que integren indicadores de la frecuencia y la severidad. Las tablas permitirán observar, para cada categoría, la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo y las medidas principales del costo positivo. De esta manera, será posible comparar no solo cuántos siniestros ocurren en cada grupo, sino también qué tan costosos son cuando ocurren..
 
-Además, se elaborarán gráficos comparativos.
-En el caso de la frecuencia de los siniestros se utilizarán gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo.
-En el caso de la severidad se utilizarán boxplots o gráficos de violín, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos.
+Además, se elaborarán gráficos comparativos. En el caso de la frecuencia de los siniestros se utilizarán gráficos de barras que muestren la frecuencia promedio o la proporción de asegurados sin siniestros por grupo. En el caso de la severidad se utilizarán boxplots, ya que estos permiten observar diferencias en la distribución del costo entre categorías, así como la presencia de valores extremos. Dado que la severidad presenta una marcada asimetría hacia la derecha con valores extremos de gran magnitud, los boxplots se construirán filtrando los registros con costo positivo a un máximo de €5,000, con el fin de mejorar la legibilidad visual sin afectar la interpretación de la distribución central de los datos.
 
-Cuando se desee evaluar la asociación entre una variable categórica y una variable binaria de siniestralidad, se definirá una variable codificada numéricamente, de manera que las categorías de las variables se expresen a través de números, en vías de facilitar tanto su estudio como su manipulación.
-A partir de esta variable se podrán construir tablas resumen y de comparación, que permitirán comparar la proporción de registros con costo positivo dentro de cada categoría.
-
-La escogencia de dicho método se basa en que permite analizar la asociación entre variables que no pueden estudiarse adecuadamente mediante correlación.
-Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas.
-
-En relación con la pregunta de investigación, la comparación entre grupos permite identificar si ciertas categorías presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados.
-De esta manera, el análisis aporta evidencia descriptiva sobre posibles diferencias en la siniestralidad según las características del asegurado o del vehículo.
+La escogencia de dicho método se basa en que permite analizar la asociación entre variables que no pueden estudiarse adecuadamente mediante correlación. Mientras que la sección anterior se enfoca en variables cuantitativas, esta sección permite estudiar diferencias entre grupos definidos por características categóricas.
+En relación con la pregunta de investigación, la comparación entre grupos permite identificar si ciertas categorías presentan mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados. De esta manera, el análisis aporta evidencia descriptiva sobre posibles diferencias en la siniestralidad según las características del asegurado o del vehículo.
 
 #### Análisis del umbral de 900 euros mediante distribución mixta y ajuste de distribuciones
 
@@ -1741,10 +1729,6 @@ Se eligió Spearman sobre Kendall porque con muestras grandes, como la de este p
 shapiro.test(datos$N_claims_year[1:5000])
 ```
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.align='center'}
-# PENDIENTE: Gráficos de dispersión
-```
-
 ```{r fig-matriz-correlacion, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Matriz de correlación de Spearman para las variables numéricas del modelo", fig.align='center'}
 variables_cor <- datos_modelacion %>%
   select(N_claims_year, Cost_claims_year, edad, Seniority, 
@@ -1860,7 +1844,6 @@ Una vez caracterizadas las asociaciones entre variables cuantitativas, el análi
 Este tercer método completa el panorama exploratorio al incorporar factores que no pueden estudiarse mediante correlación: el tipo de vehículo, la zona de circulación y el tipo de combustible.
 La comparación entre grupos responde directamente a la pregunta de investigación, pues permite identificar si ciertas categorías concentran una mayor frecuencia de siniestros, una mayor proporción de costos positivos o una severidad más alta cuando ocurre un reclamo.
 Para cada variable categórica se presentan gráficos de barras para la frecuencia, boxplots para la severidad y tablas resumen que integran ambas dimensiones.
-Al final de cada bloque comparativo se incluye la prueba de Kruskal-Wallis como elemento de validación, cuyo resultado permite evaluar si las diferencias observadas entre grupos son estadísticamente consistentes.
 
 ```{r fig-frecuencia-promedio-vehiculo, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Frecuencia promedio de siniestros anuales según la categoría del vehículo", fig.align='center'}
 frecuencia_promedio_vehiculo <- datos_modificados %>%
