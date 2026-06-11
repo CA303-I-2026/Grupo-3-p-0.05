@@ -1755,7 +1755,7 @@ matriz_correlacion <- ggcorrplot(correlacion_spearman,
 ggsave("../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png", matriz_correlacion, width = 9, height = 9, dpi = 300)
 ```
 
-![Matriz de correlaciones de las variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){#fig-matriz-correlacion height="70%"}
+![Matriz de correlaciones de las variables numéricas](../../../bitacoras/bitacora_3/figuras/matriz_correlacion.png){#fig-matriz-correlacion height="70%" fig-pos="H"}
 
 La matriz permite observar las asociaciones entre las variables cuantitativas.
 En cuanto a las variables de la siniestralidad, *N_claims_history* presenta la correlación más alta con *N_claims_year* ($\rho$ = 0.38) y con *Cost_claims_year* ($\rho$ = 0.36), lo que indica que los asegurados con mayor historial de reclamos tienden a presentar más siniestros y costos más altos en el año analizado.
@@ -1816,13 +1816,14 @@ knitr::kable(
   tabla_ic,
   caption = "Correlaciones de Spearman con intervalos de confianza al 95\\%",
   booktabs = TRUE,
+  longtable = TRUE,
   align = c("l", "l", "r", "r", "r", "r", "l"),
   format.args = list(scientific = FALSE)
 ) %>%
   kableExtra::kable_styling(
-    latex_options = c("hold_position", "centering"),
+    latex_options = c("repeat_header", "scale_down"),
     full_width = FALSE,
-    font_size = 9
+    font_size = 8
   ) %>%
   kableExtra::pack_rows("Variables temporales del asegurado", 1, 8) %>%
   kableExtra::pack_rows("Variables del vehículo e historial", 9, 16)
@@ -1865,7 +1866,7 @@ frecuencia_promedio_vehiculo <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png", frecuencia_promedio_vehiculo, width = 10, height = 7, dpi = 300)
 ```
 
-![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#fig-promedio-tipo-vehiculo width="90%"}
+![Frecuencia promedio de siniestros por año según el tipo de vehículo](../../../bitacoras/bitacora_3/figuras/frecuencia_promedio_tipo_vehiculo.png){#fig-promedio-tipo-vehiculo width="90%" fig-pos="H"}
 
 Se observa que las furgonetas son el tipo de vehículo que mayor frecuencia promedio de siniestros anual posee, con 0.568 siniestros por año, luego están los turismos, los cuales tienen 0.397 siniestros por año, luego están las motocicletas con 0.145 siniestros por año y por último están los vehículos agrícolas, los cuales poseen 0.001 siniestros por año.
 
@@ -1951,7 +1952,7 @@ Además, las cajas de las furgonetas y turismos son prácticamente iguales, lo q
 La caja de las motocicletas es más pequeña que la de las furgonetas y la de los turismos, indicando que posee menor variabilidad que estos dos tipos de vehículos, además, posee menos valores atípicos.
 Para el caso de los vehículos agrícolas, su caja es casi una línea, indicando que hay prácticamente un costo fijo cerca de 200, además, no posee valores atípicos ni bigotes, esto concuerda con su frecuencia promedio de siniestros que es prácticamente 0.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 tabla_resumen_tipo_vehiculo <- datos_modificados %>%
   group_by(categoria) %>%
   summarise(
@@ -1967,30 +1968,36 @@ tabla_resumen_tipo_vehiculo <- datos_modificados %>%
   )
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 tabla_resumen_tipo_vehiculo %>%
   mutate(
     frec_promedio = round(frec_promedio, 4),
     prop_sin_siniestros = scales::percent(prop_sin_siniestros, accuracy = 0.01),
     prop_costo_positivo = scales::percent(prop_costo_positivo, accuracy = 0.01),
-    across(c(media_costo_pos, mediana_costo_pos,
-             q1_costo_pos, q3_costo_pos, max_costo_pos),
-           ~ formatC(., format = "f", digits = 2, big.mark = ","))
+    across(
+      c(media_costo_pos, mediana_costo_pos,
+        q1_costo_pos, q3_costo_pos, max_costo_pos),
+      ~ formatC(., format = "f", digits = 2, big.mark = ",")
+    )
   ) %>%
   knitr::kable(
-    col.names = c("Tipo de vehículo", "n", "Frec. promedio",
-                  "Sin siniestros", "Costo > €0",
-                  "Media (€)", "Mediana (€)", "Q1 (€)", "Q3 (€)", "Máximo (€)"),
+    format = "latex",
+    longtable = FALSE,
+    col.names = c(
+      "Vehículo", "n", "Frec.",
+      "Sin sin.", "Costo > 0",
+      "Media", "Mediana", "Q1", "Q3", "Máx."
+    ),
     caption = "Resumen de frecuencia y severidad por tipo de vehículo",
     booktabs = TRUE,
     align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
     format.args = list(scientific = FALSE)
   ) %>%
   kableExtra::kable_styling(
+    latex_options = c("hold_position", "scale_down"),
     full_width = FALSE,
     position = "center",
-    font_size  = 9,
-    latex_options = "hold_position"
+    font_size = 8
   )
 ```
 
@@ -2108,7 +2115,7 @@ Ambas cajas tienen tamaños prácticamente iguales, con medianas cercanas a los 
 En ambos casos la mediana se encuentra en la parte inferior de la caja, evidenciando una asimetría positiva: la mayoría de los siniestros con costo positivo tienen costos relativamente bajos, pero existen valores atípicos que se extienden hasta los €5,000 en el rango visible del gráfico.
 La cantidad y distribución de estos valores atípicos son similares entre zonas.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 tabla_resumen_area <- datos_modelacion %>%
   mutate(Area = factor(Area, levels = c(0, 1), 
                        labels = c("Rural", "Urbana"))) %>%
@@ -2144,10 +2151,10 @@ tabla_resumen_area %>%
     format.args = list(scientific = FALSE)
   ) %>%
   kableExtra::kable_styling(
+    latex_options = c("repeat_header", "scale_down"),
     full_width = FALSE,
     position = "center",
-    font_size = 9,
-    latex_options = "hold_position"
+    font_size = 9
   ) %>%
   kableExtra::add_header_above(
     c(" " = 2,
@@ -2263,7 +2270,7 @@ La distribución del costo positivo no parece diferir sustancialmente entre tipo
 
 Para sintetizar los resultados anteriores, la siguiente tabla presenta los principales indicadores de frecuencia y severidad para cada tipo de combustible.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 tabla_resumen_combustible <- datos_modificados %>%
   filter(!is.na(Type_fuel)) %>%
   mutate(Type_fuel = factor(Type_fuel, levels = c("P", "D"), 
@@ -2291,24 +2298,28 @@ tabla_resumen_combustible %>%
            ~ formatC(., format = "f", digits = 2, big.mark = ","))
   ) %>%
   knitr::kable(
-    col.names = c("Tipo de combustible", "n", "Frec. promedio",
-                  "Sin siniestros", "Costo > €0",
-                  "Media (€)", "Mediana (€)", "Q1 (€)", "Q3 (€)", "Máximo (€)"),
+    format = "latex",
+    longtable = FALSE,
+    col.names = c(
+      "Combustible", "n", "Frec.",
+      "Sin sin.", "Costo > 0",
+      "Media", "Mediana", "Q1", "Q3", "Máx."
+    ),
     caption = "Resumen de frecuencia y severidad por tipo de combustible",
     booktabs = TRUE,
     align = c("l", "r", "r", "r", "r", "r", "r", "r", "r", "r"),
     format.args = list(scientific = FALSE)
   ) %>%
-  kableExtra::kable_styling(
-    full_width = FALSE,
-    position = "center",
-    font_size = 9,
-    latex_options = "hold_position"
-  ) %>%
   kableExtra::add_header_above(
     c(" " = 2,
-      "Frecuencia" = 2,
-      "Severidad" = 6)
+      "Frecuencia" = 3,
+      "Severidad" = 5)
+  ) %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position", "scale_down"),
+    full_width = FALSE,
+    position = "center",
+    font_size = 8
   )
 ```
 
@@ -3111,14 +3122,14 @@ La prueba se utiliza en este proyecto como respaldo estadístico formal de las d
 Las recomendaciones extendidas a partir de la presentación del anteproyecto se efectuaron en torno a dos ejes: el uso de intervalos de confianza para el cálculo de las correlaciones y una interpretación mediante distribución mixta para el análisis del umbral de 900 euros.
 En la presente entrega se procuró implementar las distintas recomendaciones, por lo que se detalla a continuación la manera en que esto fue realizado, según las distintas áreas.
 
-### Intervalos de confianza 
+## Intervalos de confianza 
 
 En la sección *Análisis de asociación entre las variables cuantitavivas*, se desarrolló el cálculo de los coeficientes de correlación de Spearman de las variables cuantitativas contempladas en la pregunta de investigación, respecto a la frecuencia y la severidad de los siniestros.
 
 Además de calcular los coeficientes de correlación planteados, se construyeron intervalos de confianza con el objetivo de evaluar la precisión de las asociaciones estimadas.
 De esta manera, se procuró no interpretar únicamente el valor del coeficiente, sino también considerar la incertidumbre asociada a su estimación.
 
-### Análisis del umbral de 900 euros
+## Análisis del umbral de 900 euros
 
 Después, en la sección *Análisis del umbral de 900 euros mediante distribución mixta*, se desarrolló el cuarto y último método del análisis.
 Se integraron los hallazgos obtenidos hasta ese momento con tal de estudiar a mayor profundidad la estructura del costo anual de siniestros en torno al umbral de los 900 euros.
