@@ -621,7 +621,7 @@ Este comportamiento constituye precisamente el fenómeno que la pregunta de inve
 Por otra parte, en la @fig-edad-reclamos se representa la relación entre la edad y la cantidad histórica de reclamos.
 En este gráfico, la escala de color indica el conteo de observaciones: los tonos más oscuros, como el azul, representan una mayor concentración de asegurados, mientras que los tonos más claros, como el rosado, indican una menor concentración.
 
-```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del aegurado y reclamos totales", fig.align='center'}
+```{r fig-edad-reclamos, warning=FALSE, message=FALSE, echo=FALSE, fig.cap="Relación entre la edad del asegurado y reclamos totales", fig.align='center'}
 
 datos_modificados %>% 
   ggplot(aes(x = edad, y = N_claims_history)) +
