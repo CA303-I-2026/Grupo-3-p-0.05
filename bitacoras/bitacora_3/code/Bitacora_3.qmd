@@ -1069,7 +1069,7 @@ $$
 Este coeficiente es útil porque evalúa la asociación a partir del orden relativo de los datos, por lo que puede ser más adecuado cuando existen distribuciones asimétricas, valores extremos o relaciones no lineales.
 
 En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada.
-El método a utilizar se determinará mediante un `shapiro.test()`, el cual identifcará si las variables presentan una distribución normal o no.
+El método a utilizar se determinará mediante un `shapiro.test()`, el cual identificará si las variables presentan una distribución normal o no.
 En caso afirmativo, se utilizará el método Pearson, y en el caso contrario, se utilizará Kendall o Spearman según sea pertinente.
 
 ##### Intervalos de confianza para los coeficientes de correlación
@@ -2933,10 +2933,10 @@ La siguiente tabla presenta la distribución de los elementos dentro de las dist
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 tabla_guia <- tibble::tibble(
   Sección = c(
-    "Introducción", "Introducción", "Introducción","Introducción", "Introducción",
-    "Metodología", "Metodología", "Metodología","Metodología",
+    "Introducción", "Introducción", "Introducción","Introducción", "Introducción", "Introducción",
+    "Metodología", "Metodología", "Metodología",
     "Resultados", "Resultados", "Resultados", "Resultados", "Resultados",
-    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados"
+    "Resultados", "Resultados", "Resultados"
   ),
   
   `Temas a tratar` = c(
@@ -2947,7 +2947,6 @@ tabla_guia <- tibble::tibble(
     "Vinuesa (2016): Correlación: teoría y práctica (Primario)",
     "Ayuso-Gutiérrez et al. (2015): Modelización del tiempo de hospitalización en lesiones por tránsito (Primario)",
     "Resultado: la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros (Secundario)",
-    "Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros (Secundario)",
     "Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros (Secundario)", 
     "Resultado: la variable de la frecuencia de los reclamos no satisface la hipótesis de normalidad, de manera que se opta por el coeficiente de Spearman (Secundario)",
     "Resultado: el historial de reclamos se asocia positivamente con la siniestralidad del año analizado (Primario)",
@@ -2957,8 +2956,7 @@ tabla_guia <- tibble::tibble(
     "Resultado: los vehículos de turismo lideran el costo anual de siniestros, mientras que las furgonetas lideran la frecuencia (Primario)",
     "Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros (Primario)",
     "Resultado: vehículos comunes concentran reclamos superiores a €900 (Primario)",
-    "Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad (Primario)",
-    "Resultado: síntesis de los principales hallazgos de frecuencia y severidad"
+    "Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad (Primario)"
   )
 )
 
@@ -3025,7 +3023,7 @@ Así, se tienen dos historias diferentes: la historia contada por los autores co
 El objetivo del presente apartado consiste en unificar dichas historias, según la estructura propuesta en el *Ordenamiento de los elementos del reporte*: introducción, metodología y resultados.
 De esta manera, a cada parte de la estructura le corresponderá un subapartado, donde se desarrollarán los elementos contenidos en ellas.
 
-## Introducción 
+## Introducción
 
 El óptimo y eficiente desarrollo de un proyecto radica, en una enorme parte, en el pleno conocimiento de los elementos que el mismo contempla, así como en el establecimiento de una clara delimitación.
 El recurso que se encarga de efectuar los dos aspectos detallados antes, corresponde a la pregunta de investigación, puesto que en ella se definen los fenómenos puntuales que se estudiarán, analizarán y descompondrán a lo largo del proceso.
@@ -3084,7 +3082,7 @@ En síntesis, la literatura consultada coincide en que la frecuencia y la severi
 Además, se destaca que ciertos fenómenos como las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones, producen que la elección de las distribuciones adecuadas para las variables respuesta se convierta en un reto de una complejidad considerable; dichas características se evidencian en los datos utilizados en el proyecto.
 Para concluir, si bien existen múltiples metodologías para evaluar la relación entre las variables mediante el análisis de correlación, es preciso verificar el cumplimiento de los supuestos efectuados bajo cada método y de esta forma seleccionar el coeficiente que mejor se ajuste a los datos empleados.
 
-## Metodología 
+## Metodología
 
 La metodología del proyecto se organiza como una secuencia de distintos análisis, orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
 En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y la severidad, el estudio de asociaciones entre las variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros.
@@ -3125,11 +3123,11 @@ La presencia de una sobredispersión y el exceso de ceros descartó la utilizaci
 De igual forma, la comparación entre distribuciones candidatas para la severidad, mostró que la distribución Lognormal proporciona un mejor ajuste para los costos positivos inferiores a 900 euros, lo que respalda la importancia de seguir una metodología donde se efectúe la exploración gráfica, la selección de las distribuciones candidatas, la estimación de los parámetros y la evaluación de la calidad del ajuste.
 Finalmente, el resultado de no normalidad en la frecuencia de los reclamos, justificó el uso del coeficiente de Spearman para estudiar las asociaciones entre variables, garantizando que el análisis de correlación se realice mediante una metodología consistente con la naturaleza de los datos.
 
-## Resultados 
+## Resultados
 
 Dado que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, dichos resultados se detallan a continuación.
 
-### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros 
+### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros
 
 El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de variables categóricas, como la zona de circulación y el tipo de vehículo.
 
@@ -3157,7 +3155,7 @@ En síntesis, el análisis realizado muestra que las variables de las caracterí
 Mientras que las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; la variable del historial de siniestros evidencia una asociación moderada con estas.
 Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
 
-### Análisis del incremento abrupto al superar el monto de 900 euros 
+### Análisis del incremento abrupto al superar el monto de 900 euros
 
 Se encontraron tres resultados particulares en la presente área, los cuales se detallan como sigue:
 
