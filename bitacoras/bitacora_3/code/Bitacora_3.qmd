@@ -2901,7 +2901,6 @@ tabla_elementos <- tibble::tibble(
     "",
     "",
     "",
-    "",
     ""
   )
 )
@@ -2937,7 +2936,7 @@ tabla_guia <- tibble::tibble(
     "Introducción", "Introducción", "Introducción","Introducción", "Introducción",
     "Metodología", "Metodología", "Metodología","Metodología",
     "Resultados", "Resultados", "Resultados", "Resultados", "Resultados",
-    "Resultados", "Resultados", "Resultados", "Resultados"
+    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados"
   ),
   
   `Temas a tratar` = c(
@@ -3419,7 +3418,7 @@ En la presente entrega se procuró implementar las distintas recomendaciones, po
 
 ## Intervalos de confianza
 
-En la sección *Análisis de asociación entre las variables cuantitavivas*, se desarrolló el cálculo de los coeficientes de correlación de Spearman de las variables cuantitativas contempladas en la pregunta de investigación, respecto a la frecuencia y la severidad de los siniestros.
+En la sección *Análisis de asociación entre las variables cuantitativas*, se desarrolló el cálculo de los coeficientes de correlación de Spearman de las variables cuantitativas contempladas en la pregunta de investigación, respecto a la frecuencia y la severidad de los siniestros.
 
 Además de calcular los coeficientes de correlación planteados, se construyeron intervalos de confianza con el objetivo de evaluar la precisión de las asociaciones estimadas.
 De esta manera, se procuró no interpretar únicamente el valor del coeficiente, sino también considerar la incertidumbre asociada a su estimación.
