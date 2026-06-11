@@ -2776,26 +2776,55 @@ Como primer paso en el proceso, se identifican y clasifican los elementos del pr
 Los elementos primarios corresponden a aquellos sin los cuales el trabajo perdería sentido, mientras que los secundarios aportan apoyo y contexto, pero no son fundamentales.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-tabla_elementos <- tibble(
-  Primarios = c("Frees (2021):\\textit{Loss data analytics}", "Ayuso-Gutierrez et al. (2015): \\textit{Modelización del tiempo de hospitalización en lesiones por tránsito}", "Vinuesa (2016): \\textit{Correlación: teoría y práctica}", "Resultado: \\textit{vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia}","Resultado: \\textit{las furgonetas tienen mayor frecuencia promedio de siniestros}", "Resultado: \\textit{vehículos comunes concentran reclamos superiores a €900}", "Resultado: \\textit{las furgonetas y los vehículos de turismo concentran reclamos con alta severidad}", "Resultado: \\textit{el historial de reclamos se asocia positivamente con la siniestralidad del año analizado}", "Resultado: \\textit{el umbral de €900 emerge como límite natural en múltiples grupos}", "Resultado: \\textit{ciertas variables asociadas a las características del asegurado y a las características del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros}", "Resultado: \\textit{la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación}"),
-  Secundarios = c("Guillen et al. (2021): \\textit{Modelos predictivos del riesgo y aplicaciones a los seguros}", "Omari et al. (2018): \\textit{ Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions}","Resultado: \\textit{más del 85% de asegurados no reportó siniestros en el año}", "Resultado: \\textit{variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados}", "Resultado: \\textit{la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros}", "Resultado: \\textit{la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros}","", "", "", "", ""))# espacios vacíos para poder correr el código jeje))
+tabla_elementos <- tibble::tibble(
+  Primarios = c(
+    "Frees (2021): Loss Data Analytics",
+    "Ayuso-Gutiérrez et al. (2015): Modelización del tiempo de hospitalización en lesiones por tránsito",
+    "Vinuesa (2016): Correlación: teoría y práctica",
+    "Resultado: vehículos de turismo lideran el costo anual de siniestros, mientras que las furgonetas lideran la frecuencia",
+    "Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros",
+    "Resultado: vehículos comunes concentran reclamos superiores a €900",
+    "Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad",
+    "Resultado: el historial de reclamos se asocia positivamente con la siniestralidad del año analizado",
+    "Resultado: el umbral de €900 emerge como límite natural en múltiples grupos",
+    "Resultado: ciertas variables asociadas a las características del asegurado y del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros",
+    "Resultado: la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación"
+  ),
+  
+  Secundarios = c(
+    "Guillén et al. (2021): Modelos predictivos del riesgo y aplicaciones a los seguros",
+    "Omari et al. (2018): Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions",
+    "Resultado: más del 85\\% de asegurados no reportó siniestros en el año",
+    "Resultado: las variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados",
+    "Resultado: la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros",
+    "Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros",
+    "",
+    "",
+    "",
+    "",
+    ""
+  )
+)
 
 knitr::kable(
   tabla_elementos,
+  format = "latex",
   booktabs = TRUE,
   longtable = TRUE,
-  align = c("l", "l") 
+  escape = FALSE,
+  align = c("p{0.46\\textwidth}", "p{0.46\\textwidth}"),
+  col.names = c("Primarios", "Secundarios"),
+  caption = "Elementos primarios y secundarios del reporte"
 ) %>%
+  kableExtra::add_header_above(
+    c("Elementos del reporte" = 2),
+    line = TRUE
+  ) %>%
   kableExtra::kable_styling(
     latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
-    font_size = 11
-  ) %>%
-  
-  kableExtra::add_header_above(
-    c("Elementos del reporte" = 2), 
-    line = TRUE
+    font_size = 9
   )
 ```
 
@@ -2803,47 +2832,54 @@ Posteriormente, con base en la clasificación anterior, se establece una propues
 La siguiente tabla presenta la distribución de los elementos dentro de las distintas secciones del documento, con el objetivo de garantizar una estructura lógica, coherente y ordenada para la presentación final del trabajo.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-tabla_guia <- tibble(
+tabla_guia <- tibble::tibble(
   Sección = c(
-    "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Introducción", "Metodología", "Metodología", "Metodología",
-    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", "Resultados", ""),
+    "Introducción", "Introducción", "Introducción", "Introducción",
+    "Introducción", "Introducción",
+    "Metodología", "Metodología", "Metodología",
+    "Resultados", "Resultados", "Resultados", "Resultados", "Resultados",
+    "Resultados", "Resultados", "Resultados", "Resultados"
+  ),
+  
   `Temas a tratar` = c(
-    "1. Frees (2021): Loss data analytics (Primario)",
+    "1. Frees (2021): Loss Data Analytics (Primario)",
     "2. Omari et al. (2018): Modeling the Frequency and Severity of Auto Insurance Claims Using Statistical Distributions (Secundario)",
-    "3. Resultado: variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados (Secundario)",
+    "3. Resultado: las variables del costo anual de los siniestros y el número de siniestros por año evidencian valores extremos marcados (Secundario)",
     "4. Resultado: más del 85% de asegurados no reportó siniestros en el año (Secundario)",
     "5. Vinuesa (2016): Correlación: teoría y práctica (Primario)",
-    "6. Guillen et al. (2021): Modelos predictivos del riesgo y aplicaciones a los seguros (Secundario)", 
-    "7. Ayuso-Gutierrez et al. (2015): Modelización del tiempo de hospitalización en lesiones por tránsito (Primario)", 
+    "6. Guillén et al. (2021): Modelos predictivos del riesgo y aplicaciones a los seguros (Secundario)",
+    
+    "7. Ayuso-Gutiérrez et al. (2015): Modelización del tiempo de hospitalización en lesiones por tránsito (Primario)",
     "1. Resultado: la distribución Poisson es inadecuada para modelar la frecuencia anual de siniestros debido a sobredispersión y exceso de ceros (Secundario)",
     "2. Resultado: la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros (Secundario)",
-    "3. Resultado: (Secundario)",
+    
     "1. Resultado: el historial de reclamos se asocia positivamente con la siniestralidad del año analizado (Primario)",
-    "2.Resultado: el umbral de €900 emerge como límite natural en múltiples grupos (Primario)",
-    "3. Resultado: ciertas variables asociadas a las características del asegurado y a las características del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros (Primario)", 
-    "4. Resultado: la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación (Primario)", 
-    "5. Resultado: vehículos de turismo lideran el costo anual de siniestros, furgonetas la frecuencia (Primario)",
-    "6. Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros(Primario)",
+    "2. Resultado: el umbral de €900 emerge como límite natural en múltiples grupos (Primario)",
+    "3. Resultado: ciertas variables asociadas a las características del asegurado y del vehículo presentan una correlación despreciable con la frecuencia y la severidad de los siniestros (Primario)",
+    "4. Resultado: la frecuencia y la severidad adoptan un comportamiento distinto frente a la variable categórica de la zona de circulación (Primario)",
+    "5. Resultado: los vehículos de turismo lideran el costo anual de siniestros, mientras que las furgonetas lideran la frecuencia (Primario)",
+    "6. Resultado: las furgonetas tienen mayor frecuencia promedio de siniestros (Primario)",
     "7. Resultado: vehículos comunes concentran reclamos superiores a €900 (Primario)",
-    "8. Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad  (Primario)"
-    ))
+    "8. Resultado: las furgonetas y los vehículos de turismo concentran reclamos con alta severidad (Primario)",
+    "9. Resultado: síntesis de los principales hallazgos de frecuencia y severidad"
+  )
+)
 
 knitr::kable(
   tabla_guia,
+  format = "latex",
   booktabs = TRUE,
   longtable = TRUE,
-  align = c("l", "l")
+  escape = TRUE,
+  align = c("p{0.22\\textwidth}", "p{0.72\\textwidth}"),
+  col.names = c("Sección", "Temas a tratar"),
+  caption = "Guía de organización de los elementos del reporte"
 ) %>%
   kableExtra::kable_styling(
     latex_options = c("repeat_header"),
     full_width = FALSE,
     position = "center",
-    font_size = 11
-  ) %>%
-  kableExtra::collapse_rows(
-    columns = 1, 
-    valign = "top",     
-    latex_hline = "major" 
+    font_size = 9
   )
 ```
 
