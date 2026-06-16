@@ -1,0 +1,327 @@
+---
+bibliography: ../../../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
+format: 
+  pdf: 
+    papersize: letter
+    documentclass: article
+    lang: es-CR
+    titlepage: true
+    toc: true
+    toc-title: "Índice"
+    toccolor: "black"
+    fontsize: "11pt"
+    mainfont: Times New Roman
+    urlcolor: "blue"
+    number-sections: true
+    margin-left: "2.54cm"
+    margin-right: "2.54cm"
+    margin-top: "2.54cm"
+    margin-bottom: "2.54cm"
+    header-includes:
+      - \usepackage{indentfirst}
+      - \setlength{\parindent}{1.27cm}
+      - \usepackage{longtable}
+      - \usepackage{array}
+      - \renewcommand{\arraystretch}{1.5}
+      - \setlength{\tabcolsep}{8pt}
+    include-before-body: Portada.tex
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{=latex}
+\setcounter{page}{1} 
+```
+
+# Parte de planificación
+
+Tras un largo y exhaustivo proceso, en el cual se desarrolló y se mejoró el planteamiento extendido en la primera bitácora; finalmente el proyecto llega a su última etapa.
+En vista de lo anterior, resulta necesario definir las variables, los datos y los métodos finales.
+Asimismo, la práctica de una nueva iteración del proceso de modelación de resultados para el problema descrito, se convierte en un elemento imprescindible, en vías de evaluar el desempeño del modelo y generar nuevos hallazgos que concreten o respalden la respuesta a la pregunta de investigación.
+
+La presente sección está destinada a cubrir los aspectos detallados.
+
+## Construcción de las fichas de resultados
+
+::: callout-note
+:::
+
+# Parte de escritura
+
+## Mejora del texto planteado en la tercera bitácora 
+
+A partir del texto planteado en la tercera bitácora en el apartado *Parte de escritura*, se realizarán una serie de mejoras orientadas a satisfacer los siguientes requerimientos: la ausencia de ideas incompletas o faltantes, la existencia de una clara conexión del problema inicial con la solución propuesta, el desarrollo óptimo de todos los elementos de la metodología, la referenciación de los métodos a artículos científicos o a libros publicados, la correcta explicación de los resultados encontrados, y la óptima calidad de las figuras y las tablas.
+El proceso de mejora contará con tres etapas: la relectura del texto planteado en la tercera bitácora, la identificación de los elementos a mejorar y la reescritura del texto en consideración de dichos elementos.
+
+Se procede a continuación.
+
+### Texto planteado en la tercera bitácora
+
+La construcción, la fundamentación y el desarrollo del proyecto se nutren a partir de dos fuentes: la primera fuente consiste en la información consultada, dentro de la cual se contempla la literatura, además del acceso a los datos; por otro lado, la segunda fuente proviene de la interpretación y el manejo de la información consultada por parte de los miembros del equipo, al igual que de la puesta en marcha de la metodología del proyecto, sustentada por la primera fuente descrita.
+
+Así, se tienen dos historias diferentes: la historia contada por los autores consultados en las fichas de literatura y la historia que está contando el proyecto a partir del análisis y la manipulación de la base de datos.
+El objetivo del presente apartado consiste en unificar dichas historias, según la estructura propuesta en el *Ordenamiento de los elementos del reporte*: introducción, metodología y resultados.
+De esta manera, a cada parte de la estructura le corresponderá un subapartado, donde se desarrollarán los elementos contenidos en ellas.
+
+## Introducción
+
+El óptimo y eficiente desarrollo de un proyecto radica, en una enorme parte, en el pleno conocimiento de los elementos que el mismo contempla, así como en el establecimiento de una clara delimitación.
+El recurso que se encarga de efectuar los dos aspectos detallados antes, corresponde a la pregunta de investigación, puesto que en ella se definen los fenómenos puntuales que se estudiarán, analizarán y descompondrán a lo largo del proceso.
+En vista de lo anterior, resulta necesario recordar la pregunta de investigación planteada:
+
+> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
+
+Es posible notar que la interrogante aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros.
+Precisamente estas dos cuestiones son las que se buscarán responder en la elaboración del proyecto.
+
+La pregunta de investigación define dos variables respuesta: la frecuencia y la severidad de los siniestros.
+Una variable respuesta es aquella que se pretende explicar a través de otras variables, las cuales se conocen como las variables explicativas; es el foco de la pregunta construida y el resultado que se busca comprender.
+Dicho esto, resulta necesario capacitarse en el tratamiento de la frecuencia y la severidad de los siniestros a través de fuentes externas, con tal de procurar un óptimo entendimiento de las variables respuesta del proyecto.
+
+Sobre esto, @frees2021 sostiene que para analizar el riesgo asegurador, es preciso separar sus dos componentes principales: el número de siniestros que ocurren, la frecuencia; y el costo asociado a cada uno de ellos, la severidad.
+Asimismo, señala la necesidad de emplear distribuciones probabilísticas distintas para cada componente, según la naturaleza de los datos y el comportamiento observado en los registros.
+El problema principal que aborda el autor es cómo representar matemáticamente el riesgo en seguros cuando las pérdidas no son determinísticas, es decir, cuando no es posible predecir con exactitud ni cuántos eventos ocurrirán ni cuál será el costo económico asociado a cada uno.
+Su propuesta funciona porque separa dos procesos aleatorios distintos: por un lado, cuántos siniestros ocurren en un periodo determinado, y por otro, cuánto cuesta cada uno de esos eventos.
+Esta división permite trabajar cada variable de forma independiente y asignar distribuciones diferentes según su comportamiento estadístico, lo cual mejora la capacidad de ajuste de los modelos.
+También señala que uno de los principales retos en este tipo de análisis es seleccionar las distribuciones adecuadas, ya que los datos de seguros suelen presentar asimetría, valores extremos y heterogeneidad entre asegurados.
+Tales características dificultan que un único modelo funcione correctamente en todos los contextos, por lo que la elección de la distribución debe hacerse considerando el tipo de cartera, el comportamiento histórico de los datos y el objetivo del análisis.
+
+Por otro lado, @omari2018modeling argumentan una idea análoga.
+Los autores establecen que la frecuencia y la severidad de los reclamos en seguros de automóviles deben modelarse por separado, utilizando distribuciones ajustadas a las características observadas en los datos.
+Además, plantean que la selección del modelo debe basarse en un procedimiento estadístico ordenado que incluya estimación por máxima verosimilitud y pruebas de bondad de ajuste con el fin de identificar qué distribución representa mejor cada componente del riesgo.
+El problema principal que intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de las reclamaciones, ya que una elección inadecuada puede afectar directamente el cálculo de las reservas, las primas y las proyecciones financieras dentro del sistema asegurador.
+Su propuesta funciona bien como punto de partida porque sigue una secuencia clara: primero se seleccionan posibles familias de distribuciones, luego se estiman sus parámetros mediante máxima verosimilitud y finalmente se comparan los ajustes con indicadores estadísticos.
+Uno de los principales problemas al modelar reclamaciones de seguros es que los datos no siguen distribuciones simples debido a su comportamiento estadístico.
+En particular, se observa una asimetría positiva, la presencia de colas pesadas y una alta concentración de valores cero en la frecuencia de los siniestros.
+A partir del análisis realizado, los autores encuentran que la severidad presenta un mejor ajuste con la distribución Lognormal, mientras que para la frecuencia se obtienen buenos resultados con las distribuciones Binomial negativa y Geométrica.
+La diferencia en las distribuciones responde al comportamiento particular de los datos observados, ya que la frecuencia y la severidad presentan patrones distintos y no pueden representarse adecuadamente con un solo modelo.
+
+Uno de los puntos de coincidencia entre los autores, corresponde al señalamiento de que, dadas las características de los datos de seguros, la elección de la distribución adecuada para las variables respuesta puede representar un reto complejo.
+Dentro de las características descritas por ellos, figuran las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones.
+Tras un análisis exploratorio mediante estadísticos descriptivos, se determinó que la gran mayoría de los registros anuales presenta cero siniestros y costo nulo: la mediana de la frecuencia y la severidad de los siniestros es igual a cero en ambos casos, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
+Asimismo, se encontró que el costo anual de los siniestros y el número de siniestros por año, presentan valores atípicos marcados: si bien, ambas variables poseen valores mayormente bajos o moderados, existen algunos valores muy elevados que podrían influir en el análisis de las variables, mostrando importantes diferencias entre los clientes de la cartera.
+
+En referencia a lo planteado por @omari2018modeling y @frees2021, se reafirma la importancia de manejar con cautela la selección de las distribuciones para modelar las variables de la frecuencia y la severidad de los siniestros; de igual manera se resalta que las distribuciones seleccionadas deben responder a las características observadas en los datos, empleando modelos separados, puesto que una elección inadecuada puede afectar directamente la veracidad de las conclusiones construidas.
+
+Seguidamente, @ayuso2015modelizacion profundiza en la comparación de las distribuciones de probabilidad discretas para la modelación.
+Dentro del contexto de este proyecto, los autores sostienen que las distribuciones que se utilizan comúnmente para modelar las variables discretas, como la distribución de Poisson, no obtienen un buen ajuste debido a una gran cantidad de ceros en los datos o la sobredispersión de los mismos.
+Es por ello que optan por realizar una comparación entre distribuciones como la Binomial negativa o la Poisson-inversa gaussiana incluyendo versiones cero infladas de cada una de ellas.
+
+Por último, otro elemento de gran importancia para el proyecto, corresponde a la comprensión del funcionamiento de las herramientas disponibles para evaluar la relación entre las variables: el análisis de correlación.
+@vinuesa2016 aborda el concepto de la correlación, definiéndola como la relación lineal entre variables cuantitativas continuas.
+Señala que la misma se expresa a través de un coeficiente cuyos valores se sitúan entre menos uno y uno, donde ambos extremos indican la presencia de una perfecta correlación, negativa y positiva respectivamente.
+De igual modo, el autor hace hincapié en que el coeficiente, por sí mismo, es un indicador de la intensidad de la correlación, a la vez que brinda una lista de cuatro intervalos de valores para el coeficiente, en los que se clasifica el grado de correlación en despreciable, bajo, medio y alto.
+Por otro lado, Vinuesa ahonda en la idea intuitiva que subyace al concepto: la correlación se define en términos de la varianza y la covarianza de las variables, de forma que constituye una medida de su variación conjunta.
+Sin embargo, resalta que el obstáculo en utilizar la covarianza como medida de relación, se ubica en que la misma no es una medida estandarizada: no es posible emplearla para evaluar variables cuyas unidades de medida sean distintas.
+En vista de esto, se presenta el coeficiente de Pearson, el cual busca solucionar el problema de la dependencia a las unidades de medición, al normalizar la covarianza tras dividirla con la desviación estándar, convirtiéndose en un coeficiente estandarizado.
+Es importante considerar que, en vías de desarrollar pruebas de significancia bajo el estadístico de Pearson, se requiere que las variables sean cuantitativas continuas, además de estar normalmente distribuidas.
+Esto último corresponde a una característica que no todas las variables poseen, en cuyo caso se introducen el coeficiente de Kendall y el coeficiente de Spearman, que al ser no paramétricos, resultan útiles cuando las variables no siguen una distribución normal.
+El texto de Vinuesa proporciona al lector una guía de las posibles herramientas a utilizar con la meta de estudiar la correlación entre las variables.
+
+En síntesis, la literatura consultada coincide en que la frecuencia y la severidad de los siniestros constituyen dos componentes de estudio que, debido a sus características particulares, deben analizarse mediante modelaciones estadísticas separadas, seleccionadas de acuerdo a las características presentadas por los datos.
+Además, se destaca que ciertos fenómenos como las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones, producen que la elección de las distribuciones adecuadas para las variables respuesta se convierta en un reto de una complejidad considerable; dichas características se evidencian en los datos utilizados en el proyecto.
+Para concluir, si bien existen múltiples metodologías para evaluar la relación entre las variables mediante el análisis de correlación, es preciso verificar el cumplimiento de los supuestos efectuados bajo cada método y de esta forma seleccionar el coeficiente que mejor se ajuste a los datos empleados.
+
+## Metodología
+
+La metodología del proyecto se organiza como una secuencia de distintos análisis, orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
+En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y la severidad, el estudio de asociaciones entre las variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros.
+A continuación, se detallarán los principales hallazgos encontrados a lo largo del proceso del desarrollo de la metodología.
+
+En primer lugar, para modelar la frecuencia de los siniestros se intentó ajustar un modelo lineal generalizado con distribución Poisson, para identificar las variables que influyen en la frecuencia de los siniestros por año.
+Las variables explicativas utilizadas fueron la edad del asegurado, la antigüedad con la aseguradora, el historial de reclamos, el tipo de vehículo, el número de puertas, el largo de vehículo y el peso del vehículo.
+El modelo de Poisson falló por dos razones principales.
+La primera, es que este asume que la media y la varianza son iguales o que no distan por mucho.
+Sin embargo, se procedió a calcular la relación entre la varianza y la media (varianza/media) y se obtuvo un resultado de 3.09, el cual es mayor a uno, por lo que según el índice de sobredispersión de datos, existe una sobredispersión.
+La segunda razón por la cual el modelo de Poisson falló consistió en la drástica subestimación de la cantidad de ceros; en los datos se observó que aproximadamente 81.39% del número de reclamos por año son cero, mientras que el modelo de Poisson, utilizando la media original de 0.39, estima que habrá 67.39% de ceros; esto resulta en una diferencia de 14 puntos porcentuales, evidenciando un exceso de ceros que la distribución Poisson no puede generar con la media de los datos.
+Así, se descartó un modelo de referencia clásico para la frecuencia de los siniestros.
+
+La literatura revisada, en particular @frees2021, anticipaba que la distribución de Poisson podría ser un punto de partida razonable para modelar frecuencias de los siniestros, pero advertía que los datos reales suelen presentar sobredispersión.
+El resultado obtenido confirma esta advertencia de manera contundente: el índice de sobredispersión de 3.09 indica que la varianza triplica a la media, y la brecha de 14 puntos porcentuales en la proporción de ceros hace que el modelo Poisson sea directamente inviable, no solo impreciso.
+Tal discrepancia no sorprende, dado que los datos de seguros de automóviles incluyen asegurados muy heterogéneos: algunos nunca tienen accidentes, mientras que otros los tienen frecuentemente; lo cual genera naturalmente un exceso de ceros que la Poisson no puede capturar con un único parámetro λ.
+La implicación es que cualquier análisis de frecuencia debe partir de modelos que separen la probabilidad de no tener ningún siniestro, de la distribución de la frecuencia de los siniestros cuando los mismos sí ocurren.
+
+En segundo lugar, se encontró que la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros.
+Para el intervalo de 0 a 900, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre 0 y 900 euros, las cuales fueron la distribución Lognormal y la distribución Gamma.
+Por medio del paquete *fitdistrplus* se realizó el ajuste, del cual se obtuvo que el Criterio de Información de Akaike (AIC) tuvo un valor de 211,339.9 para el caso de la distribución Lognormal, mientras que para la distribución Gamma se obtuvo un AIC de 212,684.5, resultando en una diferencia de 1,344.6; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Gamma, lo que indica que posee un mejor ajuste para los datos.
+De esta forma se seleccionó la Lognormal para modelar los costos que están en el intervalo \]0,900\[.
+
+A partir de lo anterior, se confirma que el ajuste de las distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya la exploración gráfica, la selección de las distribuciones candidatas, la estimación de parámetros y la evaluación de la calidad del ajuste.
+En este caso, el uso de *fitdistrplus* permitió aplicar dicha lógica metodológica al comparar la distribución Lognormal y la distribución Gamma mediante el AIC, respaldando así la elección de la Lognormal para los costos positivos menores a 900 euros.
+
+En último lugar, se identificó que la variable de la frecuencia de los reclamos no satisface la hipótesis de normalidad.
+Tras aplicar la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la frecuencia de los reclamos; se obtuvo un estadístico W = 0.37226 y un p-valor \< 2.2e-16.
+Dado que el p-valor es menor a 0.05, se rechazó la hipótesis de normalidad, por lo que se descartó el coeficiente de Pearson y se utilizó el coeficiente de Spearman para el análisis de correlación.
+Es importante mencionar que se eligió Spearman sobre Kendall porque con muestras grandes, como la del presente proyecto, ambos coeficientes tienden a producir conclusiones similares, sin embargo, Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para análisis exploratorios análogos.
+
+El elemento central del proyecto consiste en estudiar la intervención de las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros; de manera que se busca determinar la naturaleza de la relación que existe entre las variables descritas.
+Para realizarlo, se calcula el coeficiente de correlación, sin embargo, es preciso seleccionar la metodología correcta de acuerdo a las características de los datos.
+En vista de lo anterior, el resultado detallado cobra una gran importancia.
+
+En síntesis, los resultados obtenidos respaldan lo abordado en la introducción: las características de los datos condicionan de manera decisiva las posibles herramientas estadísticas a utilizar para el análisis de las variables respuesta.
+La presencia de una sobredispersión y el exceso de ceros descartó la utilización del modelo Poisson para la frecuencia de los siniestros, confirmando la necesidad de recurrir a modelos más flexibles capaces de representar adecuadamente la heterogeneidad observada entre los asegurados.
+De igual forma, la comparación entre distribuciones candidatas para la severidad, mostró que la distribución Lognormal proporciona un mejor ajuste para los costos positivos inferiores a 900 euros, lo que respalda la importancia de seguir una metodología donde se efectúe la exploración gráfica, la selección de las distribuciones candidatas, la estimación de los parámetros y la evaluación de la calidad del ajuste.
+Finalmente, el resultado de no normalidad en la frecuencia de los reclamos, justificó el uso del coeficiente de Spearman para estudiar las asociaciones entre variables, garantizando que el análisis de correlación se realice mediante una metodología consistente con la naturaleza de los datos.
+
+## Resultados
+
+Dado que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, dichos resultados se detallan a continuación.
+
+### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros
+
+El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de variables categóricas, como la zona de circulación y el tipo de vehículo.
+
+En primer lugar, se halló que las variables del valor del vehículo, la potencia del vehículo, el peso del vehículo, la antigüedad con la aseguradora y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros.
+El coeficiente de correlación obtenido fue estrictamente menor al valor absoluto de 0.1 en todos los casos, de manera que la relación de estas variables con la frecuencia y la severidad de los siniestros es despreciable.
+Asimismo, el resultado obtenido indica que no representan buenos prospectos explicativos para el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
+
+Similarmente, se identificó que la variable del historial de reclamos presenta una correlación mediana con la frecuencia y la severidad de los mismos.
+El valor del coeficiente para una correlación mediana debe ser estrictamente mayor al valor absoluto de 0.3 y menor o igual al valor absoluto de 0.5.
+El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0.38 y 0.36 respectivamente, situándose en el rango especificado.
+Así, se determinó que el historial de siniestros posee una relación media con las variables respuesta.
+
+En segundo lugar, se encontró que la frecuencia muestra un comportamiento diferenciado según la zona de circulación, mientras que la severidad no presenta diferencias notables en su comportamiento bajo dichas categorías.
+Los asegurados de las zonas urbanas presentan un mayor promedio en la frecuencia de la siniestralidad anual, en comparación con los asegurados de las zonas rurales.
+Además, las distribuciones del costo anual positivo son notablemente similares entre las zonas rurales y las zonas urbanas.
+Así, es posible afirmar que la zona de circulación tiene alguna influencia sobre la frecuencia de los siniestros.
+El resultado es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico.
+
+En tercer lugar, se analizó la relación entre la variable del tipo de vehículo con la frecuencia y la severidad de los siniestros.
+Dado que el tipo de vehículo es una variable categórica, se calculó el promedio de la variable de la frecuencia de los siniestros, agrupada por el tipo de vehículo; también se estudió el costo de los siniestros por año según el vehículo.
+En consecuencia, se concluyó que los vehículos de turismo poseen un mayor costo anual de siniestros, en comparación a los otros tipos de vehículos, mientras que las furgonetas presentan una mayor frecuencia de siniestros.
+Con este hallazgo se puede evidenciar que el tipo de vehículo influye en la frecuencia y la severidad, donde los vehículos particulares o de turismo, tienen un mayor costo anual en sus siniestros, mientras que las furgonetas poseen una mayor cantidad de siniestros por año.
+
+En síntesis, el análisis realizado muestra que las variables de las características asociadas a los asegurados y a los vehículos, poseen relaciones diferenciadas con la frecuencia y la severidad de los siniestros.
+Mientras que las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; la variable del historial de siniestros evidencia una asociación moderada con estas.
+Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
+
+### Análisis del incremento abrupto al superar el monto de 900 euros
+
+Se encontraron tres resultados particulares en la presente área, los cuales se detallan como sigue:
+
+En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero.
+Dichos estadísticos se calcularon para las clases de las variables categóricas del tipo de vehículo, la zona de circulación y el tipo de combustible.
+A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente €882.00 en todos los grupos analizados, independientemente del tipo de vehículo, la zona de circulación o el tipo de combustible.
+
+El hallazgo descrito se conecta directamente con el segundo componente de la pregunta de investigación: el hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de 882 euros, en todos los grupos estudiados, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo, independiente de las características del asegurado o del vehículo.
+Lo anterior refuerza la pertinencia metodológica de usar el monto de 900, como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
+
+En segundo lugar, se descubrió que el tipo de vehículo influye en la proporción de reclamos cuando el monto de los mismos supera los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad.
+Tal hallazgo se encontró al crear una variable denominada *mayores_900*, la cual adopta el valor de uno si la variable de la severidad es mayor o igual a 900, y adopta el valor cero en el caso contrario.
+Luego se calculó el promedio de esa variable, haciendo una agrupación por el tipo de vehículo; así se obtuvo la proporción de reclamos que supera el umbral de los 900 euros por cada clase de vehículo.
+En consideración del presente resultado, se puede confirmar que el tipo de vehículo es un factor relevante para explicar el comportamiento de los costos en el umbral de los 900 euros, ya que las furgonetas y los vehículos de turismo concentran las proporciones más altas de reclamos que superan dicho umbral.
+
+Similarmente, se determinó que los reclamos más costosos, aquellos que superan los 900 euros, se concentran en vehículos de características intermedias: los vehículos con pesos entre 1000 y 1500 kilogramos, longitudes entre 4.0 y 4.7 metros, potencias entre 70 y 130 caballos de fuerza, cilindrajes entre 1400 y 2000, así como cinco puertas, que corresponden a las cuatro puertas y la cajuela.
+La concentración de reclamos superiores a 900 euros en vehículos de características medias sugiere que el aumento en el costo no está asociado en su mayoría con vehículos especiales, sino que está asociado principalmente con vehículos de uso común: los de turismo, los familiares o incluso los cotidianos.
+
+En síntesis, los resultados obtenidos sugieren que el umbral de 900 euros constituye un punto de referencia relevante dentro de la estructura de los costos de los siniestros: coincide con un valor cercano al tercer cuartil de la distribución en todos los grupos analizados, definidos a partir de las variables categóricas.
+Asimismo, se identificó que el tipo de vehículo desempeña un papel importante en los reclamos de alta severidad, puesto que las furgonetas y los vehículos de turismo concentran una mayor proporción de casos por encima del umbral definido.
+Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales o de alta gama, sino con los vehículos de uso común, que poseen características intermedias.
+
+### Identificación de los elementos a mejorar 
+
+### Escritura del texto mejorado 
+
+## Conclusión
+
+## Introducción
+
+## Resumen 
+
+## Ordenamiento final 
+
+# Revisión final 
+
+# Relativo al trabajo en equipo
+
+## Reflexión del diario de aprendizaje 
+
+A partir de las entradas efectuadas en los diarios de aprendizaje de las tres bitácoras anteriores, se externará una reflexión en torno al proceso que ha representado la construcción del proyecto en cada una de sus etapas.
+Tal reflexión se detalla a partir cuatro de oraciones: tres oraciones dedicadas a cada una de las bitácoras concluidas y una última oración destinada a sintetizar la experiencia atravesada.
+Dichas oraciones se detallan como sigue:
+
+## Registro del trabajo en equipo
+
+La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las secciones en las que cada uno se desempeñó:
+
++:-------------------------------:+:---------------------------------------------------------:+
+| **Integrante**                  | **Contribuciones**                                        |
++---------------------------------+-----------------------------------------------------------+
+| Alexandra González Bermúdez     | Mejora del texto planteado en la tercera bitácora         |
+|                                 |                                                           |
+|                                 | Introducción                                              |
+|                                 |                                                           |
+|                                 | Desarrollo completo de la metodología                     |
+|                                 |                                                           |
+|                                 | Desarrollo completo de los resultados                     |
+|                                 |                                                           |
+|                                 | Revisión final                                            |
+|                                 |                                                           |
+|                                 | Fichas de resultados                                      |
+|                                 |                                                           |
+|                                 | Agradecimientos                                           |
+|                                 |                                                           |
+|                                 | Diario de aprendizaje                                     |
+|                                 |                                                           |
+|                                 | Registro del trabajo en equipo                            |
++---------------------------------+-----------------------------------------------------------+
+| **Integrante**                  | **Contribuciones**                                        |
++---------------------------------+-----------------------------------------------------------+
+| Emily Estefanía Mora Contreras  | División de las tareas de acuerdo a su dificultad         |
+|                                 |                                                           |
+|                                 | Fichas de resultados adicionales                          |
+|                                 |                                                           |
+|                                 | Justificación de métodos con fuentes literarias           |
+|                                 |                                                           |
+|                                 | Metodología final                                         |
+|                                 |                                                           |
+|                                 | Revisión final                                            |
+|                                 |                                                           |
+|                                 | Fichas de resultados                                      |
+|                                 |                                                           |
+|                                 | Agradecimientos                                           |
+|                                 |                                                           |
+|                                 | Diario de aprendizaje                                     |
++---------------------------------+-----------------------------------------------------------+
+| **Integrante**                  | **Contribuciones**                                        |
++---------------------------------+-----------------------------------------------------------+
+| Daniela Prado Vargas            | Ordenamiento final del documento                          |
+|                                 |                                                           |
+|                                 | Revisión de cuadros, tablas y figuras citadas en el texto |
+|                                 |                                                           |
+|                                 | Selección final de las variables, los métodos y los datos |
+|                                 |                                                           |
+|                                 | Título del artículo, conclusiones y limitaciones          |
+|                                 |                                                           |
+|                                 | Revisión final                                            |
+|                                 |                                                           |
+|                                 | Fichas de resultados                                      |
+|                                 |                                                           |
+|                                 | Agradecimientos                                           |
+|                                 |                                                           |
+|                                 | Diario de aprendizaje                                     |
++---------------------------------+-----------------------------------------------------------+
+| **Integrante**                  | **Contribuciones**                                        |
++---------------------------------+-----------------------------------------------------------+
+| José Miguel Rodríguez Gómez     | Conclusión                                                |
+|                                 |                                                           |
+|                                 | Resumen                                                   |
+|                                 |                                                           |
+|                                 | Iteración de modelación de resultados                     |
+|                                 |                                                           |
+|                                 | Resultados finales                                        |
+|                                 |                                                           |
+|                                 | Revisión final                                            |
+|                                 |                                                           |
+|                                 | Fichas de resultados                                      |
+|                                 |                                                           |
+|                                 | Agradecimientos                                           |
+|                                 |                                                           |
+|                                 | Diario de aprendizaje                                     |
++---------------------------------+-----------------------------------------------------------+
+
+\newpage
+
+# Referencias
