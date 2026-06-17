@@ -43,6 +43,40 @@ Asimismo, la práctica de una nueva iteración del proceso de modelación de res
 
 La presente sección está destinada a cubrir los aspectos detallados.
 
+## Iteración de la modelación de resultados
+
+
+```{r}
+library(tidyverse)
+library(kableExtra)
+# Los cálculos se realizaron en el archivo "03_modelacion.R", para evitar la sobrecarga de código dentro de la bitácora, se copiarán manualmente los resultados obtenidos en dicho archivo
+
+tamanyo_miu_1 = 5.293432 - 5.263255  
+tamanyo_sigma_1 = 0.9795983 - 0.9583926
+
+tamanyo_miu_2 = 7.579532 - 7.536322
+tamanyo_sigma_2 = 0.6971023 - 0.6673591 
+
+tabla_ic_parámetros_dist_mixta <- data.frame(
+  Componente = c("Costos Medios (0 < Y < 900)", "Costos Medios (0 < Y < 900)", 
+                 "Costos Altos (Y ≥ 900)", "Costos Altos (Y ≥ 900)"),
+  Parametro = c("μ₁", "σ₁", "μ₂", "σ₂"),
+  "Valor Utilizado" = c(5.2785366, 0.9693318, 7.5571894,0.6816524),
+  "IC inferior (95%)" = c(5.263255, 0.9583926, 7.536322, 0.6673591),
+  "IC superior (95%)" = c(5.293432, 0.9795983, 7.579532, 0.6971023),
+  "Tamaño del Intervalo" = c(tamanyo_miu_1, tamanyo_sigma_1, tamanyo_miu_2, tamanyo_sigma_2),
+  check.names = FALSE # Hacer que se mantengan los espacios
+)
+
+kable(tabla_ic_parámetros_dist_mixta,
+      caption = "Intervalos de confianza bootstrap para los parámetros de la distribución Lognormal",
+      escape = FALSE,
+      booktabs = TRUE,
+      align = c("l", "l", "l", "l", "l")) %>%
+  kable_styling(full_width = FALSE, position = "center", font_size = 10)
+
+```
+
 ## Construcción de las fichas de resultados
 
 ::: callout-note

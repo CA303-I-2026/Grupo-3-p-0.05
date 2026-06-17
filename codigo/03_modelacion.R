@@ -360,3 +360,21 @@ comparacion_lognormal_weibull_mayores_pareto_900 <- datos_modificados %>%
   scale_x_continuous(breaks = seq(900,20000,1800)) +
   scale_y_continuous(labels = scales::comma, breaks = seq(0,0.0007, 0.0001)) +
   estilo_grupo3
+
+
+
+
+# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, en el intervalo ]0, 900[
+
+remuestreo_0_900 <- bootdist(ajuste_lognormal, niter = 1000)
+summary(remuestreo_0_900) # Resumen, muestra los intervalos de confianza al 95%, primero en el cuantil 2.5% y luego en el 97.5%
+ic_miu_1 <- quantile(remuestreo_0_900$estim[, 1], probs = c(0.025, 0.975))  # Guardar el IC para la media de la lognormal para los costos entre 0 y 900
+ic_sigma_1 <- quantile(remuestreo_0_900$estim[, 2], probs = c(0.025, 0.975))
+
+
+# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, para los costos mayores o iguales a 900
+
+remuestreo_mayores_900 <- bootdist(ajuste_lognormal_mayores_900, niter = 1000)
+summary(remuestreo_mayores_900)
+ic_miu_2 <- quantile(remuestreo_mayores_900$estim[, 1], probs = c(0.025, 0.975))
+ic_sigma_2 <- quantile(remuestreo_mayores_900$estim[, 2], probs = c(0.025, 0.975))
