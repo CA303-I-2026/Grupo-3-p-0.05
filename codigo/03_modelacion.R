@@ -364,17 +364,43 @@ comparacion_lognormal_weibull_mayores_pareto_900 <- datos_modificados %>%
 
 
 
-# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, en el intervalo ]0, 900[
+# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, en el intervalo ]0, 900[, por medio de intervalos de confianza asintóticos al 95%
+# Como vimos que los datos son lognormales, entonces al aplicarle logarítmo a los datos, se convierten en normales
 
-remuestreo_0_900 <- bootdist(ajuste_lognormal, niter = 1000)
-summary(remuestreo_0_900) # Resumen, muestra los intervalos de confianza al 95%, primero en el cuantil 2.5% y luego en el 97.5%
-ic_miu_1 <- quantile(remuestreo_0_900$estim[, 1], probs = c(0.025, 0.975))  # Guardar el IC para la media de la lognormal para los costos entre 0 y 900
-ic_sigma_1 <- quantile(remuestreo_0_900$estim[, 2], probs = c(0.025, 0.975))
+log_costos_medios <- log(costos_intervalo) # Aplicar logarítmo a cada costo
+tamanyo_costos_medios <-  length(log_costos_medios)
+miu1_techo <- mean(log_costos_medios)
+sigma1_techo <- sd(log_costos_medios)
+
+# Calcular el error estándar de la media:
+error_estandar_miu1 <- sigma1_techo/sqrt(tamanyo_costos_medios) # Desviación sobre la raíz del número de muestras
+
+# Calcular el error estándar de la desviación:
+error_estandar_sigma1 <- sigma1_techo/sqrt(2 * tamanyo_costos_medios) # Desviación sobre la raíz de dos veces el número de muestras
+
+# Calcular los intervalos de confianza:
+
+ic_miu1 <- c(miu1_techo - 1.96 * error_estandar_miu1, miu1_techo + 1.96 * error_estandar_miu1) # Se usa la fórmula: promedio de la muestra más o menos 1.96 por el error estándar (El 1.96 viene del cuantil de una normal a 0.025 y 0.975)
+
+ic_sigma1 <-  c(sigma1_techo - 1.96 * error_estandar_sigma1, sigma1_techo + 1.96 * error_estandar_sigma1)
 
 
-# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, para los costos mayores o iguales a 900
+# Cálculo de los intervalos de confianza para los parámetros de la distribución Lognormal, para los costos mayores o iguales a 900 al 95%
 
-remuestreo_mayores_900 <- bootdist(ajuste_lognormal_mayores_900, niter = 1000)
-summary(remuestreo_mayores_900)
-ic_miu_2 <- quantile(remuestreo_mayores_900$estim[, 1], probs = c(0.025, 0.975))
-ic_sigma_2 <- quantile(remuestreo_mayores_900$estim[, 2], probs = c(0.025, 0.975))
+log_costos_altos <- log(mayores_900) # Aplicar logarítmo a cada costo
+tamanyo_costos_altos <-  length(log_costos_altos)
+miu2_techo <- mean(log_costos_altos)
+sigma2_techo <- sd(log_costos_altos)
+
+# Calcular el error estándar de la media:
+error_estandar_miu2 <- sigma2_techo/sqrt(tamanyo_costos_altos) 
+
+# Calcular el error estándar de la desviación:
+error_estandar_sigma2 <- sigma2_techo/sqrt(2 * tamanyo_costos_altos) 
+
+# Calcular los intervalos de confianza:
+
+ic_miu2 <- c(miu2_techo - 1.96 * error_estandar_miu2, miu2_techo + 1.96 * error_estandar_miu2) 
+
+ic_sigma2 <-  c(sigma2_techo - 1.96 * error_estandar_sigma2, sigma2_techo + 1.96 * error_estandar_sigma2)
+

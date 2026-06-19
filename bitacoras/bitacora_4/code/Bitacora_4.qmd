@@ -51,19 +51,19 @@ library(tidyverse)
 library(kableExtra)
 # Los cálculos se realizaron en el archivo "03_modelacion.R", para evitar la sobrecarga de código dentro de la bitácora, se copiarán manualmente los resultados obtenidos en dicho archivo
 
-tamanyo_miu_1 = 5.293432 - 5.263255  
-tamanyo_sigma_1 = 0.9795983 - 0.9583926
+tamanyo_miu_1 = 5.293627 - 5.263446  
+tamanyo_sigma_1 = 0.9800332 - 0.9586915
 
-tamanyo_miu_2 = 7.579532 - 7.536322
-tamanyo_sigma_2 = 0.6971023 - 0.6673591 
+tamanyo_miu_2 = 7.578995 - 7.535384
+tamanyo_sigma_2 = 0.6971622 - 0.6663242 
 
 tabla_ic_parámetros_dist_mixta <- data.frame(
   Componente = c("Costos Medios (0 < Y < 900)", "Costos Medios (0 < Y < 900)", 
                  "Costos Altos (Y ≥ 900)", "Costos Altos (Y ≥ 900)"),
   Parametro = c("μ₁", "σ₁", "μ₂", "σ₂"),
   "Valor Utilizado" = c(5.2785366, 0.9693318, 7.5571894,0.6816524),
-  "IC inferior (95%)" = c(5.263255, 0.9583926, 7.536322, 0.6673591),
-  "IC superior (95%)" = c(5.293432, 0.9795983, 7.579532, 0.6971023),
+  "IC inferior (95%)" = c(5.263446, 0.9586915, 7.535384, 0.6663242),
+  "IC superior (95%)" = c(5.293627, 0.9800332, 7.578995, 0.6971622),
   "Tamaño del Intervalo" = c(tamanyo_miu_1, tamanyo_sigma_1, tamanyo_miu_2, tamanyo_sigma_2),
   check.names = FALSE # Hacer que se mantengan los espacios
 )
