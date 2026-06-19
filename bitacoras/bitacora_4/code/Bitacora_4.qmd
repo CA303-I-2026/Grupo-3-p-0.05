@@ -45,8 +45,29 @@ La presente sección está destinada a cubrir los aspectos detallados.
 
 ## Iteración de la modelación de resultados
 
+### Comparación de la distribución Weibull con la distribución Lognormal para la distribución mixta
 
-```{r}
+A continuación se muestran gráficos de las distribuciones Lognormal, Weibull y Gamma tanto para los costos medios `(0 < Y < 900)` como para los costos altos `(Y ≥ 900)`, para realizar las comparaciones se utilizó nuevamente el paquete `fitdistrplus`. Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los €20,000, excluyendo 40 observaciones con costos superiores a dicho umbral. Esta decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, esta acotación de los valores altos al intervalo `(900 ≤ Y ≤ 20,000)` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la bitácora 3.
+
+
+![Comparación de la distribución Lognormal y Weibull para los costos medios (0 < Y < 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull.png){#fig-log-weibull-medios fig-pos="H"}
+
+En la @fig-log-weibull-medios se puede observar que la distribución Lognormal obtuvo un AIC de 211,340 mientras que la distribución Weibull obtuvo 212,884, lo que representa una diferencia de 1,544 unidades a favor de la distribución Lognormal. Además de esto, puede verse que la curva roja, correspondiente a la distribución Lognormal, se adapta mejor al histograma de los costos, ya que para costos bajos, cercanos a €100, esta distribución abarca una mayor proporción  de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercano a los datos observados. De esta forma, por medio de la comparación de los AIC de ambas distribuciones, se confirma que la distribución Lognormal es la más adecuada para la caracterización de los costos medios.
+
+![Comparación de la distribución Lognormal, Weibull y Gamma para los costos medios (0 < Y < 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_gamma.png){#fig-log-weibull-gamma-medios fig-pos="H"}
+
+En la @fig-log-weibull-gamma-medios se puede observar que la distribución Lognormal obtuvo el menor AIC, con 211,340, seguida de la Gamma, la cual obtuvo 212,685 y finalmente la Weibull con 212,884 lo que representa una diferencia de 1,345 y 1,544 unidades respectivamente con respecto a la Lognormal. Este resultado confirma que la Lognormal es la distribución que mejor se ajusta a los costos medios entre las distribuciones evaluadas.
+
+![Comparación de la distribución Lognormal y Weibull para los costos altos (Y ≥ 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_mayores_900.png){#fig-log-weibull-altos fig-pos="H"}
+En la @fig-log-weibull-altos se puede observar que la distribución Lognormal obtuvo un AIC de 64,537 mientras que la distribución Weibull alcanzó 66,089, lo que representa una diferencia de 1,552 unidades a favor de la distribución Lognormal. Además de esto, puede verse que la curva roja, correspondiente a la Lognormal, se adapta mejor al histograma de los costos cercanos a €900 y €1,000, esta distribución abarca una mayor proporción  de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercano a los datos observados. De esta forma, con la comparación de los AIC y el análisis visual, se confirma que la Lognormal es la distribución más adecuada para caracterizar los costos altos `(Y ≥ 900)`.
+
+
+![Comparación de la distribución Lognormal, Weibull y Pareto para los costos altos (Y ≥ 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_pareto_mayores_900.png){#fig-log-weibull-pareto-altos fig-pos="H"}
+
+En la @fig-log-weibull-pareto-altos se puede observar que la distribución Lognormal alcanzó el menor AIC, con 64,537, seguida de la Weibull, la cual obtuvo 66,089 y finalmente la Pareto con 66,423 lo que representa una diferencia de 1,552 y 1,886 unidades respectivamente con respecto a la Lognormal. Este resultado confirma que la Lognormal es la distribución que mejor se ajusta a los costos altos entre las distribuciones evaluadas.
+
+### Cálculo de intervalos de confianza para los parámetros de la distribución mixta
+```{r tbl-ic-parametros-mixta, message=FALSE, warning=FALSE, echo=FALSE}
 library(tidyverse)
 library(kableExtra)
 # Los cálculos se realizaron en el archivo "03_modelacion.R", para evitar la sobrecarga de código dentro de la bitácora, se copiarán manualmente los resultados obtenidos en dicho archivo
@@ -73,9 +94,11 @@ kable(tabla_ic_parámetros_dist_mixta,
       escape = FALSE,
       booktabs = TRUE,
       align = c("l", "l", "l", "l", "l")) %>%
-  kable_styling(full_width = FALSE, position = "center", font_size = 10)
+  kable_styling(full_width = FALSE, position = "center", font_size = 9)
 
 ```
+
+Como se observa en la @tbl-ic-parametros-mixta, la cual presenta los intervalos de confianza asintóticos al 95% para los parámetros de la distribución mixta de los costos. Para todos los parámetros, la amplitud del intervalo de confianza es muy reducida, teniendo una amplitud redondeada de 0.0302 para μ₁, 0.0213 para σ₁, 0.0436 para μ₂ y 0.0308 para σ₂. Esta diferencia tan pequeña en cada caso, indica que los valores seleccionados para cada parámetro son precisas y estables, este resultado es atribuible al tamaño de la muestra disponible, ya que para los costos medios `(0 < Y < 900)` se dispone de 15,851 observaciones y para los costos altos `(Y ≥ 900)` se dispone de 3,755 observaciones. Gracias a esto, el valor de los parámetros seleccionados para el modelo de distribución mixta propuesto es adecuado para caracterizar el costo de los siniestros positivos.
 
 ## Construcción de las fichas de resultados
 

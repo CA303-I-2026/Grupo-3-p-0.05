@@ -261,7 +261,7 @@ comparacion_lognormal_weibull <- datos_modificados %>%
   scale_x_continuous(breaks = seq(0,900,100))+
   estilo_grupo3
 
-
+ggsave("../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull.png", comparacion_lognormal_weibull, width = 8, height = 5, dpi = 300)
 
 # Comparación de las distribuciones Lognormal, Gamma y Weibull para el intervalo ]0,900[
 
@@ -294,9 +294,11 @@ comparacion_lognormal_weibull_gamma <- datos_modificados %>%
   scale_x_continuous(breaks = seq(0,900,100))+
   estilo_grupo3
 
+ggsave("../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_gamma.png", comparacion_lognormal_weibull_gamma, width = 8, height = 5, dpi = 300)
 
 
-# Comparación entre la distribución Lognormal y la Weibull para el intervalo ]900,2000[
+# Comparación entre la distribución Lognormal y la Weibull para el intervalo ]900,20000[
+
 ajuste_weibull_mayores_900 <- fitdist(mayores_900, "weibull")
 
 comparacion_mayor_900_weibull <- data.frame(
@@ -326,9 +328,11 @@ comparacion_lognormal_weibull_mayores_900 <- datos_modificados %>%
        x = "Costo anual",
        y = "Densidad",
        color = "Distribución") +
-  scale_x_continuous(breaks = seq(900,20000,1800))+
+  scale_x_continuous(breaks = seq(900,20000,1800)) +
+  scale_y_continuous(labels = scales::comma, breaks = seq(0,0.0007, 0.0001)) +
   estilo_grupo3
 
+ggsave("../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_mayores_900.png", comparacion_lognormal_weibull_mayores_900, width = 9, height = 5, dpi = 300)
 
 
 # Comparación de las distribuciones Lognormal, Pareto y Weibull para el intervalo [900, 20000[
@@ -346,7 +350,7 @@ curvas_comparacion_mayor_900_weibull_pareto <- data.frame(
 )
 
 # Gráfico para comparar la distribución de la Lognormal, la Pareto y la Weibull para el intervalo [900, 20000[
-comparacion_lognormal_weibull_mayores_pareto_900 <- datos_modificados %>%
+comparacion_lognormal_weibull_pareto_mayores_900 <- datos_modificados %>%
   filter(Cost_claims_year >= 900 & Cost_claims_year <= 20000) %>% 
   ggplot(aes(x = Cost_claims_year)) +
   geom_histogram(aes(y = after_stat(density)), # Hacer que el alto total del histograma sea 1 (Representarlo como densidad)
@@ -361,6 +365,7 @@ comparacion_lognormal_weibull_mayores_pareto_900 <- datos_modificados %>%
   scale_y_continuous(labels = scales::comma, breaks = seq(0,0.0007, 0.0001)) +
   estilo_grupo3
 
+ggsave("../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_pareto_mayores_900.png", comparacion_lognormal_weibull_pareto_mayores_900, width = 9, height = 5, dpi = 300)
 
 
 
