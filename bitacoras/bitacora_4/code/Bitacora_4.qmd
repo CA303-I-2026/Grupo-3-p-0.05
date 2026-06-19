@@ -45,6 +45,143 @@ La presente sección está destinada a cubrir los aspectos detallados.
 
 ## Iteración de la modelación de resultados
 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Librerías necesarias para el análisis
+
+library(tidyverse)
+library(lubridate)
+library(readr)
+library(knitr)
+library(kableExtra)
+library(cowplot)
+library(scales)
+library(dplyr)
+
+# Paleta utilizada desde la Bitácora 2
+
+paleta_pamplemousse <- c(
+  "#E56B78",
+  "#F29CA3",
+  "#F2C38F",
+  "#36B7B4",
+  "#1E9CC7",
+  "#253494"
+)
+
+# Estilo gráfico reutilizado desde la Bitácora 2
+
+estilo_grupo3 <- theme_cowplot(font_size = 12) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 11)
+  )
+
+# Carga de datos
+
+datos <- read.csv(
+  "../../../datos/originales/Motor vehicle insurance data.csv",
+  sep = ";"
+)
+
+datos_modificados <- datos %>% 
+  mutate(
+    Date_start_contract = as.Date(Date_start_contract, format = "%d/%m/%Y"),
+    Date_last_renewal = as.Date(Date_last_renewal, format = "%d/%m/%Y"),
+    Date_next_renewal = as.Date(Date_next_renewal, format = "%d/%m/%Y"),
+    Date_birth = as.Date(Date_birth, format = "%d/%m/%Y"),
+    Date_driving_licence = as.Date(Date_driving_licence, format = "%d/%m/%Y"),
+    Date_lapse = as.Date(Date_lapse, format = "%d/%m/%Y"),
+    
+    categoria = case_when(
+      Type_risk == 1 ~ "Motocicleta",
+      Type_risk == 2 ~ "Furgoneta",
+      Type_risk == 3 ~ "Turismo",
+      Type_risk == 4 ~ "Agricola",
+      TRUE ~ "Sin clasificar"
+    ),
+    
+    edad = floor(time_length(interval(Date_birth, Date_start_contract), "years")),
+    antiguedad_licencia = floor(time_length(interval(Date_driving_licence, Date_start_contract), "years")),
+    edad_vehiculo = year(Date_start_contract) - Year_matriculation
+  )
+```
+
+### Análisis de variables asociadas a reclamos de costos altos `(≥ €900)`
+
+Para esta sección se agregarán gráficos correspondientes al análisis de variables asociadas a reclamos de alta severidad (≥ €900) no contemplados en el desarrollo de la Bitácora 3.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+comparación_variables_mayores_menores_900 <- datos_modificados %>%
+  mutate(supera_900 = ifelse(Cost_claims_year >= 900, "≥ 900", "< 900")) %>%
+  select(supera_900, edad, Seniority, N_claims_history, Value_vehicle, Power, Weight) %>%
+  rename(Edad = edad, # Cambiar nombres para el título de cada sub gráfico
+         Antigüedad = Seniority,
+         "Número de reclamos hisótico" = N_claims_history,
+         "Valor del vehículo" = Value_vehicle,
+         Potencia = Power,
+         Peso = Weight) %>% 
+  pivot_longer(cols = -supera_900, names_to = "variable", values_to = "valor") %>%
+  ggplot(aes(x = supera_900, y = valor, fill = supera_900)) +
+  geom_boxplot(outlier.size = 0.5) + # outlier.size es para cambiar el tamaño de los puntos de los outliers
+  facet_wrap(~variable, scales = "free", ncol = 3) + # Hacer los subgráficos, que hayan 3 por fila
+  scale_fill_manual(values = paleta_pamplemousse[c(1, 5)]) +
+  labs(
+    title = "Comparación de variables según si el reclamo supera €900",
+    x = "",
+    y = "Valor",
+    caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
+  ) +
+  scale_y_continuous(
+    labels = scales::comma,  # Poner comas en los miles del eje y 
+    breaks = scales::pretty_breaks()  # Número de breaks automático
+  ) +
+  estilo_grupo3 +
+  theme(legend.position = "none")
+
+ggsave("../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png",comparación_variables_mayores_menores_900, width = 10, height = 8, dpi = 300)
+```
+
+![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png){#fig-comparacion-var-900 fig-pos="H"}
+
+INTERPRETACIÓN
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+comparacion_tipo_combustible_mayores_900 <- datos_modificados %>%
+  mutate(tipo_combustible = case_when(
+                            Type_fuel == "P" ~ "Gasolina",
+                            Type_fuel == "D" ~ "Diésel",
+                            TRUE ~ "No especificado"
+  )) %>% 
+  group_by(tipo_combustible) %>%
+  summarise(
+    n = n(),
+    prop_900 = mean(Cost_claims_year >= 900, na.rm = TRUE) # Proporción de los que superan los 900 euros
+  ) %>%
+  ggplot(aes(x = tipo_combustible, y = prop_900, fill = tipo_combustible)) +
+  geom_col() +
+  geom_text(aes(label = paste0(round(prop_900 * 100, 2), "%")), 
+            vjust = -0.5, size = 3) +
+  scale_fill_manual(values = paleta_pamplemousse[c(1, 3, 4)]) +
+  labs(
+    title = "Proporción de reclamos mayores o iguales a €900 por tipo de combustible",
+    x = "Tipo de combustible",
+    y = "Proporción de reclamos ≥ €900",
+    caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
+  ) +
+  estilo_grupo3 +
+  theme(legend.position = "none") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 0.20))
+
+ggsave("../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png", comparacion_tipo_combustible_mayores_900, width = 8, height = 6, dpi = 300)
+```
+
+![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png){#fig-comparacion-tipo-vehiculo-900 fig-pos="H"}
+
+INTERPRETACIÖN
+
+
 ### Comparación de la distribución Weibull con la distribución Lognormal para la distribución mixta
 
 A continuación se muestran gráficos de las distribuciones Lognormal, Weibull y Gamma tanto para los costos medios `(0 < Y < 900)` como para los costos altos `(Y ≥ 900)`, para realizar las comparaciones se utilizó nuevamente el paquete `fitdistrplus`. Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los €20,000, excluyendo 40 observaciones con costos superiores a dicho umbral. Esta decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, esta acotación de los valores altos al intervalo `(900 ≤ Y ≤ 20,000)` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la bitácora 3.
