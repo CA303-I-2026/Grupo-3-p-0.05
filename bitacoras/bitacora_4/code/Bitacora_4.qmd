@@ -145,7 +145,8 @@ ggsave("../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_men
 
 ![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png){#fig-comparacion-var-900 fig-pos="H"}
 
-INTERPRETACIÓN
+La @fig-comparacion-var-900 presenta 6 gráficos comparativos de variables como la edad del asegurado, la antigüedad con la aseguradora, el peso del vehículo, etc; esta comparación se realiza por medio de boxplots, dividido para las observaciones que poseen costos menores a €900 o mayores o iguales a €900. Como se puede observar, en el caso de la edad del asegurado y la antigüedad, las medianas para cada grupo son prácticamente iguales. Sin embargo, para el número de reclamos históricos, se puede observar que la mediana del grupo que supera los €900 está claramente arriba de la mediana de los costos inferiores a €900. Además, para el caso de la antigüedad, el tamaño de la caja del grupo que no supera los €900 es más grande que la caja de los costos que sí superan los €900, lo que indica que existe una mayor dispersión en los datos de los reclamos de menor costo. En cambio, para el peso, la potencia y el valor del vehículo, el tamaño de las cajas es prácticamente igual, aunque las medianas de los costos mayores a €900 son ligeramente mayores en los tres casos. Finalmente, para todos los casos, excepto para la antigüedad con la aseguradora, se puede observar que los costos menores a €900 presentan mayor cantidad de valores atípicos.
+
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 comparacion_tipo_combustible_mayores_900 <- datos_modificados %>%
@@ -179,8 +180,7 @@ ggsave("../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayor
 
 ![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png){#fig-comparacion-tipo-vehiculo-900 fig-pos="H"}
 
-INTERPRETACIÖN
-
+En la @fig-comparacion-tipo-vehiculo-900 puede observarse que el tipo de combustible diésel presenta una mayor proporción de reclamos mayores o iguales a €900. El diésel obtuvo una proporción del 4.12%, mientras que la gasolina obtuvo un 2.83% y, para el caso en donde no se especifica el tipo de combustible, se obtuvo una proporción del 0.91%. Esto implica que la proporción de costos altos en vehículos que utilizan diésel es casi 1.5 veces mayor que en los que usan gasolina, y más de 4 veces superior a la de aquellos que no especifican el tipo de combustible utilizado.
 
 ### Comparación de la distribución Weibull con la distribución Lognormal para la distribución mixta
 
@@ -238,6 +238,32 @@ kable(tabla_ic_parámetros_dist_mixta,
 Como se observa en la @tbl-ic-parametros-mixta, la cual presenta los intervalos de confianza asintóticos al 95% para los parámetros de la distribución mixta de los costos. Para todos los parámetros, la amplitud del intervalo de confianza es muy reducida, teniendo una amplitud redondeada de 0.0302 para μ₁, 0.0213 para σ₁, 0.0436 para μ₂ y 0.0308 para σ₂. Esta diferencia tan pequeña en cada caso, indica que los valores seleccionados para cada parámetro son precisas y estables, este resultado es atribuible al tamaño de la muestra disponible, ya que para los costos medios `(0 < Y < 900)` se dispone de 15,851 observaciones y para los costos altos `(Y ≥ 900)` se dispone de 3,755 observaciones. Gracias a esto, el valor de los parámetros seleccionados para el modelo de distribución mixta propuesto es adecuado para caracterizar el costo de los siniestros positivos.
 
 ## Construcción de las fichas de resultados
+
+::: callout-note
+# Ficha 1: ajuste de la distribución lognormal para costos positivos
+
+***Nivel descriptivo***
+
+*Titular:* *La distribución Lognormal presenta mejor ajuste que la Gamma, Pareto y Weibull*
+
+*Nombre del hallazgo/resultado:*  La distribución Lognormal presenta el mejor ajuste entre las distribuciones evaluadas para los costos positivos en ambos intervalos de la distribución mixta.
+
+*Resumen en una oración:* En el intervalo $0 < Y < 900$, la Lognormal obtuvo un AIC = 211,340, supera a la Gamma con AIC = 212,685 y a la Weibull con AIC = 212,884; para el intervalo $Y≥900$, la Lognormal obtuvo un AIC = 64,537, superando a la Weibull con AIC = 66,089 y Pareto con AIC = 66,423.
+
+*Método o análisis que lo produjo:* Se ajustaron tres distribuciones candidatas, Lognormal, Gamma y Weibull, para los costos anuales positivos menores a €900 y tres distribuciones candidatas (Lognormal, Pareto y Weibull) para los costos mayores o iguales a €900; estos ajustes se realizaron mediante el paquete `fitdistrplus` de R y la función `fitdist()`. Posteriormente, se compararon los valores del Criterio de Información de Akaike, AIC, para determinar cuál distribución presentaba mejor ajuste para cada intervalo.
+
+*Evidencia:* Las figuras 3, 4, 5 y 6 muestran gráficamente la comparación de las distribuciones acompañadas del valor de los AIC correspondientes, en los cuatro gráficos, se observa que la distribución Lognormal se adapta mejor al histograma de los costos para cada intervalo. Además, los parámetros estimados para la distribución Lognormal fueron `μ₁ = 5.2785366`, `σ₁ = 0.9693318` y `μ₂ = 7.5571894`, `σ₂ = 0.6816524` para el intervalo `(0 < Y < 900)` y `(Y ≥ 900)` respectivamente.
+
+***Nivel analítico*** 
+
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación ya que permite estudiar la severidad de los siniestros, tanto para los costos positivos que no superan los €900 como para los que sí lo hacen. Esto permite identificar diferencias entre ambos intervalos de costos.
+
+*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por Delignette-Muller y Dutang (2015), quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste. En este caso, el uso de `fitdistrplus` permitió aplicar esa lógica metodológica al comparar la distribución Lognormal con la Gamma y la Weibull y la Lognormal con la Pareto y la Weibull mediante el AIC, respaldando la elección de la Lognormal para los costos positivos.
+
+*Lo que NO explica este resultado:* Este resultado no explica qué características tanto del asegurado como del vehículo, influyen en la permanencia en alguno de los dos componentes de la distribución mixta, ya sea para los costos positivos que no alcanzan los €900 o para los que sí llegan a ese umbral. Este resultado tampoco explica el exceso de ceros en la variable de los costos.
+
+*Implicación para el siguiente paso:* La distribución Lognormal se confirma como la distribución adecuada para ambos componentes positivos de la distribución mixta, lo que permite caracterizar con precisión la severidad de los siniestros. Los parámetros estimados, `μ₁ = 5.2785366`, `σ₁ = 0.9693318`, `μ₂ = 7.5571894` y `σ₂ = 0.6816524` pueden utilizarse para describir el comportamiento de los costos medios y altos, y su estabilidad será validada mediante intervalos de confianza asintóticos en el desarrollo de la investigación.
+:::
 
 ::: callout-note
 :::
