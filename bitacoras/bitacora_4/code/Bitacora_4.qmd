@@ -35,6 +35,8 @@ editor:
 \setcounter{page}{1} 
 ```
 
+\newpage
+
 # Parte de planificación
 
 Tras un largo y exhaustivo proceso, en el cual se desarrolló y se mejoró el planteamiento extendido en la primera bitácora; finalmente el proyecto llega a su última etapa.
@@ -264,7 +266,7 @@ La metodología se organiza en cuatro métodos complementarios, detallados a con
 En primer lugar, el análisis descriptivo de la frecuencia y la severidad de los siniestros.
 En segundo lugar, el estudio de posibles asociaciones entre las variables cuantitativas mediante coeficientes de correlación.
 En tercer lugar, la comparación entre grupos definidos de acuerdo a variables categóricas.
-Finalmente, la reformulación del análisis del umbral de 900 euros mediante un enfoque de distribución mixta  e intervalos de confianza.
+Finalmente, la reformulación del análisis del umbral de 900 euros mediante un enfoque de distribución mixta e intervalos de confianza.
 
 La elección de la organización planteadas radica en que la estructura permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad.
 Además, responde a las características observadas en la segunda bitácora y retomadas en el anteproyecto: una alta concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos en la variable del costo anual.
@@ -273,7 +275,8 @@ Además, responde a las características observadas en la segunda bitácora y re
 
 El primer método consistió en realizar un análisis descriptivo de las dos variables principales del proyecto: la frecuencia anual de los siniestros y la severidad anual de los siniestros.
 Dicha separación fue necesaria de acuerdo con @frees2021, puesto que las variables tenían naturalezas estadísticas distintas.
-La frecuencia correspondió a una variable de conteo, mientras que la severidad correspondió a una variable continua no negativa. Por esta razón, no se analizaron como si representaran el mismo fenómeno, sino como dos componentes complementarios del riesgo asegurador.
+La frecuencia correspondió a una variable de conteo, mientras que la severidad correspondió a una variable continua no negativa.
+Por esta razón, no se analizaron como si representaran el mismo fenómeno, sino como dos componentes complementarios del riesgo asegurador.
 
 Se denota la variable $N_i = \texttt{N\_claims\_year}_i$ como la cantidad de siniestros reportados por el asegurado $i$ durante el año, y por otro lado $Y_i = \texttt{Cost\_claims\_year}_i$ denota el costo anual de los siniestros asociado a ese mismo registro.
 
@@ -298,7 +301,8 @@ $$
 \widehat{p}_0 = \frac{\{i : N_i = 0\}}{n}.
 $$
 
-Este cálculo es relevante dado que permite cuantificar el exceso de ceros en la frecuencia de los siniestros. Una proporción elevada de registros con $N_i=0$ indica que una gran parte de la cartera no presentó reclamaciones durante el periodo observado, lo cual puede afectar la pertinencia de modelos de conteo.
+Este cálculo es relevante dado que permite cuantificar el exceso de ceros en la frecuencia de los siniestros.
+Una proporción elevada de registros con $N_i=0$ indica que una gran parte de la cartera no presentó reclamaciones durante el periodo observado, lo cual puede afectar la pertinencia de modelos de conteo.
 
 Además, para la variable $N_i$ se calcularon medidas descriptivas como la media, la mediana, la desviación estándar, el mínimo, el máximo y los cuartiles.
 Estas medidas se complementaron con gráficos de barras para observar la concentración de registros en los valores bajos de la escala, especialmente en cero, y para identificar si existían observaciones con una cantidad inusualmente alta de siniestros.
@@ -310,7 +314,8 @@ D =
 \frac{\operatorname{Var}(N_i)}{\operatorname{E}(N_i)}.
 $$
 
-Este indicador permitió comparar la variabilidad observada con la media de la variable. Este diagnóstico se retomó posteriormente en el análisis del modelo Poisson descartado.
+Este indicador permitió comparar la variabilidad observada con la media de la variable.
+Este diagnóstico se retomó posteriormente en el análisis del modelo Poisson descartado.
 
 Para la variable de la severidad, el análisis también se realizó en dos etapas.
 Primero, se calculó la proporción de registros con costo anual igual a cero, mediante la fórmula:
@@ -326,9 +331,14 @@ $$
 Y_i \mid Y_i > 0.
 $$
 
-Sobre este subconjunto se calcularon medidas de tendencia central y dispersión, como media, mediana, desviación estándar, cuartiles, mínimo y máximo. La mediana tuvo un papel importante en la interpretación de la severidad, ya que es menos sensible a valores extremos que la media. Esto fue necesario porque los costos de siniestros suelen presentar asimetría hacia la derecha, con muchos reclamos de baja cuantía y pocos eventos de alta severidad.
+Sobre este subconjunto se calcularon medidas de tendencia central y dispersión, como media, mediana, desviación estándar, cuartiles, mínimo y máximo.
+La mediana tuvo un papel importante en la interpretación de la severidad, ya que es menos sensible a valores extremos que la media.
+Esto fue necesario porque los costos de siniestros suelen presentar asimetría hacia la derecha, con muchos reclamos de baja cuantía y pocos eventos de alta severidad.
 
-El análisis visual de la severidad se realizó mediante histogramas y boxplots. Los histogramas permitieron observar la forma general de la distribución de los costos positivos, mientras que los boxplots permitieron identificar la concentración de la distribución central y la presencia de valores atípicos. Para mejorar la legibilidad visual, algunos gráficos se construyeron restringiendo los costos positivos a valores menores o iguales a 5,000 euros. Este filtro se utilizó únicamente con fines gráficos, ya que los valores extremos dificultan la visualización de la parte central de la distribución, pero no fueron ignorados en los estadísticos descriptivos generales.
+El análisis visual de la severidad se realizó mediante histogramas y boxplots.
+Los histogramas permitieron observar la forma general de la distribución de los costos positivos, mientras que los boxplots permitieron identificar la concentración de la distribución central y la presencia de valores atípicos.
+Para mejorar la legibilidad visual, algunos gráficos se construyeron restringiendo los costos positivos a valores menores o iguales a 5,000 euros.
+Este filtro se utilizó únicamente con fines gráficos, ya que los valores extremos dificultan la visualización de la parte central de la distribución, pero no fueron ignorados en los estadísticos descriptivos generales.
 
 En relación con la pregunta de investigación, el análisis de la frecuencia y la severidad permite caracterizar el comportamiento general de la siniestralidad en la base de datos.
 La frecuencia muestra qué tan común es que los asegurados presenten reclamos durante el año, mientras que la severidad muestra qué tan altos son los costos cuando estos reclamos ocurren.
@@ -340,9 +350,13 @@ El segundo método consistió en estudiar la asociación entre las variables cua
 El propósito de esta etapa no fue establecer relaciones causales, sino identificar patrones de asociación que permitan explorar si ciertas características numéricas se relacionan con una mayor frecuencia o severidad de los siniestros.
 Entre las variables cuantitativas consideradas se encuentran la edad del asegurado, la antigüedad como cliente, la antigüedad de la licencia de conducir, el historial de reclamos, así como el peso, la potencia, el valor y la edad del vehículo.
 
-Antes de calcular las correlaciones, se evaluó la normalidad de la variable de frecuencia mediante la prueba de Shapiro-Wilk, aplicada sobre una muestra de 5,000 observaciones. Esta prueba se utilizó como diagnóstico para decidir si era adecuado utilizar un coeficiente paramétrico, como Pearson, o si era preferible emplear un coeficiente no paramétrico. Dado que la prueba rechazó la hipótesis de normalidad, y considerando además la alta concentración de ceros, la asimetría y la presencia de valores extremos observadas en el análisis descriptivo, se descartó el uso de Pearson como método principal.
+Antes de calcular las correlaciones, se evaluó la normalidad de la variable de frecuencia mediante la prueba de Shapiro-Wilk, aplicada sobre una muestra de 5,000 observaciones.
+Esta prueba se utilizó como diagnóstico para decidir si era adecuado utilizar un coeficiente paramétrico, como Pearson, o si era preferible emplear un coeficiente no paramétrico.
+Dado que la prueba rechazó la hipótesis de normalidad, y considerando además la alta concentración de ceros, la asimetría y la presencia de valores extremos observadas en el análisis descriptivo, se descartó el uso de Pearson como método principal.
 
-Por esta razón, se utilizó únicamente el coeficiente de correlación de Spearman. De acuerdo a lo planteado por @vinuesa2016, este coeficiente fue adecuado para el contexto del proyecto porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni una relación lineal estricta entre las variables. Además, frente a Kendall, Spearman resultó conveniente debido al tamaño de la base de datos y a que permite obtener una medida de asociación no paramétrica de interpretación directa para el análisis exploratorio.
+Por esta razón, se utilizó únicamente el coeficiente de correlación de Spearman.
+De acuerdo a lo planteado por @vinuesa2016, este coeficiente fue adecuado para el contexto del proyecto porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni una relación lineal estricta entre las variables.
+Además, frente a Kendall, Spearman resultó conveniente debido al tamaño de la base de datos y a que permite obtener una medida de asociación no paramétrica de interpretación directa para el análisis exploratorio.
 
 En una primera etapa, se analizó la asociación entre cada variable cuantitativa $X_i$ y las variables de respuesta $N_i$ e $Y_i$ mediante coeficientes de correlación de Spearman, presentados en una matriz de correlación y una tabla de intervalos de confianza al 95%.
 La matriz también permitió identificar correlaciones entre las propias variables explicativas, lo cual constituye un diagnóstico preliminar de posible multicolinealidad relevante para las etapas de modelación.
@@ -376,16 +390,21 @@ donde
 
 $$
 d_i = R(X_i)-R(Z_i).
-$$
-En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, utilizando el método "spearman", ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada.
+$$ En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, utilizando el método "spearman", ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada.
 
 ##### Intervalos de confianza para los coeficientes de correlación
 
-Para complementar la estimación puntual de cada correlación de Spearman, se construyeron intervalos de confianza aproximados al 95% mediante una transformación z tipo Fisher. Esta transformación permite trabajar el coeficiente de correlación en una escala aproximadamente normal, especialmente cuando el tamaño muestral es grande. Aunque la transformación de Fisher se formula de manera clásica para el coeficiente de Pearson, su uso también ha sido discutido para la construcción de intervalos de confianza asociados al coeficiente de Spearman mediante enfoques analíticos [@ruscio2008].
+Para complementar la estimación puntual de cada correlación de Spearman, se construyeron intervalos de confianza aproximados al 95% mediante una transformación z tipo Fisher.
+Esta transformación permite trabajar el coeficiente de correlación en una escala aproximadamente normal, especialmente cuando el tamaño muestral es grande.
+Aunque la transformación de Fisher se formula de manera clásica para el coeficiente de Pearson, su uso también ha sido discutido para la construcción de intervalos de confianza asociados al coeficiente de Spearman mediante enfoques analíticos [@ruscio2008].
 
-En este proyecto, esta decisión se adoptó porque Spearman puede interpretarse como una correlación aplicada a los rangos de las variables. Además, dado que la base de datos utilizada tiene un tamaño muestral amplio, la aproximación resulta útil para complementar la estimación puntual con una medida de incertidumbre. No obstante, los intervalos no se interpretaron como intervalos exactos para Spearman, sino como una aproximación descriptiva de la precisión de las asociaciones estimadas.
+En este proyecto, esta decisión se adoptó porque Spearman puede interpretarse como una correlación aplicada a los rangos de las variables.
+Además, dado que la base de datos utilizada tiene un tamaño muestral amplio, la aproximación resulta útil para complementar la estimación puntual con una medida de incertidumbre.
+No obstante, los intervalos no se interpretaron como intervalos exactos para Spearman, sino como una aproximación descriptiva de la precisión de las asociaciones estimadas.
 
-El cálculo específico utilizado para construir los intervalos de confianza se basó en el enfoque analítico descrito por @ruscio2008, quien estudia la construcción de intervalos para la correlación de Spearman. En la presente investigación se utilizó únicamente el enfoque analítico, ya que el uso de bootstrap no formó parte del alcance metodológico del proyecto. El cálculo, basado en el trabajo de @ruscio2008 y en parte de elaboración propia, utilizando esta transformación, se observa a continuación.
+El cálculo específico utilizado para construir los intervalos de confianza se basó en el enfoque analítico descrito por @ruscio2008, quien estudia la construcción de intervalos para la correlación de Spearman.
+En la presente investigación se utilizó únicamente el enfoque analítico, ya que el uso de bootstrap no formó parte del alcance metodológico del proyecto.
+El cálculo, basado en el trabajo de @ruscio2008 y en parte de elaboración propia, utilizando esta transformación, se observa a continuación.
 
 Sea $X_i$ una variable cuantitativa asociada al asegurado o al vehículo, y sea $Z_i$ una variable de siniestralidad.
 De manera general, la correlación entre ambas variables se define como:
@@ -560,14 +579,18 @@ IC_{95\%}(\rho)
 \right].
 $$
 
-En este proyecto, el procedimiento detallado se aplicó a los coeficientes de correlación de Spearman estimados, con el objetivo de complementar el análisis puntual con una medida aproximada de incertidumbre. De esta manera, no solo se observó si la correlación estimada era positiva, negativa o cercana a cero, sino también qué tan precisa era dicha estimación.
+En este proyecto, el procedimiento detallado se aplicó a los coeficientes de correlación de Spearman estimados, con el objetivo de complementar el análisis puntual con una medida aproximada de incertidumbre.
+De esta manera, no solo se observó si la correlación estimada era positiva, negativa o cercana a cero, sino también qué tan precisa era dicha estimación.
 
-En caso de que el intervalo de confianza contuviera el cero, la asociación se interpretó como débil o incierta. En cambio, si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia descriptiva de asociación positiva. Por último, si el intervalo se mantuvo completamente por debajo de cero, se interpretó como evidencia descriptiva de asociación negativa.
-
+En caso de que el intervalo de confianza contuviera el cero, la asociación se interpretó como débil o incierta.
+En cambio, si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia descriptiva de asociación positiva.
+Por último, si el intervalo se mantuvo completamente por debajo de cero, se interpretó como evidencia descriptiva de asociación negativa.
 
 ### Comparación entre grupos definidos por variables categóricas
 
-El tercer método consistió en comparar la frecuencia y la severidad de los siniestros entre grupos definidos por variables categóricas. Este análisis fue necesario porque algunas características relevantes del asegurado o del vehículo no eran cuantitativas, sino cualitativas. Por ejemplo, variables como el tipo de vehículo, la zona de circulación y el tipo de combustible no podían analizarse adecuadamente mediante correlaciones, sino mediante comparaciones entre grupos.
+El tercer método consistió en comparar la frecuencia y la severidad de los siniestros entre grupos definidos por variables categóricas.
+Este análisis fue necesario porque algunas características relevantes del asegurado o del vehículo no eran cuantitativas, sino cualitativas.
+Por ejemplo, variables como el tipo de vehículo, la zona de circulación y el tipo de combustible no podían analizarse adecuadamente mediante correlaciones, sino mediante comparaciones entre grupos.
 
 Se consideró $X_i$ como una variable categórica asociada al registro $i$, cuyos posibles valores fueron:
 
@@ -575,9 +598,13 @@ $$
 X_i \in \{g_1, g_2, \ldots, g_m\},
 $$
 
-donde $g_1, g_2, \ldots, g_m$ representaron las categorías o grupos de la variable. En este proyecto, las variables categóricas consideradas fueron el tipo de vehículo, la zona de circulación y el tipo de combustible. Estas variables permitieron observar si la siniestralidad presentaba comportamientos distintos entre categorías asociadas con diferentes perfiles de riesgo o niveles de exposición.
+donde $g_1, g_2, \ldots, g_m$ representaron las categorías o grupos de la variable.
+En este proyecto, las variables categóricas consideradas fueron el tipo de vehículo, la zona de circulación y el tipo de combustible.
+Estas variables permitieron observar si la siniestralidad presentaba comportamientos distintos entre categorías asociadas con diferentes perfiles de riesgo o niveles de exposición.
 
-El objetivo fue comparar el comportamiento de las variables de siniestralidad dentro de cada grupo. Para la frecuencia de siniestros, se analizó la variable $N_i$, definida como el número de siniestros anuales del registro $i$. Para cada grupo $g$, se calculó la frecuencia promedio de siniestros:
+El objetivo fue comparar el comportamiento de las variables de siniestralidad dentro de cada grupo.
+Para la frecuencia de siniestros, se analizó la variable $N_i$, definida como el número de siniestros anuales del registro $i$.
+Para cada grupo $g$, se calculó la frecuencia promedio de siniestros:
 
 $$
 \overline{N}_g =
@@ -585,7 +612,8 @@ $$
 \sum_{X_i=g} N_i,
 $$
 
-donde $n_g$ representó la cantidad de registros pertenecientes al grupo $g$. Esta medida permitió comparar si algunos grupos presentaban, en promedio, más siniestros anuales que otros.
+donde $n_g$ representó la cantidad de registros pertenecientes al grupo $g$.
+Esta medida permitió comparar si algunos grupos presentaban, en promedio, más siniestros anuales que otros.
 
 Además, debido a que la variable de frecuencia presentaba una alta concentración de ceros, también se calculó la proporción de asegurados sin siniestros dentro de cada grupo:
 
@@ -594,36 +622,56 @@ $$
 \frac{\{i: X_i = g \text{ y } N_i = 0\}}{n_g}.
 $$
 
-Esta proporción fue importante porque permitió identificar si ciertos grupos concentraban una mayor cantidad de registros sin reclamos. En datos de seguros, analizar únicamente la media podía resultar insuficiente, ya que una alta proporción de ceros podía ocultar diferencias relevantes entre categorías.
+Esta proporción fue importante porque permitió identificar si ciertos grupos concentraban una mayor cantidad de registros sin reclamos.
+En datos de seguros, analizar únicamente la media podía resultar insuficiente, ya que una alta proporción de ceros podía ocultar diferencias relevantes entre categorías.
 
-Para la severidad, se analizó la variable $Y_i$, definida como el costo anual de siniestros del registro $i$. Primero, se calculó la proporción de registros con costo positivo dentro de cada grupo:
+Para la severidad, se analizó la variable $Y_i$, definida como el costo anual de siniestros del registro $i$.
+Primero, se calculó la proporción de registros con costo positivo dentro de cada grupo:
 
 $$
 \widehat{q}_g =
 \frac{\{i: X_i = g \text{ y } Y_i > 0\}}{n_g}.
 $$
 
-Esta medida permitió observar qué grupos presentaban una mayor proporción de registros con costos asociados a siniestros. Luego, para estudiar la magnitud de los reclamos cuando estos ocurrían, se analizó el costo positivo condicionado al grupo:
+Esta medida permitió observar qué grupos presentaban una mayor proporción de registros con costos asociados a siniestros.
+Luego, para estudiar la magnitud de los reclamos cuando estos ocurrían, se analizó el costo positivo condicionado al grupo:
 
 $$
 Y_i \mid (Y_i > 0, X_i = g).
 $$
 
-Sobre este subconjunto se calcularon medidas descriptivas como la media, la mediana, el primer cuartil, el tercer cuartil y el máximo. En particular, se dio mayor importancia a la mediana y a los cuartiles, ya que la variable de severidad presentaba una marcada asimetría hacia la derecha y valores extremos que podían afectar la interpretación de la media.
+Sobre este subconjunto se calcularon medidas descriptivas como la media, la mediana, el primer cuartil, el tercer cuartil y el máximo.
+En particular, se dio mayor importancia a la mediana y a los cuartiles, ya que la variable de severidad presentaba una marcada asimetría hacia la derecha y valores extremos que podían afectar la interpretación de la media.
 
-De esta forma, para cada variable categórica se construyó una tabla resumen que integró indicadores de frecuencia y severidad. En cada grupo se reportó la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media del costo positivo, la mediana, el primer cuartil, el tercer cuartil y el máximo. Esta estructura permitió comparar no solo cuántos siniestros ocurrían en cada categoría, sino también qué tan costosos eran cuando se presentaban.
+De esta forma, para cada variable categórica se construyó una tabla resumen que integró indicadores de frecuencia y severidad.
+En cada grupo se reportó la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media del costo positivo, la mediana, el primer cuartil, el tercer cuartil y el máximo.
+Esta estructura permitió comparar no solo cuántos siniestros ocurrían en cada categoría, sino también qué tan costosos eran cuando se presentaban.
 
-El análisis se complementó con visualizaciones. Para la frecuencia, se utilizaron gráficos de barras de la frecuencia promedio de siniestros por grupo y de la proporción de asegurados sin siniestros. Para la severidad, se utilizaron gráficos de barras de la proporción de registros con costo positivo y boxplots del costo anual positivo por categoría. Dado que la severidad presentaba valores extremos de gran magnitud, los boxplots se construyeron filtrando los registros con $Y_i > 0$ y, cuando fue necesario para mejorar la legibilidad visual, restringiendo el eje de costos a valores menores o iguales a €5,000. Este filtro no tuvo como propósito eliminar la existencia de valores extremos del análisis, sino facilitar una comparación visual más clara de la distribución central de los costos entre grupos.
+El análisis se complementó con visualizaciones.
+Para la frecuencia, se utilizaron gráficos de barras de la frecuencia promedio de siniestros por grupo y de la proporción de asegurados sin siniestros.
+Para la severidad, se utilizaron gráficos de barras de la proporción de registros con costo positivo y boxplots del costo anual positivo por categoría.
+Dado que la severidad presentaba valores extremos de gran magnitud, los boxplots se construyeron filtrando los registros con $Y_i > 0$ y, cuando fue necesario para mejorar la legibilidad visual, restringiendo el eje de costos a valores menores o iguales a €5,000.
+Este filtro no tuvo como propósito eliminar la existencia de valores extremos del análisis, sino facilitar una comparación visual más clara de la distribución central de los costos entre grupos.
 
-En el caso del tipo de vehículo, se compararon las categorías motocicleta, turismo, furgoneta y agrícola. Para la zona de circulación, se compararon las categorías rural y urbana. Para el tipo de combustible, se compararon los vehículos de gasolina y diésel. En cada caso, la interpretación se realizó de manera separada para la frecuencia y la severidad, ya que un grupo podía presentar mayor número promedio de siniestros sin necesariamente presentar costos más altos cuando ocurría un reclamo.
+En el caso del tipo de vehículo, se compararon las categorías motocicleta, turismo, furgoneta y agrícola.
+Para la zona de circulación, se compararon las categorías rural y urbana.
+Para el tipo de combustible, se compararon los vehículos de gasolina y diésel.
+En cada caso, la interpretación se realizó de manera separada para la frecuencia y la severidad, ya que un grupo podía presentar mayor número promedio de siniestros sin necesariamente presentar costos más altos cuando ocurría un reclamo.
 
-La escogencia de este método se basó en que permitió analizar variables que no podían estudiarse adecuadamente mediante correlación. Mientras que el análisis de asociación entre variables cuantitativas se enfocó en características numéricas del asegurado o del vehículo, esta sección permitió estudiar diferencias entre grupos definidos por características categóricas. En relación con la pregunta de investigación, la comparación entre grupos permitió identificar si ciertas categorías presentaban mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados. De esta manera, el análisis aportó evidencia descriptiva sobre posibles diferencias en la siniestralidad según características como el tipo de vehículo, la zona de circulación y el tipo de combustible.
+La escogencia de este método se basó en que permitió analizar variables que no podían estudiarse adecuadamente mediante correlación.
+Mientras que el análisis de asociación entre variables cuantitativas se enfocó en características numéricas del asegurado o del vehículo, esta sección permitió estudiar diferencias entre grupos definidos por características categóricas.
+En relación con la pregunta de investigación, la comparación entre grupos permitió identificar si ciertas categorías presentaban mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados.
+De esta manera, el análisis aportó evidencia descriptiva sobre posibles diferencias en la siniestralidad según características como el tipo de vehículo, la zona de circulación y el tipo de combustible.
 
 #### Análisis del umbral de 900 euros mediante distribución mixta y ajuste de distribuciones
 
-El cuarto método consistió en analizar de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanzó o superó los 900 euros. En el anteproyecto, este umbral se había planteado inicialmente mediante una variable indicadora que separaba los costos menores a 900 euros de los costos mayores o iguales a dicho valor. Sin embargo, a partir de la retroalimentación recibida y de los resultados exploratorios obtenidos, el análisis se reformuló para incorporar una estructura de distribución mixta, el ajuste de distribuciones paramétricas, la comparación entre distribuciones candidatas, la construcción de intervalos de confianza para los parámetros estimados y el estudio de variables asociadas a los reclamos de alta severidad.
+El cuarto método consistió en analizar de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanzó o superó los 900 euros.
+En el anteproyecto, este umbral se había planteado inicialmente mediante una variable indicadora que separaba los costos menores a 900 euros de los costos mayores o iguales a dicho valor.
+Sin embargo, a partir de la retroalimentación recibida y de los resultados exploratorios obtenidos, el análisis se reformuló para incorporar una estructura de distribución mixta, el ajuste de distribuciones paramétricas, la comparación entre distribuciones candidatas, la construcción de intervalos de confianza para los parámetros estimados y el estudio de variables asociadas a los reclamos de alta severidad.
 
-El análisis exploratorio previo mostró que la variable $Y_i$, correspondiente al costo anual de siniestros del registro $i$, presentaba una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos. Por esta razón, no se asumió que todos los valores de $Y_i$ provinieran de una única distribución homogénea. En cambio, se consideró que la variable podía entenderse como una mezcla de tres comportamientos: una masa de probabilidad en cero, un componente de costos positivos medios y un componente de costos altos.
+El análisis exploratorio previo mostró que la variable $Y_i$, correspondiente al costo anual de siniestros del registro $i$, presentaba una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos.
+Por esta razón, no se asumió que todos los valores de $Y_i$ provinieran de una única distribución homogénea.
+En cambio, se consideró que la variable podía entenderse como una mezcla de tres comportamientos: una masa de probabilidad en cero, un componente de costos positivos medios y un componente de costos altos.
 
 De manera general, la distribución del costo anual se expresó como:
 
@@ -631,7 +679,8 @@ $$
 Y_i \sim \pi_0\delta_0 + \pi_1F_1(y \mid \theta_1) + \pi_2F_2(y \mid \theta_2),
 $$
 
-donde $\delta_0$ representó la masa puntual en cero, $F_1(y \mid \theta_1)$ representó la distribución de los costos positivos moderados y $F_2(y \mid \theta_2)$ representó la distribución de los costos altos. Los parámetros $\pi_0$, $\pi_1$ y $\pi_2$ representaron la proporción de observaciones en cada componente, de manera que:
+donde $\delta_0$ representó la masa puntual en cero, $F_1(y \mid \theta_1)$ representó la distribución de los costos positivos moderados y $F_2(y \mid \theta_2)$ representó la distribución de los costos altos.
+Los parámetros $\pi_0$, $\pi_1$ y $\pi_2$ representaron la proporción de observaciones en cada componente, de manera que:
 
 $$
 \pi_0 + \pi_1 + \pi_2 = 1.
@@ -648,7 +697,9 @@ G_i =
 \end{cases}
 $$
 
-El grupo $G_i = 0$ correspondió a registros sin costo anual de siniestros. El grupo $G_i = 1$ correspondió a registros con costos positivos moderados, mientras que el grupo $G_i = 2$ correspondió a registros con costos altos, ubicados en la cola derecha de la distribución. Esta separación permitió analizar el umbral de 900 euros no solamente como una división descriptiva, sino como un punto de separación entre componentes distintos de la distribución del costo anual.
+El grupo $G_i = 0$ correspondió a registros sin costo anual de siniestros.
+El grupo $G_i = 1$ correspondió a registros con costos positivos moderados, mientras que el grupo $G_i = 2$ correspondió a registros con costos altos, ubicados en la cola derecha de la distribución.
+Esta separación permitió analizar el umbral de 900 euros no solamente como una división descriptiva, sino como un punto de separación entre componentes distintos de la distribución del costo anual.
 
 Los pesos de la mezcla se estimaron mediante las proporciones observadas en la muestra:
 
@@ -669,9 +720,12 @@ $$
 \frac{\{i: Y_i \geq 900\}}{n}.
 $$
 
-Estas proporciones permitieron cuantificar qué parte de la base correspondía a registros sin costo, qué parte correspondía a costos positivos moderados y qué parte se ubicaba en la zona de alta severidad. De esta manera, el análisis del umbral no se limitó a identificar cuántos registros superaban los 900 euros, sino que permitió representar la estructura completa de la variable de severidad.
+Estas proporciones permitieron cuantificar qué parte de la base correspondía a registros sin costo, qué parte correspondía a costos positivos moderados y qué parte se ubicaba en la zona de alta severidad.
+De esta manera, el análisis del umbral no se limitó a identificar cuántos registros superaban los 900 euros, sino que permitió representar la estructura completa de la variable de severidad.
 
-Posteriormente, se utilizó el paquete `fitdistrplus` de R para ajustar distribuciones paramétricas a los componentes positivos del costo anual. De acuerdo con Delignette-Muller y Dutang (2015), este paquete permite ajustar distribuciones a datos empíricos y comparar la calidad del ajuste mediante herramientas numéricas y gráficas. En este proyecto, se utilizó principalmente para estimar los parámetros de distribuciones candidatas y comparar su desempeño mediante criterios como el AIC, así como mediante gráficos diagnósticos.
+Posteriormente, se utilizó el paquete `fitdistrplus` de R para ajustar distribuciones paramétricas a los componentes positivos del costo anual.
+De acuerdo con Delignette-Muller y Dutang (2015), este paquete permite ajustar distribuciones a datos empíricos y comparar la calidad del ajuste mediante herramientas numéricas y gráficas.
+En este proyecto, se utilizó principalmente para estimar los parámetros de distribuciones candidatas y comparar su desempeño mediante criterios como el AIC, así como mediante gráficos diagnósticos.
 
 Primero, se analizaron los costos positivos menores a 900 euros:
 
@@ -679,7 +733,9 @@ $$
 Y_i \mid 0 < Y_i < 900.
 $$
 
-Para este grupo se evaluaron como distribuciones candidatas la Lognormal, la Gamma y la Weibull. Estas distribuciones fueron consideradas porque permiten modelar variables continuas positivas y asimétricas, lo cual resulta adecuado para el costo de los siniestros. La comparación entre estas distribuciones se realizó mediante el Criterio de Información de Akaike, AIC, y mediante la inspección visual de los ajustes sobre el histograma de los datos.
+Para este grupo se evaluaron como distribuciones candidatas la Lognormal, la Gamma y la Weibull.
+Estas distribuciones fueron consideradas porque permiten modelar variables continuas positivas y asimétricas, lo cual resulta adecuado para el costo de los siniestros.
+La comparación entre estas distribuciones se realizó mediante el Criterio de Información de Akaike, AIC, y mediante la inspección visual de los ajustes sobre el histograma de los datos.
 
 Luego, se analizaron los costos mayores o iguales a 900 euros:
 
@@ -687,17 +743,23 @@ $$
 Y_i \mid Y_i \geq 900.
 $$
 
-Este componente correspondió a los reclamos de alta severidad. Para efectos del ajuste paramétrico y de la visualización, este componente se acotó al intervalo:
+Este componente correspondió a los reclamos de alta severidad.
+Para efectos del ajuste paramétrico y de la visualización, este componente se acotó al intervalo:
 
 $$
 900 \leq Y_i \leq 20000.
 $$
 
-Esta acotación se realizó porque existían observaciones extremadamente altas que podían distorsionar el ajuste de los parámetros y dificultar la interpretación visual de la distribución. Dichos valores no se interpretaron como inexistentes ni irrelevantes, sino como valores extremos que requerían un tratamiento cuidadoso. Al restringir el análisis gráfico y paramétrico al intervalo mencionado, se buscó representar de mejor manera el comportamiento central de los reclamos de alta severidad.
+Esta acotación se realizó porque existían observaciones extremadamente altas que podían distorsionar el ajuste de los parámetros y dificultar la interpretación visual de la distribución.
+Dichos valores no se interpretaron como inexistentes ni irrelevantes, sino como valores extremos que requerían un tratamiento cuidadoso.
+Al restringir el análisis gráfico y paramétrico al intervalo mencionado, se buscó representar de mejor manera el comportamiento central de los reclamos de alta severidad.
 
-Para los costos altos se evaluaron como distribuciones candidatas la Lognormal, la Pareto y la Weibull. La distribución Pareto se consideró porque suele asociarse con fenómenos de cola pesada, mientras que la Weibull y la Lognormal se incluyeron como alternativas flexibles para variables positivas y asimétricas. Al igual que en el componente de costos medios, la comparación se realizó mediante el AIC y mediante gráficos que superpusieron las distribuciones ajustadas sobre el histograma de los costos observados.
+Para los costos altos se evaluaron como distribuciones candidatas la Lognormal, la Pareto y la Weibull.
+La distribución Pareto se consideró porque suele asociarse con fenómenos de cola pesada, mientras que la Weibull y la Lognormal se incluyeron como alternativas flexibles para variables positivas y asimétricas.
+Al igual que en el componente de costos medios, la comparación se realizó mediante el AIC y mediante gráficos que superpusieron las distribuciones ajustadas sobre el histograma de los costos observados.
 
-Para cada componente positivo, si $F_j(y \mid \theta_j)$ representaba una distribución candidata para el componente $j$, el objetivo fue estimar el vector de parámetros $\theta_j$. Mediante máxima verosimilitud, estos parámetros se obtuvieron maximizando la función de verosimilitud:
+Para cada componente positivo, si $F_j(y \mid \theta_j)$ representaba una distribución candidata para el componente $j$, el objetivo fue estimar el vector de parámetros $\theta_j$.
+Mediante máxima verosimilitud, estos parámetros se obtuvieron maximizando la función de verosimilitud:
 
 $$
 L(\theta_j)
@@ -706,7 +768,8 @@ L(\theta_j)
 f_j(y_i \mid \theta_j),
 $$
 
-donde $C_j$ representó el conjunto de observaciones pertenecientes al componente analizado y $f_j(y_i \mid \theta_j)$ fue la función de densidad de la distribución candidata. De forma equivalente, se maximizó la log-verosimilitud:
+donde $C_j$ representó el conjunto de observaciones pertenecientes al componente analizado y $f_j(y_i \mid \theta_j)$ fue la función de densidad de la distribución candidata.
+De forma equivalente, se maximizó la log-verosimilitud:
 
 $$
 \ell(\theta_j)
@@ -721,9 +784,13 @@ $$
 AIC = -2\ell(\widehat{\theta}) + 2k,
 $$
 
-donde $\ell(\widehat{\theta})$ representa la log-verosimilitud evaluada en los parámetros estimados y $k$ representa el número de parámetros del modelo. En este criterio, valores más bajos indican un mejor equilibrio entre calidad de ajuste y complejidad del modelo.
+donde $\ell(\widehat{\theta})$ representa la log-verosimilitud evaluada en los parámetros estimados y $k$ representa el número de parámetros del modelo.
+En este criterio, valores más bajos indican un mejor equilibrio entre calidad de ajuste y complejidad del modelo.
 
-A partir de este procedimiento, se evaluaron como distribuciones candidatas la Lognormal, la Weibull y la Gamma. En particular, la distribución Lognormal resultó relevante no solo porque presentó un mejor ajuste a los datos, sino también porque permitió justificar el cálculo de intervalos de confianza para los parámetros del modelo. Esto se debe a que, si una variable positiva $Y$ sigue una distribución Lognormal con parámetros $\mu$ y $\sigma$, entonces su logaritmo natural sigue una distribución Normal. Por tanto, al aplicar la transformación $W = \ln(Y)$, fue posible trabajar en una escala aproximadamente normal y utilizar los métodos estándar de inferencia para los parámetros $\mu$ y $\sigma$:
+A partir de este procedimiento, se evaluaron como distribuciones candidatas la Lognormal, la Weibull y la Gamma.
+En particular, la distribución Lognormal resultó relevante no solo porque presentó un mejor ajuste a los datos, sino también porque permitió justificar el cálculo de intervalos de confianza para los parámetros del modelo.
+Esto se debe a que, si una variable positiva $Y$ sigue una distribución Lognormal con parámetros $\mu$ y $\sigma$, entonces su logaritmo natural sigue una distribución Normal.
+Por tanto, al aplicar la transformación $W = \ln(Y)$, fue posible trabajar en una escala aproximadamente normal y utilizar los métodos estándar de inferencia para los parámetros $\mu$ y $\sigma$:
 
 $$
 Y \sim \operatorname{Lognormal}(\mu,\sigma^2)
@@ -731,9 +798,12 @@ Y \sim \operatorname{Lognormal}(\mu,\sigma^2)
 W = \ln(Y) \sim N(\mu,\sigma^2).
 $$
 
-Esta propiedad fue importante porque permitió trabajar los costos positivos en una escala logarítmica, donde el supuesto de normalidad resulta compatible con la definición formal de la distribución Lognormal. Como señalan @crow1988lognormal, una variable aleatoria positiva sigue una distribución Lognormal cuando su logaritmo natural sigue una distribución Normal. Por tanto, los parámetros $\mu$ y $\sigma$ no describen directamente la media y la desviación estándar del costo en su escala original, sino la media y la desviación estándar de la variable transformada $W = \ln(Y)$.
+Esta propiedad fue importante porque permitió trabajar los costos positivos en una escala logarítmica, donde el supuesto de normalidad resulta compatible con la definición formal de la distribución Lognormal.
+Como señalan @crow1988lognormal, una variable aleatoria positiva sigue una distribución Lognormal cuando su logaritmo natural sigue una distribución Normal.
+Por tanto, los parámetros $\mu$ y $\sigma$ no describen directamente la media y la desviación estándar del costo en su escala original, sino la media y la desviación estándar de la variable transformada $W = \ln(Y)$.
 
-La justificación se observa de la siguiente manera. Si $W = \ln(Y)$ y $W \sim N(\mu,\sigma^2)$, entonces la densidad de $W$ está dada por:
+La justificación se observa de la siguiente manera.
+Si $W = \ln(Y)$ y $W \sim N(\mu,\sigma^2)$, entonces la densidad de $W$ está dada por:
 
 $$
 f_W(w)
@@ -773,7 +843,8 @@ f_Y(y)
 \quad y > 0.
 $$
 
-Esta es precisamente la densidad de una distribución Lognormal. Por lo tanto, aplicar el logaritmo natural a los costos positivos permitió transformar el problema al caso normal, donde se pudieron utilizar métodos estándar para construir intervalos de confianza sobre los parámetros $\mu$ y $\sigma$.
+Esta es precisamente la densidad de una distribución Lognormal.
+Por lo tanto, aplicar el logaritmo natural a los costos positivos permitió transformar el problema al caso normal, donde se pudieron utilizar métodos estándar para construir intervalos de confianza sobre los parámetros $\mu$ y $\sigma$.
 
 Sea entonces $Y_1,Y_2,\ldots,Y_n$ una muestra de costos positivos pertenecientes a uno de los componentes de la distribución mixta, y defínase:
 
@@ -868,9 +939,11 @@ IC_{95\%}(\sigma)
 \right].
 $$
 
-Este procedimiento permitió justificar la construcción de intervalos de confianza para los parámetros de la distribución Lognormal, ya que estos parámetros corresponden a la media y a la desviación estándar de los costos en escala logarítmica. En consecuencia, los intervalos de confianza no se construyeron directamente sobre los costos originales, sino sobre los parámetros que describen su comportamiento después de aplicar la transformación logarítmica.
+Este procedimiento permitió justificar la construcción de intervalos de confianza para los parámetros de la distribución Lognormal, ya que estos parámetros corresponden a la media y a la desviación estándar de los costos en escala logarítmica.
+En consecuencia, los intervalos de confianza no se construyeron directamente sobre los costos originales, sino sobre los parámetros que describen su comportamiento después de aplicar la transformación logarítmica.
 
-Además del ajuste distribucional, se incorporó una etapa adicional para estudiar qué variables se asociaban con el incremento de los reclamos al superar el umbral de 900 euros. Para ello, se definió una variable indicadora:
+Además del ajuste distribucional, se incorporó una etapa adicional para estudiar qué variables se asociaban con el incremento de los reclamos al superar el umbral de 900 euros.
+Para ello, se definió una variable indicadora:
 
 $$
 H_i =
@@ -880,40 +953,67 @@ H_i =
 \end{cases}
 $$
 
-Esta variable permitió separar los registros según si el costo anual del reclamo pertenecía al grupo de costos menores a 900 euros o al grupo de costos altos. Con esta clasificación, se compararon variables cuantitativas como la edad del asegurado, la antigüedad con la aseguradora, el historial de reclamos, el peso del vehículo, la potencia del vehículo y el valor del vehículo. La comparación se realizó mediante boxplots, con el objetivo de observar si las distribuciones de estas variables cambiaban de forma visible entre ambos grupos.
+Esta variable permitió separar los registros según si el costo anual del reclamo pertenecía al grupo de costos menores a 900 euros o al grupo de costos altos.
+Con esta clasificación, se compararon variables cuantitativas como la edad del asegurado, la antigüedad con la aseguradora, el historial de reclamos, el peso del vehículo, la potencia del vehículo y el valor del vehículo.
+La comparación se realizó mediante boxplots, con el objetivo de observar si las distribuciones de estas variables cambiaban de forma visible entre ambos grupos.
 
-Esta etapa fue importante porque complementó el modelo de distribución mixta con una lectura explicativa del umbral. Mientras que el ajuste distribucional permitió describir la forma de los costos, la comparación de variables permitió explorar qué características parecían diferenciar a los reclamos que superaban los 900 euros. En particular, se prestó atención al historial de reclamos, ya que esta variable mostró una diferencia visual más clara entre los costos menores y los costos mayores o iguales a 900 euros.
+Esta etapa fue importante porque complementó el modelo de distribución mixta con una lectura explicativa del umbral.
+Mientras que el ajuste distribucional permitió describir la forma de los costos, la comparación de variables permitió explorar qué características parecían diferenciar a los reclamos que superaban los 900 euros.
+En particular, se prestó atención al historial de reclamos, ya que esta variable mostró una diferencia visual más clara entre los costos menores y los costos mayores o iguales a 900 euros.
 
-Asimismo, se analizó la proporción de reclamos mayores o iguales a 900 euros según variables categóricas. Para ello, se calculó la proporción de registros con $H_i = 1$ dentro de cada grupo:
+Asimismo, se analizó la proporción de reclamos mayores o iguales a 900 euros según variables categóricas.
+Para ello, se calculó la proporción de registros con $H_i = 1$ dentro de cada grupo:
 
 $$
 \widehat{r}_g =
 \frac{\#\{i: X_i = g \text{ y } Y_i \geq 900\}}{n_g}.
 $$
 
-Esta proporción permitió observar si algunas categorías concentraban una mayor presencia de costos altos. En el caso del tipo de vehículo, este análisis permitió identificar qué categorías presentaban mayor proporción de reclamos por encima del umbral. En el caso del tipo de combustible, permitió comparar la proporción de reclamos de alta severidad entre vehículos de gasolina, diésel y registros sin especificación del combustible.
+Esta proporción permitió observar si algunas categorías concentraban una mayor presencia de costos altos.
+En el caso del tipo de vehículo, este análisis permitió identificar qué categorías presentaban mayor proporción de reclamos por encima del umbral.
+En el caso del tipo de combustible, permitió comparar la proporción de reclamos de alta severidad entre vehículos de gasolina, diésel y registros sin especificación del combustible.
 
-En relación con la pregunta de investigación, este análisis permitió abordar directamente el componente asociado al incremento abrupto de reclamos cuando el costo supera los 900 euros. La distribución mixta permitió justificar la separación entre costos nulos, costos medios y costos altos; mientras que la comparación de variables permitió identificar cuáles características parecían asociarse con la pertenencia al grupo de alta severidad. De esta forma, el umbral de 900 euros no se trató únicamente como un punto de corte numérico, sino como un elemento estructural de la severidad de los siniestros y como una guía para explorar posibles variables asociadas al incremento observado.
+En relación con la pregunta de investigación, este análisis permitió abordar directamente el componente asociado al incremento abrupto de reclamos cuando el costo supera los 900 euros.
+La distribución mixta permitió justificar la separación entre costos nulos, costos medios y costos altos; mientras que la comparación de variables permitió identificar cuáles características parecían asociarse con la pertenencia al grupo de alta severidad.
+De esta forma, el umbral de 900 euros no se trató únicamente como un punto de corte numérico, sino como un elemento estructural de la severidad de los siniestros y como una guía para explorar posibles variables asociadas al incremento observado.
 
-En conjunto, el análisis del umbral de 900 euros se desarrolló en tres niveles complementarios. Primero, se construyó una distribución mixta para representar la estructura general del costo anual de siniestros, separando ceros, costos medios y costos altos. Segundo, se ajustaron y compararon distribuciones paramétricas para los componentes positivos, seleccionando la Lognormal como mejor alternativa en ambos intervalos. Tercero, se estudió la asociación del umbral con variables cuantitativas y categóricas mediante boxplots y proporciones por grupo. Esta combinación permitió analizar el umbral no solo como un punto de corte, sino como una característica relevante para comprender el comportamiento de los reclamos de alta severidad.
+En conjunto, el análisis del umbral de 900 euros se desarrolló en tres niveles complementarios.
+Primero, se construyó una distribución mixta para representar la estructura general del costo anual de siniestros, separando ceros, costos medios y costos altos.
+Segundo, se ajustaron y compararon distribuciones paramétricas para los componentes positivos, seleccionando la Lognormal como mejor alternativa en ambos intervalos.
+Tercero, se estudió la asociación del umbral con variables cuantitativas y categóricas mediante boxplots y proporciones por grupo.
+Esta combinación permitió analizar el umbral no solo como un punto de corte, sino como una característica relevante para comprender el comportamiento de los reclamos de alta severidad.
 
 #### Justificación integrada de los métodos
 
-Los métodos propuestos se organizaron como una secuencia de análisis complementarios para estudiar la frecuencia y la severidad de los siniestros. En primer lugar, se realizó un análisis descriptivo de ambas variables, distinguiendo la frecuencia como una variable de conteo y la severidad como una variable continua no negativa. Esta etapa permitió identificar características relevantes de los datos, como la concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos.
+Los métodos propuestos se organizaron como una secuencia de análisis complementarios para estudiar la frecuencia y la severidad de los siniestros.
+En primer lugar, se realizó un análisis descriptivo de ambas variables, distinguiendo la frecuencia como una variable de conteo y la severidad como una variable continua no negativa.
+Esta etapa permitió identificar características relevantes de los datos, como la concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos.
 
-En segundo lugar, se desarrolló un análisis de asociación entre variables cuantitativas del asegurado y del vehículo. Debido a la asimetría de las variables de siniestralidad, la presencia de valores atípicos y el incumplimiento del supuesto de normalidad, se utilizó el coeficiente de Spearman. Además, se construyeron intervalos de confianza al 95 % mediante la transformación de Fisher, con el fin de complementar la interpretación de las correlaciones estimadas.
+En segundo lugar, se desarrolló un análisis de asociación entre variables cuantitativas del asegurado y del vehículo.
+Debido a la asimetría de las variables de siniestralidad, la presencia de valores atípicos y el incumplimiento del supuesto de normalidad, se utilizó el coeficiente de Spearman.
+Además, se construyeron intervalos de confianza al 95 % mediante la transformación de Fisher, con el fin de complementar la interpretación de las correlaciones estimadas.
 
-En tercer lugar, se compararon grupos definidos por variables categóricas, como el tipo de vehículo, la zona de circulación y el tipo de combustible. Este análisis permitió estudiar características que no podían evaluarse adecuadamente mediante correlaciones. Para ello, se utilizaron tablas resumen, proporciones y gráficos comparativos, con el objetivo de observar diferencias en la frecuencia promedio, la proporción de registros sin siniestros, la proporción de costos positivos y la severidad de los reclamos entre categorías.
+En tercer lugar, se compararon grupos definidos por variables categóricas, como el tipo de vehículo, la zona de circulación y el tipo de combustible.
+Este análisis permitió estudiar características que no podían evaluarse adecuadamente mediante correlaciones.
+Para ello, se utilizaron tablas resumen, proporciones y gráficos comparativos, con el objetivo de observar diferencias en la frecuencia promedio, la proporción de registros sin siniestros, la proporción de costos positivos y la severidad de los reclamos entre categorías.
 
-Finalmente, se analizó el umbral de 900 euros mediante una distribución mixta. Este enfoque permitió dividir el costo anual de siniestros en tres componentes: registros sin costo, costos positivos moderados y costos altos. Para los componentes positivos se ajustaron y compararon distribuciones paramétricas mediante el paquete `fitdistrplus`, considerando distribuciones como Lognormal, Gamma, Weibull y Pareto, según el intervalo analizado. Además, se incorporó una revisión de variables asociadas a los reclamos mayores o iguales a 900 euros, como el historial de reclamos, el tipo de vehículo y el tipo de combustible.
+Finalmente, se analizó el umbral de 900 euros mediante una distribución mixta.
+Este enfoque permitió dividir el costo anual de siniestros en tres componentes: registros sin costo, costos positivos moderados y costos altos.
+Para los componentes positivos se ajustaron y compararon distribuciones paramétricas mediante el paquete `fitdistrplus`, considerando distribuciones como Lognormal, Gamma, Weibull y Pareto, según el intervalo analizado.
+Además, se incorporó una revisión de variables asociadas a los reclamos mayores o iguales a 900 euros, como el historial de reclamos, el tipo de vehículo y el tipo de combustible.
 
 ### Programa maqueta, etapa de validación y respaldo de la propuesta metodológica
 
-Los cuatro métodos se ejecutaron directamente sobre los datos reales del *dataset* de Lledó y Pavía (2024), por lo que el programa maqueta y la ejecución final coincidieron en un mismo espacio de trabajo. No existió una fase de prototipado separada del análisis real; el código utilizado funcionó tanto como herramienta exploratoria para afinar decisiones metodológicas como implementación definitiva para producir los resultados reportados.
+Los cuatro métodos se ejecutaron directamente sobre los datos reales del *dataset* de Lledó y Pavía (2024), por lo que el programa maqueta y la ejecución final coincidieron en un mismo espacio de trabajo.
+No existió una fase de prototipado separada del análisis real; el código utilizado funcionó tanto como herramienta exploratoria para afinar decisiones metodológicas como implementación definitiva para producir los resultados reportados.
 
-La validación se integró dentro de cada análisis. Para las correlaciones, se utilizaron intervalos de confianza al 95 % mediante la transformación de Fisher. Para la comparación entre grupos categóricos, se emplearon tablas, proporciones y visualizaciones que permitieron evaluar la consistencia descriptiva de las diferencias observadas, sin asumir normalidad ni imponer un modelo paramétrico. Para la distribución mixta, se compararon distribuciones candidatas mediante el AIC y se utilizaron gráficos diagnósticos de `fitdistrplus`, como la comparación entre distribución empírica y teórica, gráficos Q-Q y gráficos P-P.
+La validación se integró dentro de cada análisis.
+Para las correlaciones, se utilizaron intervalos de confianza al 95 % mediante la transformación de Fisher.
+Para la comparación entre grupos categóricos, se emplearon tablas, proporciones y visualizaciones que permitieron evaluar la consistencia descriptiva de las diferencias observadas, sin asumir normalidad ni imponer un modelo paramétrico.
+Para la distribución mixta, se compararon distribuciones candidatas mediante el AIC y se utilizaron gráficos diagnósticos de `fitdistrplus`, como la comparación entre distribución empírica y teórica, gráficos Q-Q y gráficos P-P.
 
-Adicionalmente, una vez seleccionada la distribución Lognormal para los componentes positivos, se construyeron intervalos de confianza para sus parámetros $\mu$ y $\sigma$ en escala logarítmica, aprovechando que si $Y$ sigue una distribución Lognormal, entonces $W = \ln(Y)$ sigue una distribución Normal. En conjunto, estos procedimientos constituyeron el respaldo empírico de la propuesta metodológica y permitieron vincular cada análisis con la pregunta de investigación sobre la frecuencia, la severidad y el comportamiento del umbral de 900 euros.
+Adicionalmente, una vez seleccionada la distribución Lognormal para los componentes positivos, se construyeron intervalos de confianza para sus parámetros $\mu$ y $\sigma$ en escala logarítmica, aprovechando que si $Y$ sigue una distribución Lognormal, entonces $W = \ln(Y)$ sigue una distribución Normal.
+En conjunto, estos procedimientos constituyeron el respaldo empírico de la propuesta metodológica y permitieron vincular cada análisis con la pregunta de investigación sobre la frecuencia, la severidad y el comportamiento del umbral de 900 euros.
 
 ## Construcción de las fichas de resultados
 
@@ -960,22 +1060,64 @@ Los parámetros estimados, `μ₁ = 5.2785366`, `σ₁ = 0.9693318`, `μ₂ = 7.
 
 *Resumen en una oración:* Los vehículos diésel tienen una frecuencia promedio de 0.4556 siniestros por año, frente a 0.3019 en gasolina, mientras que las medias del costo positivo son muy similares: 829.50 euros para diésel y 825.32 euros para gasolina.
 
-*Método o análisis que lo produjo:* En la sección de comparación entre grupos categóricos, se agruparon los registros según el tipo de combustible, utilizando la variable `Type_fuel`. Para cada grupo se calcularon indicadores de frecuencia y severidad, como la frecuencia promedio, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media, la mediana, los cuartiles y el máximo del costo positivo. Además, se construyeron gráficos de barras para la frecuencia y la proporción de costos positivos, junto con un boxplot para comparar la distribución del costo anual positivo.
+*Método o análisis que lo produjo:* En la sección de comparación entre grupos categóricos, se agruparon los registros según el tipo de combustible, utilizando la variable `Type_fuel`.
+Para cada grupo se calcularon indicadores de frecuencia y severidad, como la frecuencia promedio, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media, la mediana, los cuartiles y el máximo del costo positivo.
+Además, se construyeron gráficos de barras para la frecuencia y la proporción de costos positivos, junto con un boxplot para comparar la distribución del costo anual positivo.
 
-*Evidencia:* Este hallazgo se respalda en la **Figura 19: Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo**, donde se observa que los vehículos diésel presentan mayor frecuencia promedio que los de gasolina; la **Figura 20: Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo**, donde gasolina presenta mayor proporción sin siniestros; la **Figura 21: Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo**, donde diésel presenta mayor proporción de costos positivos; y la **Figura 22: Distribución del costo anual de siniestros por tipo de combustible para valores entre €0 y €5,000**, donde las distribuciones de severidad se observan similares. También se respalda en la **Tabla 13: Resumen de frecuencia y severidad por tipo de combustible**, que resume los valores de frecuencia, proporción sin siniestros, proporción con costo positivo, media, mediana, cuartiles y máximo para gasolina y diésel.
+*Evidencia:* Este hallazgo se respalda en la *Figura 19: Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo*, donde se observa que los vehículos diésel presentan mayor frecuencia promedio que los de gasolina; la *Figura 20: Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo*, donde gasolina presenta mayor proporción sin siniestros; la *Figura 21: Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo*, donde diésel presenta mayor proporción de costos positivos; y la *Figura 22: Distribución del costo anual de siniestros por tipo de combustible para valores entre €0 y €5,000*, donde las distribuciones de severidad se observan similares.
+También se respalda en la *Tabla 13: Resumen de frecuencia y severidad por tipo de combustible*, que resume los valores de frecuencia, proporción sin siniestros, proporción con costo positivo, media, mediana, cuartiles y máximo para gasolina y diésel.
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque analiza una característica del vehículo, el tipo de combustible, y su comportamiento frente a las dos variables respuesta del proyecto: la frecuencia y la severidad. El hallazgo sugiere que el tipo de combustible podría estar más asociado con la ocurrencia de siniestros que con el monto de los reclamos una vez que estos ocurren.
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque analiza una característica del vehículo, el tipo de combustible, y su comportamiento frente a las dos variables respuesta del proyecto: la frecuencia y la severidad.
+El hallazgo sugiere que el tipo de combustible podría estar más asociado con la ocurrencia de siniestros que con el monto de los reclamos una vez que estos ocurren.
 
-*Contraste con la literatura:* Este resultado puede vincularse con lo planteado por Frees (2021) y Omari et al. (2018), quienes enfatizan la importancia de distinguir entre frecuencia y severidad, ya que ambas dimensiones pueden responder a dinámicas distintas. En este caso, el tipo de combustible muestra diferencias claras en la frecuencia, pero no en la severidad, lo cual confirma la necesidad de estudiar ambos componentes por separado. Además, este hallazgo puede relacionarse con la idea de que ciertas características del vehículo pueden asociarse con distintos niveles de exposición al riesgo, aunque el análisis realizado no permite confirmar causalidad.
+*Contraste con la literatura:* Este resultado puede vincularse con lo planteado por Frees (2021) y Omari et al. (2018), quienes enfatizan la importancia de distinguir entre frecuencia y severidad, ya que ambas dimensiones pueden responder a dinámicas distintas.
+En este caso, el tipo de combustible muestra diferencias claras en la frecuencia, pero no en la severidad, lo cual confirma la necesidad de estudiar ambos componentes por separado.
+Además, este hallazgo puede relacionarse con la idea de que ciertas características del vehículo pueden asociarse con distintos niveles de exposición al riesgo, aunque el análisis realizado no permite confirmar causalidad.
 
-*Lo que NO explica este resultado:* Este hallazgo no permite concluir que el combustible diésel cause una mayor frecuencia de siniestros. La diferencia observada podría estar relacionada con otros factores no controlados, como el uso comercial de los vehículos, el kilometraje anual, la zona de circulación, el tipo de vehículo o las características de los conductores. Tampoco explica por qué la severidad se mantiene relativamente similar entre gasolina y diésel.
+*Lo que NO explica este resultado:* Este hallazgo no permite concluir que el combustible diésel cause una mayor frecuencia de siniestros.
+La diferencia observada podría estar relacionada con otros factores no controlados, como el uso comercial de los vehículos, el kilometraje anual, la zona de circulación, el tipo de vehículo o las características de los conductores.
+Tampoco explica por qué la severidad se mantiene relativamente similar entre gasolina y diésel.
 
-*Implicación para el siguiente paso:* El tipo de combustible puede considerarse como una variable categórica relevante para analizar la frecuencia de los siniestros, aunque parece tener un aporte limitado para explicar la severidad. En análisis posteriores, sería conveniente estudiar esta variable junto con otras características del vehículo, especialmente el tipo de vehículo y la zona de circulación, para determinar si su efecto se mantiene al considerar otros factores.
+*Implicación para el siguiente paso:* El tipo de combustible puede considerarse como una variable categórica relevante para analizar la frecuencia de los siniestros, aunque parece tener un aporte limitado para explicar la severidad.
+En análisis posteriores, sería conveniente estudiar esta variable junto con otras características del vehículo, especialmente el tipo de vehículo y la zona de circulación, para determinar si su efecto se mantiene al considerar otros factores.
 :::
 
 ::: callout-note
+# Ficha 3: el costo anual de los siniestros se estudia a través de tres componentes diferenciados
+
+***Nivel descriptivo***
+
+*Titular:* *El costo anual de siniestros se estructura en tres componentes diferenciados*
+
+*Nombre del hallazgo/resultado:* El costo anual de siniestros puede representarse mediante una distribución mixta compuesta por una masa en cero, un componente de costos medios y un componente de costos altos.
+
+*Resumen en una oración:* El 81.388 % de los registros corresponde a costos nulos, el 15.017 % a costos medios en el intervalo $0 < Y < 900$ y el 3.595 % a costos altos con $Y \geq 900$.
+
+*Método o análisis que lo produjo:* Para obtener este resultado, se clasificó la variable `Cost_claims_year` en tres grupos: costos iguales a cero, costos positivos menores a 900 euros y costos mayores o iguales a 900 euros.
+Luego, se calcularon las proporciones observadas de cada grupo y se ajustaron distribuciones paramétricas a los componentes positivos mediante el paquete `fitdistrplus` de R.
+A partir de este procedimiento, se construyó una distribución mixta con una masa puntual en cero y dos componentes Lognormales.
+
+*Evidencia:* El hallazgo se respalda en la *Tabla 14: Proporciones de los componentes de la distribución mixta* y en la *Tabla 15: Parámetros del modelo de distribución mixta para el costo anual de siniestros.* La Tabla 14 muestra que los costos nulos representan el 81.388 %, los costos medios el 15.017 % y los costos altos el 3.595 %.
+La Tabla 15 resume la estructura final del modelo, con una masa puntual para $Y = 0$ y dos componentes Lognormales: uno para $0 < Y < 900$ y otro para $Y \geq 900$.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este hallazgo se relaciona directamente con la pregunta de investigación porque permite estudiar el incremento abrupto de reclamos al superar el monto de 900 euros.
+En lugar de tratar el umbral como una simple variable indicadora, el modelo de distribución mixta permite interpretar el costo anual de siniestros como una variable compuesta por distintos comportamientos: ausencia de costo, costos moderados y costos de alta severidad.
+Esto ayuda a comprender por qué los reclamos no siguen una distribución única y por qué el umbral de 900 euros funciona como una separación relevante dentro de la severidad.
+
+*Contraste con la literatura:* Este resultado coincide con lo planteado por Frees (2021) y Omari et al. (2018), quienes señalan que la frecuencia y la severidad de los siniestros deben analizarse con cuidado debido a su comportamiento estadístico particular.
+Además, se relaciona con lo planteado por Marambakuyana y Shongwe (2024), quienes explican que los modelos compuestos o de mezcla son útiles cuando los datos de reclamos presentan colas pesadas, heterogeneidad y distintos regímenes de severidad.
+En este caso, la mezcla permite representar simultáneamente la alta concentración de ceros y la presencia de costos positivos de distinta magnitud.
+
+*Lo que NO explica este resultado:* Este resultado no permite identificar por sí solo cuáles variables del asegurado o del vehículo explican que un registro pertenezca al componente de costos altos.
+Tampoco demuestra causalidad ni determina si el umbral de 900 euros se debe a una característica del mercado asegurador, a criterios administrativos o a la propia estructura de los datos.
+El modelo describe la forma de la distribución, pero no explica completamente las razones detrás de cada componente.
+
+*Implicación para el siguiente paso:* Este hallazgo permite utilizar la distribución mixta como base para interpretar la severidad anual de los siniestros.
+Además, sugiere que los análisis posteriores deberían estudiar qué variables se asocian con la pertenencia al grupo de costos altos, especialmente el tipo de vehículo, el historial de reclamos, la zona de circulación y el tipo de combustible.
 :::
 
 # Parte de escritura
@@ -1175,7 +1317,195 @@ En la metodología se aplicaron los siguientes puntos de mejora:
 
 En los resultados se aplicaron los siguientes puntos de mejora:
 
+-   Se agregaron las citas de las figuras que respaldan los resultados descritos.
+    Ls figuras se ordenaron en los anexos.
+
+-   Se agregó la explicación de los resultados sobre el análisis de distribución mixta.
+
+-   Se modificó la redacción de ciertas estructuras, evitando los verbos influir y explicar para referirse a la asociación entre variables.
+
+-   Se estructuró de mejor manera la sección del análisis del incremento abrupto al superar el monto de 900 euros, haciendo una separación por cada aspecto desarrollado.
+
 ### Escritura del texto mejorado
+
+#### Introducción
+
+En el acontecer actuarial, predomina la existencia de múltiples variables, tanto cuantitativas como cualitativas, que interactúan simultáneamente en un espacio compartido.
+En particular, en el ámbito asegurador automotriz, resulta imprescindible comprender la manera en que las diversas variables se relacionan con la ocurrencia y el costo de los siniestros reportados, ya que estos últimos elementos son ejes fundamentales en la determinación de las primas cobradas a los asegurados, a la vez que una correcta fijación de las primas potencia la sostenibilidad financiera de las aseguradoras.
+Las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tienden a estar contenidas en la mayoría de las bases de datos pertenecientes a las aseguradoras automotrices, de manera que estudiar su intervención sobre la frecuencia y la severidad de los siniestros cobra una evidente importancia bajo el contexto planteado.
+
+El presente proyecto posee el objetivo de analizar la relación entre las variables mencionadas en el párrafo anterior con dos variables respuesta: la frecuencia y la severidad de los siniestros.
+Lo anterior se desarrollará a partir de la base de datos de autoría de @lledo2024, la cual muestra la información relacionada a una aseguradora situada en Valencia, España; con entradas que comprenden el periodo entre 1980 y 2019.
+Adicionalmente, se examinará un fenómeno descubierto durante el análisis exploratorio de los datos: cuando el costo de los siniestros supera el monto de los 900 euros, la cantidad de siniestros aumenta de forma abrupta, interrumpiendo el comportamiento decreciente mostrado hasta ese valor; así, se pretende determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
+
+Dado que el objetivo del proyecto considera variables cuantitativas y cualitativas, el manejo de las mismas difiere.
+En el caso de las variables cuantitativas, se acudirá al análisis de correlación para estudiar su relación con la frecuencia y la severidad de los siniestros; mientras que en el caso de las variables cualitativas, que además son categóricas, se desarrollará un análisis segmentado por grupos: se estudiará el comportamiento de las categorías contenidas en cada variable cualitativa, respecto a la frecuencia y la severidad de los siniestros, apoyándose en un análisis principalmente gráfico.
+
+Por otro lado, es importante destacar que tras una revisión literaria mediante búsquedas a partir de palabras clave como frecuencia, severidad, cantidad de reclamos y seguros automovilísticos; se identificó que la mayoría de las producciones gira en torno a la predicción del riesgo, también predomina la modelación de distintos elementos, dentro de ellos la frecuencia y la severidad de los siniestros.
+En vista de lo anterior, el conocimiento producido a través del desarrollo de este proyecto cubrirá un espacio que actualmente está vacío: la indagación en la manera en que las variables del entorno asegurador automovilístico se relacionan con la frecuencia y la severidad de los siniestros.
+Dicho conocimiento no solo adquiere la relevancia académica enunciada, sino que además proporciona información de utilidad para las aseguradoras automotrices, al brindarles un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y así puedan resguardar su capacidad de pago.
+Esto último constituye una responsabilidad social: en situaciones de alta vulnerabilidad, por ejemplo un accidente de tránsito, los asegurados acuden a las compañías aseguradoras en vías de reclamar la cobertura que les fue garantizada, con el fin de cubrir los gastos derivados de tales escenarios; de esta manera, es primordial que las aseguradoras preserven su capacidad para financiar las obligaciones adquiridas con sus clientes.
+
+Finalmente, la estructura del proyecto se compone de tres secciones: la metodología, los resultados y las conclusiones.
+En la sección de la metodología se explicarán tanto los pasos como las herramientas empleadas para desarrollar la investigación.
+Después, en la sección de resultados se expondrán los principales hallazgos que responden al objetivo de investigación planteado.
+Por último, en la sección de conclusiones se enunciarán las observaciones emitidas a raíz de los descubrimientos.
+
+#### Metodología
+
+#### Resultados
+
+Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
+
+##### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros
+
+El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de las variables categóricas, como la zona de circulación y el tipo de vehículo.
+
+En primer lugar, se halló que las variables del valor del vehículo, la potencia del vehículo, el peso del vehículo, la antigüedad con la aseguradora y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros.
+El coeficiente de correlación obtenido fue estrictamente menor al valor absoluto de 0.1 en todos los casos, de manera que la relación de estas variables con la frecuencia y la severidad de los siniestros es despreciable.
+Asimismo, el resultado obtenido indica que no representan buenos prospectos de asociación con el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
+
+Similarmente, se identificó que la variable del historial de reclamos presenta una correlación mediana con la frecuencia y la severidad de los mismos.
+De acuerdo con @vinuesa2016, el valor del coeficiente para una correlación mediana debe ser estrictamente mayor al valor absoluto de 0.3 y menor o igual al valor absoluto de 0.5.
+El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0.38 y 0.36 respectivamente, situándose en el rango especificado.
+Así, se determinó que el historial de siniestros posee una relación media con las variables respuesta.
+
+Es importante destacar que los resultados hallados mediante el análisis de correlación, se estimaron a partir de intervalos de confianza al 95%.
+Asimismo, los resultados pueden consultarse visualmente en la Figura 1 de los anexos.
+
+En segundo lugar, se encontró que la frecuencia muestra un comportamiento diferenciado según la zona de circulación, tal como lo muestra la Figura 2, mientras que la severidad no presenta diferencias notables en su comportamiento bajo dichas categorías, un fenómeno evidenciado en la Figura 3.
+Los asegurados de las zonas urbanas presentan un mayor promedio en la frecuencia de la siniestralidad anual, en comparación con los asegurados de las zonas rurales.
+Además, las distribuciones del costo anual positivo son similares entre las zonas rurales y las zonas urbanas.
+Así, es posible afirmar que la zona de circulación tiene cierta asociación con la frecuencia de los siniestros, sin embargo, no es posible realizar la afirmación análoga respecto a la severidad de los siniestros.
+El resultado es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico.
+
+En tercer lugar, se analizó la relación entre la variable del tipo de vehículo con la frecuencia y la severidad de los siniestros.
+Dado que el tipo de vehículo es una variable categórica, se efectuó una agrupación según el tipo de vehículo y se estudió la frecuencia y la severidad de los siniestros, ver Figura 4.
+En consecuencia, se concluyó que los vehículos de turismo poseen un mayor costo anual de siniestros, en comparación a los otros tipos de vehículos, mientras que las furgonetas presentan una mayor frecuencia de siniestros.
+El hallazgo evidencia que el tipo de vehículo está asociado con la frecuencia y la severidad, donde los vehículos particulares o de turismo, tienen siniestros con un mayor costo anual, por otro lado, las furgonetas poseen una mayor cantidad de siniestros por año.
+
+En síntesis, el análisis realizado muestra que las variables de las características asociadas a los asegurados y a los vehículos, poseen relaciones diferenciadas con la frecuencia y la severidad de los siniestros.
+Las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; el caso contrario de la variable del historial de siniestros, la cual evidencia una asociación moderada con estas.
+Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
+
+##### Análisis del incremento abrupto al superar el monto de 900 euros
+
+El análisis del incremento abrupto al superar el monto de 900 euros se compone de dos acciones: determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
+Respecto al primer componente se encontraron tres resultados particulares, los cuales se detallan como sigue.
+
+###### Incidencia de las variables en el fenómeno bajo estudio
+
+En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero.
+Dichos estadísticos se calcularon para las clases de las variables categóricas del tipo de vehículo, la zona de circulación y el tipo de combustible.
+A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente 882 euros en todos los grupos analizados, sin importar el tipo de vehículo, la zona de circulación o el tipo de combustible.
+El hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de 882 euros en todos los grupos estudiados, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo.
+Lo anterior refuerza la pertinencia metodológica de usar la cifra de 900 euros como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
+
+En segundo lugar, se descubrió que el tipo de vehículo se relaciona con la proporción de reclamos con costos superiores a los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad.
+Tal hallazgo se encontró al crear una variable denominada mayores_900, la cual adopta el valor de uno si la variable de la severidad es mayor o igual a 900, y adopta el valor cero en el caso contrario.
+Luego se calculó el promedio de esa variable, haciendo una agrupación por el tipo de vehículo; así se obtuvo la proporción de reclamos que supera el umbral de los 900 euros por cada clase de vehículo.
+En consideración del presente resultado, se puede confirmar que el tipo de vehículo se asocia con el comportamiento de los costos alrededor del umbral de los 900 euros, ya que las furgonetas y los vehículos de turismo concentran las proporciones más altas de reclamos con costos superiores al mencionado.
+
+Similarmente, se determinó que los reclamos más costosos, aquellos que superan los 900 euros, se concentran en vehículos de características intermedias: los vehículos con pesos entre 1000 y 1500 kilogramos, longitudes entre 4.0 y 4.7 metros, potencias entre 70 y 130 caballos de fuerza, cilindrajes entre 1400 y 2000, así como cinco puertas, que corresponden a las cuatro puertas y la cajuela, ver Figura 5.
+La concentración de reclamos superiores a 900 euros en vehículos de características medias, sugiere que el aumento abrupto en el costo no está asociado en su mayoría con vehículos especiales, sino que está asociado principalmente con vehículos de uso común: los de turismo, los familiares o incluso los cotidianos.
+
+En síntesis, los resultados obtenidos sugieren que el umbral de 900 euros constituye un punto de referencia relevante dentro de la estructura de los costos de los siniestros: coincide con un valor cercano al tercer cuartil de la distribución en todos los grupos analizados, definidos a partir de las variables categóricas.
+Asimismo, se identificó que el tipo de vehículo desempeña un papel importante en los reclamos de alta severidad, puesto que las furgonetas y los vehículos de turismo concentran una mayor proporción de casos por encima del umbral definido.
+Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales, sino con los vehículos de uso común que poseen características intermedias.
+
+###### Análisis de distribución mixta
+
+Para estudiar el comportamiento del costo anual en torno al umbral de 900 euros, se implementó un modelo de distribución mixta, separando los registros en tres componentes: costos nulos, costos moderados, cuyos valores son mayores a cero y menores a 900 euros; y costos altos, cuyos montos son mayores o iguales a 900 euros y son menores o iguales a 20,000 euros.
+A partir de la división planteada se encontraron dos resultados particulares, los cuales se detallan como sigue.
+
+En primer lugar, se determinó que la distribución que presenta un mejor ajuste para los datos con costos entre 0 y 900 corresponde a la distribución Lognormal, al obtener un Criterio de Información de Akaike (AIC) de 211,339.9.
+Esta distribución fue comparada con la distribución Gamma, la cual obtuvo un AIC de 212,684.5, con una diferencia de 1,344.6 respecto a la Lognormal.
+En vista de lo anterior, se seleccionó la Lognormal para modelar los costos que están en el intervalo 0 a 900.
+Mediante el paquete fitdistrplus, se recurrió a la función fitdist() para calcular los parámetros de la distribución, los resultados fueron: meanlog = 5.2785366 y sdlog= 0.9693318.
+
+En segundo lugar, para el intervalo de los valores mayores o iguales a 900 euros y menores o iguales a 20,000 euros, se encontró que la distribución con un mejor ajuste para los datos en el rango descrito es la distribución Lognormal, la cual obtuvo un AIC de 64,536.62.
+En este caso, dicha distribución se comparó con la distribución de Pareto, que resultó en un AIC de 66,422.61, con una diferencia de 1,885.99 respecto a la Lognormal.
+Además, a través del uso del mismo paquete se concluyó que los parámetros para esta distribución son: meanlog= 7.5571894 y sdlog = 0.6816524.
+
+Finalmente, es importante aclarar que la cota superior de 20,000 euros se fijó con el objetivo de facilitar el ajuste, puesto que las observaciones con costos superiores a tal cifra representan valores extremos aislados, los cuales pueden potencialmente distorsionar las estimaciones.
+
+En síntesis, el análisis de distribución mixta permitió caracterizar el comportamiento de los costos anuales alrededor del umbral de 900 euros.
+Los resultados evidenciaron que la distribución Lognormal proporciona el mejor ajuste tanto para los costos moderados como para los costos altos, superando a las distribuciones Gamma y Pareto según el criterio AIC.
+Asimismo, la decisión de segmentar de los datos y de excluir a las observaciones con montos superiores a 20,000 euros, favoreció la obtención de estimaciones más estables.
+
+#### Anexos
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 1**
+
+*Matriz de correlaciones de las variables numéricas*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2335757716.png){fig-align="center" width="507"}
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 2**
+
+*Frecuencia promedio de siniestros por zona de circulación*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-3227975817.png){fig-align="center" width="507"}
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 3**
+
+*Distribución del costo anual por zona de circulación*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2631318437.png){fig-align="center" width="507"}
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 4**
+
+*Costo de siniestros anual y cantidad de siniestros anual según el tipo de vehículo*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2395609955.png){fig-align="center" width="661"}
+
+\newpage
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 5**
+
+*Cantidad de observaciones con costos superiores a 900 euros según las características del vehículo*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-751517936.png){fig-align="center" width="600"}
 
 ## Conclusión
 
@@ -1204,7 +1534,7 @@ Las variables de la edad del asegurado, la antigüedad con la aseguradora, el hi
 
 El presente proyecto posee el objetivo de analizar la relación entre las variables mencionadas en el párrafo anterior con dos variables respuesta: la frecuencia y la severidad de los siniestros.
 Lo anterior se desarrollará a partir de la base de datos de autoría de @lledo2024, la cual muestra la información relacionada a una aseguradora situada en Valencia, España; con entradas que comprenden el periodo entre 1980 y 2019.
-Adicionalmente, se examinará un fenómeno descubierto durante el análisis exploratorio de los datos: cuando el costo de los siniestros supera el monto de los 900 euros, la cantidad de siniestros aumenta de forma abrupta, interrumpiendo el comportamiento decreciente mostrado hasta ese valor; así, se pretende determinar qué variables inciden en el fenómeno detallado.
+Adicionalmente, se examinará un fenómeno descubierto durante el análisis exploratorio de los datos: cuando el costo de los siniestros supera el monto de los 900 euros, la cantidad de siniestros aumenta de forma abrupta, interrumpiendo el comportamiento decreciente mostrado hasta ese valor; así, se pretende determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
 
 Dado que el objetivo del proyecto considera variables cuantitativas y cualitativas, el manejo de las mismas difiere.
 En el caso de las variables cuantitativas, se acudirá al análisis de correlación para estudiar su relación con la frecuencia y la severidad de los siniestros; mientras que en el caso de las variables cualitativas, que además son categóricas, se desarrollará un análisis segmentado por grupos: se estudiará el comportamiento de las categorías contenidas en cada variable cualitativa, respecto a la frecuencia y la severidad de los siniestros, apoyándose en un análisis principalmente gráfico.
@@ -1250,10 +1580,7 @@ A partir de las entradas efectuadas en los diarios de aprendizaje de las tres bi
 Tal reflexión se detalla a partir de cuatro oraciones: tres oraciones dedicadas a cada una de las bitácoras concluidas y una última oración destinada a sintetizar la experiencia atravesada.
 Dichas oraciones se detallan como sigue:
 
--   La primera bitácora representó el acercamiento inicial al desarrollo del proyecto.
-    En ella se definieron elementos sumamente importantes como la pregunta de investigación, la base de datos que sustenta el trabajo y una primera revisión literaria que contextualizó al equipo en torno a las producciones realizadas por otros autores en el campo de estudio contemplado.
-    Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado.
-    El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
+-   La primera bitácora representó el acercamiento inicial al desarrollo del proyecto. En ella se definieron elementos sumamente importantes como la pregunta de investigación, la base de datos que sustenta el trabajo y una primera revisión literaria que contextualizó al equipo en torno a las producciones realizadas por otros autores en el campo de estudio contemplado. Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado. El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
 
 ## Registro del trabajo en equipo
 
