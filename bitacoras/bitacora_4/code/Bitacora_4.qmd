@@ -1440,6 +1440,36 @@ Para cada grupo $g$ se calculó la frecuencia promedio de siniestros $\bar N_g =
 Para la severidad, se calculó la proporción de registros con costo positivo $\hat q_g$ dentro de cada grupo, y sobre el subconjunto $Y_i \mid (Y_i>0, X_i=g)$ se calcularon medidas descriptivas, dando mayor peso a la mediana y los cuartiles por la asimetría de la variable.
 Los resultados se complementaron con gráficos de barras (frecuencia promedio y proporción sin siniestros) y boxplots del costo anual positivo, filtrando y restringiendo el eje a valores menores o iguales a 5,000 euros solo con fines de visualización.
 
+El cuarto método consistió en analizar el comportamiento de los registros cuyo costo anual alcanzó o superó los 900 euros.
+A partir de la retroalimentación recibida y de los resultados exploratorios (en particular, el histograma del costo anual mostró una distribución asimétrica hacia la derecha con un pico pronunciado alrededor de los €900), el análisis se reformuló mediante una estructura de distribución mixta:
+
+$$Y_i \sim \pi_0\delta_0 + \pi_1 F_1(y\mid\theta_1) + \pi_2 F_2(y\mid\theta_2),\qquad \pi_0+\pi_1+\pi_2=1,$$
+
+donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos.
+Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
+
+Para los componentes positivos se utilizó el paquete `fitdistrplus` de R de acuerdo con \@deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
+Para los costos positivos menores a €900 se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
+Para los costos mayores o iguales a €900 (acotados al intervalo \[€900, €20,000\] únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general) se evaluaron la Lognormal, la Pareto (asociada a colas pesadas) y la Weibull.
+
+En ambos componentes, la distribución Lognormal presentó el mejor ajuste.
+Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia.
+A partir de la muestra transformada $W_i=\ln(Y_i)$, se construyeron intervalos de confianza al 95 % para $\mu$, mediante la distribución $t_{n-1}$:
+
+$$IC_{95\%}(\mu) = \left[\bar W - t_{0.975,n-1}\frac{S}{\sqrt n},\ \bar W + t_{0.975,n-1}\frac{S}{\sqrt n}\right],$$
+
+y para $\sigma^2$, mediante la distribución $\chi^2_{n-1}$:
+
+$$IC_{95\%}(\sigma^2) = \left[\frac{(n-1)S^2}{\chi^2_{0.975,n-1}},\ \frac{(n-1)S^2}{\chi^2_{0.025,n-1}}\right],$$
+
+obteniendo el intervalo para $\sigma$ al aplicar raíz cuadrada a los límites anteriores.
+
+Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $H_i=0$ en caso contrario, con la cual se compararon mediante boxplots variables cuantitativas como la edad, la antigüedad con la aseguradora, el historial de reclamos, el peso, la potencia y el valor del vehículo entre ambos grupos; el historial de reclamos mostró la diferencia visual más clara entre ambos grupos.
+También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \#\{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
+
+Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de Lledó y Pavía (2024), el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis.
+La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por `fitdistrplus` (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
+
 #### Resultados
 
 Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
@@ -1792,10 +1822,7 @@ Dichas oraciones se detallan como sigue:
     Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado.
     El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
 
--   En la primera bitácora, se aprendió que delimitar bien la pregunta de investigación y organizar el trabajo desde el inicio era esencial para orientar el proyecto.
-    En la segunda, se fortaleció la exploración de datos y la interpretación de gráficos, lo cual permitió reconocer patrones importantes en la base.
-    En la tercera, se comprendió que R ofrece herramientas útiles para desarrollar análisis más complejos, como el ajuste de distribuciones para estudiar el umbral de 900 euros.
-    En la cuarta, se aprendió que la metodología debe revisarse y mejorar conforme avanza el proyecto, especialmente cuando aparecen nuevos resultados o retroalimentaciones.
+-  En la segunda bitácora, se aprendió que el análisis descriptivo es una etapa esencial para comprender la estructura inicial de los datos, ya que permite identificar valores faltantes, valores atípicos y patrones relevantes mediante tablas y gráficos. Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
 
 ## Registro del trabajo en equipo
 
