@@ -107,7 +107,7 @@ datos_modificados <- datos %>%
   )
 ```
 
-### Análisis de variables asociadas a reclamos de costos altos `(≥ €900)`
+### Análisis de variables asociadas a reclamos de costos altos (mayores o iguales a €900)
 
 Para esta sección se agregarán gráficos correspondientes al análisis de variables asociadas a reclamos de alta severidad (≥ €900) no contemplados en el desarrollo de la Bitácora 3.
 
