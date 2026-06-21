@@ -109,9 +109,9 @@ datos_modificados <- datos %>%
   )
 ```
 
-### Análisis de variables asociadas a reclamos de costos altos (mayores o iguales a €900)
+### Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros
 
-Para esta sección se agregarán gráficos correspondientes al análisis de variables asociadas a reclamos de alta severidad (≥ €900) no contemplados en el desarrollo de la Bitácora 3.
+Para esta sección se agregarán gráficos correspondientes al análisis de variables asociadas a reclamos de alta severidad: mayores o iguales a 900 euros, no contemplados en el desarrollo de la tercera bitácora.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 comparación_variables_mayores_menores_900 <- datos_modificados %>%
@@ -144,14 +144,15 @@ comparación_variables_mayores_menores_900 <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png",comparación_variables_mayores_menores_900, width = 10, height = 8, dpi = 300)
 ```
 
-![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png){#fig-comparacion-var-900 fig-pos="H"}
+![Comparación de variables según el tramo de los montos de los reclamos](../../../bitacoras/bitacora_4/figuras/comparación_variables_mayores_menores_900.png){#fig-comparacion-var-900 fig-pos="H"}
 
-La @fig-comparacion-var-900 presenta 6 gráficos comparativos de variables como la edad del asegurado, la antigüedad con la aseguradora, el peso del vehículo, etc; esta comparación se realiza por medio de boxplots, dividido para las observaciones que poseen costos menores a €900 o mayores o iguales a €900.
+La @fig-comparacion-var-900 presenta seis gráficos comparativos de variables como la edad del asegurado, la antigüedad con la aseguradora, el peso del vehículo, entro otros.
+Esta comparación se realiza por medio de boxplots, con una división que separa las observaciones que poseen costos menores a 900 euros de las observaciones que presentan costos mayores o iguales a 900 euros.
 Como se puede observar, en el caso de la edad del asegurado y la antigüedad, las medianas para cada grupo son prácticamente iguales.
-Sin embargo, para el número de reclamos históricos, se puede observar que la mediana del grupo que supera los €900 está claramente arriba de la mediana de los costos inferiores a €900.
-Además, para el caso de la antigüedad, el tamaño de la caja del grupo que no supera los €900 es más grande que la caja de los costos que sí superan los €900, lo que indica que existe una mayor dispersión en los datos de los reclamos de menor costo.
-En cambio, para el peso, la potencia y el valor del vehículo, el tamaño de las cajas es prácticamente igual, aunque las medianas de los costos mayores a €900 son ligeramente mayores en los tres casos.
-Finalmente, para todos los casos, excepto para la antigüedad con la aseguradora, se puede observar que los costos menores a €900 presentan mayor cantidad de valores atípicos.
+Sin embargo, para el número de reclamos históricos, se puede observar que la mediana del grupo que supera los 900 euros está claramente arriba de la mediana de los costos inferiores a 900 euros.
+Además, para el caso de la antigüedad, el tamaño de la caja del grupo que no supera los 900 euros es más grande que la caja de los costos que sí superan los 900 euros, lo que indica que existe una mayor dispersión en los datos de los reclamos con un menor costo.
+En cambio, para el peso, la potencia y el valor del vehículo, el tamaño de las cajas es prácticamente igual, aunque las medianas de los costos mayores a 900 euros son ligeramente mayores en los tres casos.
+Finalmente, para todos los casos, excepto para la antigüedad con la aseguradora, se puede observar que los costos menores a 900 euros presentan mayor cantidad de valores atípicos.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 comparacion_tipo_combustible_mayores_900 <- datos_modificados %>%
@@ -183,17 +184,17 @@ comparacion_tipo_combustible_mayores_900 <- datos_modificados %>%
 ggsave("../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png", comparacion_tipo_combustible_mayores_900, width = 8, height = 6, dpi = 300)
 ```
 
-![Comparación de variables según si el reclamo supera €900](../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png){#fig-comparacion-tipo-vehiculo-900 fig-pos="H"}
+![Comparación de variables según el tramo de los montos de los reclamos](../../../bitacoras/bitacora_4/figuras/comparacion_tipo_combustible_mayores_900.png){#fig-comparacion-tipo-vehiculo-900 fig-pos="H"}
 
-En la @fig-comparacion-tipo-vehiculo-900 puede observarse que el tipo de combustible diésel presenta una mayor proporción de reclamos mayores o iguales a €900.
+En la @fig-comparacion-tipo-vehiculo-900 puede observarse que el tipo de combustible diésel presenta una mayor proporción de reclamos mayores o iguales a 900 euros.
 El diésel obtuvo una proporción del 4.12%, mientras que la gasolina obtuvo un 2.83% y, para el caso en donde no se especifica el tipo de combustible, se obtuvo una proporción del 0.91%.
-Esto implica que la proporción de costos altos en vehículos que utilizan diésel es casi 1.5 veces mayor que en los que usan gasolina, y más de 4 veces superior a la de aquellos que no especifican el tipo de combustible utilizado.
+Esto implica que la proporción de costos altos en los vehículos que utilizan diésel es casi 1.5 veces mayor que la proporción de costos altos en los vehículos que utilizan usan gasolina, y más de 4 veces superior a la de aquellos que no especifican el tipo de combustible utilizado.
 
 ### Comparación de la distribución Weibull con la distribución Lognormal para la distribución mixta
 
 A continuación se muestran gráficos de las distribuciones Lognormal, Weibull y Gamma tanto para los costos medios `(0 < Y < 900)` como para los costos altos `(Y ≥ 900)`, para realizar las comparaciones se utilizó nuevamente el paquete `fitdistrplus`.
-Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los €20,000, excluyendo 40 observaciones con costos superiores a dicho umbral.
-Esta decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, esta acotación de los valores altos al intervalo `(900 ≤ Y ≤ 20,000)` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la bitácora 3.
+Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los 20,000 euros, excluyendo 40 observaciones con costos superiores a dicho umbral.
+Esta decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, esta acotación de los valores altos al intervalo `(900 ≤ Y ≤ 20,000)` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la tercera bitácora.
 
 ![Comparación de la distribución Lognormal y Weibull para los costos medios (0 \< Y \< 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull.png){#fig-log-weibull-medios fig-pos="H"}
 
