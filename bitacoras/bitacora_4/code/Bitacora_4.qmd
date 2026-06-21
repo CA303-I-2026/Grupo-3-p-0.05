@@ -564,6 +564,357 @@ En este proyecto, el procedimiento detallado se aplicó a los coeficientes de co
 
 En caso de que el intervalo de confianza contuviera el cero, la asociación se interpretó como débil o incierta. En cambio, si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia descriptiva de asociación positiva. Por último, si el intervalo se mantuvo completamente por debajo de cero, se interpretó como evidencia descriptiva de asociación negativa.
 
+
+### Comparación entre grupos definidos por variables categóricas
+
+El tercer método consistió en comparar la frecuencia y la severidad de los siniestros entre grupos definidos por variables categóricas. Este análisis fue necesario porque algunas características relevantes del asegurado o del vehículo no eran cuantitativas, sino cualitativas. Por ejemplo, variables como el tipo de vehículo, la zona de circulación y el tipo de combustible no podían analizarse adecuadamente mediante correlaciones, sino mediante comparaciones entre grupos.
+
+Se consideró $X_i$ como una variable categórica asociada al registro $i$, cuyos posibles valores fueron:
+
+$$
+X_i \in \{g_1, g_2, \ldots, g_m\},
+$$
+
+donde $g_1, g_2, \ldots, g_m$ representaron las categorías o grupos de la variable. En este proyecto, las variables categóricas consideradas fueron el tipo de vehículo, la zona de circulación y el tipo de combustible. Estas variables permitieron observar si la siniestralidad presentaba comportamientos distintos entre categorías asociadas con diferentes perfiles de riesgo o niveles de exposición.
+
+El objetivo fue comparar el comportamiento de las variables de siniestralidad dentro de cada grupo. Para la frecuencia de siniestros, se analizó la variable $N_i$, definida como el número de siniestros anuales del registro $i$. Para cada grupo $g$, se calculó la frecuencia promedio de siniestros:
+
+$$
+\overline{N}_g =
+\frac{1}{n_g}
+\sum_{X_i=g} N_i,
+$$
+
+donde $n_g$ representó la cantidad de registros pertenecientes al grupo $g$. Esta medida permitió comparar si algunos grupos presentaban, en promedio, más siniestros anuales que otros.
+
+Además, debido a que la variable de frecuencia presentaba una alta concentración de ceros, también se calculó la proporción de asegurados sin siniestros dentro de cada grupo:
+
+$$
+\widehat{p}_{0,g} =
+\frac{\{i: X_i = g \text{ y } N_i = 0\}}{n_g}.
+$$
+
+Esta proporción fue importante porque permitió identificar si ciertos grupos concentraban una mayor cantidad de registros sin reclamos. En datos de seguros, analizar únicamente la media podía resultar insuficiente, ya que una alta proporción de ceros podía ocultar diferencias relevantes entre categorías.
+
+Para la severidad, se analizó la variable $Y_i$, definida como el costo anual de siniestros del registro $i$. Primero, se calculó la proporción de registros con costo positivo dentro de cada grupo:
+
+$$
+\widehat{q}_g =
+\frac{\{i: X_i = g \text{ y } Y_i > 0\}}{n_g}.
+$$
+
+Esta medida permitió observar qué grupos presentaban una mayor proporción de registros con costos asociados a siniestros. Luego, para estudiar la magnitud de los reclamos cuando estos ocurrían, se analizó el costo positivo condicionado al grupo:
+
+$$
+Y_i \mid (Y_i > 0, X_i = g).
+$$
+
+Sobre este subconjunto se calcularon medidas descriptivas como la media, la mediana, el primer cuartil, el tercer cuartil y el máximo. En particular, se dio mayor importancia a la mediana y a los cuartiles, ya que la variable de severidad presentaba una marcada asimetría hacia la derecha y valores extremos que podían afectar la interpretación de la media.
+
+De esta forma, para cada variable categórica se construyó una tabla resumen que integró indicadores de frecuencia y severidad. En cada grupo se reportó la cantidad de registros, la frecuencia promedio de siniestros, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media del costo positivo, la mediana, el primer cuartil, el tercer cuartil y el máximo. Esta estructura permitió comparar no solo cuántos siniestros ocurrían en cada categoría, sino también qué tan costosos eran cuando se presentaban.
+
+El análisis se complementó con visualizaciones. Para la frecuencia, se utilizaron gráficos de barras de la frecuencia promedio de siniestros por grupo y de la proporción de asegurados sin siniestros. Para la severidad, se utilizaron gráficos de barras de la proporción de registros con costo positivo y boxplots del costo anual positivo por categoría. Dado que la severidad presentaba valores extremos de gran magnitud, los boxplots se construyeron filtrando los registros con $Y_i > 0$ y, cuando fue necesario para mejorar la legibilidad visual, restringiendo el eje de costos a valores menores o iguales a €5,000. Este filtro no tuvo como propósito eliminar la existencia de valores extremos del análisis, sino facilitar una comparación visual más clara de la distribución central de los costos entre grupos.
+
+En el caso del tipo de vehículo, se compararon las categorías motocicleta, turismo, furgoneta y agrícola. Para la zona de circulación, se compararon las categorías rural y urbana. Para el tipo de combustible, se compararon los vehículos de gasolina y diésel. En cada caso, la interpretación se realizó de manera separada para la frecuencia y la severidad, ya que un grupo podía presentar mayor número promedio de siniestros sin necesariamente presentar costos más altos cuando ocurría un reclamo.
+
+La escogencia de este método se basó en que permitió analizar variables que no podían estudiarse adecuadamente mediante correlación. Mientras que el análisis de asociación entre variables cuantitativas se enfocó en características numéricas del asegurado o del vehículo, esta sección permitió estudiar diferencias entre grupos definidos por características categóricas. En relación con la pregunta de investigación, la comparación entre grupos permitió identificar si ciertas categorías presentaban mayor frecuencia de siniestros, mayor proporción de costos positivos o mayor severidad entre los reclamos observados. De esta manera, el análisis aportó evidencia descriptiva sobre posibles diferencias en la siniestralidad según características como el tipo de vehículo, la zona de circulación y el tipo de combustible.
+
+#### Análisis del umbral de 900 euros mediante distribución mixta y ajuste de distribuciones
+
+El cuarto método consistió en analizar de manera específica el comportamiento de los registros cuyo costo anual de siniestros alcanzó o superó los 900 euros. En el anteproyecto, este umbral se había planteado inicialmente mediante una variable indicadora que separaba los costos menores a 900 euros de los costos mayores o iguales a dicho valor. Sin embargo, a partir de la retroalimentación recibida y de los resultados exploratorios obtenidos, el análisis se reformuló para incorporar una estructura de distribución mixta, el ajuste de distribuciones paramétricas, la comparación entre distribuciones candidatas, la construcción de intervalos de confianza para los parámetros estimados y el estudio de variables asociadas a los reclamos de alta severidad.
+
+El análisis exploratorio previo mostró que la variable $Y_i$, correspondiente al costo anual de siniestros del registro $i$, presentaba una alta concentración de ceros, valores positivos moderados y algunos costos considerablemente altos. Por esta razón, no se asumió que todos los valores de $Y_i$ provinieran de una única distribución homogénea. En cambio, se consideró que la variable podía entenderse como una mezcla de tres comportamientos: una masa de probabilidad en cero, un componente de costos positivos medios y un componente de costos altos.
+
+De manera general, la distribución del costo anual se expresó como:
+
+$$
+Y_i \sim \pi_0\delta_0 + \pi_1F_1(y \mid \theta_1) + \pi_2F_2(y \mid \theta_2),
+$$
+
+donde $\delta_0$ representó la masa puntual en cero, $F_1(y \mid \theta_1)$ representó la distribución de los costos positivos moderados y $F_2(y \mid \theta_2)$ representó la distribución de los costos altos. Los parámetros $\pi_0$, $\pi_1$ y $\pi_2$ representaron la proporción de observaciones en cada componente, de manera que:
+
+$$
+\pi_0 + \pi_1 + \pi_2 = 1.
+$$
+
+Para operacionalizar esta idea, se definió una variable categórica $G_i$ de la siguiente manera:
+
+$$
+G_i =
+\begin{cases}
+0, & \text{si } Y_i = 0,\\
+1, & \text{si } 0 < Y_i < 900,\\
+2, & \text{si } Y_i \geq 900.
+\end{cases}
+$$
+
+El grupo $G_i = 0$ correspondió a registros sin costo anual de siniestros. El grupo $G_i = 1$ correspondió a registros con costos positivos moderados, mientras que el grupo $G_i = 2$ correspondió a registros con costos altos, ubicados en la cola derecha de la distribución. Esta separación permitió analizar el umbral de 900 euros no solamente como una división descriptiva, sino como un punto de separación entre componentes distintos de la distribución del costo anual.
+
+Los pesos de la mezcla se estimaron mediante las proporciones observadas en la muestra:
+
+$$
+\widehat{\pi}_0 =
+\frac{\{i: Y_i = 0\}}{n},
+$$
+
+$$
+\widehat{\pi}_1 =
+\frac{\{i: 0 < Y_i < 900\}}{n},
+$$
+
+y
+
+$$
+\widehat{\pi}_2 =
+\frac{\{i: Y_i \geq 900\}}{n}.
+$$
+
+Estas proporciones permitieron cuantificar qué parte de la base correspondía a registros sin costo, qué parte correspondía a costos positivos moderados y qué parte se ubicaba en la zona de alta severidad. De esta manera, el análisis del umbral no se limitó a identificar cuántos registros superaban los 900 euros, sino que permitió representar la estructura completa de la variable de severidad.
+
+Posteriormente, se utilizó el paquete `fitdistrplus` de R para ajustar distribuciones paramétricas a los componentes positivos del costo anual. De acuerdo con Delignette-Muller y Dutang (2015), este paquete permite ajustar distribuciones a datos empíricos y comparar la calidad del ajuste mediante herramientas numéricas y gráficas. En este proyecto, se utilizó principalmente para estimar los parámetros de distribuciones candidatas y comparar su desempeño mediante criterios como el AIC, así como mediante gráficos diagnósticos.
+
+Primero, se analizaron los costos positivos menores a 900 euros:
+
+$$
+Y_i \mid 0 < Y_i < 900.
+$$
+
+Para este grupo se evaluaron como distribuciones candidatas la Lognormal, la Gamma y la Weibull. Estas distribuciones fueron consideradas porque permiten modelar variables continuas positivas y asimétricas, lo cual resulta adecuado para el costo de los siniestros. La comparación entre estas distribuciones se realizó mediante el Criterio de Información de Akaike, AIC, y mediante la inspección visual de los ajustes sobre el histograma de los datos.
+
+Luego, se analizaron los costos mayores o iguales a 900 euros:
+
+$$
+Y_i \mid Y_i \geq 900.
+$$
+
+Este componente correspondió a los reclamos de alta severidad. Para efectos del ajuste paramétrico y de la visualización, este componente se acotó al intervalo:
+
+$$
+900 \leq Y_i \leq 20000.
+$$
+
+Esta acotación se realizó porque existían observaciones extremadamente altas que podían distorsionar el ajuste de los parámetros y dificultar la interpretación visual de la distribución. Dichos valores no se interpretaron como inexistentes ni irrelevantes, sino como valores extremos que requerían un tratamiento cuidadoso. Al restringir el análisis gráfico y paramétrico al intervalo mencionado, se buscó representar de mejor manera el comportamiento central de los reclamos de alta severidad.
+
+Para los costos altos se evaluaron como distribuciones candidatas la Lognormal, la Pareto y la Weibull. La distribución Pareto se consideró porque suele asociarse con fenómenos de cola pesada, mientras que la Weibull y la Lognormal se incluyeron como alternativas flexibles para variables positivas y asimétricas. Al igual que en el componente de costos medios, la comparación se realizó mediante el AIC y mediante gráficos que superpusieron las distribuciones ajustadas sobre el histograma de los costos observados.
+
+Para cada componente positivo, si $F_j(y \mid \theta_j)$ representaba una distribución candidata para el componente $j$, el objetivo fue estimar el vector de parámetros $\theta_j$. Mediante máxima verosimilitud, estos parámetros se obtuvieron maximizando la función de verosimilitud:
+
+$$
+L(\theta_j)
+=
+\prod_{i \in C_j}
+f_j(y_i \mid \theta_j),
+$$
+
+donde $C_j$ representó el conjunto de observaciones pertenecientes al componente analizado y $f_j(y_i \mid \theta_j)$ fue la función de densidad de la distribución candidata. De forma equivalente, se maximizó la log-verosimilitud:
+
+$$
+\ell(\theta_j)
+=
+\sum_{i \in C_j}
+\log f_j(y_i \mid \theta_j).
+$$
+
+Una vez ajustadas las distribuciones candidatas, se comparó su desempeño mediante el Criterio de Información de Akaike, definido como:
+
+$$
+AIC = -2\ell(\widehat{\theta}) + 2k,
+$$
+
+donde $\ell(\widehat{\theta})$ representa la log-verosimilitud evaluada en los parámetros estimados y $k$ representa el número de parámetros del modelo. En este criterio, valores más bajos indican un mejor equilibrio entre calidad de ajuste y complejidad del modelo.
+
+A partir de este procedimiento, se evaluaron como distribuciones candidatas la Lognormal, la Weibull y la Gamma. En particular, la distribución Lognormal resultó relevante no solo porque presentó un mejor ajuste a los datos, sino también porque permitió justificar el cálculo de intervalos de confianza para los parámetros del modelo. Esto se debe a que, si una variable positiva $Y$ sigue una distribución Lognormal con parámetros $\mu$ y $\sigma$, entonces su logaritmo natural sigue una distribución Normal. Por tanto, al aplicar la transformación $W = \ln(Y)$, fue posible trabajar en una escala aproximadamente normal y utilizar los métodos estándar de inferencia para los parámetros $\mu$ y $\sigma$:
+
+$$
+Y \sim \operatorname{Lognormal}(\mu,\sigma^2)
+\quad \Longleftrightarrow \quad
+W = \ln(Y) \sim N(\mu,\sigma^2).
+$$
+
+Esta propiedad fue importante porque permitió trabajar los costos positivos en una escala logarítmica, donde el supuesto de normalidad resulta compatible con la definición formal de la distribución Lognormal. Como señalan @crow1988lognormal, una variable aleatoria positiva sigue una distribución Lognormal cuando su logaritmo natural sigue una distribución Normal. Por tanto, los parámetros $\mu$ y $\sigma$ no describen directamente la media y la desviación estándar del costo en su escala original, sino la media y la desviación estándar de la variable transformada $W = \ln(Y)$.
+
+La justificación se observa de la siguiente manera. Si $W = \ln(Y)$ y $W \sim N(\mu,\sigma^2)$, entonces la densidad de $W$ está dada por:
+
+$$
+f_W(w)
+=
+\frac{1}{\sigma\sqrt{2\pi}}
+\exp\left(
+-\frac{(w-\mu)^2}{2\sigma^2}
+\right).
+$$
+
+Como $Y = e^W$, entonces $W = \ln(Y)$ y:
+
+$$
+\frac{d}{dy}\ln(y) = \frac{1}{y}.
+$$
+
+Por cambio de variable, la densidad de $Y$ se obtiene como:
+
+$$
+f_Y(y)
+=
+f_W(\ln y)
+\left|
+\frac{d}{dy}\ln(y)
+\right|.
+$$
+
+Sustituyendo la densidad normal de $W$, se tiene:
+
+$$
+f_Y(y)
+=
+\frac{1}{y\sigma\sqrt{2\pi}}
+\exp\left(
+-\frac{(\ln y-\mu)^2}{2\sigma^2}
+\right),
+\quad y > 0.
+$$
+
+Esta es precisamente la densidad de una distribución Lognormal. Por lo tanto, aplicar el logaritmo natural a los costos positivos permitió transformar el problema al caso normal, donde se pudieron utilizar métodos estándar para construir intervalos de confianza sobre los parámetros $\mu$ y $\sigma$.
+
+Sea entonces $Y_1,Y_2,\ldots,Y_n$ una muestra de costos positivos pertenecientes a uno de los componentes de la distribución mixta, y defínase:
+
+$$
+W_i = \ln(Y_i).
+$$
+
+Si el componente se modela como Lognormal, entonces:
+
+$$
+W_1,W_2,\ldots,W_n \sim N(\mu,\sigma^2).
+$$
+
+A partir de la muestra transformada se estimó:
+
+$$
+\widehat{\mu}
+=
+\overline{W}
+=
+\frac{1}{n}
+\sum_{i=1}^{n} W_i,
+$$
+
+y
+
+$$
+S^2
+=
+\frac{1}{n-1}
+\sum_{i=1}^{n}
+(W_i-\overline{W})^2.
+$$
+
+Bajo el supuesto normal en la escala logarítmica, se tiene que:
+
+$$
+\frac{\overline{W}-\mu}{S/\sqrt{n}}
+\sim t_{n-1}.
+$$
+
+Por tanto, un intervalo de confianza del 95 % para $\mu$ está dado por:
+
+$$
+IC_{95\%}(\mu)
+=
+\left[
+\overline{W}
+-
+t_{0.975,n-1}
+\frac{S}{\sqrt{n}},
+\;
+\overline{W}
++
+t_{0.975,n-1}
+\frac{S}{\sqrt{n}}
+\right].
+$$
+
+De manera similar, para la varianza en la escala logarítmica se utiliza el resultado:
+
+$$
+\frac{(n-1)S^2}{\sigma^2}
+\sim \chi^2_{n-1}.
+$$
+
+Así, un intervalo de confianza del 95 % para $\sigma^2$ está dado por:
+
+$$
+IC_{95\%}(\sigma^2)
+=
+\left[
+\frac{(n-1)S^2}{\chi^2_{0.975,n-1}},
+\;
+\frac{(n-1)S^2}{\chi^2_{0.025,n-1}}
+\right].
+$$
+
+Finalmente, el intervalo de confianza para $\sigma$ se obtiene aplicando raíz cuadrada a los límites anteriores:
+
+$$
+IC_{95\%}(\sigma)
+=
+\left[
+\sqrt{
+\frac{(n-1)S^2}{\chi^2_{0.975,n-1}}
+},
+\;
+\sqrt{
+\frac{(n-1)S^2}{\chi^2_{0.025,n-1}}
+}
+\right].
+$$
+
+Este procedimiento permitió justificar la construcción de intervalos de confianza para los parámetros de la distribución Lognormal, ya que estos parámetros corresponden a la media y a la desviación estándar de los costos en escala logarítmica. En consecuencia, los intervalos de confianza no se construyeron directamente sobre los costos originales, sino sobre los parámetros que describen su comportamiento después de aplicar la transformación logarítmica.
+
+Además del ajuste distribucional, se incorporó una etapa adicional para estudiar qué variables se asociaban con el incremento de los reclamos al superar el umbral de 900 euros. Para ello, se definió una variable indicadora:
+
+$$
+H_i =
+\begin{cases}
+0, & \text{si } Y_i < 900,\\
+1, & \text{si } Y_i \geq 900.
+\end{cases}
+$$
+
+Esta variable permitió separar los registros según si el costo anual del reclamo pertenecía al grupo de costos menores a 900 euros o al grupo de costos altos. Con esta clasificación, se compararon variables cuantitativas como la edad del asegurado, la antigüedad con la aseguradora, el historial de reclamos, el peso del vehículo, la potencia del vehículo y el valor del vehículo. La comparación se realizó mediante boxplots, con el objetivo de observar si las distribuciones de estas variables cambiaban de forma visible entre ambos grupos.
+
+Esta etapa fue importante porque complementó el modelo de distribución mixta con una lectura explicativa del umbral. Mientras que el ajuste distribucional permitió describir la forma de los costos, la comparación de variables permitió explorar qué características parecían diferenciar a los reclamos que superaban los 900 euros. En particular, se prestó atención al historial de reclamos, ya que esta variable mostró una diferencia visual más clara entre los costos menores y los costos mayores o iguales a 900 euros.
+
+Asimismo, se analizó la proporción de reclamos mayores o iguales a 900 euros según variables categóricas. Para ello, se calculó la proporción de registros con $H_i = 1$ dentro de cada grupo:
+
+$$
+\widehat{r}_g =
+\frac{\#\{i: X_i = g \text{ y } Y_i \geq 900\}}{n_g}.
+$$
+
+Esta proporción permitió observar si algunas categorías concentraban una mayor presencia de costos altos. En el caso del tipo de vehículo, este análisis permitió identificar qué categorías presentaban mayor proporción de reclamos por encima del umbral. En el caso del tipo de combustible, permitió comparar la proporción de reclamos de alta severidad entre vehículos de gasolina, diésel y registros sin especificación del combustible.
+
+En relación con la pregunta de investigación, este análisis permitió abordar directamente el componente asociado al incremento abrupto de reclamos cuando el costo supera los 900 euros. La distribución mixta permitió justificar la separación entre costos nulos, costos medios y costos altos; mientras que la comparación de variables permitió identificar cuáles características parecían asociarse con la pertenencia al grupo de alta severidad. De esta forma, el umbral de 900 euros no se trató únicamente como un punto de corte numérico, sino como un elemento estructural de la severidad de los siniestros y como una guía para explorar posibles variables asociadas al incremento observado.
+
+En conjunto, el análisis del umbral de 900 euros se desarrolló en tres niveles complementarios. Primero, se construyó una distribución mixta para representar la estructura general del costo anual de siniestros, separando ceros, costos medios y costos altos. Segundo, se ajustaron y compararon distribuciones paramétricas para los componentes positivos, seleccionando la Lognormal como mejor alternativa en ambos intervalos. Tercero, se estudió la asociación del umbral con variables cuantitativas y categóricas mediante boxplots y proporciones por grupo. Esta combinación permitió analizar el umbral no solo como un punto de corte, sino como una característica relevante para comprender el comportamiento de los reclamos de alta severidad.
+
+#### Justificación integrada de los métodos
+
+Los métodos propuestos se organizaron como una secuencia de análisis complementarios para estudiar la frecuencia y la severidad de los siniestros. En primer lugar, se realizó un análisis descriptivo de ambas variables, distinguiendo la frecuencia como una variable de conteo y la severidad como una variable continua no negativa. Esta etapa permitió identificar características relevantes de los datos, como la concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos.
+
+En segundo lugar, se desarrolló un análisis de asociación entre variables cuantitativas del asegurado y del vehículo. Debido a la asimetría de las variables de siniestralidad, la presencia de valores atípicos y el incumplimiento del supuesto de normalidad, se utilizó el coeficiente de Spearman. Además, se construyeron intervalos de confianza al 95 % mediante la transformación de Fisher, con el fin de complementar la interpretación de las correlaciones estimadas.
+
+En tercer lugar, se compararon grupos definidos por variables categóricas, como el tipo de vehículo, la zona de circulación y el tipo de combustible. Este análisis permitió estudiar características que no podían evaluarse adecuadamente mediante correlaciones. Para ello, se utilizaron tablas resumen, proporciones y gráficos comparativos, con el objetivo de observar diferencias en la frecuencia promedio, la proporción de registros sin siniestros, la proporción de costos positivos y la severidad de los reclamos entre categorías.
+
+Finalmente, se analizó el umbral de 900 euros mediante una distribución mixta. Este enfoque permitió dividir el costo anual de siniestros en tres componentes: registros sin costo, costos positivos moderados y costos altos. Para los componentes positivos se ajustaron y compararon distribuciones paramétricas mediante el paquete `fitdistrplus`, considerando distribuciones como Lognormal, Gamma, Weibull y Pareto, según el intervalo analizado. Además, se incorporó una revisión de variables asociadas a los reclamos mayores o iguales a 900 euros, como el historial de reclamos, el tipo de vehículo y el tipo de combustible.
+
+### Programa maqueta, etapa de validación y respaldo de la propuesta metodológica
+
+Los cuatro métodos se ejecutaron directamente sobre los datos reales del *dataset* de Lledó y Pavía (2024), por lo que el programa maqueta y la ejecución final coincidieron en un mismo espacio de trabajo. No existió una fase de prototipado separada del análisis real; el código utilizado funcionó tanto como herramienta exploratoria para afinar decisiones metodológicas como implementación definitiva para producir los resultados reportados.
+
+La validación se integró dentro de cada análisis. Para las correlaciones, se utilizaron intervalos de confianza al 95 % mediante la transformación de Fisher. Para la comparación entre grupos categóricos, se emplearon tablas, proporciones y visualizaciones que permitieron evaluar la consistencia descriptiva de las diferencias observadas, sin asumir normalidad ni imponer un modelo paramétrico. Para la distribución mixta, se compararon distribuciones candidatas mediante el AIC y se utilizaron gráficos diagnósticos de `fitdistrplus`, como la comparación entre distribución empírica y teórica, gráficos Q-Q y gráficos P-P.
+
+Adicionalmente, una vez seleccionada la distribución Lognormal para los componentes positivos, se construyeron intervalos de confianza para sus parámetros $\mu$ y $\sigma$ en escala logarítmica, aprovechando que si $Y$ sigue una distribución Lognormal, entonces $W = \ln(Y)$ sigue una distribución Normal. En conjunto, estos procedimientos constituyeron el respaldo empírico de la propuesta metodológica y permitieron vincular cada análisis con la pregunta de investigación sobre la frecuencia, la severidad y el comportamiento del umbral de 900 euros.
+
 ## Construcción de las fichas de resultados
 
 ::: callout-note
