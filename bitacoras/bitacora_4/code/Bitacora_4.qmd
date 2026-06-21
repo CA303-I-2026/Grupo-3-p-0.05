@@ -950,6 +950,32 @@ Los parámetros estimados, `μ₁ = 5.2785366`, `σ₁ = 0.9693318`, `μ₂ = 7.
 :::
 
 ::: callout-note
+# Ficha 2: comparación de frecuencia y severidad según tipo de combustible
+
+***Nivel descriptivo***
+
+*Titular:* *El tipo de combustible diferencia más la frecuencia que la severidad de los siniestros*
+
+*Nombre del hallazgo/resultado:* Los vehículos diésel presentan mayor frecuencia promedio de siniestros que los vehículos de gasolina, pero las diferencias en severidad son reducidas.
+
+*Resumen en una oración:* Los vehículos diésel tienen una frecuencia promedio de 0.4556 siniestros por año, frente a 0.3019 en gasolina, mientras que las medias del costo positivo son muy similares: 829.50 euros para diésel y 825.32 euros para gasolina.
+
+*Método o análisis que lo produjo:* En la sección de comparación entre grupos categóricos, se agruparon los registros según el tipo de combustible, utilizando la variable `Type_fuel`. Para cada grupo se calcularon indicadores de frecuencia y severidad, como la frecuencia promedio, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media, la mediana, los cuartiles y el máximo del costo positivo. Además, se construyeron gráficos de barras para la frecuencia y la proporción de costos positivos, junto con un boxplot para comparar la distribución del costo anual positivo.
+
+*Evidencia:* Este hallazgo se respalda en la **Figura 19: Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo**, donde se observa que los vehículos diésel presentan mayor frecuencia promedio que los de gasolina; la **Figura 20: Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo**, donde gasolina presenta mayor proporción sin siniestros; la **Figura 21: Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo**, donde diésel presenta mayor proporción de costos positivos; y la **Figura 22: Distribución del costo anual de siniestros por tipo de combustible para valores entre €0 y €5,000**, donde las distribuciones de severidad se observan similares. También se respalda en la **Tabla 13: Resumen de frecuencia y severidad por tipo de combustible**, que resume los valores de frecuencia, proporción sin siniestros, proporción con costo positivo, media, mediana, cuartiles y máximo para gasolina y diésel.
+
+***Nivel analítico***
+
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación porque analiza una característica del vehículo, el tipo de combustible, y su comportamiento frente a las dos variables respuesta del proyecto: la frecuencia y la severidad. El hallazgo sugiere que el tipo de combustible podría estar más asociado con la ocurrencia de siniestros que con el monto de los reclamos una vez que estos ocurren.
+
+*Contraste con la literatura:* Este resultado puede vincularse con lo planteado por Frees (2021) y Omari et al. (2018), quienes enfatizan la importancia de distinguir entre frecuencia y severidad, ya que ambas dimensiones pueden responder a dinámicas distintas. En este caso, el tipo de combustible muestra diferencias claras en la frecuencia, pero no en la severidad, lo cual confirma la necesidad de estudiar ambos componentes por separado. Además, este hallazgo puede relacionarse con la idea de que ciertas características del vehículo pueden asociarse con distintos niveles de exposición al riesgo, aunque el análisis realizado no permite confirmar causalidad.
+
+*Lo que NO explica este resultado:* Este hallazgo no permite concluir que el combustible diésel cause una mayor frecuencia de siniestros. La diferencia observada podría estar relacionada con otros factores no controlados, como el uso comercial de los vehículos, el kilometraje anual, la zona de circulación, el tipo de vehículo o las características de los conductores. Tampoco explica por qué la severidad se mantiene relativamente similar entre gasolina y diésel.
+
+*Implicación para el siguiente paso:* El tipo de combustible puede considerarse como una variable categórica relevante para analizar la frecuencia de los siniestros, aunque parece tener un aporte limitado para explicar la severidad. En análisis posteriores, sería conveniente estudiar esta variable junto con otras características del vehículo, especialmente el tipo de vehículo y la zona de circulación, para determinar si su efecto se mantiene al considerar otros factores.
+:::
+
+::: callout-note
 :::
 
 # Parte de escritura
