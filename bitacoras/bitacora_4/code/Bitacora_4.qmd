@@ -1627,6 +1627,8 @@ El modelo de distribución mixta propuesto captura adecuadamente la estructura d
 
 ## Ordenamiento final
 
+**Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
+
 # Revisión final
 
 #Fichas literarias construídas en la cuarta bitácora
