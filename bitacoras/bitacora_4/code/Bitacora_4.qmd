@@ -251,6 +251,319 @@ Para todos los parámetros, la amplitud del intervalo de confianza es muy reduci
 Esta diferencia tan pequeña en cada caso, indica que los valores seleccionados para cada parámetro son precisas y estables, este resultado es atribuible al tamaño de la muestra disponible, ya que para los costos medios `(0 < Y < 900)` se dispone de 15,851 observaciones y para los costos altos `(Y ≥ 900)` se dispone de 3,755 observaciones.
 Gracias a esto, el valor de los parámetros seleccionados para el modelo de distribución mixta propuesto es adecuado para caracterizar el costo de los siniestros positivos.
 
+## Variables, componentes y métodos (casi) finales
+
+El punto de partida de la metodología consiste en que las variables de la siniestralidad no presentan un comportamiento simple, tal como se observó en el análisis descriptivo de la segunda bitácora.
+La frecuencia de los siniestros corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa.
+Además, luego del análsis descriptivo completo de la base de datos, se identificó una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros.
+Estas características hacen necesario utilizar una combinación de métodos descriptivos, comparativos y de modelación exploratoria, según las variables que se pretendan analizar.
+
+### Formulación de los métodos
+
+La metodología se organiza en cuatro métodos complementarios, detallados a continuación.
+En primer lugar, el análisis descriptivo de la frecuencia y la severidad de los siniestros.
+En segundo lugar, el estudio de posibles asociaciones entre las variables cuantitativas mediante coeficientes de correlación.
+En tercer lugar, la comparación entre grupos definidos de acuerdo a variables categóricas.
+Finalmente, la reformulación del análisis del umbral de 900 euros mediante un enfoque de distribución mixta  e intervalos de confianza.
+
+La elección de la organización planteadas radica en que la estructura permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad.
+Además, responde a las características observadas en la segunda bitácora y retomadas en el anteproyecto: una alta concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos en la variable del costo anual.
+
+#### Análisis descriptivo de la frecuencia y la severidad
+
+El primer método consistió en realizar un análisis descriptivo de las dos variables principales del proyecto: la frecuencia anual de los siniestros y la severidad anual de los siniestros.
+Dicha separación fue necesaria de acuerdo con @frees2021, puesto que las variables tenían naturalezas estadísticas distintas.
+La frecuencia correspondió a una variable de conteo, mientras que la severidad correspondió a una variable continua no negativa. Por esta razón, no se analizaron como si representaran el mismo fenómeno, sino como dos componentes complementarios del riesgo asegurador.
+
+Se denota la variable $N_i = \texttt{N\_claims\_year}_i$ como la cantidad de siniestros reportados por el asegurado $i$ durante el año, y por otro lado $Y_i = \texttt{Cost\_claims\_year}_i$ denota el costo anual de los siniestros asociado a ese mismo registro.
+
+Para la variable de la frecuencia, se construyó una distribución de frecuencias absolutas y relativas.
+Para cada posible cantidad de siniestros $k$, se calculó:
+
+$$
+f_k = \{i : N_i = k\},
+$$
+
+donde $f_k$ representa la cantidad de registros con exactamente $k$ siniestros.
+También se calculó mediante R la frecuencia relativa correspondiente:
+
+$$
+p_k = \frac{f_k}{n},
+$$
+
+donde $n$ representa el número total de registros de la base de datos.
+En particular, se calculó la proporción de asegurados sin siniestros durante el año:
+
+$$
+\widehat{p}_0 = \frac{\{i : N_i = 0\}}{n}.
+$$
+
+Este cálculo es relevante dado que permite cuantificar el exceso de ceros en la frecuencia de los siniestros. Una proporción elevada de registros con $N_i=0$ indica que una gran parte de la cartera no presentó reclamaciones durante el periodo observado, lo cual puede afectar la pertinencia de modelos de conteo.
+
+Además, para la variable $N_i$ se calcularon medidas descriptivas como la media, la mediana, la desviación estándar, el mínimo, el máximo y los cuartiles.
+Estas medidas se complementaron con gráficos de barras para observar la concentración de registros en los valores bajos de la escala, especialmente en cero, y para identificar si existían observaciones con una cantidad inusualmente alta de siniestros.
+
+Como parte del diagnóstico descriptivo de la frecuencia, también se calculó el índice de sobredispersión:
+
+$$
+D =
+\frac{\operatorname{Var}(N_i)}{\operatorname{E}(N_i)}.
+$$
+
+Este indicador permitió comparar la variabilidad observada con la media de la variable. Este diagnóstico se retomó posteriormente en el análisis del modelo Poisson descartado.
+
+Para la variable de la severidad, el análisis también se realizó en dos etapas.
+Primero, se calculó la proporción de registros con costo anual igual a cero, mediante la fórmula:
+
+$$
+\widehat{q}_0 = \frac{\{i : Y_i = 0\}}{n}.
+$$
+
+Tal proporción permite identificar cuántos registros presentan un costo anual de siniestros nulo.
+Luego, debido a que una alta presencia de ceros puede ocultar el comportamiento real de los montos reclamados, se analizó por separado el subconjunto de costos estrictamente positivos:
+
+$$
+Y_i \mid Y_i > 0.
+$$
+
+Sobre este subconjunto se calcularon medidas de tendencia central y dispersión, como media, mediana, desviación estándar, cuartiles, mínimo y máximo. La mediana tuvo un papel importante en la interpretación de la severidad, ya que es menos sensible a valores extremos que la media. Esto fue necesario porque los costos de siniestros suelen presentar asimetría hacia la derecha, con muchos reclamos de baja cuantía y pocos eventos de alta severidad.
+
+El análisis visual de la severidad se realizó mediante histogramas y boxplots. Los histogramas permitieron observar la forma general de la distribución de los costos positivos, mientras que los boxplots permitieron identificar la concentración de la distribución central y la presencia de valores atípicos. Para mejorar la legibilidad visual, algunos gráficos se construyeron restringiendo los costos positivos a valores menores o iguales a 5,000 euros. Este filtro se utilizó únicamente con fines gráficos, ya que los valores extremos dificultan la visualización de la parte central de la distribución, pero no fueron ignorados en los estadísticos descriptivos generales.
+
+En relación con la pregunta de investigación, el análisis de la frecuencia y la severidad permite caracterizar el comportamiento general de la siniestralidad en la base de datos.
+La frecuencia muestra qué tan común es que los asegurados presenten reclamos durante el año, mientras que la severidad muestra qué tan altos son los costos cuando estos reclamos ocurren.
+Por lo tanto, el análisis descriptivo constituyó un punto de partida pertinente para estudiar qué características del asegurado o del vehículo podrían estar asociadas con una mayor frecuencia o severidad en los siniestros.
+
+#### Análisis de asociación entre las variables cuantitativas
+
+El segundo método consistió en estudiar la asociación entre las variables cuantitativas del asegurado o del vehículo y las variables de la siniestralidad.
+El propósito de esta etapa no fue establecer relaciones causales, sino identificar patrones de asociación que permitan explorar si ciertas características numéricas se relacionan con una mayor frecuencia o severidad de los siniestros.
+Entre las variables cuantitativas consideradas se encuentran la edad del asegurado, la antigüedad como cliente, la antigüedad de la licencia de conducir, el historial de reclamos, así como el peso, la potencia, el valor y la edad del vehículo.
+
+Antes de calcular las correlaciones, se evaluó la normalidad de la variable de frecuencia mediante la prueba de Shapiro-Wilk, aplicada sobre una muestra de 5,000 observaciones. Esta prueba se utilizó como diagnóstico para decidir si era adecuado utilizar un coeficiente paramétrico, como Pearson, o si era preferible emplear un coeficiente no paramétrico. Dado que la prueba rechazó la hipótesis de normalidad, y considerando además la alta concentración de ceros, la asimetría y la presencia de valores extremos observadas en el análisis descriptivo, se descartó el uso de Pearson como método principal.
+
+Por esta razón, se utilizó únicamente el coeficiente de correlación de Spearman. De acuerdo a lo planteado por @vinuesa2016, este coeficiente fue adecuado para el contexto del proyecto porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni una relación lineal estricta entre las variables. Además, frente a Kendall, Spearman resultó conveniente debido al tamaño de la base de datos y a que permite obtener una medida de asociación no paramétrica de interpretación directa para el análisis exploratorio.
+
+En una primera etapa, se analizó la asociación entre cada variable cuantitativa $X_i$ y las variables de respuesta $N_i$ e $Y_i$ mediante coeficientes de correlación de Spearman, presentados en una matriz de correlación y una tabla de intervalos de confianza al 95%.
+La matriz también permitió identificar correlaciones entre las propias variables explicativas, lo cual constituye un diagnóstico preliminar de posible multicolinealidad relevante para las etapas de modelación.
+Este enfoque permite identificar la dirección y magnitud de las asociaciones de forma más precisa que un gráfico de dispersión, especialmente dado que $N_i$ toma valores enteros con alta concentración en cero, lo que dificulta la visualización directa.
+
+En ese sentido, el coeficiente de Spearman se define como la correlación de Pearson aplicada a los rangos de las variables:
+
+$$
+\rho_s =
+\frac{
+\sum_{i=1}^{n}(R(X_i)-\overline{R(X)})(R(Z_i)-\overline{R(Z)})
+}
+{
+\sqrt{\sum_{i=1}^{n}(R(X_i)-\overline{R(X)})^2}
+\sqrt{\sum_{i=1}^{n}(R(Z_i)-\overline{R(Z)})^2}
+},
+$$
+
+donde $R(X_i)$ y $R(Z_i)$ representan los rangos de las observaciones de $X_i$ y $Z_i$, respectivamente.
+Este coeficiente permite evaluar si existe una relación monótona entre las variables, aunque dicha relación no sea lineal.
+
+Cuando no existen empates en los rangos, Spearman también puede expresarse como:
+
+$$
+\rho_s =
+1 -
+\frac{6\sum_{i=1}^{n}d_i^2}{n(n^2-1)},
+$$
+
+donde
+
+$$
+d_i = R(X_i)-R(Z_i).
+$$
+En la implementación en R, las correlaciones se calcularán mediante la función `cor.test()`, utilizando el método "spearman", ya que esta permite obtener tanto el coeficiente de correlación como una prueba de significancia asociada.
+
+##### Intervalos de confianza para los coeficientes de correlación
+
+Para complementar la estimación puntual de cada correlación de Spearman, se construyeron intervalos de confianza aproximados al 95% mediante una transformación z tipo Fisher. Esta transformación permite trabajar el coeficiente de correlación en una escala aproximadamente normal, especialmente cuando el tamaño muestral es grande. Aunque la transformación de Fisher se formula de manera clásica para el coeficiente de Pearson, su uso también ha sido discutido para la construcción de intervalos de confianza asociados al coeficiente de Spearman mediante enfoques analíticos [@ruscio2008].
+
+En este proyecto, esta decisión se adoptó porque Spearman puede interpretarse como una correlación aplicada a los rangos de las variables. Además, dado que la base de datos utilizada tiene un tamaño muestral amplio, la aproximación resulta útil para complementar la estimación puntual con una medida de incertidumbre. No obstante, los intervalos no se interpretaron como intervalos exactos para Spearman, sino como una aproximación descriptiva de la precisión de las asociaciones estimadas.
+
+El cálculo específico utilizado para construir los intervalos de confianza se basó en el enfoque analítico descrito por @ruscio2008, quien estudia la construcción de intervalos para la correlación de Spearman. En la presente investigación se utilizó únicamente el enfoque analítico, ya que el uso de bootstrap no formó parte del alcance metodológico del proyecto. El cálculo, basado en el trabajo de @ruscio2008 y en parte de elaboración propia, utilizando esta transformación, se observa a continuación.
+
+Sea $X_i$ una variable cuantitativa asociada al asegurado o al vehículo, y sea $Z_i$ una variable de siniestralidad.
+De manera general, la correlación entre ambas variables se define como:
+
+$$
+\rho =
+\operatorname{Corr}(X,Z)
+=
+\frac{\operatorname{Cov}(X,Z)}
+{\sqrt{\operatorname{Var}(X)}\sqrt{\operatorname{Var}(Z)}}.
+$$
+
+Utilizando esperanzas, esta expresión se escribe:
+
+$$
+\rho =
+\frac{
+E[XZ]-E[X]E[Z]
+}
+{
+\sqrt{\operatorname{Var}(X)}
+\sqrt{\operatorname{Var}(Z)}
+}.
+$$
+
+A nivel muestral, el coeficiente de correlación se estima mediante la fórmula:
+
+$$
+\widehat{\rho}
+=
+\frac{
+\frac{1}{n}\sum_{i=1}^{n}X_iZ_i
+-
+\left(\frac{1}{n}\sum_{i=1}^{n}X_i\right)
+\left(\frac{1}{n}\sum_{i=1}^{n}Z_i\right)
+}
+{
+\sqrt{
+\frac{1}{n}\sum_{i=1}^{n}(X_i-\overline{X})^2
+}
+\sqrt{
+\frac{1}{n}\sum_{i=1}^{n}(Z_i-\overline{Z})^2
+}
+}.
+$$
+
+En la presente investigación, $\widehat{\rho}$ representará el coeficiente de correlación estimado según el método empleado.
+Es decir, podrá corresponder a la correlación de Pearson, Spearman o Kendall, según las características de las variables analizadas.
+
+Para construir intervalos de confianza, se utilizará una transformación estabilizadora de la varianza.
+El problema es que el coeficiente de correlación no tiene una varianza constante en su escala original, pues esta depende del valor de la correlación poblacional.
+De manera aproximada, para muestras grandes se tiene que:
+
+$$
+\sqrt{n}
+\left(
+\frac{\widehat{\rho}-\rho}{1-\rho^2}
+\right)
+\longrightarrow N(0,1).
+$$
+
+Por esta razón, se busca una función $g(\rho)$ que permita estabilizar la varianza.
+Esta función debe cumplir que:
+
+$$
+g'(\rho)=\frac{1}{1-\rho^2}.
+$$
+
+Al integrar, se obtiene:
+
+$$
+g(\rho)
+=
+\int \frac{1}{1-\rho^2}\,d\rho
+=
+\operatorname{arctanh}(\rho).
+$$
+
+Por lo tanto:
+
+$$
+g(\rho)
+=
+\operatorname{arctanh}(\rho)
+=
+\frac{1}{2}
+\ln\left(
+\frac{1+\rho}{1-\rho}
+\right).
+$$
+
+Aplicando esta transformación al coeficiente de correlación estimado, se define:
+
+$$
+z_{\widehat{\rho}}
+=
+\operatorname{arctanh}(\widehat{\rho})
+=
+\frac{1}{2}
+\ln\left(
+\frac{1+\widehat{\rho}}{1-\widehat{\rho}}
+\right).
+$$
+
+Bajo esta transformación, el coeficiente transformado puede aproximarse mediante una distribución normal:
+
+$$
+z_{\widehat{\rho}}
+\sim
+N\left(
+\operatorname{arctanh}(\rho),
+\frac{1}{n-3}
+\right).
+$$
+
+Así, un intervalo de confianza del 95 % para la correlación en la escala transformada está dado por:
+
+$$
+z_{\widehat{\rho}}
+\pm
+z_{0.975}
+\frac{1}{\sqrt{n-3}}.
+$$
+
+Si se denotan los límites en la escala transformada como:
+
+$$
+L_z =
+z_{\widehat{\rho}}
+-
+z_{0.975}
+\frac{1}{\sqrt{n-3}},
+$$
+
+y
+
+$$
+U_z =
+z_{\widehat{\rho}}
++
+z_{0.975}
+\frac{1}{\sqrt{n-3}},
+$$
+
+entonces se regresa a la escala original mediante la función tangente hiperbólica:
+
+$$
+\tanh(z)
+=
+\frac{e^{2z}-1}{e^{2z}+1}.
+$$
+
+Así, el intervalo de confianza del 95 % para la correlación será:
+
+$$
+IC_{95\%}(\rho)
+=
+\left[
+\tanh(L_z),
+\tanh(U_z)
+\right].
+$$
+
+Es decir:
+
+$$
+IC_{95\%}(\rho)
+=
+\left[
+\frac{e^{2L_z}-1}{e^{2L_z}+1},
+\frac{e^{2U_z}-1}{e^{2U_z}+1}
+\right].
+$$
+
+En este proyecto, el procedimiento detallado se aplicó a los coeficientes de correlación de Spearman estimados, con el objetivo de complementar el análisis puntual con una medida aproximada de incertidumbre. De esta manera, no solo se observó si la correlación estimada era positiva, negativa o cercana a cero, sino también qué tan precisa era dicha estimación.
+
+En caso de que el intervalo de confianza contuviera el cero, la asociación se interpretó como débil o incierta. En cambio, si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia descriptiva de asociación positiva. Por último, si el intervalo se mantuvo completamente por debajo de cero, se interpretó como evidencia descriptiva de asociación negativa.
+
 ## Construcción de las fichas de resultados
 
 ::: callout-note
