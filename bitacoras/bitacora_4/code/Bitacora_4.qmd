@@ -119,7 +119,7 @@ comparación_variables_mayores_menores_900 <- datos_modificados %>%
   select(supera_900, edad, Seniority, N_claims_history, Value_vehicle, Power, Weight) %>%
   rename(Edad = edad, # Cambiar nombres para el título de cada sub gráfico
          Antigüedad = Seniority,
-         "Número de reclamos hisótico" = N_claims_history,
+         "Número de reclamos histórico" = N_claims_history,
          "Valor del vehículo" = Value_vehicle,
          Potencia = Power,
          Peso = Weight) %>% 
