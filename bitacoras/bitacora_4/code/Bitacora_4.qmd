@@ -1512,6 +1512,8 @@ Asimismo, la decisión de segmentar de los datos y de excluir a las observacione
 
 ![](images/clipboard-2335757716.png){fig-align="center" width="507"}
 
+\newpage
+
 ```{=latex}
 \begin{center}
 ```
@@ -1633,7 +1635,6 @@ El modelo de distribución mixta propuesto captura adecuadamente la estructura d
 
 **Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
-# Revisión final
 
 # Fichas literarias construidas en la cuarta bitácora
 
