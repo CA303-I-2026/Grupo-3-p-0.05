@@ -1339,6 +1339,22 @@ En la introducción se aplicaron los siguientes puntos de mejora:
 
 En la metodología se aplicaron los siguientes puntos de mejora:
 
+- Se cambió el tiempo verbal de la metodología, pasando de una redacción orientada a lo que se “realizará” a una descripción de los procedimientos que efectivamente se aplicaron en el análisis.
+
+- Se justificó con mayor precisión el uso del coeficiente de correlación de Spearman, aclarando que fue seleccionado por el comportamiento no normal de los datos, la presencia de ceros, la asimetría y los valores extremos.
+
+- Se corrigió la explicación de la transformación de Fisher, indicando que su uso para Spearman corresponde a una aproximación y no a un intervalo exacto.
+
+- Se incorporaron referencias bibliográficas más adecuadas para respaldar el cálculo de los intervalos de confianza asociados al coeficiente de Spearman, especialmente a partir del enfoque analítico presentado por Ruscio (2008).
+
+- Se eliminó la ambigüedad entre los coeficientes de Pearson, Spearman y Kendall, dejando claro que el coeficiente utilizado como método principal fue Spearman.
+
+- Se fortaleció la sección relacionada con el umbral de 900 euros, incorporando el cálculo de intervalos de confianza para proporciones y una explicación más detallada del tratamiento de los reclamos de mayor severidad.
+
+- Se agregó la demostración de que, si una variable sigue una distribución lognormal, al aplicarle logaritmo se obtiene una variable con distribución normal, lo cual permitió justificar el cálculo de intervalos de confianza en la escala logarítmica.
+
+- Se mejoró la coherencia entre la metodología, el código implementado y los resultados obtenidos, de manera que los procedimientos descritos coincidan con las tablas, gráficos y análisis efectivamente presentados.
+
 #### Resultados
 
 En los resultados se aplicaron los siguientes puntos de mejora:
