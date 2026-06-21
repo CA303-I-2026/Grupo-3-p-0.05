@@ -557,8 +557,13 @@ El modelo de distribución mixta propuesto captura adecuadamente la estructura d
 ## Reflexión del diario de aprendizaje
 
 A partir de las entradas efectuadas en los diarios de aprendizaje de las tres bitácoras anteriores, se externará una reflexión en torno al proceso que ha representado la construcción del proyecto en cada una de sus etapas.
-Tal reflexión se detalla a partir cuatro de oraciones: tres oraciones dedicadas a cada una de las bitácoras concluidas y una última oración destinada a sintetizar la experiencia atravesada.
+Tal reflexión se detalla a partir de cuatro oraciones: tres oraciones dedicadas a cada una de las bitácoras concluidas y una última oración destinada a sintetizar la experiencia atravesada.
 Dichas oraciones se detallan como sigue:
+
+-   La primera bitácora representó el acercamiento inicial al desarrollo del proyecto.
+    En ella se definieron elementos sumamente importantes como la pregunta de investigación, la base de datos que sustenta el trabajo y una primera revisión literaria que contextualizó al equipo en torno a las producciones realizadas por otros autores en el campo de estudio contemplado.
+    Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado.
+    El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
 
 ## Registro del trabajo en equipo
 
