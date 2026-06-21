@@ -129,7 +129,7 @@ comparación_variables_mayores_menores_900 <- datos_modificados %>%
   facet_wrap(~variable, scales = "free", ncol = 3) + # Hacer los subgráficos, que hayan 3 por fila
   scale_fill_manual(values = paleta_pamplemousse[c(1, 5)]) +
   labs(
-    title = "Comparación de variables según si el reclamo supera €900",
+    title = "Comparación de variables según el tramo del costo",
     x = "",
     y = "Valor",
     caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
@@ -193,22 +193,21 @@ Esto implica que la proporción de costos altos en los vehículos que utilizan d
 ### Comparación de la distribución Weibull con la distribución Lognormal para la distribución mixta
 
 A continuación se muestran gráficos de las distribuciones Lognormal, Weibull y Gamma tanto para los costos medios `(0 < Y < 900)` como para los costos altos `(Y ≥ 900)`, para realizar las comparaciones se utilizó nuevamente el paquete `fitdistrplus`.
-Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los 20,000 euros, excluyendo 40 observaciones con costos superiores a dicho umbral.
-Esta decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, esta acotación de los valores altos al intervalo `(900 ≤ Y ≤ 20,000)` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la tercera bitácora.
+Es importante destacar que para el ajuste de la distribución de los costos altos, se acotó el intervalo hasta los 20,000 euros, excluyendo 40 observaciones con costos superiores a dicha cifra La decisión se tomó por dos razones, primero, los valores excluidos corresponden a valores extremos aislados que distorsionan el ajuste de los parámetros; segundo, la cota: `(900 ≤ Y ≤ 20,000),` permite una visualización más clara de la distribución, manteniendo así la coherencia con el análisis gráfico presentado en la tercera bitácora.
 
 ![Comparación de la distribución Lognormal y Weibull para los costos medios (0 \< Y \< 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull.png){#fig-log-weibull-medios fig-pos="H"}
 
 En la @fig-log-weibull-medios se puede observar que la distribución Lognormal obtuvo un AIC de 211,340 mientras que la distribución Weibull obtuvo 212,884, lo que representa una diferencia de 1,544 unidades a favor de la distribución Lognormal.
-Además de esto, puede verse que la curva roja, correspondiente a la distribución Lognormal, se adapta mejor al histograma de los costos, ya que para costos bajos, cercanos a €100, esta distribución abarca una mayor proporción de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercano a los datos observados.
-De esta forma, por medio de la comparación de los AIC de ambas distribuciones, se confirma que la distribución Lognormal es la más adecuada para la caracterización de los costos medios.
+Además de esto, puede verse que la curva roja, la cual corresponde a la distribución Lognormal, se adapta mejor al histograma de los costos, ya que para costos bajos, cercanos a 100 euros, esta distribución abarca una mayor proporción de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercana a los datos observados.
+Así, por medio de la comparación de los AIC de ambas distribuciones, se confirma que la distribución Lognormal es la más adecuada para la caracterización de los costos medios.
 
 ![Comparación de la distribución Lognormal, Weibull y Gamma para los costos medios (0 \< Y \< 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_gamma.png){#fig-log-weibull-gamma-medios fig-pos="H"}
 
 En la @fig-log-weibull-gamma-medios se puede observar que la distribución Lognormal obtuvo el menor AIC, con 211,340, seguida de la Gamma, la cual obtuvo 212,685 y finalmente la Weibull con 212,884 lo que representa una diferencia de 1,345 y 1,544 unidades respectivamente con respecto a la Lognormal.
-Este resultado confirma que la Lognormal es la distribución que mejor se ajusta a los costos medios entre las distribuciones evaluadas.
+El resultado confirma que la Lognormal es la distribución que mejor se ajusta a los costos medios entre las distribuciones evaluadas.
 
 ![Comparación de la distribución Lognormal y Weibull para los costos altos (Y ≥ 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_mayores_900.png){#fig-log-weibull-altos fig-pos="H"} En la @fig-log-weibull-altos se puede observar que la distribución Lognormal obtuvo un AIC de 64,537 mientras que la distribución Weibull alcanzó 66,089, lo que representa una diferencia de 1,552 unidades a favor de la distribución Lognormal.
-Además de esto, puede verse que la curva roja, correspondiente a la Lognormal, se adapta mejor al histograma de los costos cercanos a €900 y €1,000, esta distribución abarca una mayor proporción de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercano a los datos observados.
+Asimismo, puede verse que la curva roja, correspondiente a la Lognormal, se adapta mejor al histograma de los costos cercanos a 900 y 1,000 euros, esta distribución abarca una mayor proporción de las barras, además, conforme aumentan los costos, la distribución Lognormal se mantiene más cercana a los datos observados.
 De esta forma, con la comparación de los AIC y el análisis visual, se confirma que la Lognormal es la distribución más adecuada para caracterizar los costos altos `(Y ≥ 900)`.
 
 ![Comparación de la distribución Lognormal, Weibull y Pareto para los costos altos (Y ≥ 900)](../../../bitacoras/bitacora_4/figuras/comparacion_lognormal_weibull_pareto_mayores_900.png){#fig-log-weibull-pareto-altos fig-pos="H"}
@@ -251,15 +250,15 @@ kable(tabla_ic_parámetros_dist_mixta,
 
 Como se observa en la @tbl-ic-parametros-mixta, la cual presenta los intervalos de confianza asintóticos al 95% para los parámetros de la distribución mixta de los costos.
 Para todos los parámetros, la amplitud del intervalo de confianza es muy reducida, teniendo una amplitud redondeada de 0.0302 para μ₁, 0.0213 para σ₁, 0.0436 para μ₂ y 0.0308 para σ₂.
-Esta diferencia tan pequeña en cada caso, indica que los valores seleccionados para cada parámetro son precisas y estables, este resultado es atribuible al tamaño de la muestra disponible, ya que para los costos medios `(0 < Y < 900)` se dispone de 15,851 observaciones y para los costos altos `(Y ≥ 900)` se dispone de 3,755 observaciones.
-Gracias a esto, el valor de los parámetros seleccionados para el modelo de distribución mixta propuesto es adecuado para caracterizar el costo de los siniestros positivos.
+La diferencia pequeña en cada caso, indica que los valores seleccionados para cada parámetro son precisos y estables, lo cual es atribuible al tamaño de la muestra disponible, ya que para los costos medios `(0 < Y < 900)` se dispone de 15,851 observaciones y para los costos altos `(Y ≥ 900)` se dispone de 3,755 observaciones.
+Gracias a esto, los valores de los parámetros seleccionados para el modelo de distribución mixta propuesta son adecuados para caracterizar el costo de los siniestros positivos.
 
 ## Variables, componentes y métodos (casi) finales
 
 El punto de partida de la metodología consiste en que las variables de la siniestralidad no presentan un comportamiento simple, tal como se observó en el análisis descriptivo de la segunda bitácora.
 La frecuencia de los siniestros corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa.
-Además, luego del análsis descriptivo completo de la base de datos, se identificó una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros.
-Estas características hacen necesario utilizar una combinación de métodos descriptivos, comparativos y de modelación exploratoria, según las variables que se pretendan analizar.
+Además, luego del análisis descriptivo completo de la base de datos, se identificó una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros.
+Dichas características hacen necesario utilizar una combinación de métodos descriptivos, comparativos y de modelación exploratoria, según las variables que se pretendan analizar.
 
 ### Formulación de los métodos
 
@@ -269,7 +268,7 @@ En segundo lugar, el estudio de posibles asociaciones entre las variables cuanti
 En tercer lugar, la comparación entre grupos definidos de acuerdo a variables categóricas.
 Finalmente, la reformulación del análisis del umbral de 900 euros mediante un enfoque de distribución mixta e intervalos de confianza.
 
-La elección de la organización planteadas radica en que la estructura permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad.
+La elección de la organización planteada radica en que la estructura permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad.
 Además, responde a las características observadas en la segunda bitácora y retomadas en el anteproyecto: una alta concentración de ceros, la asimetría hacia la derecha y la presencia de valores extremos en la variable del costo anual.
 
 #### Análisis descriptivo de la frecuencia y la severidad
@@ -303,7 +302,7 @@ $$
 $$
 
 Este cálculo es relevante dado que permite cuantificar el exceso de ceros en la frecuencia de los siniestros.
-Una proporción elevada de registros con $N_i=0$ indica que una gran parte de la cartera no presentó reclamaciones durante el periodo observado, lo cual puede afectar la pertinencia de modelos de conteo.
+Una proporción elevada de registros con $N_i=0$ indica que una gran parte de la cartera no presentó reclamaciones durante el periodo observado, lo cual puede afectar la pertinencia de los modelos de conteo.
 
 Además, para la variable $N_i$ se calcularon medidas descriptivas como la media, la mediana, la desviación estándar, el mínimo, el máximo y los cuartiles.
 Estas medidas se complementaron con gráficos de barras para observar la concentración de registros en los valores bajos de la escala, especialmente en cero, y para identificar si existían observaciones con una cantidad inusualmente alta de siniestros.
@@ -1019,7 +1018,7 @@ En conjunto, estos procedimientos constituyeron el respaldo empírico de la prop
 ## Construcción de las fichas de resultados
 
 ::: callout-note
-# Ficha 1: ajuste de la distribución lognormal para costos positivos
+# Ficha 1: ajuste de la distribución Lognormal para costos positivos
 
 ***Nivel descriptivo***
 
@@ -1308,7 +1307,7 @@ En la introducción se aplicaron los siguientes puntos de mejora:
     En su lugar se agregó un breve párrafo que contextualiza al lector sobre aquello que otros autores han efectuado, el cual a la vez reafirma la importancia que posee el desarrollo del presente proyecto.
 
 -   Se modificó el enfoque de la introducción.
-    Ahora, la misma se dedica a fundamentar la relevancia de la investigación dentro del contexto en que se desarrolla; además de comunicar al lector el objetivo del proyecto, así como el camino a seguir para alcanzarlo.
+    Ahora, la misma se dedica a fundamentar la relevancia de la investigación dentro del contexto en el que se desarrolla; además de comunicar al lector el objetivo del proyecto, así como el camino a seguir para alcanzarlo.
 
 #### Metodología
 
@@ -1434,6 +1433,8 @@ En síntesis, el análisis de distribución mixta permitió caracterizar el comp
 Los resultados evidenciaron que la distribución Lognormal proporciona el mejor ajuste tanto para los costos moderados como para los costos altos, superando a las distribuciones Gamma y Pareto según el criterio AIC.
 Asimismo, la decisión de segmentar de los datos y de excluir a las observaciones con montos superiores a 20,000 euros, favoreció la obtención de estimaciones más estables.
 
+\newpage
+
 #### Anexos
 
 ```{=latex}
@@ -1456,7 +1457,7 @@ Asimismo, la decisión de segmentar de los datos y de excluir a las observacione
 
 **Figura 2**
 
-*Frecuencia promedio de siniestros por zona de circulación*
+*Frecuencia promedio de los siniestros por zona de circulación*
 
 ```{=latex}
 \end{center}
@@ -1510,22 +1511,20 @@ Asimismo, la decisión de segmentar de los datos y de excluir a las observacione
 
 ## Conclusión
 
-Esta investigación propuso analizar cómo las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo intervienen en la frecuencia y severidad de los siniestros, además de identificar qué factores explican el incremento abrupto en la cantidad de reclamos cuando el costo alcanza los €900.
-Esta pregunta de investigación fue adoptada ya que en la literatura consultada se señala que la frecuencia y severidad de los siniestros deben trabajarse por separado, además, se identificó la oportunidad de utilizar variables específicas del asegurado y del vehículo para explorar su relación con ambos componentes.
-Además de esto, durante el análisis exploratorio se detectó un comportamiento inusual en la distribución de los costos, ya que cerca del umbral de los €900, el número de reclamos aumentaba considerablemente.
-En la investigación se esperaba encontrar que las variables como la edad del asegurado, el tipo de vehículo y su valor tendrían influencia significativa tanto en la frecuencia como en la severidad y que el umbral de €900 estaría asociado a características del vehículo como su valor o tipo de vehículo.
-Los resultados coinciden parcialmente con las expectativas, se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia positivamente con la siniestralidad; variables del vehículo como el valor, la potencia, y el peso tienen una correlación despreciable tanto con la frecuencia como con la severidad así como características del asegurado como la edad y la antigüedad con la aseguradora.
-Por otro lado, se encontró que la proporción de reclamos con costo mayor o igual a €900 varía drásticamente según el tipo de vehículo y el tipo de combustible.
+La presente investigación propuso analizar cómo las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo se relacionan con la frecuencia y la severidad de los siniestros, además de analizar el incremento abrupto en la cantidad de reclamos cuando el costo de los mismos alcanza los 900 euros.
+Tal objetivo debió adaptarse, puesto que en la literatura consultada se señala que la frecuencia y severidad de los siniestros deben trabajarse por separado, además, se identificó la oportunidad de utilizar variables específicas tanto del asegurado como del vehículo para explorar su posible relación con ambos componentes.
+En la investigación se esperaba encontrar que las variables tuvieran una asociación significativa con la frecuencia y la severidad, igualmente, se esperaba que el fenómeno bajo estudio estuviera asociado a ciertas características del vehículo.
+Los resultados coinciden parcialmente con las expectativas, pues se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia positivamente con la siniestralidad; algunas variables del vehículo: el valor, la potencia, y el peso tienen una correlación despreciable tanto con la frecuencia como con la severidad, el caso análogo sucede con ciertas características del asegurado: la edad y la antigüedad con la aseguradora.
 
-La metodología utilizada se divide en cuatro métodos complementarios, el análisis descriptivo de la base de datos, el cálculo de correlaciones de Spearman con intervalos de confianza para las variables numéricas, la comparación entre grupos mediante la prueba de Kruskal-Wallis y la creación de una distribución mixta de tres componentes ajustada con el paquete `fitdistrplus` de R.
-Esta metodología permitió abordar la pregunta de investigación de manera satisfactoria.
-Uno de los problemas encontrados fue que los datos no permiten verificar si el umbral de los €900 corresponde a políticas internas de la aseguradora como el establecimiento de un límite de cobertura cercano a ese valor.
+La metodología utilizada se divide en cuatro métodos complementarios, el análisis descriptivo de la base de datos, el cálculo de correlaciones de Spearman con intervalos de confianza para las variables numéricas, la comparación entre grupos mediante la prueba de Kruskal-Wallis y la creación de una distribución mixta de tres componentes ajustada con el paquete *fitdistrplus* de R.
+La metodología descrita permitió abordar el objetivo de investigación de manera satisfactoria.
 
-Este trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico y abrupto como el aumento de reclamos en el umbral de los €900, aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
+El trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros.
+Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
 
-Para futuras investigaciones se recomienda utilizar modelos predictivos más complejos, como Modelos Lineales Generalizados o intervalos de confianza por medio de bootstrap, que incorporen múltiples registros por asegurado y la interacción entre distintas variables.
-Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón en el aumento abrupto en cierto costo de reclamo.
-Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, como el uso que se le da al vehículo y datos demográficos de los asegurados, con el fin de mejorar la capacidad explicativa y predictiva de los modelos.
+Para futuras investigaciones se recomienda optar por la construcción de un aprendizaje práctico, de manera que las producciones generadas no enfoquen sus esfuerzos en un área meramente teórica, sino que el conocimiento hallado se aplique de igual manera a escenarios prácticos, lo cual puede constituir una guía para las entidades pertinentes y los profesionales que se desarrollan en el campo contemplado.
+Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico.
+Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, con el fin de mejorar la precisión de los análisis realizados.
 
 ## Introducción
 
@@ -1557,7 +1556,7 @@ Este estudio analiza cómo las características del asegurado y del vehículo se
 Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018.
 Se realizó un análisis descriptivo completo, incluyendo tratamiento de valores faltantes, detección de outliers y visualización de datos.
 Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher y comparaciones entre grupos mediante la prueba de Kruskal-Wallis.
-Y un modelo de distribución mixta con tres componentes, el cero, los costos moderados y los costos altos, ajustado mediante el paquete `fitdistrplus` de R, utilizando el Criterio de Información de Akaike (AIC) para la selección de distribuciones entre Lognormal, Gamma, Weibull y Pareto.
+Y un modelo de distribución mixta con tres componentes, el cero, los costos moderados y los costos altos, ajustado mediante el paquete *fitdistrplus* de R, utilizando el Criterio de Información de Akaike (AIC) para la selección de distribuciones entre Lognormal, Gamma, Weibull y Pareto.
 Los parámetros se validaron con intervalos de confianza asintóticos.
 El estudio confirma una alta concentración de siniestros en cero (81.39%) y una sobredispersión en la frecuencia.
 El historial de reclamos mostró una asociación positiva moderada con la frecuencia y severidad ( ρ ≈ 0.38), mientras que variables como edad, valor del vehículo y potencia mostraron correlaciones despreciables ( ∣ρ∣\<0.1).
@@ -1573,7 +1572,7 @@ El modelo de distribución mixta propuesto captura adecuadamente la estructura d
 
 # Revisión final
 
-#Fichas literarias construídas en la cuarta bitácora
+# Fichas literarias construidas en la cuarta bitácora
 
 ::: callout-note
 # Ruscio (2008)
@@ -1594,25 +1593,38 @@ Se eligió esta etiqueta porque el artículo compara métodos para construir int
 
 *Resumen en una oración:* el artículo analiza la construcción de intervalos de confianza para el coeficiente de Spearman y compara métodos analíticos con métodos bootstrap.
 
-*Argumento central:* Ruscio sostiene que, aunque existen procedimientos analíticos para construir intervalos de confianza para la correlación de Spearman, su desempeño puede variar según la naturaleza de los datos. En particular, el artículo muestra que los intervalos bootstrap pueden ofrecer una cobertura igual o superior a la de algunos métodos analíticos cuando se trabaja con datos ordinales.
+*Argumento central:* Ruscio sostiene que, aunque existen procedimientos analíticos para construir intervalos de confianza para la correlación de Spearman, su desempeño puede variar según la naturaleza de los datos.
+En particular, el artículo muestra que los intervalos bootstrap pueden ofrecer una cobertura igual o superior a la de algunos métodos analíticos cuando se trabaja con datos ordinales.
 
-*Problemas con el argumento o el tema:* una limitación para este proyecto es que el artículo se concentra principalmente en datos ordinales y en un estudio de simulación, mientras que en el proyecto se trabajó con variables cuantitativas de siniestralidad y con una base de datos real de seguros. Además, el artículo no se enfoca en datos actuariales ni en variables de frecuencia o severidad de reclamos.
+*Problemas con el argumento o el tema:* una limitación para este proyecto es que el artículo se concentra principalmente en datos ordinales y en un estudio de simulación, mientras que en el proyecto se trabajó con variables cuantitativas de siniestralidad y con una base de datos real de seguros.
+Además, el artículo no se enfoca en datos actuariales ni en variables de frecuencia o severidad de reclamos.
 
 ***Nivel analítico***
 
-*Conexión con mi proyecto:* este artículo se relaciona con el proyecto porque se utilizaron correlaciones de Spearman para analizar la asociación entre variables cuantitativas del asegurado o del vehículo y las variables de siniestralidad. Dado que las variables del proyecto presentaron asimetría, valores extremos y falta de normalidad, fue necesario complementar la estimación puntual de las correlaciones con intervalos de confianza. La referencia de Ruscio (2008) permite justificar el uso de procedimientos aproximados para construir intervalos de confianza asociados al coeficiente de Spearman.
+*Conexión con mi proyecto:* este artículo se relaciona con el proyecto porque se utilizaron correlaciones de Spearman para analizar la asociación entre variables cuantitativas del asegurado o del vehículo y las variables de siniestralidad.
+Dado que las variables del proyecto presentaron asimetría, valores extremos y falta de normalidad, fue necesario complementar la estimación puntual de las correlaciones con intervalos de confianza.
+La referencia de Ruscio (2008) permite justificar el uso de procedimientos aproximados para construir intervalos de confianza asociados al coeficiente de Spearman.
 
-*Lo que NO dice el autor:* el artículo no propone un modelo para frecuencia o severidad de siniestros. Tampoco estudia bases de datos de seguros, exceso de ceros, distribución mixta ni umbrales de severidad como el de 900 euros. Su aporte se limita al problema metodológico de la inferencia sobre la correlación de Spearman.
+*Lo que NO dice el autor:* el artículo no propone un modelo para frecuencia o severidad de siniestros.
+Tampoco estudia bases de datos de seguros, exceso de ceros, distribución mixta ni umbrales de severidad como el de 900 euros.
+Su aporte se limita al problema metodológico de la inferencia sobre la correlación de Spearman.
 
-*Contraste con otra fuente:* en comparación con Vinuesa (2016), Ruscio (2008) profundiza más en la parte inferencial de la correlación. Mientras Vinuesa (2016) es útil para explicar qué es la correlación y por qué Spearman resulta adecuado cuando no se cumplen supuestos de normalidad, Ruscio (2008) permite justificar el cálculo de intervalos de confianza para ese coeficiente. Por tanto, ambas fuentes se complementan: una aporta la explicación general del método y la otra respalda la construcción de intervalos.
+*Contraste con otra fuente:* en comparación con Vinuesa (2016), Ruscio (2008) profundiza más en la parte inferencial de la correlación.
+Mientras Vinuesa (2016) es útil para explicar qué es la correlación y por qué Spearman resulta adecuado cuando no se cumplen supuestos de normalidad, Ruscio (2008) permite justificar el cálculo de intervalos de confianza para ese coeficiente.
+Por tanto, ambas fuentes se complementan: una aporta la explicación general del método y la otra respalda la construcción de intervalos.
 
 *Evaluación de aplicabilidad (escala 1–5):* 4.
 
-La referencia es aplicable porque respalda una parte concreta de la metodología: el cálculo de intervalos de confianza para las correlaciones de Spearman. No recibe 5 porque el artículo no trabaja con datos de seguros ni con las variables específicas del proyecto.
+La referencia es aplicable porque respalda una parte concreta de la metodología: el cálculo de intervalos de confianza para las correlaciones de Spearman.
+No recibe 5 porque el artículo no trabaja con datos de seguros ni con las variables específicas del proyecto.
 
 *Pregunta que le haría al autor:* ¿Qué procedimiento recomendaría para construir intervalos de confianza de Spearman cuando se trabaja con bases de datos grandes, asimétricas y con valores extremos, como ocurre en datos de siniestralidad de seguros?
 
-*Resumen argumentativo:* Lo que Ruscio (2008) intenta resolver es cómo construir intervalos de confianza adecuados para el coeficiente de correlación de Spearman, especialmente cuando los datos no se ajustan bien a los supuestos clásicos. Para esto, compara métodos analíticos y métodos bootstrap mediante simulaciones. Su aporte principal es mostrar que la estimación puntual de Spearman puede complementarse con intervalos de confianza, pero que la elección del método debe considerar la naturaleza de los datos. Para el proyecto, esta fuente es útil porque permite justificar que las correlaciones no se interpreten únicamente como valores puntuales, sino acompañadas de una medida de incertidumbre. Esto fortalece el análisis de asociación entre variables cuantitativas y variables de siniestralidad.
+*Resumen argumentativo:* Lo que Ruscio (2008) intenta resolver es cómo construir intervalos de confianza adecuados para el coeficiente de correlación de Spearman, especialmente cuando los datos no se ajustan bien a los supuestos clásicos.
+Para esto, compara métodos analíticos y métodos bootstrap mediante simulaciones.
+Su aporte principal es mostrar que la estimación puntual de Spearman puede complementarse con intervalos de confianza, pero que la elección del método debe considerar la naturaleza de los datos.
+Para el proyecto, esta fuente es útil porque permite justificar que las correlaciones no se interpreten únicamente como valores puntuales, sino acompañadas de una medida de incertidumbre.
+Esto fortalece el análisis de asociación entre variables cuantitativas y variables de siniestralidad.
 :::
 
 ::: callout-note
@@ -1630,29 +1642,45 @@ La referencia es aplicable porque respalda una parte concreta de la metodología
 
 *Clasificación:* Teórica y metodológica.
 
-Se eligió esta etiqueta porque el libro desarrolla la distribución Lognormal desde una perspectiva formal, incluyendo su definición, propiedades, métodos de estimación e intervalos de confianza. Además, permite justificar el uso de la transformación logarítmica cuando una variable positiva se modela mediante una distribución Lognormal.
+Se eligió esta etiqueta porque el libro desarrolla la distribución Lognormal desde una perspectiva formal, incluyendo su definición, propiedades, métodos de estimación e intervalos de confianza.
+Además, permite justificar el uso de la transformación logarítmica cuando una variable positiva se modela mediante una distribución Lognormal.
 
 *Resumen en una oración:* el libro presenta la teoría y las aplicaciones de la distribución Lognormal, incluyendo su relación con la distribución Normal mediante la transformación logarítmica.
 
-*Argumento central:* Crow y Shimizu presentan la distribución Lognormal como una distribución adecuada para variables positivas y asimétricas, cuya característica central es que el logaritmo de la variable sigue una distribución Normal. Esta propiedad permite trabajar una variable sesgada en su escala original mediante una transformación logarítmica, donde los parámetros del modelo corresponden a la media y la desviación estándar del logaritmo de la variable.
+*Argumento central:* Crow y Shimizu presentan la distribución Lognormal como una distribución adecuada para variables positivas y asimétricas, cuya característica central es que el logaritmo de la variable sigue una distribución Normal.
+Esta propiedad permite trabajar una variable sesgada en su escala original mediante una transformación logarítmica, donde los parámetros del modelo corresponden a la media y la desviación estándar del logaritmo de la variable.
 
-*Problemas con el argumento o el tema:* una limitación para el proyecto es que el libro no se concentra específicamente en seguros de automóviles ni en datos de reclamos. Además, aunque la distribución Lognormal puede ajustarse bien a variables positivas y asimétricas, esto no garantiza que siempre sea la mejor distribución para datos de severidad. Por esta razón, en el proyecto fue necesario compararla con otras distribuciones candidatas, como Gamma, Weibull y Pareto.
+*Problemas con el argumento o el tema:* una limitación para el proyecto es que el libro no se concentra específicamente en seguros de automóviles ni en datos de reclamos.
+Además, aunque la distribución Lognormal puede ajustarse bien a variables positivas y asimétricas, esto no garantiza que siempre sea la mejor distribución para datos de severidad.
+Por esta razón, en el proyecto fue necesario compararla con otras distribuciones candidatas, como Gamma, Weibull y Pareto.
 
 ***Nivel analítico***
 
-*Conexión con mi proyecto:* esta referencia se relaciona directamente con el análisis del costo anual positivo de los siniestros. En el proyecto, la variable `Cost_claims_year` presentó valores positivos con asimetría hacia la derecha, por lo que se evaluó la distribución Lognormal como candidata para los componentes positivos de la distribución mixta. La referencia de Crow y Shimizu (1988) permitió justificar teóricamente que, si $Y$ sigue una distribución Lognormal, entonces $W = \ln(Y)$ sigue una distribución Normal. Esta propiedad fue clave para construir intervalos de confianza para los parámetros $\mu$ y $\sigma$ en escala logarítmica.
+*Conexión con mi proyecto:* esta referencia se relaciona directamente con el análisis del costo anual positivo de los siniestros.
+En el proyecto, la variable `Cost_claims_year` presentó valores positivos con asimetría hacia la derecha, por lo que se evaluó la distribución Lognormal como candidata para los componentes positivos de la distribución mixta.
+La referencia de Crow y Shimizu (1988) permitió justificar teóricamente que, si $Y$ sigue una distribución Lognormal, entonces $W = \ln(Y)$ sigue una distribución Normal.
+Esta propiedad fue clave para construir intervalos de confianza para los parámetros $\mu$ y $\sigma$ en escala logarítmica.
 
-*Lo que NO dice el autor:* el libro no estudia el umbral de 900 euros ni propone una metodología específica para separar costos medios y costos altos en datos de reclamos. Tampoco aborda directamente el exceso de ceros ni la construcción de una distribución mixta con una masa puntual en cero. Su aporte al proyecto se concentra en la justificación teórica de la Lognormal y de la transformación logarítmica.
+*Lo que NO dice el autor:* el libro no estudia el umbral de 900 euros ni propone una metodología específica para separar costos medios y costos altos en datos de reclamos.
+Tampoco aborda directamente el exceso de ceros ni la construcción de una distribución mixta con una masa puntual en cero.
+Su aporte al proyecto se concentra en la justificación teórica de la Lognormal y de la transformación logarítmica.
 
-*Contraste con otra fuente:* en comparación con Delignette-Muller y Dutang (2015), Crow y Shimizu (1988) aportan una fundamentación más teórica de la distribución Lognormal. Delignette-Muller y Dutang (2015) son más útiles para justificar el ajuste computacional de distribuciones mediante `fitdistrplus`, mientras que Crow y Shimizu (1988) permiten explicar por qué la transformación $W = \ln(Y)$ lleva a una escala Normal cuando el modelo Lognormal es adecuado. Ambas fuentes se complementan: una respalda la herramienta de ajuste y la otra respalda la propiedad probabilística utilizada para los intervalos de confianza.
+*Contraste con otra fuente:* en comparación con Delignette-Muller y Dutang (2015), Crow y Shimizu (1988) aportan una fundamentación más teórica de la distribución Lognormal.
+Delignette-Muller y Dutang (2015) son más útiles para justificar el ajuste computacional de distribuciones mediante `fitdistrplus`, mientras que Crow y Shimizu (1988) permiten explicar por qué la transformación $W = \ln(Y)$ lleva a una escala Normal cuando el modelo Lognormal es adecuado.
+Ambas fuentes se complementan: una respalda la herramienta de ajuste y la otra respalda la propiedad probabilística utilizada para los intervalos de confianza.
 
 *Evaluación de aplicabilidad (escala 1–5):* 4.
 
-La referencia es aplicable porque justifica una parte central del análisis de severidad: el uso de la Lognormal para modelar costos positivos y la construcción de intervalos de confianza en escala logarítmica. No recibe 5 porque no está enfocada específicamente en datos de seguros ni en el problema del umbral de 900 euros.
+La referencia es aplicable porque justifica una parte central del análisis de severidad: el uso de la Lognormal para modelar costos positivos y la construcción de intervalos de confianza en escala logarítmica.
+No recibe 5 porque no está enfocada específicamente en datos de seguros ni en el problema del umbral de 900 euros.
 
 *Pregunta que le haría al autor:* ¿Qué criterios recomendaría utilizar para decidir cuándo una distribución Lognormal es preferible a distribuciones como Gamma, Weibull o Pareto en datos de reclamos de seguros con colas derechas?
 
-*Resumen argumentativo:* Lo que Crow y Shimizu (1988) permiten justificar es la base teórica de la distribución Lognormal. Si una variable positiva $Y$ es Lognormal, entonces su logaritmo natural $W = \ln(Y)$ sigue una distribución Normal. Esta relación es importante porque permite transformar una variable positiva y asimétrica en una variable que puede analizarse bajo el marco de la Normal. Para el proyecto, esta propiedad fue fundamental porque los costos positivos de siniestros se modelaron mediante distribuciones Lognormales dentro de una distribución mixta. Además, permitió justificar que los intervalos de confianza para los parámetros $\mu$ y $\sigma$ se construyeran en la escala logarítmica, ya que esos parámetros describen la media y la desviación estándar de $\ln(Y)$, no directamente del costo en su escala original.
+*Resumen argumentativo:* Lo que Crow y Shimizu (1988) permiten justificar es la base teórica de la distribución Lognormal.
+Si una variable positiva $Y$ es Lognormal, entonces su logaritmo natural $W = \ln(Y)$ sigue una distribución Normal.
+Esta relación es importante porque permite transformar una variable positiva y asimétrica en una variable que puede analizarse bajo el marco de la Normal.
+Para el proyecto, esta propiedad fue fundamental porque los costos positivos de siniestros se modelaron mediante distribuciones Lognormales dentro de una distribución mixta.
+Además, permitió justificar que los intervalos de confianza para los parámetros $\mu$ y $\sigma$ se construyeran en la escala logarítmica, ya que esos parámetros describen la media y la desviación estándar de $\ln(Y)$, no directamente del costo en su escala original.
 :::
 
 # Relativo al trabajo en equipo
@@ -1663,9 +1691,15 @@ A partir de las entradas efectuadas en los diarios de aprendizaje de las tres bi
 Tal reflexión se detalla a partir de cuatro oraciones: tres oraciones dedicadas a cada una de las bitácoras concluidas y una última oración destinada a sintetizar la experiencia atravesada.
 Dichas oraciones se detallan como sigue:
 
--   La primera bitácora representó el acercamiento inicial al desarrollo del proyecto. En ella se definieron elementos sumamente importantes como la pregunta de investigación, la base de datos que sustenta el trabajo y una primera revisión literaria que contextualizó al equipo en torno a las producciones realizadas por otros autores en el campo de estudio contemplado. Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado. El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
+-   La primera bitácora representó el acercamiento inicial al desarrollo del proyecto.
+    En ella se definieron elementos sumamente importantes como la pregunta de investigación, la base de datos que sustenta el trabajo y una primera revisión literaria que contextualizó al equipo en torno a las producciones realizadas por otros autores en el campo de estudio contemplado.
+    Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado.
+    El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
 
-- En la primera bitácora, se aprendió que delimitar bien la pregunta de investigación y organizar el trabajo desde el inicio era esencial para orientar el proyecto. En la segunda, se fortaleció la exploración de datos y la interpretación de gráficos, lo cual permitió reconocer patrones importantes en la base. En la tercera, se comprendió que R ofrece herramientas útiles para desarrollar análisis más complejos, como el ajuste de distribuciones para estudiar el umbral de 900 euros. En la cuarta, se aprendió que la metodología debe revisarse y mejorar conforme avanza el proyecto, especialmente cuando aparecen nuevos resultados o retroalimentaciones.
+-   En la primera bitácora, se aprendió que delimitar bien la pregunta de investigación y organizar el trabajo desde el inicio era esencial para orientar el proyecto.
+    En la segunda, se fortaleció la exploración de datos y la interpretación de gráficos, lo cual permitió reconocer patrones importantes en la base.
+    En la tercera, se comprendió que R ofrece herramientas útiles para desarrollar análisis más complejos, como el ajuste de distribuciones para estudiar el umbral de 900 euros.
+    En la cuarta, se aprendió que la metodología debe revisarse y mejorar conforme avanza el proyecto, especialmente cuando aparecen nuevos resultados o retroalimentaciones.
 
 ## Registro del trabajo en equipo
 
