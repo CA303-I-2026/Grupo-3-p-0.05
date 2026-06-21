@@ -305,7 +305,7 @@ Así, se tienen dos historias diferentes: la historia contada por los autores co
 El objetivo del presente apartado consiste en unificar dichas historias, según la estructura propuesta en el *Ordenamiento de los elementos del reporte*: introducción, metodología y resultados.
 De esta manera, a cada parte de la estructura le corresponderá un subapartado, donde se desarrollarán los elementos contenidos en ellas.
 
-## Introducción
+#### Introducción
 
 El óptimo y eficiente desarrollo de un proyecto radica, en una enorme parte, en el pleno conocimiento de los elementos que el mismo contempla, así como en el establecimiento de una clara delimitación.
 El recurso que se encarga de efectuar los dos aspectos detallados antes, corresponde a la pregunta de investigación, puesto que en ella se definen los fenómenos puntuales que se estudiarán, analizarán y descompondrán a lo largo del proceso.
@@ -364,7 +364,7 @@ En síntesis, la literatura consultada coincide en que la frecuencia y la severi
 Además, se destaca que ciertos fenómenos como las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones, producen que la elección de las distribuciones adecuadas para las variables respuesta se convierta en un reto de una complejidad considerable; dichas características se evidencian en los datos utilizados en el proyecto.
 Para concluir, si bien existen múltiples metodologías para evaluar la relación entre las variables mediante el análisis de correlación, es preciso verificar el cumplimiento de los supuestos efectuados bajo cada método y de esta forma seleccionar el coeficiente que mejor se ajuste a los datos empleados.
 
-## Metodología
+#### Metodología
 
 La metodología del proyecto se organiza como una secuencia de distintos análisis, orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
 En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y la severidad, el estudio de asociaciones entre las variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros.
@@ -405,11 +405,11 @@ La presencia de una sobredispersión y el exceso de ceros descartó la utilizaci
 De igual forma, la comparación entre distribuciones candidatas para la severidad, mostró que la distribución Lognormal proporciona un mejor ajuste para los costos positivos inferiores a 900 euros, lo que respalda la importancia de seguir una metodología donde se efectúe la exploración gráfica, la selección de las distribuciones candidatas, la estimación de los parámetros y la evaluación de la calidad del ajuste.
 Finalmente, el resultado de no normalidad en la frecuencia de los reclamos, justificó el uso del coeficiente de Spearman para estudiar las asociaciones entre variables, garantizando que el análisis de correlación se realice mediante una metodología consistente con la naturaleza de los datos.
 
-## Resultados
+#### Resultados
 
 Dado que la pregunta de investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, dichos resultados se detallan a continuación.
 
-### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros
+##### Relación entre las variables descritas con la frecuencia y la severidad de los siniestros
 
 El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de variables categóricas, como la zona de circulación y el tipo de vehículo.
 
@@ -437,7 +437,7 @@ En síntesis, el análisis realizado muestra que las variables de las caracterí
 Mientras que las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; la variable del historial de siniestros evidencia una asociación moderada con estas.
 Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
 
-### Análisis del incremento abrupto al superar el monto de 900 euros
+##### Análisis del incremento abrupto al superar el monto de 900 euros
 
 Se encontraron tres resultados particulares en la presente área, los cuales se detallan como sigue:
 
@@ -461,6 +461,29 @@ Asimismo, se identificó que el tipo de vehículo desempeña un papel importante
 Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales o de alta gama, sino con los vehículos de uso común, que poseen características intermedias.
 
 ### Identificación de los elementos a mejorar
+
+Tras una revisión del producto elaborado en la tercera bitácora, en compañía de la lectura de las indicaciones brindadas para la presente entrega, se identificó la necesidad de emprender una serie de puntos de mejora en cada una de las secciones desarrolladas.
+Dichos puntos de mejora proceden a enunciarse a continuación, dedicando un subapartado a cada una de las áreas contempladas.
+
+#### Introducción
+
+En la introducción se aplicaron los siguientes puntos de mejora:
+
+-   Se disminuyó considerablemente la extensión de la introducción, de manera que representara un porcentaje adecuado de la extensión total del texto.
+
+-   Se eliminó de la introducción la contextualización literaria.
+    En su lugar se agregó un breve párrafo que contextualiza al lector sobre aquello que otros autores han efectuado, el cual a la vez reafirma la importancia que posee el desarrollo del presente proyecto.
+
+-   Se modificó el enfoque de la introducción.
+    Ahora, la misma se dedica a fundamentar la relevancia de la investigación dentro del contexto en que se desarrolla; además de comunicar al lector el objetivo del proyecto, así como el camino a seguir para alcanzarlo.
+
+#### Metodología
+
+En la metodología se aplicaron los siguientes puntos de mejora:
+
+#### Resultados
+
+En los resultados se aplicaron los siguientes puntos de mejora:
 
 ### Escritura del texto mejorado
 
@@ -552,6 +575,8 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 |                                |                                                                                |
 |                                | Agradecimientos                                                                |
 |                                |                                                                                |
+|                                | Fichas de resultados                                                           |
+|                                |                                                                                |
 |                                | Diario de aprendizaje                                                          |
 |                                |                                                                                |
 |                                | Registro del trabajo en equipo                                                 |
@@ -579,6 +604,8 @@ La siguiente tabla contiene los aportes de los integrantes, de acuerdo a las sec
 |                                | Selección de las palabras clave del artículo                                   |
 |                                |                                                                                |
 |                                | Revisión final                                                                 |
+|                                |                                                                                |
+|                                | Fichas de resultados                                                           |
 |                                |                                                                                |
 |                                | Agradecimientos                                                                |
 |                                |                                                                                |
