@@ -1657,6 +1657,12 @@ Los intervalos de confianza calculados para los parámetros mostraron amplitudes
 La siniestralidad en esta cartera es un fenómeno que no se explica por una sola variable, sino por una combinación de factores, el historial de reclamos y el tipo de vehículo son las variables más relevantes, mientras que otras características tienen menor influencia en la frecuencia y severidad.
 El modelo de distribución mixta propuesto captura adecuadamente la estructura de los costos de siniestros, confirmando la relevancia del umbral de €900 analizado, posiblemente ligado a características institucionales del mercado asegurador español.
 
+## Agradecimientos
+
+Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes. Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
+
+Finalmente, agredecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso. Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
+
 ## Ordenamiento final
 
 **Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
