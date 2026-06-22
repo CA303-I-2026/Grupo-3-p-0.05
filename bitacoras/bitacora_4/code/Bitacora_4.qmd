@@ -1131,10 +1131,8 @@ Además, sugiere que los análisis posteriores deberían estudiar qué variables
 
 *Resumen en una oración:* la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos mayores a 900 euros es superior a la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos inferiores a 900 euros.
 
-
 *Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera €900*, dentro de ellos se sitúa uno dedicado al número de reclamos.
 A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
-
 
 *Evidencia:* el hallazgo descrito se respalda en el gráfico *Comparación de variables según si el reclamo supera 900 euros,* el cual está compuesto por una serie de boxplots, en particular se debe visualizar el que está dedicado al número de reclamos histórico.
 
@@ -1704,12 +1702,14 @@ El modelo de distribución mixta captura adecuadamente la estructura de los cost
 Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes.
 Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
 
-Finalmente, agredecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
+Finalmente, agradecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
 Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
 
 ## Ordenamiento final
 
-### Título 
+### Título
+
+*Intervención de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y la severidad de los siniestros*
 
 ### Resumen
 
@@ -1723,7 +1723,7 @@ Los intervalos de confianza para los parámetros mostraron amplitudes reducidas,
 La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
 El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
 
-### Palabras clave
+**Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
 ### Introducción
 
@@ -1825,7 +1825,7 @@ La presencia de una sobredispersión y el exceso de ceros descartó la utilizaci
 De igual forma, la comparación entre distribuciones candidatas para la severidad, mostró que la distribución Lognormal proporciona un mejor ajuste para los costos positivos inferiores a 900 euros, lo que respalda la importancia de seguir una metodología donde se efectúe la exploración gráfica, la selección de las distribuciones candidatas, la estimación de los parámetros y la evaluación de la calidad del ajuste.
 Finalmente, el resultado de no normalidad en la frecuencia de los reclamos, justificó el uso del coeficiente de Spearman para estudiar las asociaciones entre variables, garantizando que el análisis de correlación se realice mediante una metodología consistente con la naturaleza de los datos.
 
-### Resultados 
+### Resultados
 
 Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
 
@@ -1922,9 +1922,13 @@ Para futuras investigaciones se recomienda optar por la construcción de un apre
 Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico.
 Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, con el fin de mejorar la precisión de los análisis realizados.
 
-### Agradecimientos 
+### Agradecimientos
 
-### Referencias
+Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes.
+Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
+
+Finalmente, agradecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
+Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
 
 \newpage
 
@@ -2003,8 +2007,6 @@ Finalmente, se sugiere incorporar información más detallada sobre el vehículo
 ```
 
 ![](images/clipboard-751517936.png){fig-align="center" width="600"}
-
-**Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
 # Fichas literarias construidas en la cuarta bitácora
 
@@ -2132,11 +2134,12 @@ Dichas oraciones se detallan como sigue:
 
 -   En la segunda bitácora, se aprendió que el análisis descriptivo es una etapa esencial para comprender la estructura inicial de los datos, ya que permite identificar valores faltantes, valores atípicos y patrones relevantes mediante tablas y gráficos.
     Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
-  
--   En la tercera bitácora, se pasó de un análisis descriptivo a un enfoque hacia la modelación e inferencia estadística, lo cual representó un salto de complejidad organizativa y comunicativa considerable. 
-    En esta bitácora se reforzó el nivel organizativo y comunicativo del grupo y se aprendió a implementar e interpretar resultados estadísticos como los coeficientes de correlación, la comparación entre grupos y el ajuste de distribuciones. Además, se comprendió la importancia de una buena estructuración de la metodología para saber con claridad lo que se está desarrollando.
-    
-En conjunto, estas tres etapas reflejan una progresión gradual desde el planteamiento inicial del proyecto hacia un dominio cada vez mayor de las herramientas estadísticas y organizativas, en la cual el crecimiento técnico del equipo se sostuvo, en todo momento, sobre una base de comunicación constante, compromiso compartido y disposición para resolver los retos de manera colaborativa.
+
+-   En la tercera bitácora, se pasó de un análisis descriptivo a un enfoque hacia la modelación e inferencia estadística, lo cual representó un salto de complejidad organizativa y comunicativa considerable.
+    En esta bitácora se reforzó el nivel organizativo y comunicativo del grupo y se aprendió a implementar e interpretar resultados estadísticos como los coeficientes de correlación, la comparación entre grupos y el ajuste de distribuciones.
+    Además, se comprendió la importancia de una buena estructuración de la metodología para saber con claridad lo que se está desarrollando.
+
+-   En conjunto, estas tres etapas reflejan una progresión gradual desde el planteamiento inicial del proyecto hacia un dominio cada vez mayor de las herramientas estadísticas y organizativas, en la cual el crecimiento técnico del equipo se sostuvo, en todo momento, sobre una base de comunicación constante, compromiso compartido y disposición para resolver los retos de manera colaborativa.
 
 ## Registro del trabajo en equipo
 
