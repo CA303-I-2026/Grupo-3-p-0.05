@@ -1131,7 +1131,8 @@ Además, sugiere que los análisis posteriores deberían estudiar qué variables
 
 *Resumen en una oración:* la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos mayores a 900 euros es superior a la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos inferiores a 900 euros.
 
-*Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera €900*, dentro de ellos se sitúa uno dedicado al número de reclamos. A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
+*Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera €900*, dentro de ellos se sitúa uno dedicado al número de reclamos.
+A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
 
 *Evidencia:* el hallazgo descrito se respalda en el gráfico *Comparación de variables según si el reclamo supera €900,* el cual está compuesto por una serie de boxplots, en particular se debe visualizar el que está dedicado al número de reclamos histórico.
 
@@ -1339,21 +1340,21 @@ En la introducción se aplicaron los siguientes puntos de mejora:
 
 En la metodología se aplicaron los siguientes puntos de mejora:
 
-- Se cambió el tiempo verbal de la metodología, pasando de una redacción orientada a lo que se “realizará” a una descripción de los procedimientos que efectivamente se aplicaron en el análisis.
+-   Se cambió el tiempo verbal de la metodología, pasando de una redacción orientada a lo que se “realizará” a una descripción de los procedimientos que efectivamente se aplicaron en el análisis.
 
-- Se justificó con mayor precisión el uso del coeficiente de correlación de Spearman, aclarando que fue seleccionado por el comportamiento no normal de los datos, la presencia de ceros, la asimetría y los valores extremos.
+-   Se justificó con mayor precisión el uso del coeficiente de correlación de Spearman, aclarando que fue seleccionado por el comportamiento no normal de los datos, la presencia de ceros, la asimetría y los valores extremos.
 
-- Se corrigió la explicación de la transformación de Fisher, indicando que su uso para Spearman corresponde a una aproximación y no a un intervalo exacto.
+-   Se corrigió la explicación de la transformación de Fisher, indicando que su uso para Spearman corresponde a una aproximación y no a un intervalo exacto.
 
-- Se incorporaron referencias bibliográficas más adecuadas para respaldar el cálculo de los intervalos de confianza asociados al coeficiente de Spearman, especialmente a partir del enfoque analítico presentado por Ruscio (2008).
+-   Se incorporaron referencias bibliográficas más adecuadas para respaldar el cálculo de los intervalos de confianza asociados al coeficiente de Spearman, especialmente a partir del enfoque analítico presentado por Ruscio (2008).
 
-- Se eliminó la ambigüedad entre los coeficientes de Pearson, Spearman y Kendall, dejando claro que el coeficiente utilizado como método principal fue Spearman.
+-   Se eliminó la ambigüedad entre los coeficientes de Pearson, Spearman y Kendall, dejando claro que el coeficiente utilizado como método principal fue Spearman.
 
-- Se fortaleció la sección relacionada con el umbral de 900 euros, incorporando el cálculo de intervalos de confianza para proporciones y una explicación más detallada del tratamiento de los reclamos de mayor severidad.
+-   Se fortaleció la sección relacionada con el umbral de 900 euros, incorporando el cálculo de intervalos de confianza para proporciones y una explicación más detallada del tratamiento de los reclamos de mayor severidad.
 
-- Se agregó la demostración de que, si una variable sigue una distribución lognormal, al aplicarle logaritmo se obtiene una variable con distribución normal, lo cual permitió justificar el cálculo de intervalos de confianza en la escala logarítmica.
+-   Se agregó la demostración de que, si una variable sigue una distribución lognormal, al aplicarle logaritmo se obtiene una variable con distribución normal, lo cual permitió justificar el cálculo de intervalos de confianza en la escala logarítmica.
 
-- Se mejoró la coherencia entre la metodología, el código implementado y los resultados obtenidos, de manera que los procedimientos descritos coincidan con las tablas, gráficos y análisis efectivamente presentados.
+-   Se mejoró la coherencia entre la metodología, el código implementado y los resultados obtenidos, de manera que los procedimientos descritos coincidan con las tablas, gráficos y análisis efectivamente presentados.
 
 #### Resultados
 
@@ -1445,7 +1446,7 @@ Dado que la prueba rechazó la normalidad, y considerando la alta concentración
 $$\rho_s = \frac{\sum_{i=1}^n (R(X_i)-\overline{R(X)})(R(Z_i)-\overline{R(Z)})}{\sqrt{\sum_{i=1}^n (R(X_i)-\overline{R(X)})^2}\sqrt{\sum_{i=1}^n (R(Z_i)-\overline{R(Z)})^2}}.$$
 
 De acuerdo con @vinuesa2016, el coeficiente resultó adecuado porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni linealidad; frente a Kendall, Spearman resultó conveniente por el tamaño de la base de datos y por ofrecer una medida de interpretación directa.
-Las correlaciones se calcularon en R mediante `cor.test()` con el método *spearman*, y se presentaron en una matriz de correlación, la cual también permitió un diagnóstico preliminar de multicolinealidad entre variables explicativas.
+Las correlaciones se calcularon en R mediante *cor.test()* con el método *spearman*, y se presentaron en una matriz de correlación, la cual también permitió un diagnóstico preliminar de multicolinealidad entre variables explicativas.
 
 Para complementar la estimación puntual, se construyeron intervalos de confianza al 95 % mediante la transformación z de Fisher, $z_{\hat\rho} = \mathrm{arctanh}(\hat\rho)$, bajo la cual $z_{\hat\rho} \sim N(\mathrm{arctanh}(\rho), \tfrac{1}{n-3})$, de acuerdo con el enfoque analítico de @ruscio2008.
 El intervalo en la escala transformada, $[z_{\hat\rho} - z_{0.975}/\sqrt{n-3},\ z_{\hat\rho} + z_{0.975}/\sqrt{n-3}]$, se regresó a la escala original aplicando la función tangente hiperbólica.
@@ -1464,9 +1465,9 @@ $$Y_i \sim \pi_0\delta_0 + \pi_1 F_1(y\mid\theta_1) + \pi_2 F_2(y\mid\theta_2),\
 donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos.
 Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
 
-Para los componentes positivos se utilizó el paquete `fitdistrplus` de R de acuerdo con \@deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
-Para los costos positivos menores a €900 se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
-Para los costos mayores o iguales a €900 (acotados al intervalo \[€900, €20,000\] únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general) se evaluaron la Lognormal, la Pareto (asociada a colas pesadas) y la Weibull.
+Para los componentes positivos se utilizó el paquete *fitdistrplus* de R de acuerdo con @deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
+Para los costos positivos menores a 900 euros se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
+Para los costos mayores o iguales a 900 euros, acotados por la cifra de 20,000 euros únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general, se evaluaron la Lognormal, la Pareto, que está asociada a colas pesadas, y la Weibull.
 
 En ambos componentes, la distribución Lognormal presentó el mejor ajuste.
 Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia.
@@ -1484,7 +1485,7 @@ Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $
 También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \#\{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
 
 Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de Lledó y Pavía (2024), el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis.
-La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por `fitdistrplus` (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
+La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por *fitdistrplus* (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
 
 #### Resultados
 
@@ -1686,18 +1687,27 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 
 ## Resumen
 
-La tarificación en seguros de automóviles requiere comprender los factores que influyen en la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos. Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de €900. Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos. Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes (cero, costos moderados y altos) ajustado con el paquete `fitdistrplus` de R y validado con intervalos asintóticos. Los resultados muestran que variables como el historial de reclamos poseen una relación significativa con la siniestralidad, mientras que otras como la edad o el valor del vehículo presentan una correlación despreciable. El tipo de vehículo resultó ser un factor importante para la severidad, y el modelo de distribución mixta identificó que los costos se caracterizan adecuadamente mediante una distribución Lognormal, superior a la Gamma, Weibull y Pareto. Los intervalos de confianza para los parámetros mostraron amplitudes reducidas (0.0302, 0.0213, 0.0436 y 0.0308) para \mu_1, \sigma_1, \mu_2  y \sigma_2 respectivamente, confirmando la estabilidad de las estimaciones. La siniestralidad en esta cartera no se explica por una sola variable, sino por una combinación de factores, el historial de reclamos y el tipo de vehículo son las variables más relevantes. El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de €900, posiblemente ligado a características institucionales del mercado asegurador español.
+La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
+Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
+Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
+Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes: costos nulos, costos moderados y costos altos; ajustado con el paquete *fitdistrplus* de R y validado con intervalos asintóticos.
+Los resultados muestran que variables como el historial de reclamos poseen una relación significativa con la siniestralidad, mientras que otras como la edad o el valor del vehículo presentan una correlación despreciable.
+El tipo de vehículo resultó ser un factor importante para la severidad, y el modelo de distribución mixta identificó que los costos se caracterizan adecuadamente mediante una distribución Lognormal, con un mejor ajuste en comparación al de otras distribuciones: la Gamma, la Weibull y la Pareto.
+Los intervalos de confianza para los parámetros mostraron amplitudes reducidas, 0.0302, 0.0213, 0.0436 y 0.0308, para \mu\_1, \sigma\_1, \mu\_2 y \sigma\_2 respectivamente, confirmando la estabilidad de las estimaciones.
+La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
+El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
 
 ## Agradecimientos
 
-Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes. Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
+Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes.
+Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
 
-Finalmente, agredecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso. Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
+Finalmente, agredecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
+Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
 
 ## Ordenamiento final
 
 **Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
-
 
 # Fichas literarias construidas en la cuarta bitácora
 
@@ -1823,7 +1833,8 @@ Dichas oraciones se detallan como sigue:
     Asimismo, dicha entrega constituyó la primera ocasión en que los miembros del equipo trabajaron conjuntamente, de manera que se atravesó un proceso tanto de conocimiento como de adaptación, relacionado a las fortalezas y a los puntos de mejora del esfuerzo grupal realizado.
     El compromiso, la comunicación activa, la cooperación y el apoyo fueron aspectos esenciales que impulsaron el desarrollo óptimo de la asignación, a la vez que garantizaron la existencia de un espacio de trabajo placentero.
 
--  En la segunda bitácora, se aprendió que el análisis descriptivo es una etapa esencial para comprender la estructura inicial de los datos, ya que permite identificar valores faltantes, valores atípicos y patrones relevantes mediante tablas y gráficos. Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
+-   En la segunda bitácora, se aprendió que el análisis descriptivo es una etapa esencial para comprender la estructura inicial de los datos, ya que permite identificar valores faltantes, valores atípicos y patrones relevantes mediante tablas y gráficos.
+    Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
 
 ## Registro del trabajo en equipo
 
