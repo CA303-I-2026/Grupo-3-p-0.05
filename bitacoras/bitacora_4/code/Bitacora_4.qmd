@@ -1713,6 +1713,16 @@ Su disposición para brindar apoyo y su motivación por compartir sus vastos con
 
 ### Resumen
 
+La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
+Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
+Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
+Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes: costos nulos, costos moderados y costos altos; ajustado con el paquete *fitdistrplus* de R y validado con intervalos asintóticos.
+Los resultados muestran que variables como el historial de reclamos poseen una relación significativa con la siniestralidad, mientras que otras como la edad o el valor del vehículo presentan una correlación despreciable.
+El tipo de vehículo resultó ser un factor importante para la severidad, y el modelo de distribución mixta identificó que los costos se caracterizan adecuadamente mediante una distribución Lognormal, con un mejor ajuste en comparación al de otras distribuciones: la Gamma, la Weibull y la Pareto.
+Los intervalos de confianza para los parámetros mostraron amplitudes reducidas, 0.0302, 0.0213, 0.0436 y 0.0308, para \mu\_1, \sigma\_1, \mu\_2 y \sigma\_2 respectivamente, confirmando la estabilidad de las estimaciones.
+La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
+El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
+
 ### Palabras clave
 
 ### Introducción
@@ -2124,8 +2134,9 @@ Dichas oraciones se detallan como sigue:
     Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
   
 -   En la tercera bitácora, se pasó de un análisis descriptivo a un enfoque hacia la modelación e inferencia estadística, lo cual representó un salto de complejidad organizativa y comunicativa considerable. 
-    En esta bitácora se reforzó el nivel organizativo y comunicativo del grupo y se aprendió a implementar e interpretar resultados estadísticos como los coeficientes de correlación, la comparación entre grupos y el ajuste de distribuciones. 
-    Además, se comprendió la importancia de una buena estructuración de la metodología para saber con claridad lo que se está desarrollando.
+    En esta bitácora se reforzó el nivel organizativo y comunicativo del grupo y se aprendió a implementar e interpretar resultados estadísticos como los coeficientes de correlación, la comparación entre grupos y el ajuste de distribuciones. Además, se comprendió la importancia de una buena estructuración de la metodología para saber con claridad lo que se está desarrollando.
+    
+En conjunto, estas tres etapas reflejan una progresión gradual desde el planteamiento inicial del proyecto hacia un dominio cada vez mayor de las herramientas estadísticas y organizativas, en la cual el crecimiento técnico del equipo se sostuvo, en todo momento, sobre una base de comunicación constante, compromiso compartido y disposición para resolver los retos de manera colaborativa.
 
 ## Registro del trabajo en equipo
 
