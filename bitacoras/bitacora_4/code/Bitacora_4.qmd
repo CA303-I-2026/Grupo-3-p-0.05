@@ -1837,6 +1837,10 @@ Dichas oraciones se detallan como sigue:
 
 -   En la segunda bitácora, se aprendió que el análisis descriptivo es una etapa esencial para comprender la estructura inicial de los datos, ya que permite identificar valores faltantes, valores atípicos y patrones relevantes mediante tablas y gráficos.
     Además, se comprendió que la construcción de visualizaciones y la escritura del informe requieren decisiones cuidadosas, desde elegir gráficos adecuados hasta comunicar los hallazgos con claridad y conectar la literatura con la pregunta de investigación.
+  
+-   En la tercera bitácora, se pasó de un análisis descriptivo a un enfoque hacia la modelación e inferencia estadística, lo cual representó un salto de complejidad organizativa y comunicativa considerable. 
+    En esta bitácora se reforzó el nivel organizativo y comunicativo del grupo y se aprendió a implementar e interpretar resultados estadísticos como los coeficientes de correlación, la comparación entre grupos y el ajuste de distribuciones. 
+    Además, se comprendió la importancia de una buena estructuración de la metodología para saber con claridad lo que se está desarrollando.
 
 ## Registro del trabajo en equipo
 
