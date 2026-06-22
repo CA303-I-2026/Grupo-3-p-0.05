@@ -172,7 +172,7 @@ comparacion_tipo_combustible_mayores_900 <- datos_modificados %>%
             vjust = -0.5, size = 3) +
   scale_fill_manual(values = paleta_pamplemousse[c(1, 3, 4)]) +
   labs(
-    title = "Proporción de reclamos mayores o iguales a €900 por tipo de combustible",
+    title = "Proporción de reclamos mayores o iguales a 900 euros por tipo de combustible",
     x = "Tipo de combustible",
     y = "Proporción de reclamos ≥ €900",
     caption = "Fuente: Lledó & Pavía (2024), Mendeley Data. DOI: 10.17632/5cxyb5fp4f.2"
@@ -650,7 +650,7 @@ Esta estructura permitió comparar no solo cuántos siniestros ocurrían en cada
 El análisis se complementó con visualizaciones.
 Para la frecuencia, se utilizaron gráficos de barras de la frecuencia promedio de siniestros por grupo y de la proporción de asegurados sin siniestros.
 Para la severidad, se utilizaron gráficos de barras de la proporción de registros con costo positivo y boxplots del costo anual positivo por categoría.
-Dado que la severidad presentaba valores extremos de gran magnitud, los boxplots se construyeron filtrando los registros con $Y_i > 0$ y, cuando fue necesario para mejorar la legibilidad visual, restringiendo el eje de costos a valores menores o iguales a €5,000.
+Dado que la severidad presentaba valores extremos de gran magnitud, los boxplots se construyeron filtrando los registros con $Y_i > 0$ y, cuando fue necesario para mejorar la legibilidad visual, restringiendo el eje de costos a valores menores o iguales a 5,000 euros.
 Este filtro no tuvo como propósito eliminar la existencia de valores extremos del análisis, sino facilitar una comparación visual más clara de la distribución central de los costos entre grupos.
 
 En el caso del tipo de vehículo, se compararon las categorías motocicleta, turismo, furgoneta y agrícola.
@@ -1028,7 +1028,7 @@ En conjunto, estos procedimientos constituyeron el respaldo empírico de la prop
 
 *Resumen en una oración:* En el intervalo $0 < Y < 900$, la Lognormal obtuvo un AIC = 211,340, supera a la Gamma con AIC = 212,685 y a la Weibull con AIC = 212,884; para el intervalo $Y≥900$, la Lognormal obtuvo un AIC = 64,537, superando a la Weibull con AIC = 66,089 y Pareto con AIC = 66,423.
 
-*Método o análisis que lo produjo:* Se ajustaron tres distribuciones candidatas, Lognormal, Gamma y Weibull, para los costos anuales positivos menores a €900 y tres distribuciones candidatas (Lognormal, Pareto y Weibull) para los costos mayores o iguales a €900; estos ajustes se realizaron mediante el paquete `fitdistrplus` de R y la función `fitdist()`.
+*Método o análisis que lo produjo:* Se ajustaron tres distribuciones candidatas, Lognormal, Gamma y Weibull, para los costos anuales positivos menores a 900 euros y tres distribuciones candidatas (Lognormal, Pareto y Weibull) para los costos mayores o iguales a 900 euros; estos ajustes se realizaron mediante el paquete `fitdistrplus` de R y la función `fitdist()`.
 Posteriormente, se compararon los valores del Criterio de Información de Akaike, AIC, para determinar cuál distribución presentaba mejor ajuste para cada intervalo.
 
 *Evidencia:* Las figuras 3, 4, 5 y 6 muestran gráficamente la comparación de las distribuciones acompañadas del valor de los AIC correspondientes, en los cuatro gráficos, se observa que la distribución Lognormal se adapta mejor al histograma de los costos para cada intervalo.
@@ -1036,13 +1036,13 @@ Además, los parámetros estimados para la distribución Lognormal fueron `μ₁
 
 ***Nivel analítico***
 
-*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación ya que permite estudiar la severidad de los siniestros, tanto para los costos positivos que no superan los €900 como para los que sí lo hacen.
+*Conexión con la pregunta de investigación:* Este resultado se relaciona con la pregunta de investigación ya que permite estudiar la severidad de los siniestros, tanto para los costos positivos que no superan los 900 euros como para los que sí lo hacen.
 Esto permite identificar diferencias entre ambos intervalos de costos.
 
-*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por Delignette-Muller y Dutang (2015), quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste.
+*Contraste con la literatura:* Este resultado se vincula directamente con lo planteado por @deli2015, quienes señalan que el ajuste de distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya exploración gráfica, selección de distribuciones candidatas, estimación de parámetros y evaluación de la calidad del ajuste.
 En este caso, el uso de `fitdistrplus` permitió aplicar esa lógica metodológica al comparar la distribución Lognormal con la Gamma y la Weibull y la Lognormal con la Pareto y la Weibull mediante el AIC, respaldando la elección de la Lognormal para los costos positivos.
 
-*Lo que NO explica este resultado:* Este resultado no explica qué características tanto del asegurado como del vehículo, influyen en la permanencia en alguno de los dos componentes de la distribución mixta, ya sea para los costos positivos que no alcanzan los €900 o para los que sí llegan a ese umbral.
+*Lo que NO explica este resultado:* Este resultado no explica qué características tanto del asegurado como del vehículo, influyen en la permanencia en alguno de los dos componentes de la distribución mixta, ya sea para los costos positivos que no alcanzan los 900 euros o para los que sí llegan a ese umbral.
 Este resultado tampoco explica el exceso de ceros en la variable de los costos.
 
 *Implicación para el siguiente paso:* La distribución Lognormal se confirma como la distribución adecuada para ambos componentes positivos de la distribución mixta, lo que permite caracterizar con precisión la severidad de los siniestros.
@@ -1064,7 +1064,7 @@ Los parámetros estimados, `μ₁ = 5.2785366`, `σ₁ = 0.9693318`, `μ₂ = 7.
 Para cada grupo se calcularon indicadores de frecuencia y severidad, como la frecuencia promedio, la proporción de asegurados sin siniestros, la proporción de registros con costo positivo, la media, la mediana, los cuartiles y el máximo del costo positivo.
 Además, se construyeron gráficos de barras para la frecuencia y la proporción de costos positivos, junto con un boxplot para comparar la distribución del costo anual positivo.
 
-*Evidencia:* Este hallazgo se respalda en la *Figura 19: Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo*, donde se observa que los vehículos diésel presentan mayor frecuencia promedio que los de gasolina; la *Figura 20: Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo*, donde gasolina presenta mayor proporción sin siniestros; la *Figura 21: Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo*, donde diésel presenta mayor proporción de costos positivos; y la *Figura 22: Distribución del costo anual de siniestros por tipo de combustible para valores entre €0 y €5,000*, donde las distribuciones de severidad se observan similares.
+*Evidencia:* Este hallazgo se respalda en la *Figura 19: Frecuencia promedio de siniestros anuales según el tipo de combustible del vehículo*, donde se observa que los vehículos diésel presentan mayor frecuencia promedio que los de gasolina; la *Figura 20: Porcentaje de pólizas sin reportes de siniestros según el tipo de combustible del vehículo*, donde gasolina presenta mayor proporción sin siniestros; la *Figura 21: Porcentaje de registros con costos de siniestro mayores a cero según el tipo de combustible del vehículo*, donde diésel presenta mayor proporción de costos positivos; y la *Figura 22: Distribución del costo anual de siniestros por tipo de combustible para valores entre 0 euros y 5,000 euros*, donde las distribuciones de severidad se observan similares.
 También se respalda en la *Tabla 13: Resumen de frecuencia y severidad por tipo de combustible*, que resume los valores de frecuencia, proporción sin siniestros, proporción con costo positivo, media, mediana, cuartiles y máximo para gasolina y diésel.
 
 ***Nivel analítico***
@@ -1131,10 +1131,14 @@ Además, sugiere que los análisis posteriores deberían estudiar qué variables
 
 *Resumen en una oración:* la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos mayores a 900 euros es superior a la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos inferiores a 900 euros.
 
+<<<<<<< HEAD
 *Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera €900*, dentro de ellos se sitúa uno dedicado al número de reclamos.
 A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
+=======
+*Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera 900 euros*, dentro de ellos se sitúa uno dedicado al número de reclamos. A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
+>>>>>>> bfae0fe9ce250f0dae18bfe31e2b313418a94c0f
 
-*Evidencia:* el hallazgo descrito se respalda en el gráfico *Comparación de variables según si el reclamo supera €900,* el cual está compuesto por una serie de boxplots, en particular se debe visualizar el que está dedicado al número de reclamos histórico.
+*Evidencia:* el hallazgo descrito se respalda en el gráfico *Comparación de variables según si el reclamo supera 900 euros,* el cual está compuesto por una serie de boxplots, en particular se debe visualizar el que está dedicado al número de reclamos histórico.
 
 ***Nivel analítico***
 
@@ -1302,10 +1306,10 @@ Se encontraron tres resultados particulares en la presente área, los cuales se 
 
 En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero.
 Dichos estadísticos se calcularon para las clases de las variables categóricas del tipo de vehículo, la zona de circulación y el tipo de combustible.
-A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente €882.00 en todos los grupos analizados, independientemente del tipo de vehículo, la zona de circulación o el tipo de combustible.
+A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente 882.00 euros en todos los grupos analizados, independientemente del tipo de vehículo, la zona de circulación o el tipo de combustible.
 
 El hallazgo descrito se conecta directamente con el segundo componente de la pregunta de investigación: el hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de 882 euros, en todos los grupos estudiados, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo, independiente de las características del asegurado o del vehículo.
-Lo anterior refuerza la pertinencia metodológica de usar el monto de 900, como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
+Lo anterior refuerza la pertinencia metodológica de usar el monto de 900 euros, como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
 
 En segundo lugar, se descubrió que el tipo de vehículo influye en la proporción de reclamos cuando el monto de los mismos supera los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad.
 Tal hallazgo se encontró al crear una variable denominada *mayores_900*, la cual adopta el valor de uno si la variable de la severidad es mayor o igual a 900, y adopta el valor cero en el caso contrario.
@@ -1687,6 +1691,7 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 
 ## Resumen
 
+<<<<<<< HEAD
 La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
 Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
 Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
