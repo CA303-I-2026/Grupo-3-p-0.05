@@ -1709,6 +1709,213 @@ Su disposición para brindar apoyo y su motivación por compartir sus vastos con
 
 ## Ordenamiento final
 
+### Título 
+
+### Resumen
+
+### Palabras clave
+
+### Introducción
+
+El óptimo y eficiente desarrollo de un proyecto radica, en una enorme parte, en el pleno conocimiento de los elementos que el mismo contempla, así como en el establecimiento de una clara delimitación.
+El recurso que se encarga de efectuar los dos aspectos detallados antes, corresponde a la pregunta de investigación, puesto que en ella se definen los fenómenos puntuales que se estudiarán, analizarán y descompondrán a lo largo del proceso.
+En vista de lo anterior, resulta necesario recordar la pregunta de investigación planteada:
+
+> ¿Cómo intervienen las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros y qué factores explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros?
+
+Es posible notar que la interrogante aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto con la frecuencia como con la severidad de los siniestros; y la determinación de los factores que explican el incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros.
+Precisamente estas dos cuestiones son las que se buscarán responder en la elaboración del proyecto.
+
+La pregunta de investigación define dos variables respuesta: la frecuencia y la severidad de los siniestros.
+Una variable respuesta es aquella que se pretende explicar a través de otras variables, las cuales se conocen como las variables explicativas; es el foco de la pregunta construida y el resultado que se busca comprender.
+Dicho esto, resulta necesario capacitarse en el tratamiento de la frecuencia y la severidad de los siniestros a través de fuentes externas, con tal de procurar un óptimo entendimiento de las variables respuesta del proyecto.
+
+Sobre esto, @frees2021 sostiene que para analizar el riesgo asegurador, es preciso separar sus dos componentes principales: el número de siniestros que ocurren, la frecuencia; y el costo asociado a cada uno de ellos, la severidad.
+Asimismo, señala la necesidad de emplear distribuciones probabilísticas distintas para cada componente, según la naturaleza de los datos y el comportamiento observado en los registros.
+El problema principal que aborda el autor es cómo representar matemáticamente el riesgo en seguros cuando las pérdidas no son determinísticas, es decir, cuando no es posible predecir con exactitud ni cuántos eventos ocurrirán ni cuál será el costo económico asociado a cada uno.
+Su propuesta funciona porque separa dos procesos aleatorios distintos: por un lado, cuántos siniestros ocurren en un periodo determinado, y por otro, cuánto cuesta cada uno de esos eventos.
+Esta división permite trabajar cada variable de forma independiente y asignar distribuciones diferentes según su comportamiento estadístico, lo cual mejora la capacidad de ajuste de los modelos.
+También señala que uno de los principales retos en este tipo de análisis es seleccionar las distribuciones adecuadas, ya que los datos de seguros suelen presentar asimetría, valores extremos y heterogeneidad entre asegurados.
+Tales características dificultan que un único modelo funcione correctamente en todos los contextos, por lo que la elección de la distribución debe hacerse considerando el tipo de cartera, el comportamiento histórico de los datos y el objetivo del análisis.
+
+Por otro lado, @omari2018modeling argumentan una idea análoga.
+Los autores establecen que la frecuencia y la severidad de los reclamos en seguros de automóviles deben modelarse por separado, utilizando distribuciones ajustadas a las características observadas en los datos.
+Además, plantean que la selección del modelo debe basarse en un procedimiento estadístico ordenado que incluya estimación por máxima verosimilitud y pruebas de bondad de ajuste con el fin de identificar qué distribución representa mejor cada componente del riesgo.
+El problema principal que intentan resolver es cómo escoger distribuciones adecuadas para representar la frecuencia y la severidad de las reclamaciones, ya que una elección inadecuada puede afectar directamente el cálculo de las reservas, las primas y las proyecciones financieras dentro del sistema asegurador.
+Su propuesta funciona bien como punto de partida porque sigue una secuencia clara: primero se seleccionan posibles familias de distribuciones, luego se estiman sus parámetros mediante máxima verosimilitud y finalmente se comparan los ajustes con indicadores estadísticos.
+Uno de los principales problemas al modelar reclamaciones de seguros es que los datos no siguen distribuciones simples debido a su comportamiento estadístico.
+En particular, se observa una asimetría positiva, la presencia de colas pesadas y una alta concentración de valores cero en la frecuencia de los siniestros.
+A partir del análisis realizado, los autores encuentran que la severidad presenta un mejor ajuste con la distribución Lognormal, mientras que para la frecuencia se obtienen buenos resultados con las distribuciones Binomial negativa y Geométrica.
+La diferencia en las distribuciones responde al comportamiento particular de los datos observados, ya que la frecuencia y la severidad presentan patrones distintos y no pueden representarse adecuadamente con un solo modelo.
+
+Uno de los puntos de coincidencia entre los autores, corresponde al señalamiento de que, dadas las características de los datos de seguros, la elección de la distribución adecuada para las variables respuesta puede representar un reto complejo.
+Dentro de las características descritas por ellos, figuran las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones.
+Tras un análisis exploratorio mediante estadísticos descriptivos, se determinó que la gran mayoría de los registros anuales presenta cero siniestros y costo nulo: la mediana de la frecuencia y la severidad de los siniestros es igual a cero en ambos casos, mientras que sus medias son mayores a cero, lo que evidencia una distribución fuertemente asimétrica.
+Asimismo, se encontró que el costo anual de los siniestros y el número de siniestros por año, presentan valores atípicos marcados: si bien, ambas variables poseen valores mayormente bajos o moderados, existen algunos valores muy elevados que podrían influir en el análisis de las variables, mostrando importantes diferencias entre los clientes de la cartera.
+
+En referencia a lo planteado por @omari2018modeling y @frees2021, se reafirma la importancia de manejar con cautela la selección de las distribuciones para modelar las variables de la frecuencia y la severidad de los siniestros; de igual manera se resalta que las distribuciones seleccionadas deben responder a las características observadas en los datos, empleando modelos separados, puesto que una elección inadecuada puede afectar directamente la veracidad de las conclusiones construidas.
+
+Seguidamente, @ayuso2015modelizacion profundiza en la comparación de las distribuciones de probabilidad discretas para la modelación.
+Dentro del contexto de este proyecto, los autores sostienen que las distribuciones que se utilizan comúnmente para modelar las variables discretas, como la distribución de Poisson, no obtienen un buen ajuste debido a una gran cantidad de ceros en los datos o la sobredispersión de los mismos.
+Es por ello que optan por realizar una comparación entre distribuciones como la Binomial negativa o la Poisson-inversa gaussiana incluyendo versiones cero infladas de cada una de ellas.
+
+Por último, otro elemento de gran importancia para el proyecto, corresponde a la comprensión del funcionamiento de las herramientas disponibles para evaluar la relación entre las variables: el análisis de correlación.
+@vinuesa2016 aborda el concepto de la correlación, definiéndola como la relación lineal entre variables cuantitativas continuas.
+Señala que la misma se expresa a través de un coeficiente cuyos valores se sitúan entre menos uno y uno, donde ambos extremos indican la presencia de una perfecta correlación, negativa y positiva respectivamente.
+De igual modo, el autor hace hincapié en que el coeficiente, por sí mismo, es un indicador de la intensidad de la correlación, a la vez que brinda una lista de cuatro intervalos de valores para el coeficiente, en los que se clasifica el grado de correlación en despreciable, bajo, medio y alto.
+Por otro lado, Vinuesa ahonda en la idea intuitiva que subyace al concepto: la correlación se define en términos de la varianza y la covarianza de las variables, de forma que constituye una medida de su variación conjunta.
+Sin embargo, resalta que el obstáculo en utilizar la covarianza como medida de relación, se ubica en que la misma no es una medida estandarizada: no es posible emplearla para evaluar variables cuyas unidades de medida sean distintas.
+En vista de esto, se presenta el coeficiente de Pearson, el cual busca solucionar el problema de la dependencia a las unidades de medición, al normalizar la covarianza tras dividirla con la desviación estándar, convirtiéndose en un coeficiente estandarizado.
+Es importante considerar que, en vías de desarrollar pruebas de significancia bajo el estadístico de Pearson, se requiere que las variables sean cuantitativas continuas, además de estar normalmente distribuidas.
+Esto último corresponde a una característica que no todas las variables poseen, en cuyo caso se introducen el coeficiente de Kendall y el coeficiente de Spearman, que al ser no paramétricos, resultan útiles cuando las variables no siguen una distribución normal.
+El texto de Vinuesa proporciona al lector una guía de las posibles herramientas a utilizar con la meta de estudiar la correlación entre las variables.
+
+En síntesis, la literatura consultada coincide en que la frecuencia y la severidad de los siniestros constituyen dos componentes de estudio que, debido a sus características particulares, deben analizarse mediante modelaciones estadísticas separadas, seleccionadas de acuerdo a las características presentadas por los datos.
+Además, se destaca que ciertos fenómenos como las colas pesadas, una alta concentración de ceros en la frecuencia de los siniestros, los valores extremos marcados y la heterogeneidad entre observaciones, producen que la elección de las distribuciones adecuadas para las variables respuesta se convierta en un reto de una complejidad considerable; dichas características se evidencian en los datos utilizados en el proyecto.
+Para concluir, si bien existen múltiples metodologías para evaluar la relación entre las variables mediante el análisis de correlación, es preciso verificar el cumplimiento de los supuestos efectuados bajo cada método y de esta forma seleccionar el coeficiente que mejor se ajuste a los datos empleados.
+
+### Metodología
+
+La metodología del proyecto se organiza como una secuencia de distintos análisis, orientados a estudiar la frecuencia y la severidad de los siniestros en el caso de los seguros de automóviles.
+En el anteproyecto, el análisis se planteó a partir de cuatro ejes principales: la descripción de la frecuencia y la severidad, el estudio de asociaciones entre las variables cuantitativas, la comparación entre grupos categóricos y el análisis específico del umbral de 900 euros.
+A continuación, se detallarán los principales hallazgos encontrados a lo largo del proceso del desarrollo de la metodología.
+
+En primer lugar, para modelar la frecuencia de los siniestros se intentó ajustar un modelo lineal generalizado con distribución Poisson, para identificar las variables que influyen en la frecuencia de los siniestros por año.
+Las variables explicativas utilizadas fueron la edad del asegurado, la antigüedad con la aseguradora, el historial de reclamos, el tipo de vehículo, el número de puertas, el largo de vehículo y el peso del vehículo.
+El modelo de Poisson falló por dos razones principales.
+La primera, es que este asume que la media y la varianza son iguales o que no distan por mucho.
+Sin embargo, se procedió a calcular la relación entre la varianza y la media (varianza/media) y se obtuvo un resultado de 3.09, el cual es mayor a uno, por lo que según el índice de sobredispersión de datos, existe una sobredispersión.
+La segunda razón por la cual el modelo de Poisson falló consistió en la drástica subestimación de la cantidad de ceros; en los datos se observó que aproximadamente 81.39% del número de reclamos por año son cero, mientras que el modelo de Poisson, utilizando la media original de 0.39, estima que habrá 67.39% de ceros; esto resulta en una diferencia de 14 puntos porcentuales, evidenciando un exceso de ceros que la distribución Poisson no puede generar con la media de los datos.
+Así, se descartó un modelo de referencia clásico para la frecuencia de los siniestros.
+
+La literatura revisada, en particular @frees2021, anticipaba que la distribución de Poisson podría ser un punto de partida razonable para modelar frecuencias de los siniestros, pero advertía que los datos reales suelen presentar sobredispersión.
+El resultado obtenido confirma esta advertencia de manera contundente: el índice de sobredispersión de 3.09 indica que la varianza triplica a la media, y la brecha de 14 puntos porcentuales en la proporción de ceros hace que el modelo Poisson sea directamente inviable, no solo impreciso.
+Tal discrepancia no sorprende, dado que los datos de seguros de automóviles incluyen asegurados muy heterogéneos: algunos nunca tienen accidentes, mientras que otros los tienen frecuentemente; lo cual genera naturalmente un exceso de ceros que la Poisson no puede capturar con un único parámetro λ.
+La implicación es que cualquier análisis de frecuencia debe partir de modelos que separen la probabilidad de no tener ningún siniestro, de la distribución de la frecuencia de los siniestros cuando los mismos sí ocurren.
+
+En segundo lugar, se encontró que la distribución Lognormal presenta mejor ajuste para los costos positivos menores a 900 euros.
+Para el intervalo de 0 a 900, se ajustaron dos distribuciones posibles elegidas a partir de la visualización del gráfico de la distribución los costos entre 0 y 900 euros, las cuales fueron la distribución Lognormal y la distribución Gamma.
+Por medio del paquete *fitdistrplus* se realizó el ajuste, del cual se obtuvo que el Criterio de Información de Akaike (AIC) tuvo un valor de 211,339.9 para el caso de la distribución Lognormal, mientras que para la distribución Gamma se obtuvo un AIC de 212,684.5, resultando en una diferencia de 1,344.6; obteniendo que la distribución Lognormal posee un AIC significativamente menor que el de la distribución Gamma, lo que indica que posee un mejor ajuste para los datos.
+De esta forma se seleccionó la Lognormal para modelar los costos que están en el intervalo \]0,900\[.
+
+A partir de lo anterior, se confirma que el ajuste de las distribuciones no debe limitarse a elegir una distribución y estimar sus parámetros, sino que requiere un proceso que incluya la exploración gráfica, la selección de las distribuciones candidatas, la estimación de parámetros y la evaluación de la calidad del ajuste.
+En este caso, el uso de *fitdistrplus* permitió aplicar dicha lógica metodológica al comparar la distribución Lognormal y la distribución Gamma mediante el AIC, respaldando así la elección de la Lognormal para los costos positivos menores a 900 euros.
+
+En último lugar, se identificó que la variable de la frecuencia de los reclamos no satisface la hipótesis de normalidad.
+Tras aplicar la prueba de Shapiro-Wilk sobre una muestra de 5,000 valores de la frecuencia de los reclamos; se obtuvo un estadístico W = 0.37226 y un p-valor \< 2.2e-16.
+Dado que el p-valor es menor a 0.05, se rechazó la hipótesis de normalidad, por lo que se descartó el coeficiente de Pearson y se utilizó el coeficiente de Spearman para el análisis de correlación.
+Es importante mencionar que se eligió Spearman sobre Kendall porque con muestras grandes, como la del presente proyecto, ambos coeficientes tienden a producir conclusiones similares, sin embargo, Spearman es computacionalmente más eficiente y es el más utilizado en la literatura de seguros para análisis exploratorios análogos.
+
+El elemento central del proyecto consiste en estudiar la intervención de las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros; de manera que se busca determinar la naturaleza de la relación que existe entre las variables descritas.
+Para realizarlo, se calcula el coeficiente de correlación, sin embargo, es preciso seleccionar la metodología correcta de acuerdo a las características de los datos.
+En vista de lo anterior, el resultado detallado cobra una gran importancia.
+
+En síntesis, los resultados obtenidos respaldan lo abordado en la introducción: las características de los datos condicionan de manera decisiva las posibles herramientas estadísticas a utilizar para el análisis de las variables respuesta.
+La presencia de una sobredispersión y el exceso de ceros descartó la utilización del modelo Poisson para la frecuencia de los siniestros, confirmando la necesidad de recurrir a modelos más flexibles capaces de representar adecuadamente la heterogeneidad observada entre los asegurados.
+De igual forma, la comparación entre distribuciones candidatas para la severidad, mostró que la distribución Lognormal proporciona un mejor ajuste para los costos positivos inferiores a 900 euros, lo que respalda la importancia de seguir una metodología donde se efectúe la exploración gráfica, la selección de las distribuciones candidatas, la estimación de los parámetros y la evaluación de la calidad del ajuste.
+Finalmente, el resultado de no normalidad en la frecuencia de los reclamos, justificó el uso del coeficiente de Spearman para estudiar las asociaciones entre variables, garantizando que el análisis de correlación se realice mediante una metodología consistente con la naturaleza de los datos.
+
+### Resultados 
+
+### Conclusiones
+
+La presente investigación propuso analizar cómo las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo se relacionan con la frecuencia y la severidad de los siniestros, además de analizar el incremento abrupto en la cantidad de reclamos cuando el costo de los mismos alcanza los 900 euros.
+Tal objetivo debió adaptarse, puesto que en la literatura consultada se señala que la frecuencia y severidad de los siniestros deben trabajarse por separado, además, se identificó la oportunidad de utilizar variables específicas tanto del asegurado como del vehículo para explorar su posible relación con ambos componentes.
+En la investigación se esperaba encontrar que las variables tuvieran una asociación significativa con la frecuencia y la severidad, igualmente, se esperaba que el fenómeno bajo estudio estuviera asociado a ciertas características del vehículo.
+Los resultados coinciden parcialmente con las expectativas, pues se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia positivamente con la siniestralidad; algunas variables del vehículo: el valor, la potencia, y el peso tienen una correlación despreciable tanto con la frecuencia como con la severidad, el caso análogo sucede con ciertas características del asegurado: la edad y la antigüedad con la aseguradora.
+
+La metodología utilizada se divide en cuatro métodos complementarios, el análisis descriptivo de la base de datos, el cálculo de correlaciones de Spearman con intervalos de confianza para las variables numéricas, comparación entre grupos y la creación de una distribución mixta de tres componentes ajustada con el paquete *fitdistrplus* de R.
+La metodología descrita permitió abordar el objetivo de investigación de manera satisfactoria.
+
+El trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros.
+Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
+
+Para futuras investigaciones se recomienda optar por la construcción de un aprendizaje práctico, de manera que las producciones generadas no enfoquen sus esfuerzos en un área meramente teórica, sino que el conocimiento hallado se aplique de igual manera a escenarios prácticos, lo cual puede constituir una guía para las entidades pertinentes y los profesionales que se desarrollan en el campo contemplado.
+Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico.
+Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, con el fin de mejorar la precisión de los análisis realizados.
+
+### Agradecimientos 
+
+### Referencias
+
+\newpage
+
+### Anexos
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 1**
+
+*Matriz de correlaciones de las variables numéricas*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2335757716.png){fig-align="center" width="507"}
+
+\newpage
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 2**
+
+*Frecuencia promedio de los siniestros por zona de circulación*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-3227975817.png){fig-align="center" width="507"}
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 3**
+
+*Distribución del costo anual por zona de circulación*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2631318437.png){fig-align="center" width="507"}
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 4**
+
+*Costo de siniestros anual y cantidad de siniestros anual según el tipo de vehículo*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-2395609955.png){fig-align="center" width="661"}
+
+\newpage
+
+```{=latex}
+\begin{center}
+```
+
+**Figura 5**
+
+*Cantidad de observaciones con costos superiores a 900 euros según las características del vehículo*
+
+```{=latex}
+\end{center}
+```
+
+![](images/clipboard-751517936.png){fig-align="center" width="600"}
+
 **Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
 # Fichas literarias construidas en la cuarta bitácora
