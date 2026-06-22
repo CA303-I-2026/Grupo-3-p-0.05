@@ -1131,12 +1131,10 @@ Además, sugiere que los análisis posteriores deberían estudiar qué variables
 
 *Resumen en una oración:* la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos mayores a 900 euros es superior a la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos inferiores a 900 euros.
 
-<<<<<<< HEAD
+
 *Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera €900*, dentro de ellos se sitúa uno dedicado al número de reclamos.
 A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
-=======
-*Método o análisis que lo produjo:* en la sección *Análisis de variables asociadas a reclamos de costos altos: mayores o iguales a 900 euros* se construyó un gráfico compuesto de varios boxplots titulado *Comparación de variables según si el reclamo supera 900 euros*, dentro de ellos se sitúa uno dedicado al número de reclamos. A partir de la imagen es posible visualizar que la mediana del número de reclamos histórico perteneciente al grupo de las observaciones con montos superiores a 900 euros, está más arriba que la del otro grupo de comparación.
->>>>>>> bfae0fe9ce250f0dae18bfe31e2b313418a94c0f
+
 
 *Evidencia:* el hallazgo descrito se respalda en el gráfico *Comparación de variables según si el reclamo supera 900 euros,* el cual está compuesto por una serie de boxplots, en particular se debe visualizar el que está dedicado al número de reclamos histórico.
 
@@ -1691,7 +1689,6 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 
 ## Resumen
 
-<<<<<<< HEAD
 La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
 Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
 Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
