@@ -724,7 +724,7 @@ Estas proporciones permitieron cuantificar qué parte de la base correspondía a
 De esta manera, el análisis del umbral no se limitó a identificar cuántos registros superaban los 900 euros, sino que permitió representar la estructura completa de la variable de severidad.
 
 Posteriormente, se utilizó el paquete `fitdistrplus` de R para ajustar distribuciones paramétricas a los componentes positivos del costo anual.
-De acuerdo con Delignette-Muller y Dutang (2015), este paquete permite ajustar distribuciones a datos empíricos y comparar la calidad del ajuste mediante herramientas numéricas y gráficas.
+De acuerdo con @deli2015, este paquete permite ajustar distribuciones a datos empíricos y comparar la calidad del ajuste mediante herramientas numéricas y gráficas.
 En este proyecto, se utilizó principalmente para estimar los parámetros de distribuciones candidatas y comparar su desempeño mediante criterios como el AIC, así como mediante gráficos diagnósticos.
 
 Primero, se analizaron los costos positivos menores a 900 euros:
@@ -966,7 +966,7 @@ Para ello, se calculó la proporción de registros con $H_i = 1$ dentro de cada 
 
 $$
 \widehat{r}_g =
-\frac{\#\{i: X_i = g \text{ y } Y_i \geq 900\}}{n_g}.
+\frac{\{i: X_i = g \text{ y } Y_i \geq 900\}}{n_g}.
 $$
 
 Esta proporción permitió observar si algunas categorías concentraban una mayor presencia de costos altos.
@@ -1004,7 +1004,7 @@ Además, se incorporó una revisión de variables asociadas a los reclamos mayor
 
 ### Programa maqueta, etapa de validación y respaldo de la propuesta metodológica
 
-Los cuatro métodos se ejecutaron directamente sobre los datos reales del *dataset* de Lledó y Pavía (2024), por lo que el programa maqueta y la ejecución final coincidieron en un mismo espacio de trabajo.
+Los cuatro métodos se ejecutaron directamente sobre los datos reales del *dataset* de @lledo2024, por lo que el programa maqueta y la ejecución final coincidieron en un mismo espacio de trabajo.
 No existió una fase de prototipado separada del análisis real; el código utilizado funcionó tanto como herramienta exploratoria para afinar decisiones metodológicas como implementación definitiva para producir los resultados reportados.
 
 La validación se integró dentro de cada análisis.
@@ -1457,16 +1457,16 @@ Para la severidad, se calculó la proporción de registros con costo positivo $\
 Los resultados se complementaron con gráficos de barras (frecuencia promedio y proporción sin siniestros) y boxplots del costo anual positivo, filtrando y restringiendo el eje a valores menores o iguales a 5,000 euros solo con fines de visualización.
 
 El cuarto método consistió en analizar el comportamiento de los registros cuyo costo anual alcanzó o superó los 900 euros.
-A partir de la retroalimentación recibida y de los resultados exploratorios (en particular, el histograma del costo anual mostró una distribución asimétrica hacia la derecha con un pico pronunciado alrededor de los €900), el análisis se reformuló mediante una estructura de distribución mixta:
+A partir de la retroalimentación recibida y de los resultados exploratorios (en particular, el histograma del costo anual mostró una distribución asimétrica hacia la derecha con un pico pronunciado alrededor de los 900 euros), el análisis se reformuló mediante una estructura de distribución mixta:
 
 $$Y_i \sim \pi_0\delta_0 + \pi_1 F_1(y\mid\theta_1) + \pi_2 F_2(y\mid\theta_2),\qquad \pi_0+\pi_1+\pi_2=1,$$
 
 donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos.
 Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
 
-Para los componentes positivos se utilizó el paquete `fitdistrplus` de R de acuerdo con \@deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
-Para los costos positivos menores a €900 se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
-Para los costos mayores o iguales a €900 (acotados al intervalo \[€900, €20,000\] únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general) se evaluaron la Lognormal, la Pareto (asociada a colas pesadas) y la Weibull.
+Para los componentes positivos se utilizó el paquete `fitdistrplus` de R de acuerdo con @deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
+Para los costos positivos menores a 900 euros se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
+Para los costos mayores o iguales a 900 euros (acotados al intervalo \[900, 20,000\] únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general) se evaluaron la Lognormal, la Pareto (asociada a colas pesadas) y la Weibull.
 
 En ambos componentes, la distribución Lognormal presentó el mejor ajuste.
 Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia.
@@ -1481,9 +1481,9 @@ $$IC_{95\%}(\sigma^2) = \left[\frac{(n-1)S^2}{\chi^2_{0.975,n-1}},\ \frac{(n-1)S
 obteniendo el intervalo para $\sigma$ al aplicar raíz cuadrada a los límites anteriores.
 
 Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $H_i=0$ en caso contrario, con la cual se compararon mediante boxplots variables cuantitativas como la edad, la antigüedad con la aseguradora, el historial de reclamos, el peso, la potencia y el valor del vehículo entre ambos grupos; el historial de reclamos mostró la diferencia visual más clara entre ambos grupos.
-También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \#\{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
+También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
 
-Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de Lledó y Pavía (2024), el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis.
+Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de @lledo2024, el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis.
 La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por `fitdistrplus` (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
 
 #### Resultados
