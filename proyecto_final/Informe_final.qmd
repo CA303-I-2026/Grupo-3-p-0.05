@@ -52,7 +52,7 @@ editor:
 ```
 
 ```{=latex}
-{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, JOSE.RODRIGUEZGOMEZ@ucr.ac.cr}
+{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, EMILY.MORACONTRERAS@ucr.ac.cr, JOSE.RODRIGUEZGOMEZ@ucr.ac.cr}
 ```
 
 ```{=latex}
@@ -232,7 +232,11 @@ Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales d
 \end{center}
 ```
 
+La presente investigación propuso analizar cómo las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo se relacionan con la frecuencia y la severidad de los siniestros, además de analizar el incremento abrupto en la cantidad de reclamos cuando el costo de los mismos alcanza los 900 euros. Tal objetivo debió adaptarse, puesto que en la literatura consultada se señala que la frecuencia y severidad de los siniestros deben trabajarse por separado, además, se identificó la oportunidad de utilizar variables específicas tanto del asegurado como del vehículo para explorar su posible relación con ambos componentes. En la investigación se esperaba encontrar que las variables tuvieran una asociación significativa con la frecuencia y la severidad, igualmente, se esperaba que el fenómeno bajo estudio estuviera asociado a ciertas características del vehículo. Los resultados coinciden parcialmente con las expectativas, pues se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia positivamente con la siniestralidad; algunas variables del vehículo: el valor, la potencia, y el peso tienen una correlación despreciable tanto con la frecuencia como con la severidad, el caso análogo sucede con ciertas características del asegurado: la edad y la antigüedad con la aseguradora.
 
+La metodología utilizada se divide en cuatro métodos complementarios, el análisis descriptivo de la base de datos, el cálculo de correlaciones de Spearman con intervalos de confianza para las variables numéricas, comparación entre grupos y la creación de una distribución mixta de tres componentes ajustada con el paquete *fitdistrplus* de R. La metodología descrita permitió abordar el objetivo de investigación de manera satisfactoria.
+
+El trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros. Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
 
 ```{=latex}
 \begin{center}
