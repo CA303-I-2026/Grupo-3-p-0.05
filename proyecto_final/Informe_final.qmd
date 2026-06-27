@@ -320,6 +320,8 @@ La metodología utilizada se divide en cuatro métodos complementarios, el anál
 
 El trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros. Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
 
+Para futuras investigaciones se recomienda optar por la construcción de un aprendizaje práctico, de manera que las producciones generadas no enfoquen sus esfuerzos en un área meramente teórica, sino que el conocimiento hallado se aplique de igual manera a escenarios prácticos, lo cual puede constituir una guía para las entidades pertinentes y los profesionales que se desarrollan en el campo contemplado. Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico. Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, con el fin de mejorar la precisión de los análisis realizados.
+
 ```{=latex}
 \begin{center}
 ```
