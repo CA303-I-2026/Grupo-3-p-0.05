@@ -52,7 +52,7 @@ editor:
 ```
 
 ```{=latex}
-{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, JOSE.RODRIGUEZGOMEZ@ucr.ac.cr}
+{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, JOSE.RODRIGUEZGOMEZ@ucr.ac.cr, DANIELA.PRADOVARGAS@ucr.ac.cr}
 ```
 
 ```{=latex}
@@ -218,7 +218,89 @@ Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales d
 \end{center}
 ```
 
+Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
 
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{RELACIÓN ENTRE LAS VARIABLES DESCRITAS CON LA FRECUENCIA Y LA SEVERIDAD DE LOS SINIESTROS}}
+```
+
+```{=latex}
+\end{center}
+```
+
+El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de las variables categóricas, como la zona de circulación y el tipo de vehículo.
+
+En primer lugar, se halló que las variables del valor del vehículo, la potencia del vehículo, el peso del vehículo, la antigüedad con la aseguradora y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros. El coeficiente de correlación obtenido fue estrictamente menor al valor absoluto de 0.1 en todos los casos, de manera que la relación de estas variables con la frecuencia y la severidad de los siniestros es despreciable. Asimismo, el resultado obtenido indica que no representan buenos prospectos de asociación con el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
+
+Similarmente, se identificó que la variable del historial de reclamos presenta una correlación mediana con la frecuencia y la severidad de los mismos. De acuerdo con @vinuesa2016, el valor del coeficiente para una correlación mediana debe ser estrictamente mayor al valor absoluto de 0.3 y menor o igual al valor absoluto de 0.5. El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0.38 y 0.36 respectivamente, situándose en el rango especificado. Así, se determinó que el historial de siniestros posee una relación media con las variables respuesta.
+
+Es importante destacar que los resultados hallados mediante el análisis de correlación, se estimaron a partir de intervalos de confianza al 95%.
+
+En segundo lugar, se encontró que la frecuencia muestra un comportamiento diferenciado según la zona de circulación, mientras que la severidad no presenta diferencias notables en su comportamiento bajo dichas categorías. Los asegurados de las zonas urbanas presentan un mayor promedio en la frecuencia de la siniestralidad anual, en comparación con los asegurados de las zonas rurales. Además, las distribuciones del costo anual positivo son similares entre las zonas rurales y las zonas urbanas. Así, es posible afirmar que la zona de circulación tiene cierta asociación con la frecuencia de los siniestros, sin embargo, no es posible realizar la afirmación análoga respecto a la severidad de los siniestros. El resultado es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico.
+
+En tercer lugar, se analizó la relación entre la variable del tipo de vehículo con la frecuencia y la severidad de los siniestros. Dado que el tipo de vehículo es una variable categórica, se efectuó una agrupación según el tipo de vehículo y se estudió la frecuencia y la severidad de los siniestros. En consecuencia, se concluyó que los vehículos de turismo poseen un mayor costo anual de siniestros, en comparación a los otros tipos de vehículos, mientras que las furgonetas presentan una mayor frecuencia de siniestros. El hallazgo evidencia que el tipo de vehículo está asociado con la frecuencia y la severidad, donde los vehículos particulares o de turismo, tienen siniestros con un mayor costo anual, por otro lado, las furgonetas poseen una mayor cantidad de siniestros por año.
+
+En síntesis, el análisis realizado muestra que las variables de las características asociadas a los asegurados y a los vehículos, poseen relaciones diferenciadas con la frecuencia y la severidad de los siniestros. Las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; el caso contrario de la variable del historial de siniestros, la cual evidencia una asociación moderada con estas. Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{ANÁLISIS DEL INCREMENTO ABRUPTO AL SUPERAR EL MONTO DE 900 EUROS}}
+```
+
+```{=latex}
+\end{center}
+```
+
+El análisis del incremento abrupto al superar el monto de 900 euros se compone de dos acciones: determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta. Respecto al primer componente se encontraron tres resultados particulares, los cuales se detallan como sigue.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{INCIDENCIA DE LAS VARIABLES EN EL FENÓMENO BAJO ESTUDIO}}
+```
+
+```{=latex}
+\end{center}
+```
+
+En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero. Dichos estadísticos se calcularon para las clases de las variables categóricas del tipo de vehículo, la zona de circulación y el tipo de combustible. A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente 882 euros en todos los grupos analizados, sin importar el tipo de vehículo, la zona de circulación o el tipo de combustible. El hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de 882 euros en todos los grupos estudiados, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo. Lo anterior refuerza la pertinencia metodológica de usar la cifra de 900 euros como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
+
+En segundo lugar, se descubrió que el tipo de vehículo se relaciona con la proporción de reclamos con costos superiores a los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad. Tal hallazgo se encontró al crear una variable denominada mayores_900, la cual adopta el valor de uno si la variable de la severidad es mayor o igual a 900, y adopta el valor cero en el caso contrario. Luego se calculó el promedio de esa variable, haciendo una agrupación por el tipo de vehículo; así se obtuvo la proporción de reclamos que supera el umbral de los 900 euros por cada clase de vehículo. En consideración del presente resultado, se puede confirmar que el tipo de vehículo se asocia con el comportamiento de los costos alrededor del umbral de los 900 euros, ya que las furgonetas y los vehículos de turismo concentran las proporciones más altas de reclamos con costos superiores al mencionado.
+
+Similarmente, se determinó que los reclamos más costosos, aquellos que superan los 900 euros, se concentran en vehículos de características intermedias: los vehículos con pesos entre 1000 y 1500 kilogramos, longitudes entre 4.0 y 4.7 metros, potencias entre 70 y 130 caballos de fuerza, cilindrajes entre 1400 y 2000, así como cinco puertas, que corresponden a las cuatro puertas y la cajuela. La concentración de reclamos superiores a 900 euros en vehículos de características medias, sugiere que el aumento abrupto en el costo no está asociado en su mayoría con vehículos especiales, sino que está asociado principalmente con vehículos de uso común: los de turismo, los familiares o incluso los cotidianos.
+
+En síntesis, los resultados obtenidos sugieren que el umbral de 900 euros constituye un punto de referencia relevante dentro de la estructura de los costos de los siniestros: coincide con un valor cercano al tercer cuartil de la distribución en todos los grupos analizados, definidos a partir de las variables categóricas. Asimismo, se identificó que el tipo de vehículo desempeña un papel importante en los reclamos de alta severidad, puesto que las furgonetas y los vehículos de turismo concentran una mayor proporción de casos por encima del umbral definido. Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales, sino con los vehículos de uso común que poseen características intermedias.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{ANÁLISIS DE DISTRIBUCIÓN MIXTA}}
+```
+
+```{=latex}
+\end{center}
+```
+
+Para estudiar el comportamiento del costo anual en torno al umbral de 900 euros, se implementó un modelo de distribución mixta, separando los registros en tres componentes: costos nulos, costos moderados, cuyos valores son mayores a cero y menores a 900 euros; y costos altos, cuyos montos son mayores o iguales a 900 euros y son menores o iguales a 20,000 euros. A partir de la división planteada se encontraron dos resultados particulares, los cuales se detallan como sigue.
+
+En primer lugar, se determinó que la distribución que presenta un mejor ajuste para los datos con costos entre 0 y 900 corresponde a la distribución Lognormal, al obtener un Criterio de Información de Akaike (AIC) de 211,339.9. Esta distribución fue comparada con la distribución Gamma, la cual obtuvo un AIC de 212,684.5, con una diferencia de 1,344.6 respecto a la Lognormal. En vista de lo anterior, se seleccionó la Lognormal para modelar los costos que están en el intervalo 0 a 900. Mediante el paquete fitdistrplus, se recurrió a la función fitdist() para calcular los parámetros de la distribución, los resultados fueron: meanlog = 5.2785366 y sdlog= 0.9693318.
+
+En segundo lugar, para el intervalo de los valores mayores o iguales a 900 euros y menores o iguales a 20,000 euros, se encontró que la distribución con un mejor ajuste para los datos en el rango descrito es la distribución Lognormal, la cual obtuvo un AIC de 64,536.62. En este caso, dicha distribución se comparó con la distribución de Pareto, que resultó en un AIC de 66,422.61, con una diferencia de 1,885.99 respecto a la Lognormal. Además, a través del uso del mismo paquete se concluyó que los parámetros para esta distribución son: meanlog= 7.5571894 y sdlog = 0.6816524.
+
+Finalmente, es importante aclarar que la cota superior de 20,000 euros se fijó con el objetivo de facilitar el ajuste, puesto que las observaciones con costos superiores a tal cifra representan valores extremos aislados, los cuales pueden potencialmente distorsionar las estimaciones.
+
+En síntesis, el análisis de distribución mixta permitió caracterizar el comportamiento de los costos anuales alrededor del umbral de 900 euros. Los resultados evidenciaron que la distribución Lognormal proporciona el mejor ajuste tanto para los costos moderados como para los costos altos, superando a las distribuciones Gamma y Pareto según el criterio AIC. Asimismo, la decisión de segmentar de los datos y de excluir a las observaciones con montos superiores a 20,000 euros, favoreció la obtención de estimaciones más estables.
 
 ```{=latex}
 \begin{center}
