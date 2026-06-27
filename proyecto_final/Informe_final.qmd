@@ -1,0 +1,193 @@
+---
+bibliography: ../referencias/referencias.bib
+csl: https://www.zotero.org/styles/apa
+format: 
+  pdf: 
+    papersize: letter
+    documentclass: article
+    lang: es-CR
+    titlepage: true
+    toc: false
+    toccolor: "black"
+    fontsize: "11pt"
+    mainfont: Times New Roman
+    urlcolor: "blue"
+    number-sections: false
+    margin-left: "2.54cm"
+    margin-right: "2.54cm"
+    margin-top: "2.54cm"
+    margin-bottom: "2.54cm"
+    header-includes:
+      - \usepackage{indentfirst}
+      - \setlength{\parindent}{1.27cm}
+      - \usepackage{longtable}
+      - \usepackage{array}
+      - \renewcommand{\arraystretch}{1.5}
+      - \setlength{\tabcolsep}{8pt}
+      - \usepackage{setspace}
+      - \setstretch{1.15}
+      - \usepackage{fancyhdr}
+      - \pagestyle{fancy}
+      - \fancyhf{}
+      - \fancyfoot[L]{\footnotesize Alexandra González, Estefanía Mora, Daniela Prado y José Miguel Rodríguez}
+      - \fancyfoot[R]{\thepage}
+      - \renewcommand{\headrulewidth}{0pt}
+      - \renewcommand{\footrulewidth}{0.4pt}
+    include-after-body: Anexos.tex
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{13pt}{14pt}\selectfont\textbf{Intervención de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo en la frecuencia y la severidad de los siniestros}}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont Alexandra González, Estefanía Mora, Daniela Prado y José Miguel Rodríguez}
+```
+
+```{=latex}
+{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, }
+```
+
+```{=latex}
+\end{center}
+```
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Resumen}}
+```
+
+```{=latex}
+\end{center}
+```
+
+La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
+Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
+Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
+Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes: costos nulos, costos moderados y costos altos; ajustado con el paquete *fitdistrplus* de R y validado con intervalos asintóticos.
+Los resultados muestran que variables como el historial de reclamos poseen una relación significativa con la siniestralidad, mientras que otras como la edad o el valor del vehículo presentan una correlación despreciable.
+El tipo de vehículo resultó ser un factor importante para la severidad, y el modelo de distribución mixta identificó que los costos se caracterizan adecuadamente mediante una distribución Lognormal, con un mejor ajuste en comparación al de otras distribuciones: la Gamma, la Weibull y la Pareto.
+Los intervalos de confianza para los parámetros mostraron amplitudes reducidas, 0.0302, 0.0213, 0.0436 y 0.0308, para $\mu_1, \sigma_1, \mu_2, \sigma_2$ respectivamente, confirmando la estabilidad de las estimaciones.
+La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
+El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
+
+**Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Introducción}}
+```
+
+```{=latex}
+\end{center}
+```
+
+En el acontecer actuarial, predomina la existencia de múltiples variables, tanto cuantitativas como cualitativas, que interactúan simultáneamente en un espacio compartido.
+En particular, en el ámbito asegurador automotriz, resulta imprescindible comprender la manera en que las diversas variables se relacionan con la ocurrencia y el costo de los siniestros reportados, ya que estos últimos elementos son ejes fundamentales en la determinación de las primas cobradas a los asegurados, a la vez que una correcta fijación de las primas potencia la sostenibilidad financiera de las aseguradoras.
+Las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tienden a estar contenidas en la mayoría de las bases de datos pertenecientes a las aseguradoras automotrices, de manera que estudiar su intervención sobre la frecuencia y la severidad de los siniestros cobra una evidente importancia bajo el contexto planteado.
+
+El presente proyecto posee el objetivo de analizar la relación entre las variables mencionadas en el párrafo anterior con dos variables respuesta: la frecuencia y la severidad de los siniestros.
+Lo anterior se desarrollará a partir de la base de datos de autoría de @lledo2024, la cual muestra la información relacionada con una aseguradora situada en Valencia, España; con entradas que comprenden el periodo entre 1980 y 2019.
+Adicionalmente, se examinará un fenómeno descubierto durante el análisis exploratorio de los datos: cuando el costo de los siniestros supera el monto de los 900 euros, la cantidad de siniestros aumenta de forma abrupta, interrumpiendo el comportamiento decreciente mostrado hasta ese valor; así, se pretende determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
+
+Dado que el objetivo del proyecto considera variables cuantitativas y cualitativas, el manejo de las mismas difiere.
+En el caso de las variables cuantitativas, se acudirá al análisis de correlación para estudiar su relación con la frecuencia y la severidad de los siniestros; mientras que en el caso de las variables cualitativas, que además son categóricas, se desarrollará un análisis segmentado por grupos: se estudiará el comportamiento de las categorías contenidas en cada variable cualitativa, respecto a la frecuencia y la severidad de los siniestros, apoyándose en un análisis principalmente gráfico.
+
+Por otro lado, es importante destacar que tras una revisión literaria mediante búsquedas a partir de palabras clave como frecuencia, severidad, cantidad de reclamos y seguros automovilísticos; se identificó que la mayoría de las producciones gira en torno a la predicción del riesgo, también predomina la modelación de distintos elementos, dentro de ellos la frecuencia y la severidad de los siniestros.
+En vista de lo anterior, el conocimiento producido a través del desarrollo de este proyecto cubrirá un espacio que actualmente está vacío: la indagación en la manera en que las variables del entorno asegurador automovilístico se relacionan con la frecuencia y la severidad de los siniestros.
+Dicho conocimiento no solo adquiere la relevancia académica enunciada, sino que además proporciona información de utilidad para las aseguradoras automotrices, al brindarles un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y así puedan resguardar su capacidad de pago.
+Esto último constituye una responsabilidad social: en situaciones de alta vulnerabilidad, por ejemplo un accidente de tránsito, los asegurados acuden a las compañías aseguradoras en vías de reclamar la cobertura que les fue garantizada, con el fin de cubrir los gastos derivados de tales escenarios; de esta manera, es primordial que las aseguradoras preserven su capacidad para financiar las obligaciones adquiridas con sus clientes.
+
+Finalmente, la estructura del proyecto se compone de tres secciones: la metodología, los resultados y las conclusiones.
+En la sección de la metodología se explicarán tanto los pasos como las herramientas empleadas para desarrollar la investigación.
+Después, en la sección de resultados se expondrán los principales hallazgos que responden al objetivo de investigación planteado.
+Por último, en la sección de conclusiones se enunciarán las observaciones emitidas a raíz de los descubrimientos.
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Metodología}}
+```
+
+```{=latex}
+\end{center}
+```
+
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Resultados}}
+```
+
+```{=latex}
+\end{center}
+```
+
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Conclusiones}}
+```
+
+```{=latex}
+\end{center}
+```
+
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Agradecimientos}}
+```
+
+```{=latex}
+\end{center}
+```
+
+Primeramente, deseamos externar nuestro profundo agradecimiento a la Universidad de Costa Rica, un hogar educativo que promueve la excelencia, la creatividad y el pleno desarrollo de sus estudiantes.
+Durante estos tres años de formación académica hemos recibido de su parte un cálido recibimiento, asimismo, su compromiso con la formación integral de profesionales ha fortalecido en nosotros no solo nuestros conocimientos y habilidades, sino también un amplio sentido de responsabilidad social.
+
+Finalmente, agradecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
+Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
+
+\newpage
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont\textbf{Referencias}}
+```
+
+```{=latex}
+\end{center}
+```
