@@ -65,7 +65,7 @@ editor:
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Resumen}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{RESUMEN}}
 ```
 
 ```{=latex}
@@ -82,14 +82,14 @@ Los intervalos de confianza para los parámetros mostraron amplitudes reducidas,
 La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
 El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
 
-**Palabras clave:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
+**PALABRAS CLAVE:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
 ```{=latex}
 \begin{center}
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Introducción}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{INTRODUCCIÓN}}
 ```
 
 ```{=latex}
@@ -123,7 +123,7 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Metodología}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{METODOLOGÍA}}
 ```
 
 ```{=latex}
@@ -137,7 +137,7 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Resultados}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{RESULTADOS}}
 ```
 
 ```{=latex}
@@ -151,7 +151,7 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Conclusiones}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{CONCLUSIONES}}
 ```
 
 ```{=latex}
@@ -165,7 +165,7 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Agradecimientos}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{AGRADECIMIENTOS}}
 ```
 
 ```{=latex}
@@ -185,7 +185,7 @@ Su disposición para brindar apoyo y su motivación por compartir sus vastos con
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont\textbf{Referencias}}
+{\fontsize{12pt}{14pt}\selectfont\textbf{REFERENCIAS}}
 ```
 
 ```{=latex}
