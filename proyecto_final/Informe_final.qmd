@@ -52,7 +52,7 @@ editor:
 ```
 
 ```{=latex}
-{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, }
+{\fontsize{9pt}{14pt}\selectfont ALEXANDRA.GONZALEZBERMUDEZ@ucr.ac.cr, JOSE.RODRIGUEZGOMEZ@ucr.ac.cr}
 ```
 
 ```{=latex}
@@ -130,7 +130,81 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 \end{center}
 ```
 
+El objetivo de investigación planteado buscó establecer cómo intervienen la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros, y analizar el incremento abrupto en la cantidad de reclamos cuando el costo de estos supera los 900 euros.
 
+El punto de partida de la metodología consistió en que las variables de la siniestralidad no presentan un comportamiento simple: la frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Asimismo, el análisis descriptivo permitió identificar una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros. Tales características hicieron necesaria una combinación de métodos descriptivos, comparativos y de modelación exploratoria.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{DATOS}}
+```
+
+```{=latex}
+\end{center}
+```
+
+La base de datos utilizada corresponde al conjunto de datos de @lledo2024, disponible en Mendeley Data (DOI: 10.17632/5cxyb5fp4f.2). Mediante una investigación en openICPSR se determinó que el origen geográfico de la base corresponde a España, por lo que la divisa utilizada para las variables monetarias es el euro. La base contiene 105,555 registros y 34 variables, correspondientes a 53,502 asegurados únicos, con un promedio de 1.97 registros por asegurado. La información cubre contratos desde 1980 hasta renovaciones registradas en 2018, e incluye cuatro tipos de vehículo: motocicleta, turismo, furgoneta y agrícola.
+
+Se identificaron valores faltantes en tres variables. *Date_lapse* presentó 70,408 valores faltantes (66.7 %) y se excluyó del análisis, al no ser indispensable para satisfacer el objetivo de la investigación. *Length* presentó 10,329 valores faltantes (9.79 %) y se imputó mediante la mediana según el tipo de vehículo. *Type_fuel* presentó 1,764 valores faltantes (1.67 %) y los registros correspondientes se eliminaron.
+
+Para el análisis se seleccionaron variables relacionadas con tres dimensiones: las características del asegurado (edad, *Seniority*, antigüedad de la licencia de conducir), las características del vehículo (potencia, valor, peso, largo) y el historial de siniestros (*N_claims_history*, *R_Claims_history*), además de las variables centrales *N_claims_year* y *Cost_claims_year*, que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{11pt}{14pt}\selectfont\textbf{FORMULACIÓN DE LOS MÉTODOS}}
+```
+
+```{=latex}
+\end{center}
+```
+
+La metodología se organizó en cuatro métodos complementarios: primero, el análisis descriptivo de la frecuencia y la severidad de los siniestros; segundo, el estudio de asociaciones entre variables cuantitativas mediante el coeficiente de correlación de Spearman; tercero, la comparación entre grupos definidos por variables categóricas; y cuarto, el análisis del umbral de 900 euros mediante una distribución mixta y el ajuste de distribuciones paramétricas. Esta organización permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad, en respuesta a la alta concentración de ceros, la asimetría hacia la derecha y los valores extremos observados.
+
+Para el análisis descriptivo de la frecuencia y la severidad se denota $N_i$ = *N_claims_year*$_i$ como la cantidad de siniestros reportados por el asegurado $i$ durante el año, e $Y_i$ = *Cost_claims_year*$_i$ como el costo anual de los siniestros asociado a ese registro. Esta separación fue necesaria de acuerdo con @frees2021, dado que ambas variables tienen naturalezas estadísticas distintas: $N_i$ es una variable de conteo, mientras que $Y_i$ es una variable continua no negativa.
+
+En lo que respecta a la frecuencia se calculó, para cada cantidad posible de siniestros $k$, la frecuencia absoluta $f_k = \{i : N_i = k\}$ y la frecuencia relativa $p_k = f_k/n$, además de la proporción de asegurados sin siniestros $\hat{p}_0 = \{i : N_i = 0\}/n$. También se calculó el índice de sobredispersión $D = \mathrm{Var}(N_i)/E(N_i)$. Para la severidad se calculó la proporción de registros con costo igual a cero, $\hat{q}_0 = \{i : Y_i = 0\}/n$, y se analizó por separado el subconjunto de costos positivos $Y_i \mid Y_i > 0$, sobre el cual se calcularon medidas de tendencia central y dispersión, dando mayor peso a la mediana por su menor sensibilidad a los valores extremos. El análisis visual se realizó mediante histogramas y boxplots, restringiendo en algunos gráficos los costos positivos a valores menores o iguales a 5000 euros únicamente con fines de legibilidad.
+
+La aplicación de este método mostró que el 81.21 % de los registros no presentó siniestros durante el año (mediana de $N_i$ igual a cero), con un promedio de 0.40 siniestros anuales y un máximo de 25. El costo promedio anual fue de 155.60 euros, con mediana igual a cero y un máximo de 260,853.24 euros, lo que confirma la concentración de la distribución en cero y la presencia de reclamos de monto elevado. Respecto al umbral de 900 euros, no se registraron observaciones con costo exactamente igual a dicho valor, pero 3,779 registros (3.64 %) presentaron costos superiores a 900 euros. Mediante el método del rango intercuartílico (IQR), se identificó que *Cost_claims_year* y *N_claims_year* presentaron el mayor porcentaje de valores atípicos (18.79 % cada una), seguidas por *Weight*, *Power*, *R_Claims_history* y *Seniority* (entre 7 % y 9.7 %), mientras que *edad*, *antiguedad_licencia* y *edad_vehiculo* mostraron escasos valores atípicos.
+
+La comparación según el tipo de vehículo mostró que los vehículos de turismo representan casi el 80 % de los registros, seguidos por las furgonetas (12.73 %) y las motocicletas (6.61 %). Las furgonetas presentaron el mayor promedio de siniestros (0.568) y el costo promedio más alto (166.35 euros), mientras que los vehículos de turismo mostraron un costo promedio similar (165.10 euros) pero una frecuencia menor. Las categorías agrícola y motocicleta mostraron porcentajes muy altos sin siniestros, en particular la categoría agrícola con 99.86 %. Según la zona, el 72.7 % de los registros corresponde a zona rural y el 27.3 % a zona urbana; sin embargo, la zona urbana presentó un mayor promedio de siniestros (0.458 frente a 0.376) y un costo promedio más alto (175.56 euros frente a 148.10 euros), aunque la mediana del costo fue cero en ambas zonas.
+
+El segundo método consistió en estudiar la asociación entre las variables cuantitativas del asegurado o del vehículo (edad, antigüedad como cliente, historial de reclamos, peso, potencia y valor del vehículo) y las variables de siniestralidad, con el propósito de identificar patrones de asociación exploratorios, sin establecer relaciones causales. Antes de calcular las correlaciones, se evaluó la normalidad de la variable de la frecuencia mediante la prueba de Shapiro-Wilk sobre una muestra de 5,000 observaciones. Dado que la prueba rechazó la normalidad, y considerando la alta concentración de ceros, la asimetría y los valores extremos, se descartó el coeficiente de Pearson y se utilizó únicamente el coeficiente de correlación de Spearman, definido como la correlación de Pearson aplicada a los rangos de las variables:
+
+$$\rho_s = \frac{\sum_{i=1}^n (R(X_i)-\overline{R(X)})(R(Z_i)-\overline{R(Z)})}{\sqrt{\sum_{i=1}^n (R(X_i)-\overline{R(X)})^2}\sqrt{\sum_{i=1}^n (R(Z_i)-\overline{R(Z)})^2}}.$$
+
+De acuerdo con @vinuesa2016, el coeficiente resultó adecuado porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni linealidad; frente a Kendall, Spearman resultó conveniente por el tamaño de la base de datos y por ofrecer una medida de interpretación directa. Las correlaciones se calcularon en R mediante *cor.test()* con el método *spearman*, y se presentaron en una matriz de correlación, la cual también permitió un diagnóstico preliminar de multicolinealidad entre variables explicativas.
+
+Para complementar la estimación puntual, se construyeron intervalos de confianza al 95 % mediante la transformación z de Fisher, $z_{\hat\rho} = \mathrm{arctanh}(\hat\rho)$, bajo la cual $z_{\hat\rho} \sim N(\mathrm{arctanh}(\rho), \tfrac{1}{n-3})$, de acuerdo con el enfoque analítico de @ruscio2008. El intervalo en la escala transformada, $[z_{\hat\rho} - z_{0.975}/\sqrt{n-3},\ z_{\hat\rho} + z_{0.975}/\sqrt{n-3}]$, se regresó a la escala original aplicando la función tangente hiperbólica. La interpretación se realizó de la siguiente manera: si el intervalo contenía el cero, la asociación se consideró débil o incierta; si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia de asociación positiva; y si se mantuvo completamente por debajo de cero, como evidencia de asociación negativa.
+
+El tercer método consistió en comparar la frecuencia y la severidad entre grupos definidos por variables categóricas (tipo de vehículo y zona de circulación), dado que estas características no podían analizarse mediante correlaciones. Para cada grupo $g$ se calculó la frecuencia promedio de siniestros $\bar N_g = \frac{1}{n_g}\sum_{X_i=g} N_i$ y la proporción de asegurados sin siniestros $\hat p_{0,g}$. Para la severidad, se calculó la proporción de registros con costo positivo $\hat q_g$ dentro de cada grupo, y sobre el subconjunto $Y_i \mid (Y_i>0, X_i=g)$ se calcularon medidas descriptivas, dando mayor peso a la mediana y los cuartiles por la asimetría de la variable. Los resultados se complementaron con gráficos de barras (frecuencia promedio y proporción sin siniestros) y boxplots del costo anual positivo, filtrando y restringiendo el eje a valores menores o iguales a 5,000 euros solo con fines de visualización.
+
+El cuarto método consistió en analizar el comportamiento de los registros cuyo costo anual alcanzó o superó los 900 euros. A partir de la retroalimentación recibida y de los resultados exploratorios (en particular, el histograma del costo anual mostró una distribución asimétrica hacia la derecha con un pico pronunciado alrededor de los 900 euros), el análisis se reformuló mediante una estructura de distribución mixta:
+
+$$Y_i \sim \pi_0\delta_0 + \pi_1 F_1(y\mid\theta_1) + \pi_2 F_2(y\mid\theta_2),\qquad \pi_0+\pi_1+\pi_2=1,$$
+
+donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos. Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
+
+Para los componentes positivos se utilizó el paquete *fitdistrplus* de R de acuerdo con @deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$. Para los costos positivos menores a 900 euros se evaluaron como candidatas la Lognormal, la Gamma y la Weibull. Para los costos mayores o iguales a 900 euros, acotados por la cifra de 20,000 euros únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general, se evaluaron la Lognormal, la Pareto, que está asociada a colas pesadas, y la Weibull.
+
+En ambos componentes, la distribución Lognormal presentó el mejor ajuste. Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia. A partir de la muestra transformada $W_i=\ln(Y_i)$, se construyeron intervalos de confianza al 95 % para $\mu$, mediante la distribución $t_{n-1}$:
+
+$$IC_{95\%}(\mu) = \left[\bar W - t_{0.975,n-1}\frac{S}{\sqrt n},\ \bar W + t_{0.975,n-1}\frac{S}{\sqrt n}\right],$$
+
+y para $\sigma^2$, mediante la distribución $\chi^2_{n-1}$:
+
+$$IC_{95\%}(\sigma^2) = \left[\frac{(n-1)S^2}{\chi^2_{0.975,n-1}},\ \frac{(n-1)S^2}{\chi^2_{0.025,n-1}}\right],$$
+
+obteniendo el intervalo para $\sigma$ al aplicar raíz cuadrada a los límites anteriores.
+
+Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $H_i=0$ en caso contrario, con la cual se compararon mediante boxplots variables cuantitativas como la edad, la antigüedad con la aseguradora, el historial de reclamos, el peso, la potencia y el valor del vehículo entre ambos grupos; el historial de reclamos mostró la diferencia visual más clara entre ambos grupos. También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
+
+Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de @lledo2024, el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis. La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por *fitdistrplus* (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
 
 ```{=latex}
 \begin{center}
