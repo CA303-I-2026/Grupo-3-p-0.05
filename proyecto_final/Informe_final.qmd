@@ -59,7 +59,6 @@ editor:
 \end{center}
 ```
 
-
 ```{=latex}
 \begin{center}
 ```
@@ -74,13 +73,12 @@ editor:
 
 La tarificación en seguros de automóviles requiere comprender los factores que se asocian con la siniestralidad, compuesta por la frecuencia y la severidad de los reclamos.
 Este estudio analiza cómo las características del asegurado y del vehículo se relacionan con estos dos componentes, agregando una tercera capa de estudio: el análisis del incremento abrupto en la frecuencia de reclamos alrededor del umbral de 900 euros.
-Se analizó una base de datos de 105,555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
-Para explorar relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes: costos nulos, costos moderados y costos altos; ajustado con el paquete *fitdistrplus* de R y validado con intervalos asintóticos.
-Los resultados muestran que variables como el historial de reclamos poseen una relación significativa con la siniestralidad, mientras que otras como la edad o el valor del vehículo presentan una correlación despreciable.
-El tipo de vehículo resultó ser un factor importante para la severidad, y el modelo de distribución mixta identificó que los costos se caracterizan adecuadamente mediante una distribución Lognormal, con un mejor ajuste en comparación al de otras distribuciones: la Gamma, la Weibull y la Pareto.
-Los intervalos de confianza para los parámetros mostraron amplitudes reducidas, 0.0302, 0.0213, 0.0436 y 0.0308, para $\mu_1, \sigma_1, \mu_2, \sigma_2$ respectivamente, confirmando la estabilidad de las estimaciones.
-La siniestralidad en la cartera no se asocia con una única variable, sino que presenta relaciones con una combinación de estas, el historial de reclamos y el tipo de vehículo son las variables más relevantes.
-El modelo de distribución mixta captura adecuadamente la estructura de los costos, confirmando la relevancia del umbral de 900 euros.
+Se analizó una base de datos de 105.555 pólizas de una aseguradora española, con información entre 1980 y 2018, realizando un análisis descriptivo completo de los datos.
+Para explorar las relaciones, se utilizaron correlaciones de Spearman con intervalos de confianza de Fisher, junto con un modelo de distribución mixta de tres componentes: costos nulos, costos moderados y costos altos; ajustado con el paquete *fitdistrplus* de R y validado con intervalos asintóticos.
+Los resultados muestran que ciertas variables, como el historial de reclamos, poseen una relación significativa con la siniestralidad, mientras que otras, como la edad del asegurado o el valor del vehículo, presentan una correlación despreciable.
+El modelo de distribución mixta demostró que los costos se caracterizan adecuadamente mediante una distribución Lognormal, con un mejor ajuste en comparación al de otras distribuciones: la Gamma, la Weibull y la Pareto.
+Asimismo, dicho modelo captura la estructura de los costos, reiterando la relevancia del umbral de 900 euros.
+Los intervalos de confianza para los parámetros mostraron amplitudes reducidas, 0,0302; 0,0213; 0,0436 y 0,0308, para $\mu_1, \sigma_1, \mu_2, \sigma_2$ respectivamente, confirmando la estabilidad de las estimaciones.
 
 **PALABRAS CLAVE:** siniestralidad en seguros de automóviles, frecuencia de siniestros, severidad de siniestros, historial de reclamos, factores de riesgo.
 
@@ -101,22 +99,20 @@ En particular, en el ámbito asegurador automotriz, resulta imprescindible compr
 Las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tienden a estar contenidas en la mayoría de las bases de datos pertenecientes a las aseguradoras automotrices, de manera que estudiar su intervención sobre la frecuencia y la severidad de los siniestros cobra una evidente importancia bajo el contexto planteado.
 
 El presente proyecto posee el objetivo de analizar la relación entre las variables mencionadas en el párrafo anterior con dos variables respuesta: la frecuencia y la severidad de los siniestros.
-Lo anterior se desarrollará a partir de la base de datos de autoría de @lledo2024, la cual muestra la información relacionada con una aseguradora situada en Valencia, España; con entradas que comprenden el periodo entre 1980 y 2019.
+Lo anterior se desarrolló a partir de la base de datos de autoría de @lledo2024, la cual muestra la información relacionada con una aseguradora situada en Valencia, España; con entradas que comprenden el periodo entre 1980 y 2018.
 Adicionalmente, se examinará un fenómeno descubierto durante el análisis exploratorio de los datos: cuando el costo de los siniestros supera el monto de los 900 euros, la cantidad de siniestros aumenta de forma abrupta, interrumpiendo el comportamiento decreciente mostrado hasta ese valor; así, se pretende determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
 
 Dado que el objetivo del proyecto considera variables cuantitativas y cualitativas, el manejo de las mismas difiere.
 En el caso de las variables cuantitativas, se acudirá al análisis de correlación para estudiar su relación con la frecuencia y la severidad de los siniestros; mientras que en el caso de las variables cualitativas, que además son categóricas, se desarrollará un análisis segmentado por grupos: se estudiará el comportamiento de las categorías contenidas en cada variable cualitativa, respecto a la frecuencia y la severidad de los siniestros, apoyándose en un análisis principalmente gráfico.
 
-Por otro lado, es importante destacar que tras una revisión literaria mediante búsquedas a partir de palabras clave como frecuencia, severidad, cantidad de reclamos y seguros automovilísticos; se identificó que la mayoría de las producciones gira en torno a la predicción del riesgo, también predomina la modelación de distintos elementos, dentro de ellos la frecuencia y la severidad de los siniestros.
+Por otro lado, es importante destacar que tras una revisión literaria mediante búsquedas a partir de palabras clave como frecuencia, severidad, cantidad de reclamos y seguros automovilísticos; se identificó que la mayoría de las producciones gira en torno a la predicción del riesgo.
 En vista de lo anterior, el conocimiento producido a través del desarrollo de este proyecto cubrirá un espacio que actualmente está vacío: la indagación en la manera en que las variables del entorno asegurador automovilístico se relacionan con la frecuencia y la severidad de los siniestros.
 Dicho conocimiento no solo adquiere la relevancia académica enunciada, sino que además proporciona información de utilidad para las aseguradoras automotrices, al brindarles un mayor conocimiento sobre los aspectos que potencialmente podrían disparar el pago de obligaciones con montos elevados y así puedan resguardar su capacidad de pago.
-Esto último constituye una responsabilidad social: en situaciones de alta vulnerabilidad, por ejemplo un accidente de tránsito, los asegurados acuden a las compañías aseguradoras en vías de reclamar la cobertura que les fue garantizada, con el fin de cubrir los gastos derivados de tales escenarios; de esta manera, es primordial que las aseguradoras preserven su capacidad para financiar las obligaciones adquiridas con sus clientes.
 
 Finalmente, la estructura del proyecto se compone de tres secciones: la metodología, los resultados y las conclusiones.
 En la sección de la metodología se explicarán tanto los pasos como las herramientas empleadas para desarrollar la investigación.
 Después, en la sección de resultados se expondrán los principales hallazgos que responden al objetivo de investigación planteado.
 Por último, en la sección de conclusiones se enunciarán las observaciones emitidas a raíz de los descubrimientos.
-
 
 ```{=latex}
 \begin{center}
@@ -130,9 +126,9 @@ Por último, en la sección de conclusiones se enunciarán las observaciones emi
 \end{center}
 ```
 
-El objetivo de investigación planteado buscó establecer cómo intervienen la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, tanto en la frecuencia como en la severidad de los siniestros, y analizar el incremento abrupto en la cantidad de reclamos cuando el costo de estos supera los 900 euros.
-
-El punto de partida de la metodología consistió en que las variables de la siniestralidad no presentan un comportamiento simple: la frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa. Asimismo, el análisis descriptivo permitió identificar una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros. Tales características hicieron necesaria una combinación de métodos descriptivos, comparativos y de modelación exploratoria.
+El punto de partida de la metodología consistió en que las variables de la siniestralidad no presentan un comportamiento simple: la frecuencia corresponde a una variable de conteo, mientras que la severidad corresponde a una variable continua no negativa.
+Asimismo, el análisis descriptivo permitió identificar una alta concentración de ceros, una distribución asimétrica hacia la derecha y la presencia de valores extremos en el costo anual de los siniestros.
+Tales características hicieron necesaria una combinación de métodos descriptivos, comparativos y de modelación exploratoria.
 
 ```{=latex}
 \begin{center}
@@ -146,9 +142,15 @@ El punto de partida de la metodología consistió en que las variables de la sin
 \end{center}
 ```
 
-La base de datos utilizada corresponde al conjunto de datos de @lledo2024, disponible en Mendeley Data (DOI: 10.17632/5cxyb5fp4f.2). Mediante una investigación en openICPSR se determinó que el origen geográfico de la base corresponde a España, por lo que la divisa utilizada para las variables monetarias es el euro. La base contiene 105,555 registros y 34 variables, correspondientes a 53,502 asegurados únicos, con un promedio de 1.97 registros por asegurado. La información cubre contratos desde 1980 hasta renovaciones registradas en 2018, e incluye cuatro tipos de vehículo: motocicleta, turismo, furgoneta y agrícola.
+La base de datos utilizada corresponde al conjunto de datos de @lledo2024, disponible en Mendeley Data (DOI: 10.17632/5cxyb5fp4f.2).
+Mediante una investigación en openICPSR se determinó que el origen geográfico de la base corresponde a España, por lo que la divisa utilizada para las variables monetarias es el euro.
+La base contiene 105.555 registros y 34 variables, correspondientes a 53.502 asegurados únicos, con un promedio de 1,97 registros por asegurado.
+La información cubre contratos desde 1980 hasta renovaciones registradas en 2018, e incluye cuatro tipos de vehículo: motocicleta, turismo, furgoneta y agrícola.
 
-Se identificaron valores faltantes en tres variables. *Date_lapse* presentó 70,408 valores faltantes (66.7 %) y se excluyó del análisis, al no ser indispensable para satisfacer el objetivo de la investigación. *Length* presentó 10,329 valores faltantes (9.79 %) y se imputó mediante la mediana según el tipo de vehículo. *Type_fuel* presentó 1,764 valores faltantes (1.67 %) y los registros correspondientes se eliminaron.
+Se identificaron valores faltantes en tres variables.
+*Date_lapse* presentó 70.408 valores faltantes (66,7%) y se excluyó del análisis, al no ser indispensable para satisfacer el objetivo de la investigación.
+*Length* presentó 10.329 valores faltantes (9,79%) y se imputó mediante la mediana según el tipo de vehículo.
+*Type_fuel* presentó 1.764 valores faltantes (1,67%) y los registros correspondientes se eliminaron.
 
 Para el análisis se seleccionaron variables relacionadas con tres dimensiones: las características del asegurado (edad, *Seniority*, antigüedad de la licencia de conducir), las características del vehículo (potencia, valor, peso, largo) y el historial de siniestros (*N_claims_history*, *R_Claims_history*), además de las variables centrales *N_claims_year* y *Cost_claims_year*, que permiten estudiar la frecuencia y la severidad anual de los siniestros, respectivamente.
 
@@ -164,47 +166,65 @@ Para el análisis se seleccionaron variables relacionadas con tres dimensiones: 
 \end{center}
 ```
 
-La metodología se organizó en cuatro métodos complementarios: primero, el análisis descriptivo de la frecuencia y la severidad de los siniestros; segundo, el estudio de asociaciones entre variables cuantitativas mediante el coeficiente de correlación de Spearman; tercero, la comparación entre grupos definidos por variables categóricas; y cuarto, el análisis del umbral de 900 euros mediante una distribución mixta y el ajuste de distribuciones paramétricas. Esta organización permite avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad, en respuesta a la alta concentración de ceros, la asimetría hacia la derecha y los valores extremos observados.
+La metodología se organizó en cuatro métodos complementarios: el análisis descriptivo de la frecuencia y la severidad de los siniestros; el estudio de las asociaciones entre las variables cuantitativas mediante el coeficiente de correlación de Spearman; la comparación entre grupos definidos a partir de las variables categóricas; y el análisis del umbral de 900 euros mediante una distribución mixta junto al ajuste de distribuciones paramétricas.
+Esta organización permitió avanzar desde una descripción general de los datos hacia un análisis más específico de los reclamos de alta severidad, en respuesta a la alta concentración de ceros, la asimetría hacia la derecha y los valores extremos observados.
 
-Para el análisis descriptivo de la frecuencia y la severidad se denota $N_i$ = *N_claims_year*$_i$ como la cantidad de siniestros reportados por el asegurado $i$ durante el año, e $Y_i$ = *Cost_claims_year*$_i$ como el costo anual de los siniestros asociado a ese registro. Esta separación fue necesaria de acuerdo con @frees2021, dado que ambas variables tienen naturalezas estadísticas distintas: $N_i$ es una variable de conteo, mientras que $Y_i$ es una variable continua no negativa.
+Para el análisis descriptivo de la frecuencia y la severidad se denota $N_i$ = *N_claims_year*$_i$ como la cantidad de siniestros reportados por el asegurado $i$ durante el año, por otro lado, $Y_i$ = *Cost_claims_year*$_i$ denota el costo anual de los siniestros asociado a ese registro.
+Dicha separación fue necesaria de acuerdo con @frees2021, dado que ambas variables tienen naturalezas estadísticas distintas.
 
-En lo que respecta a la frecuencia se calculó, para cada cantidad posible de siniestros $k$, la frecuencia absoluta $f_k = \{i : N_i = k\}$ y la frecuencia relativa $p_k = f_k/n$, además de la proporción de asegurados sin siniestros $\hat{p}_0 = \{i : N_i = 0\}/n$. También se calculó el índice de sobredispersión $D = \mathrm{Var}(N_i)/E(N_i)$. Para la severidad se calculó la proporción de registros con costo igual a cero, $\hat{q}_0 = \{i : Y_i = 0\}/n$, y se analizó por separado el subconjunto de costos positivos $Y_i \mid Y_i > 0$, sobre el cual se calcularon medidas de tendencia central y dispersión, dando mayor peso a la mediana por su menor sensibilidad a los valores extremos. El análisis visual se realizó mediante histogramas y boxplots, restringiendo en algunos gráficos los costos positivos a valores menores o iguales a 5000 euros únicamente con fines de legibilidad.
+En lo que respecta a la frecuencia, se calculó para cada cantidad posible de siniestros $k$, la frecuencia absoluta $f_k = \{i : N_i = k\}$ y la frecuencia relativa $p_k = f_k/n$, además de la proporción de asegurados sin siniestros $\hat{p}_0 = \{i : N_i = 0\}/n$.
+También se calculó el índice de sobredispersión $D = \mathrm{Var}(N_i)/E(N_i)$.
+Para la severidad se calculó la proporción de registros con costo igual a cero, $\hat{q}_0 = \{i : Y_i = 0\}/n$, y se analizó por separado el subconjunto de costos positivos $Y_i \mid Y_i > 0$, sobre el cual se calcularon las medidas de tendencia central y dispersión, dando un mayor peso a la mediana dada su menor sensibilidad a los valores extremos.
+El análisis visual se realizó mediante histogramas y boxplots, restringiendo en algunos gráficos los costos positivos a valores menores o iguales a 5.000 euros únicamente con fines de legibilidad.
 
-La aplicación de este método mostró que el 81.21 % de los registros no presentó siniestros durante el año (mediana de $N_i$ igual a cero), con un promedio de 0.40 siniestros anuales y un máximo de 25. El costo promedio anual fue de 155.60 euros, con mediana igual a cero y un máximo de 260,853.24 euros, lo que confirma la concentración de la distribución en cero y la presencia de reclamos de monto elevado. Respecto al umbral de 900 euros, no se registraron observaciones con costo exactamente igual a dicho valor, pero 3,779 registros (3.64 %) presentaron costos superiores a 900 euros. Mediante el método del rango intercuartílico (IQR), se identificó que *Cost_claims_year* y *N_claims_year* presentaron el mayor porcentaje de valores atípicos (18.79 % cada una), seguidas por *Weight*, *Power*, *R_Claims_history* y *Seniority* (entre 7 % y 9.7 %), mientras que *edad*, *antiguedad_licencia* y *edad_vehiculo* mostraron escasos valores atípicos.
+La aplicación de este método mostró que el 81,21% de los registros no presentó siniestros durante el año: mediana de $N_i$ igual a cero, con un promedio de 0,40 siniestros anuales y un máximo de 25.
+El costo promedio anual fue de 155,60 euros, con mediana igual a cero y un máximo de 260.853,24 euros, lo que confirma la concentración de la distribución en cero y la presencia de reclamos de un monto elevado.
+Respecto al umbral de 900 euros, no se registraron observaciones con costo exactamente igual a dicho valor, sin embargo 3.779 registros, un 3,64%, presentaron costos superiores a 900 euros.
+Mediante el método del rango intercuartílico (IQR), se identificó que *Cost_claims_year* y *N_claims_year* presentaron el mayor porcentaje de valores atípicos, 18,79% cada una, seguidas por *Weight*, *Power*, *R_Claims_history* y *Seniority*, con valores entre 7% y 9,7%, mientras que *edad*, *antiguedad_licencia* y *edad_vehiculo* mostraron escasos valores atípicos.
 
-La comparación según el tipo de vehículo mostró que los vehículos de turismo representan casi el 80 % de los registros, seguidos por las furgonetas (12.73 %) y las motocicletas (6.61 %). Las furgonetas presentaron el mayor promedio de siniestros (0.568) y el costo promedio más alto (166.35 euros), mientras que los vehículos de turismo mostraron un costo promedio similar (165.10 euros) pero una frecuencia menor. Las categorías agrícola y motocicleta mostraron porcentajes muy altos sin siniestros, en particular la categoría agrícola con 99.86 %. Según la zona, el 72.7 % de los registros corresponde a zona rural y el 27.3 % a zona urbana; sin embargo, la zona urbana presentó un mayor promedio de siniestros (0.458 frente a 0.376) y un costo promedio más alto (175.56 euros frente a 148.10 euros), aunque la mediana del costo fue cero en ambas zonas.
+La comparación según el tipo de vehículo mostró que los vehículos de turismo representan casi el 80% de los registros, seguidos por las furgonetas con 12,73% y las motocicletas 6,61%.
+Las furgonetas presentaron el mayor promedio de siniestros: 0,568 y el costo promedio más alto: 166,35 euros, mientras que los vehículos de turismo mostraron un costo promedio similar: 165,10 euros pero una frecuencia menor.
+Las categorías agrícola y motocicleta mostraron porcentajes muy altos sin siniestros, en particular la categoría agrícola presentó un 99,86%.
+Según la zona de circulación, el 72,7% de los registros corresponde a la zona rural y el 27,3% a la zona urbana.
+No obstante, la zona urbana presentó un mayor promedio de siniestros: 0,458 frente a 0,376 y un costo promedio más alto: 175,56 euros frente a 148,10 euros, aunque la mediana del costo fue cero en ambas zonas.
 
-El segundo método consistió en estudiar la asociación entre las variables cuantitativas del asegurado o del vehículo (edad, antigüedad como cliente, historial de reclamos, peso, potencia y valor del vehículo) y las variables de siniestralidad, con el propósito de identificar patrones de asociación exploratorios, sin establecer relaciones causales. Antes de calcular las correlaciones, se evaluó la normalidad de la variable de la frecuencia mediante la prueba de Shapiro-Wilk sobre una muestra de 5,000 observaciones. Dado que la prueba rechazó la normalidad, y considerando la alta concentración de ceros, la asimetría y los valores extremos, se descartó el coeficiente de Pearson y se utilizó únicamente el coeficiente de correlación de Spearman, definido como la correlación de Pearson aplicada a los rangos de las variables:
+El segundo método consistió en estudiar la asociación entre las variables cuantitativas del asegurado o del vehículo con las variables de la siniestralidad, con el propósito de identificar patrones de asociación exploratorios, sin establecer relaciones causales.
+Antes de calcular las correlaciones, se evaluó la normalidad de la variable de la frecuencia mediante la prueba de Shapiro-Wilk sobre una muestra de 5.000 observaciones.
+Dado que la prueba rechazó la normalidad, y considerando la alta concentración de ceros, la asimetría y los valores extremos, se descartó el coeficiente de Pearson y se utilizó únicamente el coeficiente de correlación de Spearman, definido como la correlación de Pearson aplicada a los rangos de las variables:
 
 $$\rho_s = \frac{\sum_{i=1}^n (R(X_i)-\overline{R(X)})(R(Z_i)-\overline{R(Z)})}{\sqrt{\sum_{i=1}^n (R(X_i)-\overline{R(X)})^2}\sqrt{\sum_{i=1}^n (R(Z_i)-\overline{R(Z)})^2}}.$$
 
-De acuerdo con @vinuesa2016, el coeficiente resultó adecuado porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni linealidad; frente a Kendall, Spearman resultó conveniente por el tamaño de la base de datos y por ofrecer una medida de interpretación directa. Las correlaciones se calcularon en R mediante *cor.test()* con el método *spearman*, y se presentaron en una matriz de correlación, la cual también permitió un diagnóstico preliminar de multicolinealidad entre variables explicativas.
+De acuerdo con @vinuesa2016, el coeficiente resultó adecuado porque se basa en rangos y permite evaluar asociaciones monótonas sin exigir normalidad ni linealidad.
+Respecto a Kendall, Spearman resultó conveniente por el tamaño de la base de datos y por ofrecer una medida de interpretación directa.
+Las correlaciones se calcularon en R mediante *cor.test()* con el método *spearman*, y se presentaron en una matriz de correlación, la cual también permitió un diagnóstico preliminar de la multicolinealidad entre las variables explicativas.
 
-Para complementar la estimación puntual, se construyeron intervalos de confianza al 95 % mediante la transformación z de Fisher, $z_{\hat\rho} = \mathrm{arctanh}(\hat\rho)$, bajo la cual $z_{\hat\rho} \sim N(\mathrm{arctanh}(\rho), \tfrac{1}{n-3})$, de acuerdo con el enfoque analítico de @ruscio2008. El intervalo en la escala transformada, $[z_{\hat\rho} - z_{0.975}/\sqrt{n-3},\ z_{\hat\rho} + z_{0.975}/\sqrt{n-3}]$, se regresó a la escala original aplicando la función tangente hiperbólica. La interpretación se realizó de la siguiente manera: si el intervalo contenía el cero, la asociación se consideró débil o incierta; si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia de asociación positiva; y si se mantuvo completamente por debajo de cero, como evidencia de asociación negativa.
+Para complementar la estimación puntual, se construyeron intervalos de confianza al 95 % mediante la transformación z de Fisher, $z_{\hat\rho} = \mathrm{arctanh}(\hat\rho)$, bajo la cual $z_{\hat\rho} \sim N(\mathrm{arctanh}(\rho), \tfrac{1}{n-3})$, de acuerdo con el enfoque analítico de @ruscio2008.
+El intervalo en la escala transformada, $[z_{\hat\rho} - z_{0.975}/\sqrt{n-3},\ z_{\hat\rho} + z_{0.975}/\sqrt{n-3}]$, se regresó a la escala original aplicando la función tangente hiperbólica.
+La interpretación se realizó de la siguiente manera: si el intervalo contenía el cero, la asociación se consideró débil o incierta; si el intervalo se mantuvo completamente por encima de cero, se interpretó como evidencia de asociación positiva; y si se mantuvo completamente por debajo de cero, como evidencia de asociación negativa.
 
-El tercer método consistió en comparar la frecuencia y la severidad entre grupos definidos por variables categóricas (tipo de vehículo y zona de circulación), dado que estas características no podían analizarse mediante correlaciones. Para cada grupo $g$ se calculó la frecuencia promedio de siniestros $\bar N_g = \frac{1}{n_g}\sum_{X_i=g} N_i$ y la proporción de asegurados sin siniestros $\hat p_{0,g}$. Para la severidad, se calculó la proporción de registros con costo positivo $\hat q_g$ dentro de cada grupo, y sobre el subconjunto $Y_i \mid (Y_i>0, X_i=g)$ se calcularon medidas descriptivas, dando mayor peso a la mediana y los cuartiles por la asimetría de la variable. Los resultados se complementaron con gráficos de barras (frecuencia promedio y proporción sin siniestros) y boxplots del costo anual positivo, filtrando y restringiendo el eje a valores menores o iguales a 5,000 euros solo con fines de visualización.
+El tercer método consistió en comparar la frecuencia y la severidad entre los grupos definidos a partir de las variables categóricas: el tipo de vehículo y zona de circulación, dado que estas características no podían analizarse mediante las correlaciones.
+Para cada grupo $g$ se calculó la frecuencia promedio de siniestros $\bar N_g = \frac{1}{n_g}\sum_{X_i=g} N_i$ y la proporción de asegurados sin siniestros $\hat p_{0,g}$.
+Para la severidad, se calculó la proporción de registros con costo positivo $\hat q_g$ dentro de cada grupo, y sobre el subconjunto $Y_i \mid (Y_i>0, X_i=g)$ se calcularon medidas descriptivas, dando un mayor peso a la mediana y los cuartiles por la asimetría de la variable.
+Los resultados se complementaron con gráficos de barras y boxplots del costo anual positivo, filtrando y restringiendo el eje a valores menores o iguales a 5.000 euros solo con fines de visualización.
 
-El cuarto método consistió en analizar el comportamiento de los registros cuyo costo anual alcanzó o superó los 900 euros. A partir de la retroalimentación recibida y de los resultados exploratorios (en particular, el histograma del costo anual mostró una distribución asimétrica hacia la derecha con un pico pronunciado alrededor de los 900 euros), el análisis se reformuló mediante una estructura de distribución mixta:
+El cuarto método consistió en analizar el comportamiento de los registros cuyo costo anual alcanzó o superó los 900 euros.
+A partir de los resultados exploratorios: la distribución asimétrica del costo anual de los siniestros hacia la derecha con un pico pronunciado alrededor de los 900 euros, se decidió emprender un análisis de distribución mixta:
 
 $$Y_i \sim \pi_0\delta_0 + \pi_1 F_1(y\mid\theta_1) + \pi_2 F_2(y\mid\theta_2),\qquad \pi_0+\pi_1+\pi_2=1,$$
 
-donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos. Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
+donde $\delta_0$ representa la masa puntual en cero, $F_1$ los costos positivos moderados y $F_2$ los costos altos.
+Se definió la variable categórica $G_i \in \{0,1,2\}$ según $Y_i=0$, $0<Y_i<900$ o $Y_i\geq900$, respectivamente, y los pesos $\hat\pi_0$, $\hat\pi_1$, $\hat\pi_2$ se estimaron como las proporciones observadas en la muestra.
 
-Para los componentes positivos se utilizó el paquete *fitdistrplus* de R de acuerdo con @deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$. Para los costos positivos menores a 900 euros se evaluaron como candidatas la Lognormal, la Gamma y la Weibull. Para los costos mayores o iguales a 900 euros, acotados por la cifra de 20,000 euros únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general, se evaluaron la Lognormal, la Pareto, que está asociada a colas pesadas, y la Weibull.
+Para los componentes positivos se utilizó el paquete *fitdistrplus* de R de acuerdo con @deli2015, para ajustar distribuciones mediante máxima verosimilitud y compararlas mediante el Criterio de Información de Akaike, $AIC = -2\ell(\hat\theta)+2k$.
+Para los costos positivos menores a 900 euros se evaluaron como candidatas la Lognormal, la Gamma y la Weibull.
+Para los costos mayores o iguales a 900 euros, acotados por la cifra de 20.000 euros únicamente para el ajuste gráfico y paramétrico, sin excluir dichas observaciones del análisis general, se evaluaron la Lognormal, la Pareto y la Weibull.
 
-En ambos componentes, la distribución Lognormal presentó el mejor ajuste. Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia. A partir de la muestra transformada $W_i=\ln(Y_i)$, se construyeron intervalos de confianza al 95 % para $\mu$, mediante la distribución $t_{n-1}$:
+En ambos componentes, la distribución Lognormal presentó el mejor ajuste.
+Esta selección se justificó, según @crow1988lognormal, porque si $Y\sim\text{Lognormal}(\mu,\sigma^2)$ entonces $W=\ln(Y)\sim N(\mu,\sigma^2)$, lo que permitió trabajar en una escala aproximadamente normal y utilizar métodos estándar de inferencia.
+A partir de la muestra transformada $W_i=\ln(Y_i)$, se construyeron intervalos de confianza al 95% para $\mu$.
 
-$$IC_{95\%}(\mu) = \left[\bar W - t_{0.975,n-1}\frac{S}{\sqrt n},\ \bar W + t_{0.975,n-1}\frac{S}{\sqrt n}\right],$$
-
-y para $\sigma^2$, mediante la distribución $\chi^2_{n-1}$:
-
-$$IC_{95\%}(\sigma^2) = \left[\frac{(n-1)S^2}{\chi^2_{0.975,n-1}},\ \frac{(n-1)S^2}{\chi^2_{0.025,n-1}}\right],$$
-
-obteniendo el intervalo para $\sigma$ al aplicar raíz cuadrada a los límites anteriores.
-
-Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $H_i=0$ en caso contrario, con la cual se compararon mediante boxplots variables cuantitativas como la edad, la antigüedad con la aseguradora, el historial de reclamos, el peso, la potencia y el valor del vehículo entre ambos grupos; el historial de reclamos mostró la diferencia visual más clara entre ambos grupos. También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
-
-Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales del dataset de @lledo2024, el programa maqueta y la ejecución final coincidieron en un mismo proceso de análisis. La validación se abordó mediante elementos complementarios: para las correlaciones de Spearman, los intervalos de confianza al 95 % construidos con la transformación de Fisher; para la comparación entre grupos, las tablas resumen, proporciones y gráficos comparativos; y para el análisis del umbral de 900 euros, la comparación de distribuciones candidatas mediante el AIC, los gráficos diagnósticos generados por *fitdistrplus* (función de distribución empírica frente a la teórica, gráfico Q-Q y gráfico P-P), y los intervalos de confianza para los parámetros $\mu$ y $\sigma$ de la distribución Lognormal seleccionada, en escala logarítmica.
+Adicionalmente, se definió la variable indicadora $H_i = 1$ si $Y_i\geq900$ y $H_i=0$ en caso contrario, con la cual se compararon mediante boxplots variables cuantitativas como la edad, la antigüedad con la aseguradora, el historial de siniestros, el peso, la potencia y el valor del vehículo entre ambos grupos; el historial de siniestros mostró la diferencia visual más clara entre ambos grupos.
+También se calculó, para cada variable categórica, la proporción de reclamos con $H_i=1$, $\hat r_g = \{i: X_i=g,\ Y_i\geq900\}/n_g$, con el fin de identificar qué categorías de tipo de vehículo, zona o tipo de combustible concentraban una mayor proporción de reclamos de alta severidad.
 
 ```{=latex}
 \begin{center}
@@ -218,7 +238,7 @@ Dado que los cuatro métodos se ejecutaron directamente sobre los datos reales d
 \end{center}
 ```
 
-Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optará por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
+Dado que el objetivo de la investigación aborda dos aspectos: la relación entre la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo: el valor, la potencia, el peso, el tipo y la zona de circulación, tanto con la frecuencia como con la severidad de los siniestros; y el estudio del incremento abrupto en la cantidad de reclamos al momento que el costo de los mismos supera el monto de 900 euros; se optó por crear secciones diferenciadas para el abordaje de los resultados de cada componente, los cuales se detallan a continuación.
 
 ```{=latex}
 \begin{center}
@@ -234,17 +254,53 @@ Dado que el objetivo de la investigación aborda dos aspectos: la relación entr
 
 El análisis de la relación entre las variables contempladas con la frecuencia y la severidad de los siniestros, se desarrolló a partir de dos métodos: el primer método corresponde al análisis de correlación para las variables cuantitativas, mientras que el segundo método consiste en un análisis comparativo entre grupos definidos a partir de las variables categóricas, como la zona de circulación y el tipo de vehículo.
 
-En primer lugar, se halló que las variables del valor del vehículo, la potencia del vehículo, el peso del vehículo, la antigüedad con la aseguradora y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros. El coeficiente de correlación obtenido fue estrictamente menor al valor absoluto de 0.1 en todos los casos, de manera que la relación de estas variables con la frecuencia y la severidad de los siniestros es despreciable. Asimismo, el resultado obtenido indica que no representan buenos prospectos de asociación con el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
+En primer lugar, se halló que las variables del valor del vehículo, la potencia del vehículo, el peso del vehículo, la antigüedad con la aseguradora y la edad del asegurado, poseen una correlación despreciable tanto con la frecuencia como con la severidad de los siniestros.
+El coeficiente de correlación obtenido fue estrictamente menor al valor absoluto de 0,1 en todos los casos, de manera que la relación de estas variables con la frecuencia y la severidad de los siniestros es despreciable.
+Asimismo, el resultado obtenido indica que no representan buenos prospectos de asociación con el cambio abrupto en la cantidad de reclamos cuando el monto de los mismos supera los 900 euros.
 
-Similarmente, se identificó que la variable del historial de reclamos presenta una correlación mediana con la frecuencia y la severidad de los mismos. De acuerdo con @vinuesa2016, el valor del coeficiente para una correlación mediana debe ser estrictamente mayor al valor absoluto de 0.3 y menor o igual al valor absoluto de 0.5. El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0.38 y 0.36 respectivamente, situándose en el rango especificado. Así, se determinó que el historial de siniestros posee una relación media con las variables respuesta.
+Similarmente, se identificó que la variable del historial de reclamos presenta una correlación mediana con la frecuencia y la severidad de los mismos.
+De acuerdo con @vinuesa2016, el valor del coeficiente para una correlación mediana debe ser: 0,3 \< \| r \| ≤ 0,5 .
+El coeficiente de correlación obtenido para el historial de siniestros de acuerdo a la frecuencia y la severidad de los reclamos, es de 0,38 y 0,36 respectivamente, situándose en el rango especificado.
+Así, se determinó que el historial de siniestros posee una relación media con las variables respuesta.
 
 Es importante destacar que los resultados hallados mediante el análisis de correlación, se estimaron a partir de intervalos de confianza al 95%.
 
-En segundo lugar, se encontró que la frecuencia muestra un comportamiento diferenciado según la zona de circulación, mientras que la severidad no presenta diferencias notables en su comportamiento bajo dichas categorías. Los asegurados de las zonas urbanas presentan un mayor promedio en la frecuencia de la siniestralidad anual, en comparación con los asegurados de las zonas rurales. Además, las distribuciones del costo anual positivo son similares entre las zonas rurales y las zonas urbanas. Así, es posible afirmar que la zona de circulación tiene cierta asociación con la frecuencia de los siniestros, sin embargo, no es posible realizar la afirmación análoga respecto a la severidad de los siniestros. El resultado es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico.
+En segundo lugar, se encontró que la frecuencia muestra un comportamiento diferenciado según la zona de circulación, mientras que la severidad no presenta diferencias notables en su comportamiento bajo dichas categorías.
+Los asegurados de las zonas urbanas presentan un mayor promedio en la frecuencia de la siniestralidad anual, en comparación con los asegurados de las zonas rurales.
+Además, las distribuciones del costo anual positivo son similares entre las zonas rurales y las zonas urbanas.
+Así, es posible afirmar que la zona de circulación tiene cierta asociación con la frecuencia de los siniestros, sin embargo, no es posible realizar la afirmación análoga respecto a la severidad de los siniestros.
+El resultado es consistente con lo esperado, dado que las zonas urbanas presentan mayor densidad de tráfico.
+Seguidamente, se presentan los gráficos que ilustran los resultados explicados.
 
-En tercer lugar, se analizó la relación entre la variable del tipo de vehículo con la frecuencia y la severidad de los siniestros. Dado que el tipo de vehículo es una variable categórica, se efectuó una agrupación según el tipo de vehículo y se estudió la frecuencia y la severidad de los siniestros. En consecuencia, se concluyó que los vehículos de turismo poseen un mayor costo anual de siniestros, en comparación a los otros tipos de vehículos, mientras que las furgonetas presentan una mayor frecuencia de siniestros. El hallazgo evidencia que el tipo de vehículo está asociado con la frecuencia y la severidad, donde los vehículos particulares o de turismo, tienen siniestros con un mayor costo anual, por otro lado, las furgonetas poseen una mayor cantidad de siniestros por año.
+```{=latex}
+\noindent
+\begin{minipage}{0.46\textwidth}
+\centering
+{\small \textbf{Figura 1}}\\
+{\footnotesize \textit{Frecuencia promedio de siniestros por zona de circulación}}
+\vspace{0.3cm}
 
-En síntesis, el análisis realizado muestra que las variables de las características asociadas a los asegurados y a los vehículos, poseen relaciones diferenciadas con la frecuencia y la severidad de los siniestros. Las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; el caso contrario de la variable del historial de siniestros, la cual evidencia una asociación moderada con estas. Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
+\makebox[\linewidth][c]{\includegraphics[width=1.13\linewidth,height=8cm]{frecuencia_promedio.png}}
+\end{minipage}
+\hspace{0.08\textwidth}
+\begin{minipage}{0.46\textwidth}
+\centering
+{\small \textbf{Figura 2}}\\
+{\footnotesize \textit{Distribución del costo por zona de circulación}}
+\vspace{0.3cm}
+
+\makebox[\linewidth][c]{\includegraphics[width=1.13\linewidth,height=8cm]{costo.png}}
+\end{minipage}
+```
+
+En tercer lugar, se analizó la relación entre la variable del tipo de vehículo con la frecuencia y la severidad de los siniestros.
+Dado que el tipo de vehículo es una variable categórica, se efectuó una agrupación según las categorías de la variable.
+En consecuencia, se concluyó que los vehículos de turismo poseen un mayor costo anual de siniestros, en comparación a los otros tipos de vehículos, mientras que las furgonetas presentan una mayor frecuencia promedio de siniestros: 0,568.
+El hallazgo evidencia que el tipo de vehículo está asociado con la frecuencia y la severidad, donde los vehículos particulares o de turismo, tienen siniestros con un mayor costo anual, por otro lado, las furgonetas poseen una mayor cantidad de siniestros por año.
+
+En síntesis, el análisis realizado muestra que las variables de las características asociadas a los asegurados y a los vehículos, poseen relaciones diferenciadas con la frecuencia y la severidad de los siniestros.
+Las variables de la edad del asegurado, la antigüedad con la aseguradora, el valor, la potencia y el peso del vehículo presentan relaciones despreciables con las variables respuesta; el caso contrario de la variable del historial de siniestros, la cual evidencia una asociación moderada con estas.
+Asimismo, las comparaciones entre grupos revelan que la frecuencia de los siniestros varía según la zona de circulación y el tipo de vehículo, mientras que la severidad muestra diferencias más limitadas en el caso de la zona de circulación, en lo que respecta al tipo de vehículo, los vehículos de turismo concentran la mayor severidad, es decir, el mayor costo anual.
 
 ```{=latex}
 \begin{center}
@@ -258,49 +314,67 @@ En síntesis, el análisis realizado muestra que las variables de las caracterí
 \end{center}
 ```
 
-El análisis del incremento abrupto al superar el monto de 900 euros se compone de dos acciones: determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta. Respecto al primer componente se encontraron tres resultados particulares, los cuales se detallan como sigue.
+El análisis del incremento abrupto al superar el monto de 900 euros se compone de dos acciones: determinar qué variables inciden en el fenómeno detallado y desarrollar un análisis de distribución mixta.
+Respecto al primer componente se encontraron tres resultados particulares, los cuales se detallan como sigue.
 
 ```{=latex}
 \begin{center}
 ```
 
 ```{=latex}
-{\fontsize{11pt}{14pt}\selectfont\textbf{INCIDENCIA DE LAS VARIABLES EN EL FENÓMENO BAJO ESTUDIO}}
+{\fontsize{10pt}{14pt}\selectfont\textbf{INCIDENCIA DE LAS VARIABLES EN EL FENÓMENO BAJO ESTUDIO}}
 ```
 
 ```{=latex}
 \end{center}
 ```
 
-En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero. Dichos estadísticos se calcularon para las clases de las variables categóricas del tipo de vehículo, la zona de circulación y el tipo de combustible. A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente 882 euros en todos los grupos analizados, sin importar el tipo de vehículo, la zona de circulación o el tipo de combustible. El hecho de que el 75 % de los siniestros con costo positivo se concentre por debajo de 882 euros en todos los grupos estudiados, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo. Lo anterior refuerza la pertinencia metodológica de usar la cifra de 900 euros como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
+En primer lugar, se calcularon los estadísticos descriptivos para el costo anual positivo de los siniestros, es decir, los costos mayores a cero.
+Dichos estadísticos se calcularon para las clases de las variables categóricas: el tipo de vehículo, la zona de circulación y el tipo de combustible.
+A partir de los resultados obtenidos, se determinó que el tercer cuartil del costo positivo de los siniestros es exactamente 882 euros en todos los grupos analizados.
+El hecho de que el 75% de los siniestros con costo positivo se concentre por debajo de 882 euros, sugiere que el umbral de 900 euros no es arbitrario, sino que corresponde a un punto de corte estructural de la distribución del costo.
+Lo anterior refuerza la pertinencia metodológica de usar la cifra de 900 euros como separador entre las clases de costo medio y de costo alto en el modelo de la distribución mixta.
 
-En segundo lugar, se descubrió que el tipo de vehículo se relaciona con la proporción de reclamos con costos superiores a los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad. Tal hallazgo se encontró al crear una variable denominada mayores_900, la cual adopta el valor de uno si la variable de la severidad es mayor o igual a 900, y adopta el valor cero en el caso contrario. Luego se calculó el promedio de esa variable, haciendo una agrupación por el tipo de vehículo; así se obtuvo la proporción de reclamos que supera el umbral de los 900 euros por cada clase de vehículo. En consideración del presente resultado, se puede confirmar que el tipo de vehículo se asocia con el comportamiento de los costos alrededor del umbral de los 900 euros, ya que las furgonetas y los vehículos de turismo concentran las proporciones más altas de reclamos con costos superiores al mencionado.
+En segundo lugar, se descubrió que el tipo de vehículo se relaciona con la proporción de reclamos con costos superiores a los 900 euros, ya que las furgonetas y los vehículos de turismo concentraron los reclamos de alta severidad.
+Se calculó el promedio de la cantidad de reclamos con montos superiores a 900 euros, por cada clase de vehículo y así se obtuvo el hallazgo descrito.
+En consideración del presente resultado, se puede confirmar que el tipo de vehículo se asocia con el comportamiento de los costos alrededor del umbral de los 900 euros, ya que las furgonetas y los vehículos de turismo concentran las proporciones más altas de estos reclamos.
 
-Similarmente, se determinó que los reclamos más costosos, aquellos que superan los 900 euros, se concentran en vehículos de características intermedias: los vehículos con pesos entre 1000 y 1500 kilogramos, longitudes entre 4.0 y 4.7 metros, potencias entre 70 y 130 caballos de fuerza, cilindrajes entre 1400 y 2000, así como cinco puertas, que corresponden a las cuatro puertas y la cajuela. La concentración de reclamos superiores a 900 euros en vehículos de características medias, sugiere que el aumento abrupto en el costo no está asociado en su mayoría con vehículos especiales, sino que está asociado principalmente con vehículos de uso común: los de turismo, los familiares o incluso los cotidianos.
+Similarmente, se determinó que los reclamos más costosos, aquellos que superan los 900 euros, se concentran en vehículos de características intermedias: los vehículos con pesos entre 1000 y 1500 kilogramos, longitudes entre 4,0 y 4,7 metros, potencias entre 70 y 130 caballos de fuerza, cilindrajes entre 1.400 y 2.000, así como cinco puertas, que corresponden a las cuatro puertas y la cajuela.
+Tal resultado sugiere que el aumento abrupto en el costo no está asociado en su mayoría con vehículos especiales, sino que está asociado principalmente con vehículos de uso común: los de turismo, los familiares o incluso los cotidianos.
 
-En síntesis, los resultados obtenidos sugieren que el umbral de 900 euros constituye un punto de referencia relevante dentro de la estructura de los costos de los siniestros: coincide con un valor cercano al tercer cuartil de la distribución en todos los grupos analizados, definidos a partir de las variables categóricas. Asimismo, se identificó que el tipo de vehículo desempeña un papel importante en los reclamos de alta severidad, puesto que las furgonetas y los vehículos de turismo concentran una mayor proporción de casos por encima del umbral definido. Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales, sino con los vehículos de uso común que poseen características intermedias.
+En síntesis, los resultados obtenidos sugieren que el umbral de 900 euros constituye un punto de referencia relevante dentro de la estructura de los costos de los siniestros: coincide con un valor cercano al tercer cuartil de la distribución en todos los grupos analizados.
+Asimismo, se identificó que el tipo de vehículo desempeña un papel importante en los reclamos de alta severidad, puesto que las furgonetas y los vehículos de turismo concentran una mayor proporción de casos por encima del umbral definido.
+Dicho hallazgo se complementa con la observación de que los reclamos más costosos no se asocian principalmente con los vehículos especiales, sino con los vehículos que poseen características intermedias.
 
 ```{=latex}
 \begin{center}
 ```
 
 ```{=latex}
-{\fontsize{11pt}{14pt}\selectfont\textbf{ANÁLISIS DE DISTRIBUCIÓN MIXTA}}
+{\fontsize{10pt}{14pt}\selectfont\textbf{ANÁLISIS DE DISTRIBUCIÓN MIXTA}}
 ```
 
 ```{=latex}
 \end{center}
 ```
 
-Para estudiar el comportamiento del costo anual en torno al umbral de 900 euros, se implementó un modelo de distribución mixta, separando los registros en tres componentes: costos nulos, costos moderados, cuyos valores son mayores a cero y menores a 900 euros; y costos altos, cuyos montos son mayores o iguales a 900 euros y son menores o iguales a 20,000 euros. A partir de la división planteada se encontraron dos resultados particulares, los cuales se detallan como sigue.
+Para estudiar el comportamiento del costo anual en torno al umbral de 900 euros, se implementó un modelo de distribución mixta, separando los registros en tres componentes: los costos nulos, los costos moderados, cuyos valores son mayores a cero y menores a 900 euros; y los costos altos, cuyos montos son mayores o iguales a 900 euros y son menores o iguales a 20.000 euros.
+A partir de la división planteada se encontraron dos resultados particulares, los cuales se detallan como sigue.
 
-En primer lugar, se determinó que la distribución que presenta un mejor ajuste para los datos con costos entre 0 y 900 corresponde a la distribución Lognormal, al obtener un Criterio de Información de Akaike (AIC) de 211,339.9. Esta distribución fue comparada con la distribución Gamma, la cual obtuvo un AIC de 212,684.5, con una diferencia de 1,344.6 respecto a la Lognormal. En vista de lo anterior, se seleccionó la Lognormal para modelar los costos que están en el intervalo 0 a 900. Mediante el paquete fitdistrplus, se recurrió a la función fitdist() para calcular los parámetros de la distribución, los resultados fueron: meanlog = 5.2785366 y sdlog= 0.9693318.
+En primer lugar, se determinó que la distribución que presenta un mejor ajuste para los costos moderados corresponde a la distribución Lognormal, al obtener un Criterio de Información de Akaike (AIC) de 211.339,9.
+Esta distribución fue comparada con la distribución Gamma, la cual obtuvo un AIC de 212.684,5, con una diferencia de 1.344,6 respecto a la Lognormal.
+En vista de lo anterior, se seleccionó la Lognormal para modelar los costos moderados.
+Mediante el paquete *fitdistrplus*, se recurrió a la función *fitdist()* para calcular los parámetros de la distribución, los resultados fueron: meanlog = 5,2785366 y sdlog= 0,9693318.
 
-En segundo lugar, para el intervalo de los valores mayores o iguales a 900 euros y menores o iguales a 20,000 euros, se encontró que la distribución con un mejor ajuste para los datos en el rango descrito es la distribución Lognormal, la cual obtuvo un AIC de 64,536.62. En este caso, dicha distribución se comparó con la distribución de Pareto, que resultó en un AIC de 66,422.61, con una diferencia de 1,885.99 respecto a la Lognormal. Además, a través del uso del mismo paquete se concluyó que los parámetros para esta distribución son: meanlog= 7.5571894 y sdlog = 0.6816524.
+En segundo lugar, para los costos altos se encontró que la distribución con un mejor es la distribución Lognormal, la cual obtuvo un AIC de 64.536,62.
+En este caso, dicha distribución se comparó con la distribución de Pareto, que resultó en un AIC de 66.422,61, con una diferencia de 1.885,99 respecto a la Lognormal.
+Además, a través del uso del mismo paquete se concluyó que los parámetros para esta distribución son: meanlog= 7,5571894 y sdlog = 0,6816524.
 
-Finalmente, es importante aclarar que la cota superior de 20,000 euros se fijó con el objetivo de facilitar el ajuste, puesto que las observaciones con costos superiores a tal cifra representan valores extremos aislados, los cuales pueden potencialmente distorsionar las estimaciones.
+Finalmente, es importante aclarar que la cota superior de 20.000 euros se fijó con el objetivo de facilitar el ajuste, puesto que las observaciones con costos superiores a tal cifra representan valores extremos aislados, los cuales pueden potencialmente distorsionar las estimaciones.
 
-En síntesis, el análisis de distribución mixta permitió caracterizar el comportamiento de los costos anuales alrededor del umbral de 900 euros. Los resultados evidenciaron que la distribución Lognormal proporciona el mejor ajuste tanto para los costos moderados como para los costos altos, superando a las distribuciones Gamma y Pareto según el criterio AIC. Asimismo, la decisión de segmentar de los datos y de excluir a las observaciones con montos superiores a 20,000 euros, favoreció la obtención de estimaciones más estables.
+En síntesis, el análisis de distribución mixta permitió caracterizar el comportamiento de los costos anuales alrededor del umbral de 900 euros.
+Los resultados evidenciaron que la distribución Lognormal proporciona el mejor ajuste tanto para los costos moderados como para los costos altos, superando a las distribuciones Gamma y Pareto según el criterio AIC.
+Asimismo, la decisión de segmentar los datos y de excluir a las observaciones con montos superiores a 20.000 euros, favoreció la obtención de estimaciones más estables.
 
 ```{=latex}
 \begin{center}
@@ -314,13 +388,17 @@ En síntesis, el análisis de distribución mixta permitió caracterizar el comp
 \end{center}
 ```
 
-La presente investigación propuso analizar cómo las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo se relacionan con la frecuencia y la severidad de los siniestros, además de analizar el incremento abrupto en la cantidad de reclamos cuando el costo de los mismos alcanza los 900 euros. Tal objetivo debió adaptarse, puesto que en la literatura consultada se señala que la frecuencia y severidad de los siniestros deben trabajarse por separado, además, se identificó la oportunidad de utilizar variables específicas tanto del asegurado como del vehículo para explorar su posible relación con ambos componentes. En la investigación se esperaba encontrar que las variables tuvieran una asociación significativa con la frecuencia y la severidad, igualmente, se esperaba que el fenómeno bajo estudio estuviera asociado a ciertas características del vehículo. Los resultados coinciden parcialmente con las expectativas, pues se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia positivamente con la siniestralidad; algunas variables del vehículo: el valor, la potencia, y el peso tienen una correlación despreciable tanto con la frecuencia como con la severidad, el caso análogo sucede con ciertas características del asegurado: la edad y la antigüedad con la aseguradora.
+La presente investigación propuso analizar la relación entre las variables de la edad del asegurado, la antigüedad con la aseguradora, el historial de siniestros y las características del vehículo, con la frecuencia y la severidad de los siniestros; además de estudiar el incremento abrupto en la cantidad de reclamos cuando el costo de los mismos alcanza los 900 euros.
+Se esperaba encontrar que las variables detalladas presentaran una asociación significativa con la frecuencia y la severidad, igualmente, se esperaba que el fenómeno bajo estudio estuviera asociado a ciertas características del vehículo.
+Los resultados coinciden parcialmente con las expectativas, pues se encontró que el tipo de vehículo influye tanto en la frecuencia como en la severidad de los siniestros; el historial de siniestros se asocia medianamente con la siniestralidad; algunas variables del vehículo: el valor, la potencia y el peso, al igual que algunas variables del asegurado: la edad y la antigüedad con la aseguradora, tienen una correlación despreciable tanto con la frecuencia como con la severidad.
 
-La metodología utilizada se divide en cuatro métodos complementarios, el análisis descriptivo de la base de datos, el cálculo de correlaciones de Spearman con intervalos de confianza para las variables numéricas, comparación entre grupos y la creación de una distribución mixta de tres componentes ajustada con el paquete *fitdistrplus* de R. La metodología descrita permitió abordar el objetivo de investigación de manera satisfactoria.
+La metodología utilizada permitió abordar el objetivo de la investigación de manera satisfactoria.
+La misma se dividió en cuatro métodos complementarios: el análisis descriptivo de la base de datos, el cálculo de las correlaciones de Spearman con intervalos de confianza para las variables numéricas, la comparación entre grupos y la creación de una distribución mixta de tres componentes ajustada con el paquete *fitdistrplus* de R.
+Por otro lado, el trabajo resuelve un vacío de conocimiento, ya que no solo propone el estudio de la intervención de ciertas variables en la siniestralidad, sino que también implementa el análisis de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros.
+Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción de riesgo más generales.
 
-El trabajo resuelve un vacío de conocimiento al proponer no solo un análisis de la intervención de distintas variables en la siniestralidad de los reclamos, sino también la explicación de un fenómeno específico: el aumento de reclamos a partir del umbral de 900 euros. Lo anterior constituye un aspecto no abordado en la literatura estándar, la cual suele concentrarse en modelos de predicción más generales que estudian principalmente la siniestralidad de los reclamos.
-
-Para futuras investigaciones se recomienda optar por la construcción de un aprendizaje práctico, de manera que las producciones generadas no enfoquen sus esfuerzos en un área meramente teórica, sino que el conocimiento hallado se aplique de igual manera a escenarios prácticos, lo cual puede constituir una guía para las entidades pertinentes y los profesionales que se desarrollan en el campo contemplado. Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico. Finalmente, se sugiere incorporar información más detallada sobre el vehículo y el asegurado, con el fin de mejorar la precisión de los análisis realizados.
+Finalmente, para futuras investigaciones se recomienda optar por la construcción de un aprendizaje práctico, de manera que las producciones generadas no enfoquen sus esfuerzos en un área meramente teórica, sino que el conocimiento hallado se aplique de igual manera a escenarios reales, con tal de ofrecer una mayor perspectiva a las entidades pertinentes y a los profesionales que se desarrollan en el campo contemplado.
+Asimismo, sería de gran valor aplicar este enfoque en distintas bases de datos de aseguradoras españolas o europeas, con el fin de identificar si existe un patrón: el aumento abrupto de la cantidad de reclamos a partir de un costo específico.
 
 ```{=latex}
 \begin{center}
@@ -339,8 +417,6 @@ Durante estos tres años de formación académica hemos recibido de su parte un 
 
 Finalmente, agradecemos al docente Maikol Solís Chacón, quien ha sido nuestro mentor a lo largo del proceso.
 Su disposición para brindar apoyo y su motivación por compartir sus vastos conocimientos, se reflejó de manera directa en la construcción de una investigación sólida y en un entorno de aprendizaje práctico.
-
-\newpage
 
 ```{=latex}
 \begin{center}
